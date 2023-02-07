@@ -1,7 +1,7 @@
 # prj301-se1753-08
 ## Team: PrayGodNoBug (PGNB)
 ## Sitemap
-![\sitemap](images/sitemap.jpg)
+![sitemap](images\web-pages\sitemap.jpg)
 
 ## Functional requirements
 
@@ -75,4 +75,17 @@
   - [ ] Support (message/chatbox)
 
 ## Wireframe
-<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2Fs728wrex5xnLa2Vp1Lz2Vq%2FPRJ301-GUI%3Fnode-id%3D0%253A1%26t%3DcF9J3hlVz8DrxpjW-1" allowfullscreen></iframe>
+### 1.Login
+![](images\web-pages\Login.jpg)
+### 2.Register
+![](images\web-pages\Register.jpg)
+### 3.User Profile
+![](images\web-pages\UserProfile.jpg)
+### 4.User Profile Editor
+![](images\web-pages\UserProfileEditor.jpg)
+### 5.Weekly Menu
+![](images\web-pages\WeeklyMenu.jpg)
+### 6.Product List
+![](images\web-pages\ProductList.jpg)
+### 7.Product Detail
+![](images\web-pages\ProductDetail.jpg)
