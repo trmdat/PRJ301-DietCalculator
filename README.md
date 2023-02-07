@@ -1,7 +1,7 @@
 # prj301-se1753-08
 ## Team: PrayGodNoBug (PGNB)
 ## Sitemap
-![sitemap](images\web-pages\sitemap.jpg)
+![sitemap](images/web-pages/sitemap.jpg)
 
 ## Functional requirements
 
@@ -76,16 +76,20 @@
 
 ## Wireframe
 ### 1.Login
-![](images\web-pages\Login.jpg)
+![login](images/web-pages/Login.jpg)
 ### 2.Register
-![](images\web-pages\Register.jpg)
+![register](images/web-pages/Register.jpg)
 ### 3.User Profile
-![](images\web-pages\UserProfile.jpg)
+![profile](images/web-pages/UserProfile.jpg)
 ### 4.User Profile Editor
-![](images\web-pages\UserProfileEditor.jpg)
-### 5.Weekly Menu
-![](images\web-pages\WeeklyMenu.jpg)
-### 6.Product List
-![](images\web-pages\ProductList.jpg)
-### 7.Product Detail
-![](images\web-pages\ProductDetail.jpg)
+![profile edit](images/web-pages/UserProfileEditor.jpg)
+### 5.BMR Calculator
+![profile edit](images/web-pages/Calculator.jpg)
+### 6.Weekly Menu
+![menu](images/web-pages/WeeklyMenu.jpg)
+### 7.Product List
+![product list](images/web-pages/ProductList.jpg)
+### 8.Product Detail
+![product detail](images/web-pages/ProductDetail.jpg)
+### 9.Product cart
+![product cart](images/web-pages/ProductCart.jpg)
