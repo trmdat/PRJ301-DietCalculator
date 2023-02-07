@@ -1,7 +1,7 @@
 # prj301-se1753-08
 ## Team: PrayGodNoBug (PGNB)
 ## Sitemap
-![sitemap](images\web-pages\sitemap.jpg)
+![sitemap](images/web-pages/sitemap.jpg)
 
 ## Functional requirements
 
@@ -75,20 +75,26 @@
   - [ ] Support (message/chatbox)
 
 ## Wireframe
+
 ### 1.Home
-![](images/web-pages/Home.PNG)
+![home](images/web-pages/Home.PNG)
 ### 2.Login
-![](images\web-pages\Login.jpg)
+![login](images/web-pages/Login.jpg)
 ### 3.Register
-![](images\web-pages\Register.jpg)
+![register](images/web-pages/Register.jpg)
 ### 4.User Profile
-![](images\web-pages\UserProfile.jpg)
+![profile](images/web-pages/UserProfile.jpg)
 ### 5.User Profile Editor
-![](images\web-pages\UserProfileEditor.jpg)
-### 6.Weekly Menu
-![](images\web-pages\WeeklyMenu.jpg)
-### 7.Product List
-![](images\web-pages\ProductList.jpg)
-### 8.Product Detail
-![](images\web-pages\ProductDetail.jpg)
+![profile edit](images/web-pages/UserProfileEditor.jpg)
+### 6.BMR Calculator
+![profile edit](images/web-pages/Calculator.jpg)
+### 7.Weekly Menu
+![menu](images/web-pages/WeeklyMenu.jpg)
+### 8.Product List
+![product list](images/web-pages/ProductList.jpg)
+### 9.Product Detail
+![product detail](images/web-pages/ProductDetail.jpg)
+### 10.Product cart
+![product cart](images/web-pages/ProductCart.jpg)
+
 
