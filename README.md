@@ -75,18 +75,20 @@
   - [ ] Support (message/chatbox)
 
 ## Wireframe
-### 1.Login
+### 1.Home
+![](images/web-pages/Home.PNG)
+### 2.Login
 ![](images\web-pages\Login.jpg)
-### 2.Register
+### 3.Register
 ![](images\web-pages\Register.jpg)
-### 3.User Profile
+### 4.User Profile
 ![](images\web-pages\UserProfile.jpg)
-### 4.User Profile Editor
+### 5.User Profile Editor
 ![](images\web-pages\UserProfileEditor.jpg)
-### 5.Weekly Menu
+### 6.Weekly Menu
 ![](images\web-pages\WeeklyMenu.jpg)
-### 6.Product List
+### 7.Product List
 ![](images\web-pages\ProductList.jpg)
-### 7.Product Detail
+### 8.Product Detail
 ![](images\web-pages\ProductDetail.jpg)
 
