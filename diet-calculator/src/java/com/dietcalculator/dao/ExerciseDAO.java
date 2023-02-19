@@ -1,6 +1,6 @@
 package com.dietcalculator.dao;
 
-import com.dietcalculator.dto.FoodAvoidance;
+import com.dietcalculator.dto.Exercise;
 import com.dietcalculator.util.DBUtils;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,22 +11,23 @@ import java.util.List;
 
 /**
  *
- * @author ADMIN
+ * @author admin
  */
-public class FoodAvoidanceDAO {
-    public List<FoodAvoidance> getFoodAvoidancesByID(String userID){
-        List<FoodAvoidance> list = new ArrayList<>();
+public class ExerciseDAO {
+
+    public List<Exercise> getExercise() {
+        List<Exercise> list = new ArrayList<>();
         String sql = "";
-         try {
+        try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                
+
             }
         } catch (SQLException ex) {
-             System.out.println(ex);
+            System.out.println(ex);
         }
         return list;
-    } 
+    }
 }
