@@ -1,3 +1,6 @@
+CREATE DATABASE PRJ301_PGNB
+GO
+
 USE PRJ301_PGNB
 CREATE TABLE [User](
 	userID			NVARCHAR(6)		PRIMARY KEY,
@@ -15,16 +18,19 @@ CREATE TABLE [User](
 	goal			INT				NOT NULL, --Stay = 0, gain = 1, lose = -1
 	amount			FLOAT			NOT NULL, --Default = 2kg
 	duration		INT				NOT NULL, --Default = 8 weeks	
+	main			INT				NOT NULL, --Default = 3
+	side			INT				NOT NULL, --Default = 1
+	[session]		INT				NOT NULL, --Default = 1
 	[rank]			INT				NOT NULL, --Normal = 1, VIP = 2
 	createdate		DATE			NOT NULL,
 
 	--userID format: U*****
-	CHECK (userID LIKE '[A-Z][0-9][0-9][0-9][0-9][0-9]')
+	CHECK (userID LIKE 'U[0-9][0-9][0-9][0-9][0-9]')
 )
 
 CREATE TABLE Exercise(
 	exerciseID		NVARCHAR(5)		PRIMARY KEY,
-	[exname]		NVARCHAR(30)	NOT NULL,
+	exname			NVARCHAR(60)	NOT NULL,
 	lowerweight		FLOAT			NOT NULL,
 	upperweight		FLOAT			NOT NULL,
 	calorexp		INT				NOT NULL,
@@ -51,14 +57,14 @@ CREATE TABLE Food(
 
 CREATE TABLE Product(
 	productID		NVARCHAR(7)		PRIMARY KEY,
-	productname		NVARCHAR(50)	NOT NULL,
-	[type]			NVARCHAR(10)	NOT NULL,
+	productname		NVARCHAR(200)	NOT NULL,
+	[type]			NVARCHAR(20)	NOT NULL,
 	price			FLOAT			NOT NULL,
 	quantity		INT				NOT NULL,
 	brand			NVARCHAR(30)	NOT NULL,
 	origin			NVARCHAR(20)	NOT NULL,
 	volume			FLOAT			NULL,
-	effect			NVARCHAR(150)	NULL,
+	effect			NVARCHAR(500)	NULL,
 	rate			FLOAT			NULL, --Default:4.0
 	purchase		FLOAT			NULL, --Default: 100
 
@@ -83,6 +89,12 @@ CREATE TABLE [Day](
 	userID			NVARCHAR(6)		FOREIGN KEY REFERENCES [User](userID),
 	[index]			INT				NOT NULL,
 
+	totalCal		FLOAT			NOT NULL,
+	carbohydrate	FLOAT			NOT NULL,
+	fiber			FLOAT			NOT NULL,
+	protein 		FLOAT			NOT NULL,
+	fat				FLOAT			NOT NULL,
+	water			FLOAT			NOT NULL,
 	-- dayID format: DAY*****
 	CHECK (dayID LIKE 'DAY[0-9][0-9][0-9][0-9][0-9][0-9]')
 )
@@ -101,8 +113,8 @@ CREATE TABLE Meal(
 	mealID			NVARCHAR(9)		PRIMARY KEY,
 	userID			NVARCHAR(6)		FOREIGN KEY REFERENCES [User](userID),
 	dayID			NVARCHAR(8)		FOREIGN KEY REFERENCES [Day](dayID),
-	[time]			NVARCHAR(15)	NOT NULL,
-
+	[time]			INT				NOT NULL, --Breakfast = 1, Lunch = 2, Dinner = 3, Brunch = 4, Snack = 5
+	calosize		FLOAT			NOT NULL,
 	-- mealID format: MEAL*****
 	CHECK (mealID LIKE 'MEAL[0-9][0-9][0-9][0-9][0-9]')
 )
@@ -111,7 +123,6 @@ CREATE TABLE FoodDetail(
 	foodID			NVARCHAR(7)		FOREIGN KEY REFERENCES Food(foodID),
 	mealID			NVARCHAR(9)		FOREIGN KEY REFERENCES Meal(mealID),
 	amount			FLOAT			NOT NULL, -- in grams
-	quantity		FLOAT			NOT NULL, -- in cups
 	PRIMARY KEY(foodID, mealID)
 
 )
@@ -170,6 +181,28 @@ CREATE TABLE PopUpDetail(
 	productID		NVARCHAR(7)		FOREIGN KEY REFERENCES Product(productID),
 	[description]	NVARCHAR(50)	NULL,
 	PRIMARY KEY(popupID, productID)
+)
+
+CREATE TABLE Comment(
+	commentID		NVARCHAR(8)		PRIMARY KEY,
+	userID			NVARCHAR(6)		FOREIGN KEY REFERENCES [User](userID),
+	productID		NVARCHAR(7)		FOREIGN KEY REFERENCES Product(productID),
+	rate			FLOAT			NOT NULL,
+	content			NVARCHAR(500)	NULL,
+
+	-- commentID format: CMT*****
+	CHECK (commentID LIKE 'CMT[0-9][0-9][0-9][0-9][0-9]')
+)
+
+CREATE TABLE [Image](
+	imageID			NVARCHAR(8)		PRIMARY KEY,
+	productID		NVARCHAR(7)		FOREIGN KEY REFERENCES Product(productID) NULL,
+	mealID			NVARCHAR(9)		FOREIGN KEY REFERENCES Meal(mealID) NULL,
+	commentID		NVARCHAR(8)		FOREIGN KEY REFERENCES Comment(commentID) NULL,
+	[url]			NVARCHAR(100)	NOT NULL,
+
+	-- imageID format: IMG*****
+	CHECK (imageID LIKE 'IMG[0-9][0-9][0-9][0-9][0-9]')
 )
 
 

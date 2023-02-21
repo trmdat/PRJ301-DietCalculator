@@ -24,6 +24,9 @@ public class FoodAvoidanceDAO {
             while (rs.next()) {
                 
             }
+            rs.close();
+            ps.close();
+            conn.close();
         } catch (SQLException ex) {
              System.out.println(ex);
         }
