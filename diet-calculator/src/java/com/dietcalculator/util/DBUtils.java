@@ -33,7 +33,7 @@ public class DBUtils {
         return null;
     }
     private final static String serverName = "localhost";
-    private final static String dbName = "prj301";
+    private final static String dbName = "PRJ301_PGNB";
     private final static String portNumber = "1433";
     private final static String instance = "";//LEAVE THIS ONE EMPTY IF YOUR SQL IS A SINGLE INSTANCE
     private final static String userID = "sa";
