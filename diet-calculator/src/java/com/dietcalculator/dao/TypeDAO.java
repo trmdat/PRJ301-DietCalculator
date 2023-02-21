@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * @author asout
  */
 public class TypeDAO {
-    public ArrayList<String> getFoodIDByType(int type){
+    public ArrayList<String> readFoodIDByType(int type){
         ArrayList<String> foodIDByType = new ArrayList();
         String sql = "SELECT foodID FROM Type WHERE type = ? ORDER BY foodID ASC";
         try {
@@ -37,8 +37,45 @@ public class TypeDAO {
         return foodIDByType;
     }
     
-    public boolean addFoodType(String foodID, int type){
+    public ArrayList<Integer> readTypeByFoodID(String foodID){
+        ArrayList<Integer> typeByFoodID = new ArrayList();
+        String sql = "SELECT type FROM Type WHERE foodID = ? ORDER BY type ASC";
+        try {
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, foodID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                typeByFoodID.add(rs.getInt("type"));
+            }
+            rs.close();
+            ps.close();
+            conn.close();
+        }catch(SQLException ex){
+            System.out.println(ex);
+        }
+        return typeByFoodID;
+    }
+    
+    public boolean createType(String foodID, int type){
         String sql = "INSERT INTO Type(foodID, type) VALUES (?,?)";
+        int row = 0;
+        try {
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, foodID);
+            ps.setInt(2, type);
+            row = ps.executeUpdate();
+            ps.close();
+            conn.close();
+        }catch(SQLException ex){
+            System.out.println(ex);
+        }
+        return row > 0;
+    }
+    
+    public boolean deleteType(String foodID, int type){
+        String sql = "DELETE FROM Type WHERE foodID = ? AND type = ?";
         int row = 0;
         try {
             Connection conn = DBUtils.getConnection();
