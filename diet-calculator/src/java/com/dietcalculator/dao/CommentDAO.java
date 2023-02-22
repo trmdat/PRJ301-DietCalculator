@@ -87,13 +87,4 @@ public class CommentDAO {
         }
         return row > 0;
     }
-
-    public static void main(String[] args) {
-        List<Comment> list = new ArrayList<>();
-        CommentDAO dao = new CommentDAO();
-        list = dao.readComment();
-        for (Comment e : list) {
-            System.out.println(e);
-        }
-    }
 }
