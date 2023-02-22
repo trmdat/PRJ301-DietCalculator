@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class ExSessionDAO {
 
-    public List<ExSession> getExSession() {
+    public List<ExSession> readExSession() {
         List<ExSession> list = new ArrayList<>();
         String sql = "";
         try {

@@ -1,6 +1,6 @@
 package com.dietcalculator.dao;
 
-import com.dietcalculator.dto.Exercise;
+import com.dietcalculator.dto.Comment;
 import com.dietcalculator.util.DBUtils;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,17 +13,17 @@ import java.util.List;
  *
  * @author admin
  */
-public class ExerciseDAO {
+public class CommentDAO {
 
-    public List<Exercise> readExercise() {
-        List<Exercise> list = new ArrayList();
-        String sql = "SELECT * FROM Exercise";
+    public List<Comment> readComment() {
+        List<Comment> list = new ArrayList<>();
+        String sql = "SELECT * FROM Comment";
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new Exercise(rs.getString("exerciseID"), rs.getString("exname"), rs.getDouble("lowerweight"), rs.getDouble("upperweight"), rs.getInt("calorexp")));
+                list.add(new Comment(rs.getString("commentID"), rs.getString("userID"), rs.getString("productID"), rs.getDouble("rate"), rs.getString("content")));
             }
             rs.close();
             ps.close();
@@ -34,17 +34,17 @@ public class ExerciseDAO {
         return list;
     }
 
-    public boolean createExercise(String exerciseID, String exname, double lowerweight, double upperweight, int calorexp) {
-        String sql = "INSERT INTO Exercise VALUES(?,?,?,?,?)";
+    public boolean createComment(String commentID, String userID, String productID, double rate, String content) {
+        String sql = "INSERT INTO Comment VALUES(?,?,?,?,?)";
         int row = 0;
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, exerciseID);
-            ps.setString(2, exname);
-            ps.setDouble(3, upperweight);
-            ps.setDouble(4, lowerweight);
-            ps.setInt(5, calorexp);
+            ps.setString(1, commentID);
+            ps.setString(2, userID);
+            ps.setString(3, productID);
+            ps.setDouble(4, rate);
+            ps.setString(5, content);
             row = ps.executeUpdate();
             ps.close();
             conn.close();
@@ -54,17 +54,17 @@ public class ExerciseDAO {
         return row > 0;
     }
 
-    public boolean updateExercise(String exerciseID, String exname, double lowerweight, double upperweight, int calorexp) {
-        String sql = "UPDATE Exercise SET exercesrID = ?, exname = ?, lowerweight = ?, upperweight = ?, calorexp = ?";
+    public boolean updateComment(String commentID, String userID, String productID, double rate, String content) {
+        String sql = "UPDATE Comment SET commentID = ?, userID = ?, productID = ?, rate = ?, content = ?";
         int row = 0;
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, exerciseID);
-            ps.setString(2, exname);
-            ps.setDouble(3, upperweight);
-            ps.setDouble(4, lowerweight);
-            ps.setInt(5, calorexp);
+            ps.setString(1, commentID);
+            ps.setString(2, userID);
+            ps.setString(3, productID);
+            ps.setDouble(4, rate);
+            ps.setString(5, content);
             row = ps.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex);
@@ -72,13 +72,13 @@ public class ExerciseDAO {
         return row > 0;
     }
 
-    public boolean deleteExercise(String exerciseID) {
+    public boolean deleteComment(String commentID) {
         int row = 0;
-        String sql = "DELETE FROM Exercise WHERE exerciseID = ?";
+        String sql = "DELETE FROM Comment WHERE commentID = ?";
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, exerciseID);
+            ps.setString(1, commentID);
             row = ps.executeUpdate();
             ps.close();
             conn.close();
@@ -86,5 +86,14 @@ public class ExerciseDAO {
             System.out.println(ex);
         }
         return row > 0;
+    }
+
+    public static void main(String[] args) {
+        List<Comment> list = new ArrayList<>();
+        CommentDAO dao = new CommentDAO();
+        list = dao.readComment();
+        for (Comment e : list) {
+            System.out.println(e);
+        }
     }
 }

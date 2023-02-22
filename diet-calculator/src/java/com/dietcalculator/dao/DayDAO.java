@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -49,28 +50,28 @@ public class DayDAO {
 //             System.out.println(ex);
 //        }
 //    }
-    
-    public ArrayList<Day> readDayByUserID(String userID){
+
+    public ArrayList<Day> readDayByUserID(String userID) {
         ArrayList<Day> list = new ArrayList();
-        String sql = "SELECT * FROM Day WHERE userID = ?";
+        String sql = "SELECT * FROM Exercise WHERE userID = ?";
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, userID);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new Day(rs.getString("dayID"),rs.getString("userID"),rs.getInt("index"),rs.getDouble("totalCal"), rs.getDouble("carbohydrate"), rs.getDouble("fiber"), rs.getDouble("protein"), rs.getDouble("fat"), rs.getDouble("water")));
+                list.add(new Day(rs.getString("dayID"), rs.getString("userID"), rs.getInt("index"), rs.getDouble("totalCal"), rs.getDouble("carbohydrate"), rs.getDouble("fiber"), rs.getDouble("protein"), rs.getDouble("fat"), rs.getDouble("water")));
             }
             rs.close();
             ps.close();
             conn.close();
-        }catch(SQLException ex){
+        } catch (SQLException ex) {
             System.out.println(ex);
         }
         return list;
     }
-    
-    public boolean createDay(String dayID, String userID, int index, double totalCal, double carbohydrate, double fiber, double protein, double fat, double water){
+
+    public boolean createDay(String dayID, String userID, int index, double totalCal, double carbohydrate, double fiber, double protein, double fat, double water) {
         String sql = "INSERT INTO Day VALUES(?,?,?,?,?,?,?,?,?)";
         int row = 0;
         try {
@@ -88,13 +89,13 @@ public class DayDAO {
             row = ps.executeUpdate();
             ps.close();
             conn.close();
-        }catch(SQLException ex){
+        } catch (SQLException ex) {
             System.out.println(ex);
         }
         return row > 0;
     }
-    
-    public boolean updateDay(String dayID, String userID, int index, double totalCal, double carbohydrate, double fiber, double protein, double fat, double water){
+
+    public boolean updateDay(String dayID, String userID, int index, double totalCal, double carbohydrate, double fiber, double protein, double fat, double water) {
         String sql = "UPDATE Day SET userID = ?, index = ?, totalCal = ?, carbohydrate = ?, fiber = ?, protein = ?, fat = ?, water = ? WHERE dayID = ?";
         int row = 0;
         try {
@@ -110,25 +111,25 @@ public class DayDAO {
             ps.setDouble(7, fat);
             ps.setDouble(8, water);
             row = ps.executeUpdate();
-        }catch(SQLException ex){
+        } catch (SQLException ex) {
             System.out.println(ex);
         }
         return row > 0;
     }
-    
-    public boolean deleteDay(String dayID){
+
+    public boolean deleteDay(String dayID) {
         int row = 0;
         String sql = "DELETE FROM Day WHERE dayID = ?";
-           try {
-               Connection conn = DBUtils.getConnection();
-               PreparedStatement ps = conn.prepareStatement(sql);
-               ps.setString(1, dayID);
-               row = ps.executeUpdate();
-               ps.close();
-               conn.close();
-           }catch(SQLException ex){
-               System.out.println(ex);
-           }
-           return row > 0;   
+        try {
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, dayID);
+            row = ps.executeUpdate();
+            ps.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return row > 0;
     }
 }
