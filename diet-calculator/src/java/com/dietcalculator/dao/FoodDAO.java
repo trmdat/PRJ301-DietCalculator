@@ -72,7 +72,7 @@ public class FoodDAO {
     }
 
     public boolean updateFood(String foodID, String foodname, String category, int size, int caloricintake, double carbohydrate, double fiber, double protein, double fat, double water) {
-        String sql = "UPDATE Food SET foodname = ?, category = ?, size = ?, caloricintake = ?, carbohydrate = ?, fiber = ?, protein = ?, fat = ?, water = ? WHERE foodD = ?";
+        String sql = "UPDATE Food SET foodname = ?, category = ?, size = ?, caloricintake = ?, carbohydrate = ?, fiber = ?, protein = ?, fat = ?, water = ? WHERE foodID = ?";
         int row = 0;
         try {
             Connection conn = DBUtils.getConnection();
