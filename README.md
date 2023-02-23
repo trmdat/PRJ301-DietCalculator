@@ -97,4 +97,10 @@
 ### 10.Product cart
 ![product cart](images/web-pages/ProductCart.jpg)
 
+## Database Diagram
+
+![database diagram](images/web-pages/database-diagram.png)
+
+
+
 
