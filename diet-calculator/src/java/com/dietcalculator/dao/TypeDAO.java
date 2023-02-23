@@ -111,4 +111,12 @@ public class TypeDAO {
         }
         return row > 0;
     }
+    
+    public static void main(String[] args) {
+        TypeDAO dao = new TypeDAO();
+        ArrayList<String> ls = dao.readFoodIDByType(1);
+        for (String l : ls) {
+            System.out.println(l);
+        }
+    }
 }

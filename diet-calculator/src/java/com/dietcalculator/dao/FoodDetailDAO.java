@@ -130,5 +130,12 @@ public class FoodDetailDAO {
         }
         return row > 0;
     }
-
+    
+    public static void main(String[] args) {
+        FoodDetailDAO dao = new FoodDetailDAO();
+        ArrayList<FoodDetail> ls = dao.readFoodDetailByMealID("1");
+        for (FoodDetail l : ls) {
+            System.out.println(l.toString());
+        }
+    }
 }
