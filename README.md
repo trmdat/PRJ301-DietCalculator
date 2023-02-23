@@ -18,7 +18,7 @@
     - [8.Product List](#8product-list)
     - [9.Product Detail](#9product-detail)
     - [10.Product cart](#10product-cart)
-
+  - [Database Diagram](#database-diagram)
 
 ## Sitemap- [prj301-se1753-08](#prj301-se1753-08)
 
@@ -118,7 +118,7 @@
 ### 10.Product cart
 ![product cart](images/web-pages/ProductCart.jpg)
 
-- ## Database Diagram
+## Database Diagram
 
 ![database diagram](images/web-pages/database-diagram.png)
 
