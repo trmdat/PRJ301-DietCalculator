@@ -1,6 +1,6 @@
 # prj301-se1753-08
 ## Team: PrayGodNoBug (PGNB)
-## Sitemap- [prj301-se1753-08](#prj301-se1753-08)
+
 - [prj301-se1753-08](#prj301-se1753-08)
   - [Team: PrayGodNoBug (PGNB)](#team-praygodnobug-pgnb)
   - [Sitemap- prj301-se1753-08](#sitemap--prj301-se1753-08)
@@ -18,6 +18,9 @@
     - [8.Product List](#8product-list)
     - [9.Product Detail](#9product-detail)
     - [10.Product cart](#10product-cart)
+
+
+## Sitemap- [prj301-se1753-08](#prj301-se1753-08)
 
 ![sitemap](images/web-pages/sitemap.jpg)
 
