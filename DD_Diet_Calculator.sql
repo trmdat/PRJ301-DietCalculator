@@ -205,5 +205,10 @@ CREATE TABLE [Image](
 	CHECK (imageID LIKE 'IMG[0-9][0-9][0-9][0-9][0-9]')
 )
 
+SELECT foodID, mealID, amount FROM FoodDetail WHERE foodID = ? ORDER BY foodID ASC
 
+INSERT INTO FoodDetail(foodID, mealID, amount) VALUES (?,?,?)
 
+DELETE FROM Type WHERE foodID = '1' AND type = 1
+
+SELECT mealID,userID,dayID,time,calosize FROM Meal WHERE dayID = 1

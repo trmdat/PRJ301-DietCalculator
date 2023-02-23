@@ -1,6 +1,27 @@
 # prj301-se1753-08
 ## Team: PrayGodNoBug (PGNB)
-## Sitemap
+
+- [prj301-se1753-08](#prj301-se1753-08)
+  - [Team: PrayGodNoBug (PGNB)](#team-praygodnobug-pgnb)
+  - [Sitemap- prj301-se1753-08](#sitemap--prj301-se1753-08)
+  - [Functional requirements](#functional-requirements)
+      - [1. Customers:](#1-customers)
+      - [2. Admins:](#2-admins)
+  - [Wireframe](#wireframe)
+    - [1.Home](#1home)
+    - [2.Login](#2login)
+    - [3.Register](#3register)
+    - [4.User Profile](#4user-profile)
+    - [5.User Profile Editor](#5user-profile-editor)
+    - [6.BMR Calculator](#6bmr-calculator)
+    - [7.Weekly Menu](#7weekly-menu)
+    - [8.Product List](#8product-list)
+    - [9.Product Detail](#9product-detail)
+    - [10.Product cart](#10product-cart)
+  - [Database Diagram](#database-diagram)
+
+## Sitemap- [prj301-se1753-08](#prj301-se1753-08)
+
 ![sitemap](images/web-pages/sitemap.jpg)
 
 ## Functional requirements
@@ -96,5 +117,11 @@
 ![product detail](images/web-pages/ProductDetail.jpg)
 ### 10.Product cart
 ![product cart](images/web-pages/ProductCart.jpg)
+
+## Database Diagram
+
+![database diagram](images/web-pages/database-diagram.png)
+
+
 
 
