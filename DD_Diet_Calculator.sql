@@ -78,7 +78,7 @@ CREATE TABLE [Type](
 	PRIMARY KEY(foodID, [type])
 )
 
-CREATE TABLE FoodAdvoidance(
+CREATE TABLE FoodAvoidance(
 	userID			NVARCHAR(6)		FOREIGN KEY REFERENCES [User](userID),
 	foodID			NVARCHAR(7)		FOREIGN KEY REFERENCES Food(foodID),
 	PRIMARY KEY(userID, foodID)
@@ -88,7 +88,6 @@ CREATE TABLE [Day](
 	dayID			NVARCHAR(8)		PRIMARY KEY,
 	userID			NVARCHAR(6)		FOREIGN KEY REFERENCES [User](userID),
 	[index]			INT				NOT NULL,
-
 	totalCal		FLOAT			NOT NULL,
 	carbohydrate	FLOAT			NOT NULL,
 	fiber			FLOAT			NOT NULL,
@@ -96,27 +95,27 @@ CREATE TABLE [Day](
 	fat				FLOAT			NOT NULL,
 	water			FLOAT			NOT NULL,
 	-- dayID format: DAY*****
-	CHECK (dayID LIKE 'DAY[0-9][0-9][0-9][0-9][0-9][0-9]')
+	CHECK (dayID LIKE 'DAY[0-9][0-9][0-9][0-9][0-9]')
 )
 
 CREATE TABLE ExSession(
-	sessionID		NVARCHAR(8)		PRIMARY KEY,
+	sessionID		NVARCHAR(9)		PRIMARY KEY,
 	exerciseID		NVARCHAR(5)		FOREIGN KEY REFERENCES Exercise(exerciseID),
 	userID			NVARCHAR(6)		FOREIGN KEY REFERENCES [User](userID),
 	dayID			NVARCHAR(8)		FOREIGN KEY REFERENCES [Day](dayID),
 
-	-- sessionID format: SES*****
+	-- sessionID format: SES******
 	CHECK (sessionID LIKE 'SES[0-9][0-9][0-9][0-9][0-9][0-9]')
 )
 
 CREATE TABLE Meal(
-	mealID			NVARCHAR(9)		PRIMARY KEY,
+	mealID			NVARCHAR(10)		PRIMARY KEY,
 	userID			NVARCHAR(6)		FOREIGN KEY REFERENCES [User](userID),
 	dayID			NVARCHAR(8)		FOREIGN KEY REFERENCES [Day](dayID),
 	[time]			INT				NOT NULL, --Breakfast = 1, Lunch = 2, Dinner = 3, Brunch = 4, Snack = 5
 	calosize		FLOAT			NOT NULL,
-	-- mealID format: MEAL*****
-	CHECK (mealID LIKE 'MEAL[0-9][0-9][0-9][0-9][0-9]')
+	-- mealID format: MEAL******
+	CHECK (mealID LIKE 'MEAL[0-9][0-9][0-9][0-9][0-9][0-9]')
 )
 
 CREATE TABLE FoodDetail(
@@ -139,14 +138,14 @@ CREATE TABLE Bill(
 )
 
 CREATE TABLE ProductDetail(
-	detailID		NVARCHAR(8)		PRIMARY KEY,
+	detailID		NVARCHAR(10)		PRIMARY KEY,
 	productID		NVARCHAR(7)		FOREIGN KEY REFERENCES Product(productID),
 	userID			NVARCHAR(6)		FOREIGN KEY REFERENCES [User](userID),
 	billID			NVARCHAR(10)	FOREIGN KEY REFERENCES Bill(billID), --Default = 0: in the cart but not yet purchased
 	quantity		INT				NOT NULL,
 
-	-- detailID format: PD******
-	CHECK (detailID LIKE 'PD[0-9][0-9][0-9][0-9][0-9][0-9]')
+	-- detailID format: PD********
+	CHECK (detailID LIKE 'PD[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]')
 )
 
 CREATE TABLE SaleOff(
@@ -162,13 +161,16 @@ CREATE TABLE SaleOff(
 
 CREATE TABLE PopUp(
 	popupID			NVARCHAR(6)		PRIMARY KEY,
-	description		NVARCHAR(150)	NULL,
-	status			INT				NULL, --Default: 0; off: 0, on: 1
-	theme			NVARCHAR(100)	NULL --URL
+	[description]	NVARCHAR(150)	NULL,
+	[status]		INT				NULL, --Default: 0; off: 0, on: 1
+	theme			NVARCHAR(100)	NULL,  --URL
+
+	--popupID format: POP***
+	CHECK (popupID LIKE 'POP[0-9][0-9][0-9]')
 )
 
 CREATE TABLE SaleOffDetail(
-	deatilID		NVARCHAR(5)		PRIMARY KEY,
+	detailID		NVARCHAR(5)		PRIMARY KEY,
 	saleoffID		NVARCHAR(7)		FOREIGN KEY REFERENCES SaleOff(saleoffID),
 	productID		NVARCHAR(7)		FOREIGN KEY REFERENCES Product(productID),
 	percentoff		INT				NULL,
@@ -184,25 +186,25 @@ CREATE TABLE PopUpDetail(
 )
 
 CREATE TABLE Comment(
-	commentID		NVARCHAR(8)		PRIMARY KEY,
+	commentID		NVARCHAR(9)		PRIMARY KEY,
 	userID			NVARCHAR(6)		FOREIGN KEY REFERENCES [User](userID),
 	productID		NVARCHAR(7)		FOREIGN KEY REFERENCES Product(productID),
 	rate			FLOAT			NOT NULL,
 	content			NVARCHAR(500)	NULL,
 
-	-- commentID format: CMT*****
-	CHECK (commentID LIKE 'CMT[0-9][0-9][0-9][0-9][0-9]')
+	-- commentID format: CMT******
+	CHECK (commentID LIKE 'CMT[0-9][0-9][0-9][0-9][0-9][0-9]')
 )
 
 CREATE TABLE [Image](
-	imageID			NVARCHAR(8)		PRIMARY KEY,
+	imageID			NVARCHAR(9)		PRIMARY KEY,
 	productID		NVARCHAR(7)		FOREIGN KEY REFERENCES Product(productID) NULL,
 	mealID			NVARCHAR(9)		FOREIGN KEY REFERENCES Meal(mealID) NULL,
 	commentID		NVARCHAR(8)		FOREIGN KEY REFERENCES Comment(commentID) NULL,
 	[url]			NVARCHAR(100)	NOT NULL,
 
-	-- imageID format: IMG*****
-	CHECK (imageID LIKE 'IMG[0-9][0-9][0-9][0-9][0-9]')
+	-- imageID format: IMG******
+	CHECK (imageID LIKE 'IMG[0-9][0-9][0-9][0-9][0-9][0-9]')
 )
 
 SELECT foodID, mealID, amount FROM FoodDetail WHERE foodID = ? ORDER BY foodID ASC
