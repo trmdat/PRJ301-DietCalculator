@@ -12,6 +12,14 @@
         <servlet-name>FormController</servlet-name>
         <servlet-class>controller.FormController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MealController</servlet-name>
+        <servlet-class>controller.MealController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DayController</servlet-name>
+        <servlet-class>controller.DayController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UserController</servlet-name>
         <url-pattern>/UserController</url-pattern>
@@ -23,6 +31,14 @@
     <servlet-mapping>
         <servlet-name>FormController</servlet-name>
         <url-pattern>/FormController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MealController</servlet-name>
+        <url-pattern>/MealController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DayController</servlet-name>
+        <url-pattern>/DayController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

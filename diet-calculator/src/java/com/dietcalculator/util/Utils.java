@@ -20,12 +20,4 @@ public class Utils {
     public static int randomInt(int lower, int upper){
         return (int) (lower + (upper - lower + 1) * Math.random());
     }
-    
-    public static double gramToCal(double gram){
-        return gram*Constants.CALORIES_PER_KG/1000; 
-    }
-    
-    public static double calToGram(double cal){
-        return cal*1000/Constants.CALORIES_PER_KG;
-    }
 }

@@ -13,6 +13,23 @@ import java.util.ArrayList;
  * @author ADMIN
  */
 public class MealDAO {
+    public String lastIDIndex(){
+        String sql = "SELECT TOP 1 mealID FROM Meal ORDER BY mealID DESC";
+        String index = "MEAL00000";
+        try {
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) 
+                index = rs.getString("mealID");
+            rs.close();
+            ps.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return index;
+    }
 
     public ArrayList<Meal> readMealByDayID(String dayID) {
         ArrayList<Meal> list = new ArrayList<>();

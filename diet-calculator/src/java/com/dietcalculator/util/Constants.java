@@ -44,44 +44,47 @@ public final class Constants {
     public static final int[] RANK_RANGE = {1,2};
 
     //Diet constants
+    //Relative parameter
+    public static final double RELATIVE_ESTIMATE = 0.8;
+    
     //Plate Portion By Preference
     //No Preference (0)
     public static final double CARBOHYDRATE_0 = 0.5;
     public static final double FIBER_0 = (double)1/11;
-    public static final double PROTEIN_0 = 0.8;
-    public static final double STANDARD_PROTEIN_0 = 0.25;
+    public static final double PROTEIN_0 = 0.25;
+    public static final double STANDARD_PROTEIN_0 = 0.8;
     public static final double FAT_0 = 0.25;
     public static final double WATER_0 = 2.25;
     
     //Asian and Pacific (1)
     public static final double CARBOHYDRATE_1 = 0.6;
     public static final double FIBER_1 = (double)1/11.2;
-    public static final double PROTEIN_1 = 0.8;
-    public static final double STANDARD_PROTEIN_1 = 0.2;
+    public static final double PROTEIN_1 = 0.2;
+    public static final double STANDARD_PROTEIN_1 = 0.8;
     public static final double FAT_1 = 0.2;
     public static final double WATER_1 = 2.25;
     
     //European and North America (2)
     public static final double CARBOHYDRATE_2 = 0.4;
     public static final double FIBER_2 = (double)1/13;
-    public static final double PROTEIN_2 = 0.9;
-    public static final double STANDARD_PROTEIN_2 = 0.3;
+    public static final double PROTEIN_2 = 0.3;
+    public static final double STANDARD_PROTEIN_2 = 0.9;
     public static final double FAT_2 = 0.3;
     public static final double WATER_2 = 2.5;
     
     //Mediterranean & Hispanic(3)
     public static final double CARBOHYDRATE_3 = 0.47;
     public static final double FIBER_3 = (double)1/13;
-    public static final double PROTEIN_3 = 0.85;
-    public static final double STANDARD_PROTEIN_3 = 0.25;
+    public static final double PROTEIN_3 = 0.25;
+    public static final double STANDARD_PROTEIN_3 = 0.85;
     public static final double FAT_3 = 0.28;
     public static final double WATER_3 = 2.5;
     
     //Vegan(4)
     public static final double CARBOHYDRATE_4 = 0.6;
     public static final double FIBER_4 = (double)1/9;
-    public static final double PROTEIN_4 = 0.9;
-    public static final double STANDARD_PROTEIN_4 = 0.22;
+    public static final double PROTEIN_4 = 0.22;
+    public static final double STANDARD_PROTEIN_4 = 0.9;
     public static final double FAT_4 = 0.18;
     public static final double WATER_4 = 2.25;
     
@@ -123,6 +126,10 @@ public final class Constants {
     public static final int DEFAULT_MAIN_MEAL = 3;
     public static final String[] BREAKFAST_CATEGORIES = {"vegetables","meat","poultry","starch","fruit"};
     public static final String[] LUNCH_DINNER_CATEGORIES = {"vegetables","fish","seafood","egg","meat","poultry","starch","fruit","dairies&dessert","drink"};
+    public static final double VEGETABLES_FIBER_SOURCE = 0.7;
+    public static final double FRUIT_FIBER_SOURCE = 0.3;
+    public static final double FIRST_PROTEIN_SOURCE = 0.5;
+    public static final double SECOND_PROTEIN_SOURCE = 0.5;
 
     //Side meals
     public static final int[] SIDE_MEAL_RANGE = {0,1,2};
@@ -245,6 +252,7 @@ public final class Constants {
         return mealProprtion;
     }
     
+    //Side meal Calculator with standard SIDE_MEAL_SIZE from sources of fruit, nuts, legumes, dairies&dessert
     public static final HashMap<Food,Double> sideMealCalculator(ArrayList<Food> sideMealSources){
         HashMap<Food,Double> sideMeal = new HashMap();
         int idx = Utils.randomInt(0, sideMealSources.size() - 1);
@@ -253,6 +261,7 @@ public final class Constants {
         return sideMeal;
     }
     
+    //Carbohydrate Calculator recieving starch sources
     public static final HashMap<Food,Double> carbohydrateCalculator(double calories, ArrayList<Food> starchSources){
         HashMap<Food,Double> starch = new HashMap();
         int idx = Utils.randomInt(0, starchSources.size() - 1);
@@ -261,26 +270,57 @@ public final class Constants {
         return starch;
     }
     
-    public static final HashMap<Food,Double> fiberCalculator(double calories, ArrayList<Food> starchSources){
-        HashMap<Food,Double> starch = new HashMap();
-        int idx = Utils.randomInt(0, starchSources.size() - 1);
-        double amount = calories*starchSources.get(idx).getSize()/(starchSources.get(idx).getCarbohydrate()*CARBOHYDRATE_TO_KCAL);
-        starch.put(starchSources.get(idx), amount);
-        return starch;
+    //Fiber Calculator from 2 sources: fruit and vegetables
+    public static final HashMap<Food,Double> fiberCalculator(double calories, ArrayList<Food> fruitSources, ArrayList<Food> vegetablesSources){
+        HashMap<Food,Double> fiber = new HashMap();
+        int idxFruit = Utils.randomInt(0, fruitSources.size() - 1);
+        double amountFruit = FRUIT_FIBER_SOURCE*calories*fruitSources.get(idxFruit).getSize()/(fruitSources.get(idxFruit).getCaloricintake());
+        fiber.put(fruitSources.get(idxFruit), amountFruit);
+        
+        int idxVegetables = Utils.randomInt(0, vegetablesSources.size() - 1);
+        double amountVegetables = VEGETABLES_FIBER_SOURCE*calories*vegetablesSources.get(idxVegetables).getSize()/(vegetablesSources.get(idxVegetables).getCaloricintake());
+        fiber.put(vegetablesSources.get(idxVegetables), amountVegetables);
+        
+        return fiber;
     }
     
-    public static final HashMap<Food,Double> proteinCalculator(double calories, ArrayList<Food> starchSources){
-        HashMap<Food,Double> starch = new HashMap();
-        return starch;
+    //Protein Calculator for breakfasts, which require 1 source of protein from meat/poultry
+    public static final HashMap<Food,Double> proteinCalculator(double calories, ArrayList<Food> proteinSources){
+        HashMap<Food,Double> protein = new HashMap();
+        int idx = Utils.randomInt(0, proteinSources.size() - 1);
+        double amount = calories*proteinSources.get(idx).getSize()/(proteinSources.get(idx).getProtein()*PROTEIN_TO_KCAL);
+        protein.put(proteinSources.get(idx), amount);   
+        return protein;
     }
     
-    public static final HashMap<Food,Double> fatCalculator(double calories, ArrayList<Food> starchSources){
-        HashMap<Food,Double> starch = new HashMap();
-        return starch;
+    //Protein Calculator for dinners and lunches, which require 2 sources of protein from meat/poultry and fish/seafood/egg
+    public static final HashMap<Food,Double> proteinCalculator(double calories, ArrayList<Food> mainProteinSources, ArrayList<Food> secondaryProteinSource){
+        HashMap<Food,Double> protein = new HashMap();
+        int idxMain = Utils.randomInt(0, mainProteinSources.size() - 1);
+        double amountMain = FIRST_PROTEIN_SOURCE*calories*mainProteinSources.get(idxMain).getSize()/(mainProteinSources.get(idxMain).getProtein()*PROTEIN_TO_KCAL);
+        
+        int idxSecondary = Utils.randomInt(0, secondaryProteinSource.size() - 1);
+        double amountSecondary = SECOND_PROTEIN_SOURCE*calories*secondaryProteinSource.get(idxMain).getSize()/(secondaryProteinSource.get(idxMain).getProtein()*PROTEIN_TO_KCAL);
+        
+        protein.put(mainProteinSources.get(idxMain), amountMain);
+        protein.put(secondaryProteinSource.get(idxSecondary), amountSecondary);
+        return protein;
     }
     
-    public static final HashMap<Food,Double> waterCalculator(double calories, ArrayList<Food> starchSources){
-        HashMap<Food,Double> starch = new HashMap();
-        return starch;
+    //Fat Calculator receiving sources from dairies&dessert
+    public static final HashMap<Food,Double> fatCalculator(double calories, ArrayList<Food> fatSources){
+        HashMap<Food,Double> fat = new HashMap();
+        int idx = Utils.randomInt(0, fatSources.size() - 1);
+        double amount = calories*fatSources.get(idx).getSize()/(fatSources.get(idx).getCarbohydrate()*FAT_TO_KCAL);
+        fat.put(fatSources.get(idx), amount);
+        return fat;
+    }
+    
+    public static final HashMap<Food,Double> waterCalculator(double demand, ArrayList<Food> waterSources){
+        HashMap<Food,Double> water = new HashMap();
+        int idx = Utils.randomInt(0, waterSources.size() - 1);
+        double amount = demand*waterSources.get(idx).getSize()/(waterSources.get(idx).getWater());
+        water.put(waterSources.get(idx), amount);
+        return water;
     }
 }
