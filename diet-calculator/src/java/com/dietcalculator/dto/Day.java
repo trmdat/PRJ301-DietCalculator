@@ -13,6 +13,12 @@ public class Day {
     String dayID;
     String userID;
     int index;
+    double totalCalstd;
+    double carbohydratestd;
+    double fiberstd;
+    double proteinstd;
+    double fatstd;
+    double waterstd;
     double totalCal;
     double carbohydrate;
     double fiber;
@@ -24,10 +30,25 @@ public class Day {
         
     }
     
-    public Day(String dayID, String userID, int index, double totalCal, double carbohydrate, double fiber, double protein, double fat, double water) {
+    public Day(String dayID, String userID, int index, double totalCalstd, double carbohydratestd, double fiberstd, double proteinstd, double fatstd, double waterstd) {
         this.dayID = dayID;
         this.userID = userID;
         this.index = index;
+        this.totalCalstd = totalCalstd;
+        this.carbohydratestd = carbohydratestd;
+        this.fiberstd = fiberstd;
+        this.proteinstd = proteinstd;
+        this.fatstd = fatstd;
+        this.waterstd = waterstd;
+        this.totalCal = 0;
+        this.carbohydrate = 0;
+        this.fiber = 0;
+        this.protein = 0;
+        this.fat = 0;
+        this.water = 0;
+    }
+    
+    public void updateDay(double totalCal, double carbohydrate, double fiber, double protein, double fat, double water){
         this.totalCal = totalCal;
         this.carbohydrate = carbohydrate;
         this.fiber = fiber;
@@ -62,6 +83,54 @@ public class Day {
 
     public double getTotalCal() {
         return totalCal;
+    }
+
+    public double getTotalCalstd() {
+        return totalCalstd;
+    }
+
+    public void setTotalCalstd(double totalCalstd) {
+        this.totalCalstd = totalCalstd;
+    }
+
+    public double getCarbohydratestd() {
+        return carbohydratestd;
+    }
+
+    public void setCarbohydratestd(double carbohydratestd) {
+        this.carbohydratestd = carbohydratestd;
+    }
+
+    public double getFiberstd() {
+        return fiberstd;
+    }
+
+    public void setFiberstd(double fiberstd) {
+        this.fiberstd = fiberstd;
+    }
+
+    public double getProteinstd() {
+        return proteinstd;
+    }
+
+    public void setProteinstd(double proteinstd) {
+        this.proteinstd = proteinstd;
+    }
+
+    public double getFatstd() {
+        return fatstd;
+    }
+
+    public void setFatstd(double fatstd) {
+        this.fatstd = fatstd;
+    }
+
+    public double getWaterstd() {
+        return waterstd;
+    }
+
+    public void setWaterstd(double waterstd) {
+        this.waterstd = waterstd;
     }
 
     public void setTotalCal(double totalCal) {

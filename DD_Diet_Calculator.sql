@@ -88,12 +88,20 @@ CREATE TABLE [Day](
 	dayID			NVARCHAR(8)		PRIMARY KEY,
 	userID			NVARCHAR(6)		FOREIGN KEY REFERENCES [User](userID),
 	[index]			INT				NOT NULL,
-	totalCal		FLOAT			NOT NULL,
-	carbohydrate	FLOAT			NOT NULL,
-	fiber			FLOAT			NOT NULL,
-	protein 		FLOAT			NOT NULL,
-	fat				FLOAT			NOT NULL,
-	water			FLOAT			NOT NULL,
+	
+	totalCalstd		FLOAT			NOT NULL, --Standard Calories Intake
+	carbohydratestd	FLOAT			NOT NULL, --Standard Carbohydrate Intake
+	fiberstd		FLOAT			NOT NULL, --Standard Fiber Intake
+	proteinstd 		FLOAT			NOT NULL, --Standard Protein Intake
+	fatstd			FLOAT			NOT NULL, --Standard Fat Intake
+	waterstd		FLOAT			NOT NULL, --Standard Water Intake
+	
+	totalCal		FLOAT			NOT NULL, --Real Calories Intake
+	carbohydrate	FLOAT			NOT NULL, --Real Carbohydrate Intake
+	fiber			FLOAT			NOT NULL, --Real Fiber Intake
+	protein 		FLOAT			NOT NULL, --Real Protein Intake
+	fat				FLOAT			NOT NULL, --Real Fat Intake
+	water			FLOAT			NOT NULL, --Real Water Intake
 	-- dayID format: DAY*****
 	CHECK (dayID LIKE 'DAY[0-9][0-9][0-9][0-9][0-9]')
 )
@@ -112,8 +120,21 @@ CREATE TABLE Meal(
 	mealID			NVARCHAR(10)		PRIMARY KEY,
 	userID			NVARCHAR(6)		FOREIGN KEY REFERENCES [User](userID),
 	dayID			NVARCHAR(8)		FOREIGN KEY REFERENCES [Day](dayID),
-	[time]			INT				NOT NULL, --Breakfast = 1, Lunch = 2, Dinner = 3, Brunch = 4, Snack = 5
-	calosize		FLOAT			NOT NULL,
+	mealindex		INT				NOT NULL, --Breakfast = 1, Lunch = 2, Dinner = 3, Brunch = 4, Snack = 5
+	
+	totalCalstd		FLOAT			NOT NULL, --Standard Calories Intake
+	carbohydratestd	FLOAT			NOT NULL, --Standard Carbohydrate Intake
+	fiberstd		FLOAT			NOT NULL, --Standard Fiber Intake
+	proteinstd 		FLOAT			NOT NULL, --Standard Protein Intake
+	fatstd			FLOAT			NOT NULL, --Standard Fat Intake
+	waterstd		FLOAT			NOT NULL, --Standard Water Intake
+	
+	totalCal		FLOAT			NOT NULL, --Real Calories Intake
+	carbohydrate	FLOAT			NOT NULL, --Real Carbohydrate Intake
+	fiber			FLOAT			NOT NULL, --Real Fiber Intake
+	protein 		FLOAT			NOT NULL, --Real Protein Intake
+	fat				FLOAT			NOT NULL, --Real Fat Intake
+	water			FLOAT			NOT NULL, --Real Water Intake
 	-- mealID format: MEAL******
 	CHECK (mealID LIKE 'MEAL[0-9][0-9][0-9][0-9][0-9][0-9]')
 )

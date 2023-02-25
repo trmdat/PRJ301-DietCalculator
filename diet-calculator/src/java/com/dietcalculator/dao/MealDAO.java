@@ -40,7 +40,7 @@ public class MealDAO {
             ps.setString(1, dayID);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new Meal(rs.getString("mealID"), rs.getString("userID"), rs.getString("dayID"), rs.getInt("time"), rs.getDouble("calosize")));
+                list.add(new Meal(rs.getString("mealID"), rs.getString("userID"), rs.getString("dayID"), rs.getInt("mealindex"), rs.getDouble("totalCalstd"),rs.getDouble("carbohydratestd"),rs.getDouble("fiberstd"),rs.getDouble("proteinstd"),rs.getDouble("fatstd"),rs.getDouble("waterstd"),rs.getDouble("totalCal"),rs.getDouble("carbohydrate"),rs.getDouble("fiber"),rs.getDouble("protein"),rs.getDouble("fat"),rs.getDouble("water")));
             }
             rs.close();
             ps.close();
@@ -51,18 +51,28 @@ public class MealDAO {
         return list;
     }
 
-    public boolean createMeal(String mealID, String userID, String dayID, int time, double calosize) {
+    public boolean createMeal(String mealID, String userID, String dayID, int mealindex, double totalCalstd, double carbohydratestd, double fiberstd, double proteinstd, double fatstd, double waterstd, double totalCal, double carbohydrate, double fiber, double protein, double fat, double water) {
         int row = 0;
-        String sql = "INSERT INTO Meal(mealID,userID,dayID,time,calosize) VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO Meal(mealID,userID,dayID,mealindex,totalCalstd,carbohydratestd,fiberstd,proteinstd,fatstd,waterstd,totalCal,carbohydrate,fiber,protein,fat,water) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, mealID);
             ps.setString(2, userID);
             ps.setString(3, dayID);
-            ps.setInt(4, time);
-            ps.setDouble(5, calosize);
-
+            ps.setInt(4, mealindex);
+            ps.setDouble(5, totalCalstd);
+            ps.setDouble(6, carbohydratestd);
+            ps.setDouble(7, fiberstd);
+            ps.setDouble(8, proteinstd);
+            ps.setDouble(9, fatstd);
+            ps.setDouble(10, waterstd);
+            ps.setDouble(11, totalCal);
+            ps.setDouble(12, carbohydrate);
+            ps.setDouble(13, fiber);
+            ps.setDouble(14, protein);
+            ps.setDouble(15, fat);
+            ps.setDouble(16, water);
             row = ps.executeUpdate();
             ps.close();
             conn.close();
@@ -72,17 +82,28 @@ public class MealDAO {
         return row > 0;
     }
 
-    public boolean updateMeal(String mealID, String userID, String dayID, int time, double calosize) {
+    public boolean updateMeal(String mealID, String userID, String dayID, int mealindex, double totalCalstd, double carbohydratestd, double fiberstd, double proteinstd, double fatstd, double waterstd, double totalCal, double carbohydrate, double fiber, double protein, double fat, double water) {
         int row = 0;
-        String sql = "UPDATE Meal SET userID = ?,dayID = ?,time = ?,calosize = ? WHERE mealID = ?";
+        String sql = "UPDATE Meal SET userID = ?,dayID = ?,mealindex = ?,totalCalstd = ?,carbohydratestd = ?,fiberstd = ?,proteinstd = ?,fatstd = ?,waterstd = ?,totalCal = ?,carbohydrate = ?,fiber = ?,protein = ?,fat = ?,water = ? WHERE mealID = ?";
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, userID);
             ps.setString(2, dayID);
-            ps.setInt(3, time);
-            ps.setDouble(4, calosize);
-            ps.setString(5, mealID);
+            ps.setInt(3, mealindex);
+            ps.setDouble(4, totalCalstd);
+            ps.setDouble(5, carbohydratestd);
+            ps.setDouble(6, fiberstd);
+            ps.setDouble(7, proteinstd);
+            ps.setDouble(8, fatstd);
+            ps.setDouble(9, waterstd);
+            ps.setDouble(10, totalCal);
+            ps.setDouble(11, carbohydrate);
+            ps.setDouble(12, fiber);
+            ps.setDouble(13, protein);
+            ps.setDouble(14, fat);
+            ps.setDouble(15, water);
+            ps.setString(16, mealID);
 
             row = ps.executeUpdate();
             ps.close();

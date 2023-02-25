@@ -5,8 +5,10 @@
  */
 package controller;
 
+import com.dietcalculator.dao.DayDAO;
 import com.dietcalculator.dto.Day;
 import com.dietcalculator.util.MealValues;
+import com.dietcalculator.util.Utils;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -20,7 +22,8 @@ import javax.servlet.http.HttpServletResponse;
  * @author asout
  */
 public class DayController extends HttpServlet {
-
+    private final String DAY_ID_FORMAT_STRING = "DAY%d";
+    private final int DAY_ID_FORMAT_DIGIT = 5;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -47,8 +50,15 @@ public class DayController extends HttpServlet {
         }
     }
     
-    private ArrayList<Day> generateDay(String userID, MealValues mealValues){
+    private ArrayList<Day> generateDay(String userID, double totalCalories, MealValues mealValues){
         ArrayList<Day> days = new ArrayList();
+        
+        //Getting the last ID index
+        DayDAO dayDAO = new DayDAO();
+        String lastIDIndex = dayDAO.lastIDIndex();
+        int lastIndex = Utils.extractIntFromString(lastIDIndex);
+        
+        
         
         return days;
     }
