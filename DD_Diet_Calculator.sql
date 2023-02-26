@@ -209,6 +209,7 @@ CREATE TABLE PopUpDetail(
 	popupID			NVARCHAR(6)		FOREIGN KEY REFERENCES PopUp(popupID),
 	productID		NVARCHAR(7)		FOREIGN KEY REFERENCES Product(productID),
 	[description]	NVARCHAR(50)	NULL,
+	
 	PRIMARY KEY(popupID, productID)
 )
 
@@ -226,18 +227,10 @@ CREATE TABLE Comment(
 CREATE TABLE [Image](
 	imageID			NVARCHAR(9)		PRIMARY KEY,
 	productID		NVARCHAR(7)		FOREIGN KEY REFERENCES Product(productID) NULL,
-	mealID			NVARCHAR(10)		FOREIGN KEY REFERENCES Meal(mealID) NULL,
+	mealID			NVARCHAR(10)	FOREIGN KEY REFERENCES Meal(mealID) NULL,
 	commentID		NVARCHAR(9)		FOREIGN KEY REFERENCES Comment(commentID) NULL,
 	[url]			NVARCHAR(100)	NOT NULL,
 
 	-- imageID format: IMG******
 	CHECK (imageID LIKE 'IMG[0-9][0-9][0-9][0-9][0-9][0-9]')
 )
-
-SELECT foodID, mealID, amount FROM FoodDetail WHERE foodID = ? ORDER BY foodID ASC
-
-INSERT INTO FoodDetail(foodID, mealID, amount) VALUES (?,?,?)
-
-DELETE FROM Type WHERE foodID = '1' AND type = 1
-
-SELECT mealID,userID,dayID,time,calosize FROM Meal WHERE dayID = 1
