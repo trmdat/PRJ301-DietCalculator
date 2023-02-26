@@ -241,3 +241,7 @@ INSERT INTO FoodDetail(foodID, mealID, amount) VALUES (?,?,?)
 DELETE FROM Type WHERE foodID = '1' AND type = 1
 
 SELECT mealID,userID,dayID,time,calosize FROM Meal WHERE dayID = 1
+
+
+
+INSERT INTO [dbo].[User] VALUES("U00000", "nam", new Date(2020,12,02), "12345678", "hcm", "nam@gmail.com", "123456", 65.5, 171, 1, 1, 0, 0, 2, 8, 3, 1, 1, 1, new Date(2023,02,26))
