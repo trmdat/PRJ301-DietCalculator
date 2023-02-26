@@ -32,8 +32,6 @@ public final class Constants {
     public static final String IMAGE_ID_FORMAT = "IMG\\d{6}";
     
     //Form constants
-    public static final int CALORIES_PER_KG = 7716;
-    public static final int CALORIES_PER_SIDE_MEAL = 100;
 
     public static final int DEFAULT_PREFERENCE = 0;
     public static final int DEFAULT_WEEK = 8;
@@ -44,6 +42,8 @@ public final class Constants {
     public static final int[] RANK_RANGE = {1,2};
 
     //Diet constants
+    public static final int CALORIES_PER_KG = 7716;
+    public static final double SIDE_MEAL_PROPORTION = 0.08;
     //Relative parameter
     public static final double RELATIVE_ESTIMATE = 0.8;
     
@@ -102,10 +102,6 @@ public final class Constants {
     public static final int PROTEIN_TO_KCAL = 4;
     public static final int FAT_TO_KCAL = 9;
     
-    //Proportions
-    public static final double FIBER_BY_VEGETABLES = 0.7;
-    public static final double FIBER_BY_FRUIT = 0.7;
-    
     //Macronutrients sources
     public static final HashMap<String,String> MACRO_SOURCE = new HashMap();
     static{
@@ -124,23 +120,43 @@ public final class Constants {
     //Main meals
     public static final int[] MAIN_MEAL_RANGE = {2,3};
     public static final int DEFAULT_MAIN_MEAL = 3;
-    public static final String[] BREAKFAST_CATEGORIES = {"vegetables","meat","poultry","starch","fruit"};
-    public static final String[] LUNCH_DINNER_CATEGORIES = {"vegetables","fish","seafood","egg","meat","poultry","starch","fruit","dairies&dessert","drink"};
+    public static final String[] BREAKFAST_CATEGORIES = {"vegetables/fruit","meat/poultry","starch"};
+    public static final String[] LUNCH_DINNER_CATEGORIES = {"vegetables/fruit","fish/seafood/egg","meat/poultry","starch","dairies&dessert","drink"};
     public static final double VEGETABLES_FIBER_SOURCE = 0.7;
     public static final double FRUIT_FIBER_SOURCE = 0.3;
     public static final double FIRST_PROTEIN_SOURCE = 0.5;
     public static final double SECOND_PROTEIN_SOURCE = 0.5;
+    public static final double WATER_PROPORTION = 0.2;
 
     //Side meals
     public static final int[] SIDE_MEAL_RANGE = {0,1,2};
     public static final int DEFAULT_SIDE_MEAL = 1;
-    public static final String[] SIED_MEAL_CATEGORIES = {"fruit","nuts","legumes","dairies&dessert"};
+    public static final String[] SIDE_MEAL_CATEGORIES = {"fruit/nuts/legumes/dairies&dessert"};
     public static final double LUNCH_2 = 0.5;
     public static final double DINNER_2 = 0.5;
     public static final double BREAKFAST_3 = 0.35;
     public static final double LUNCH_3 = 0.35;
     public static final double DINNER_3 = 0.3;
 
+        
+    public static final HashMap<String, Integer> MEAL = new HashMap();
+    static{
+        MEAL.put("BREAKFAST", 1);
+        MEAL.put("LUNCH", 2);
+        MEAL.put("DINNER", 3);
+        MEAL.put("BRUNCH", 4);
+        MEAL.put("SNACK", 5);
+    }
+    
+    public static final HashMap<Integer, String[]> MEAL_DATASET = new HashMap();
+    static{
+        MEAL_DATASET.put(1, BREAKFAST_CATEGORIES);
+        MEAL_DATASET.put(2, LUNCH_DINNER_CATEGORIES);
+        MEAL_DATASET.put(3, LUNCH_DINNER_CATEGORIES);
+        MEAL_DATASET.put(4, SIDE_MEAL_CATEGORIES);
+        MEAL_DATASET.put(5, SIDE_MEAL_CATEGORIES);
+    }
+    
     //Exercises
     public static final int[] EXERCISE_SESSION_RANGE = {1,2,3};
     public static final int DEFAULT_EXERCISE_SESSION = 2;     
@@ -176,15 +192,6 @@ public final class Constants {
         GOAL.put("MAINTENANCE", 0);
     }
     
-    public static final HashMap<String, Integer> MEAL = new HashMap();
-    static{
-        MEAL.put("BREAKFAST", 1);
-        MEAL.put("LUNCH", 2);
-        MEAL.put("DINNER", 3);
-        MEAL.put("BRUNCH", 4);
-        MEAL.put("SNACK", 5);
-    }
-    
     //METHODS
     public static final double BMICalculator(double weight, double height){
         double bmi = weight/(height*height);
@@ -213,25 +220,25 @@ public final class Constants {
         return (int) Math.round(total);
     }
     
-    public static final HashMap<Integer, Double> mealProprtion(int mainMeal, int sideMeal, int totalCaloricNeed){
+    public static final HashMap<Integer, Double> mealProprtion(int mainMeal, int sideMeal){
         HashMap<Integer, Double> mealProprtion = new HashMap();
         //Side meals
         if(sideMeal == 2){
             //Set brunch
-            mealProprtion.put(4, (double)CALORIES_PER_SIDE_MEAL);
+            mealProprtion.put(4, SIDE_MEAL_PROPORTION);
             
             //Set snack
-            mealProprtion.put(5, (double)CALORIES_PER_SIDE_MEAL);
+            mealProprtion.put(5, SIDE_MEAL_PROPORTION);
         }else if(sideMeal == 1)
             if(mainMeal == 2)
                 //Set brunch
-                mealProprtion.put(4, (double)CALORIES_PER_SIDE_MEAL);
+                mealProprtion.put(4, SIDE_MEAL_PROPORTION);
             else 
                 //Set snack
-                mealProprtion.put(5, (double)CALORIES_PER_SIDE_MEAL);
+                mealProprtion.put(5, SIDE_MEAL_PROPORTION);
         
         //Main meals
-        int caloRemainder = totalCaloricNeed - sideMeal*CALORIES_PER_SIDE_MEAL;
+        double caloRemainder = 1 - sideMeal*SIDE_MEAL_PROPORTION;
         if(mainMeal == 2){
             //Set lunch = 0.5
             mealProprtion.put(2, caloRemainder*LUNCH_2);
@@ -253,10 +260,10 @@ public final class Constants {
     }
     
     //Side meal Calculator with standard SIDE_MEAL_SIZE from sources of fruit, nuts, legumes, dairies&dessert
-    public static final HashMap<Food,Double> sideMealCalculator(ArrayList<Food> sideMealSources){
+    public static final HashMap<Food,Double> sideMealCalculator(double calories, ArrayList<Food> sideMealSources){
         HashMap<Food,Double> sideMeal = new HashMap();
         int idx = Utils.randomInt(0, sideMealSources.size() - 1);
-        double amount = (double)CALORIES_PER_SIDE_MEAL*sideMealSources.get(idx).getSize()/sideMealSources.get(idx).getCaloricintake();
+        double amount = calories*sideMealSources.get(idx).getSize()/sideMealSources.get(idx).getCaloricintake();
         sideMeal.put(sideMealSources.get(idx), amount);
         return sideMeal;
     }

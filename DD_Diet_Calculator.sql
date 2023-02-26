@@ -117,7 +117,7 @@ CREATE TABLE ExSession(
 )
 
 CREATE TABLE Meal(
-	mealID			NVARCHAR(10)		PRIMARY KEY,
+	mealID			NVARCHAR(10)	PRIMARY KEY,
 	userID			NVARCHAR(6)		FOREIGN KEY REFERENCES [User](userID),
 	dayID			NVARCHAR(8)		FOREIGN KEY REFERENCES [Day](dayID),
 	mealindex		INT				NOT NULL, --Breakfast = 1, Lunch = 2, Dinner = 3, Brunch = 4, Snack = 5
@@ -143,6 +143,12 @@ CREATE TABLE FoodDetail(
 	foodID			NVARCHAR(7)		FOREIGN KEY REFERENCES Food(foodID),
 	mealID			NVARCHAR(9)		FOREIGN KEY REFERENCES Meal(mealID),
 	amount			FLOAT			NOT NULL, -- in grams
+	totalCal		FLOAT			NOT NULL, --Real Calories Intake
+	carbohydrate	FLOAT			NOT NULL, --Real Carbohydrate Intake
+	fiber			FLOAT			NOT NULL, --Real Fiber Intake
+	protein 		FLOAT			NOT NULL, --Real Protein Intake
+	fat				FLOAT			NOT NULL, --Real Fat Intake
+	water			FLOAT			NOT NULL, --Real Water Intake
 	PRIMARY KEY(foodID, mealID)
 
 )
