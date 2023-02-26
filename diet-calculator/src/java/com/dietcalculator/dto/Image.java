@@ -61,5 +61,10 @@ public class Image {
     public void setCommentID(String commentID) {
         this.commentID = commentID;
     }
+
+    @Override
+    public String toString() {
+        return "Image{" + "imageID=" + imageID + ", productID=" + productID + ", mealID=" + mealID + ", commentID=" + commentID + ", url=" + url + '}';
+    }
     
 }

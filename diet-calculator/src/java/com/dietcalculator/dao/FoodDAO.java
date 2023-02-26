@@ -134,7 +134,7 @@ public class FoodDAO {
     public static void main(String[] args) {
         FoodDAO dao = new FoodDAO();
         
-                System.out.println("Create");
+        System.out.println("Create");
         dao.createFood("FD00000", "test", "test", 0, 0, 0, 0, 0, 0, 0);
         ArrayList<Food> list = dao.readFood();
         for (Food food : list) {

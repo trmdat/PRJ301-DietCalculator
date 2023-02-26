@@ -101,4 +101,11 @@ public class FoodDetail {
     public void setWater(double water) {
         this.water = water;
     }
+
+    @Override
+    public String toString() {
+        return "FoodDetail{" + "foodID=" + foodID + ", mealID=" + mealID + ", amount=" + amount + ", totalCal=" + totalCal + ", carbohydrate=" + carbohydrate + ", fiber=" + fiber + ", protein=" + protein + ", fat=" + fat + ", water=" + water + '}';
+    }
+    
+    
 }

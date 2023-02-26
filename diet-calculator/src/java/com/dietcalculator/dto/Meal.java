@@ -199,5 +199,10 @@ public class Meal {
     public void setWater(double water) {
         this.water = water;
     }
+
+    @Override
+    public String toString() {
+        return "Meal{" + "mealID=" + mealID + ", userID=" + userID + ", dayID=" + dayID + ", mealindex=" + mealindex + ", totalCalstd=" + totalCalstd + ", carbohydratestd=" + carbohydratestd + ", fiberstd=" + fiberstd + ", proteinstd=" + proteinstd + ", fatstd=" + fatstd + ", waterstd=" + waterstd + ", totalCal=" + totalCal + ", carbohydrate=" + carbohydrate + ", fiber=" + fiber + ", protein=" + protein + ", fat=" + fat + ", water=" + water + '}';
+    }
     
 }

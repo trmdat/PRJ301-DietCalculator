@@ -133,9 +133,26 @@ public class MealDAO {
     
     public static void main(String[] args) {
         MealDAO dao = new MealDAO();
-        ArrayList<Meal> ls = dao.readMealByDayID("1");
-        for (Meal l : ls) {
-            System.out.println(l);
+        
+                System.out.println("Create");
+        dao.createMeal("MEAL000000", "1", "1", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        ArrayList<Meal> list = dao.readMealByDayID("1");
+        for (Meal x : list) {
+            System.out.println(x.toString());
+        }
+
+        System.out.println("Update");
+        dao.updateMeal("", userID, dayID, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        ArrayList<Meal> list = dao.readMealByDayID("1");
+        for (Meal x : list) {
+            System.out.println(x.toString());
+        }
+
+        System.out.println("Delete");
+        dao.deleteFood("FD00000");
+                 list = dao.readFood();
+        for (Food food : list) {
+            System.out.println(food.toString());
         }
     }
 }

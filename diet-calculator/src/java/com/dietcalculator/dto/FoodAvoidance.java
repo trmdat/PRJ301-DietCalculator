@@ -31,5 +31,10 @@ public class FoodAvoidance {
     public void setUserID(String userID) {
         this.userID = userID;
     }
+
+    @Override
+    public String toString() {
+        return "FoodAvoidance{" + "userID=" + userID + ", foodID=" + foodID + '}';
+    }
     
 }
