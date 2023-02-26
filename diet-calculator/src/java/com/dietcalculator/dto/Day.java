@@ -29,6 +29,24 @@ public class Day {
     public Day(){
         
     }
+
+    public Day(String dayID, String userID, int index, double totalCalstd, double carbohydratestd, double fiberstd, double proteinstd, double fatstd, double waterstd, double totalCal, double carbohydrate, double fiber, double protein, double fat, double water) {
+        this.dayID = dayID;
+        this.userID = userID;
+        this.index = index;
+        this.totalCalstd = totalCalstd;
+        this.carbohydratestd = carbohydratestd;
+        this.fiberstd = fiberstd;
+        this.proteinstd = proteinstd;
+        this.fatstd = fatstd;
+        this.waterstd = waterstd;
+        this.totalCal = totalCal;
+        this.carbohydrate = carbohydrate;
+        this.fiber = fiber;
+        this.protein = protein;
+        this.fat = fat;
+        this.water = water;
+    }
     
     public Day(String dayID, String userID, int index, double totalCalstd, double carbohydratestd, double fiberstd, double proteinstd, double fatstd, double waterstd) {
         this.dayID = dayID;
