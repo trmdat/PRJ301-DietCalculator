@@ -68,6 +68,11 @@ public class Bill {
     public void setPayment(String payment) {
         this.payment = payment;
     }
+
+    @Override
+    public String toString() {
+        return "Bill{" + "billID=" + billID + ", userID=" + userID + ", date=" + date + ", delivery=" + delivery + ", payment=" + payment + '}';
+    }
     
     
     

@@ -213,5 +213,10 @@ public class User {
     public void setRank(int rank) {
         this.rank = rank;
     }
+
+    @Override
+    public String toString() {
+        return "User{" + "userID=" + userID + ", username=" + username + ", dob=" + dob + ", phone=" + phone + ", address=" + address + ", email=" + email + ", password=" + password + ", weight=" + weight + ", height=" + height + ", gender=" + gender + ", activity=" + activity + ", preference=" + preference + ", goal=" + goal + ", amount=" + amount + ", duration=" + duration + ", main=" + main + ", side=" + side + ", session=" + session + ", rank=" + rank + ", createdate=" + createdate + '}';
+    }
     
 }

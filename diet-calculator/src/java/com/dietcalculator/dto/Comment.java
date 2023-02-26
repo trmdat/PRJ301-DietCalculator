@@ -61,5 +61,10 @@ public class Comment {
     public void setRate(double rate) {
         this.rate = rate;
     }
+
+    @Override
+    public String toString() {
+        return "Comment{" + "commentID=" + commentID + ", userID=" + userID + ", productID=" + productID + ", rate=" + rate + ", content=" + content + '}';
+    }
     
 }

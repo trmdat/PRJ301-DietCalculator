@@ -17,7 +17,7 @@ public class CommentDAO {
 
     public String lastIDIndex() {
         String sql = "SELECT TOP 1 commentID FROM Comment ORDER BY commentID DESC";
-        String index = "CMT00000";
+        String index = "CMT000000";
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);

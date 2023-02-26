@@ -51,5 +51,10 @@ public class ExSession {
     public void setUserID(String userID) {
         this.userID = userID;
     }
+
+    @Override
+    public String toString() {
+        return "ExSession{" + "sessionID=" + sessionID + ", exerciseID=" + exerciseID + ", userID=" + userID + ", dayID=" + dayID + '}';
+    }
     
 }
