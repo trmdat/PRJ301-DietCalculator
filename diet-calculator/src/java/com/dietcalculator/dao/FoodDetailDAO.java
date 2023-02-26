@@ -16,7 +16,7 @@ public class FoodDetailDAO {
 
     public ArrayList<FoodDetail> readFoodDetail(String foodID, String mealID) {
         ArrayList<FoodDetail> list = new ArrayList<>();
-        String sql = "SELECT foodID, mealID, amount FROM FoodDetail WHERE foodID = ? AND mealID = ? ";
+        String sql = "SELECT foodID, mealID, amount,totalCal,carbohydrate,fiber,protein,fat,water FROM FoodDetail WHERE foodID = ? AND mealID = ? ";
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -24,7 +24,8 @@ public class FoodDetailDAO {
             ps.setString(2, mealID);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new FoodDetail(rs.getString("foodID"), rs.getString("mealID"), rs.getDouble("amount")));
+                list.add(new FoodDetail(rs.getString("foodID"), rs.getString("mealID"), rs.getDouble("amount"),
+                        rs.getDouble("totalCal"),rs.getDouble("carbohydrate"),rs.getDouble("fiber"),rs.getDouble("protein"),rs.getDouble("fat"),rs.getDouble("fat")));
             }
             rs.close();
             ps.close();
@@ -44,7 +45,8 @@ public class FoodDetailDAO {
             ps.setString(1, foodID);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new FoodDetail(rs.getString("foodID"), rs.getString("mealID"), rs.getDouble("amount")));
+                list.add(new FoodDetail(rs.getString("foodID"), rs.getString("mealID"), rs.getDouble("amount"),
+                        rs.getDouble("totalCal"),rs.getDouble("carbohydrate"),rs.getDouble("fiber"),rs.getDouble("protein"),rs.getDouble("fat"),rs.getDouble("fat")));
             }
             rs.close();
             ps.close();
@@ -64,7 +66,8 @@ public class FoodDetailDAO {
             ps.setString(1, mealID);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new FoodDetail(rs.getString("foodID"), rs.getString("mealID"), rs.getDouble("amount")));
+                list.add(new FoodDetail(rs.getString("foodID"), rs.getString("mealID"), rs.getDouble("amount"),
+                        rs.getDouble("totalCal"),rs.getDouble("carbohydrate"),rs.getDouble("fiber"),rs.getDouble("protein"),rs.getDouble("fat"),rs.getDouble("fat")));
             }
             rs.close();
             ps.close();
