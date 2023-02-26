@@ -24,6 +24,24 @@ public class FoodDAO {
 
         return list;
     }
+    
+    public String lastIDIndex(){
+        String sql = "SELECT TOP 1 foodID FROM Food ORDER BY foodID DESC";
+        String index = "FD00000";
+        try {
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) 
+                index = rs.getString("foodID");
+            rs.close();
+            ps.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return index;
+    }
 
     public ArrayList<Food> readFood() {
         ArrayList<Food> list = new ArrayList<>();

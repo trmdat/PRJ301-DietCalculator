@@ -6,7 +6,7 @@
 package com.dietcalculator.util;
 
 /**
- *
+ *exi
  * @author asout
  */
 public class MealValues {

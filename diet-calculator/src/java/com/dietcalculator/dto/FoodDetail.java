@@ -8,12 +8,12 @@ public class FoodDetail {
     private String foodID;
     private String mealID;
     private double amount;
-    double totalCal;
-    double carbohydrate;
-    double fiber;
-    double protein;
-    double fat;
-    double water;
+    private double totalCal;
+    private double carbohydrate;
+    private double fiber;
+    private double protein;
+    private double fat;
+    private double water;
     
     public FoodDetail() {
     }
