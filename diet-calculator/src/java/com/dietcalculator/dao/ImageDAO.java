@@ -1,18 +1,33 @@
 package com.dietcalculator.dao;
 
-import com.dietcalculator.dto.Meal;
 import com.dietcalculator.util.DBUtils;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import static java.util.Collections.list;
 
 /**
  *
  * @author ADMIN
  */
 public class ImageDAO {
+    public String lastIDIndex(){
+        String sql = "SELECT TOP 1 ImageID FROM Image ORDER BY ImageID DESC";
+        String index = "IMG00000";
+        try {
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) 
+                index = rs.getString("ImageID");
+            rs.close();
+            ps.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return index;
+    }
 
     public String readImageUrlByProductID(String productID) {
         String url = "";
