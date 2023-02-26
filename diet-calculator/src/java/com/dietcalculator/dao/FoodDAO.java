@@ -24,16 +24,17 @@ public class FoodDAO {
 
         return list;
     }
-    
-    public String lastIDIndex(){
+
+    public String lastIDIndex() {
         String sql = "SELECT TOP 1 foodID FROM Food ORDER BY foodID DESC";
         String index = "FD00000";
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) 
+            if (rs.next()) {
                 index = rs.getString("foodID");
+            }
             rs.close();
             ps.close();
             conn.close();
@@ -129,9 +130,27 @@ public class FoodDAO {
         }
         return row > 0;
     }
+
     public static void main(String[] args) {
         FoodDAO dao = new FoodDAO();
-        ArrayList<Food> list= dao.readFood();
+        
+                System.out.println("Create");
+        dao.createFood("FD00000", "test", "test", 0, 0, 0, 0, 0, 0, 0);
+        ArrayList<Food> list = dao.readFood();
+        for (Food food : list) {
+            System.out.println(food.toString());
+        }
+
+        System.out.println("Update");
+        dao.updateFood("FD00000", "test Update", "test", 0, 0, 0, 0, 0, 0, 0);
+        list = dao.readFood();
+        for (Food food : list) {
+            System.out.println(food.toString());
+        }
+
+        System.out.println("Delete");
+        dao.deleteFood("FD00000");
+                 list = dao.readFood();
         for (Food food : list) {
             System.out.println(food.toString());
         }

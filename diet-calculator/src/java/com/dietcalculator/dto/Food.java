@@ -111,6 +111,11 @@ public class Food {
     public void setFat(double fat) {
         this.fat = fat;
     }
+
+    @Override
+    public String toString() {
+        return "Food{" + "foodID=" + foodID + ", foodname=" + foodname + ", category=" + category + ", size=" + size + ", caloricintake=" + caloricintake + ", carbohydrate=" + carbohydrate + ", fiber=" + fiber + ", protein=" + protein + ", fat=" + fat + ", water=" + water + '}';
+    }
     
     
 }
