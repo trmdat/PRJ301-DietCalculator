@@ -141,7 +141,7 @@ CREATE TABLE Meal(
 
 CREATE TABLE FoodDetail(
 	foodID			NVARCHAR(7)		FOREIGN KEY REFERENCES Food(foodID),
-	mealID			NVARCHAR(9)		FOREIGN KEY REFERENCES Meal(mealID),
+	mealID			NVARCHAR(10)		FOREIGN KEY REFERENCES Meal(mealID),
 	amount			FLOAT			NOT NULL, -- in grams
 	totalCal		FLOAT			NOT NULL, --Real Calories Intake
 	carbohydrate	FLOAT			NOT NULL, --Real Carbohydrate Intake
@@ -226,8 +226,8 @@ CREATE TABLE Comment(
 CREATE TABLE [Image](
 	imageID			NVARCHAR(9)		PRIMARY KEY,
 	productID		NVARCHAR(7)		FOREIGN KEY REFERENCES Product(productID) NULL,
-	mealID			NVARCHAR(9)		FOREIGN KEY REFERENCES Meal(mealID) NULL,
-	commentID		NVARCHAR(8)		FOREIGN KEY REFERENCES Comment(commentID) NULL,
+	mealID			NVARCHAR(10)		FOREIGN KEY REFERENCES Meal(mealID) NULL,
+	commentID		NVARCHAR(9)		FOREIGN KEY REFERENCES Comment(commentID) NULL,
 	[url]			NVARCHAR(100)	NOT NULL,
 
 	-- imageID format: IMG******
