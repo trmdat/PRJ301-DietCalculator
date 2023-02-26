@@ -241,3 +241,8 @@ INSERT INTO FoodDetail(foodID, mealID, amount) VALUES (?,?,?)
 DELETE FROM Type WHERE foodID = '1' AND type = 1
 
 SELECT mealID,userID,dayID,time,calosize FROM Meal WHERE dayID = 1
+
+INSERT INTO [User] VALUES('U00000', 'dat', '2021-02-01', '123456789', 'hanoi', 'dat@gmail.com', '1234567', 65.4, 172, 1, 1, 0, 0, 2, 8, 3, 1, 1, 1, '2021-02-01')
+INSERT INTO [Day] VALUES('DAY00000','U00000',0,0,0,0,0,0,0,0,0,0,0,0,0)
+INSERT INTO [Meal] VALUES('MEAL000000','U00000','DAY00000',0,0,0,0,0,0,0,0,0,0,0,0,0)
+INSERT INTO [Bill] VALUES('B00000', )
