@@ -76,16 +76,16 @@ public class BillDAO {
     }
 
     public boolean updateBill(String billID, String userID, Date date, String delivery, String payment) {
-        String sql = "UPDATE Bill SET billID = ?, userID = ?, date = ?, delivery = ?, payment = ?";
+        String sql = "UPDATE Bill SET userID = ?, date = ?, delivery = ?, payment = ? WHERE billID = ?";
         int row = 0;
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, billID);
-            ps.setString(2, userID);
-            ps.setDate(3, date);
-            ps.setString(4, delivery);
-            ps.setString(5, payment);
+            ps.setString(1, userID);
+            ps.setDate(2, date);
+            ps.setString(3, delivery);
+            ps.setString(4, payment);
+            ps.setString(5, billID);
             row = ps.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex);

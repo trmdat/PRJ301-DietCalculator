@@ -5,15 +5,13 @@
  */
 package controller;
 
-import com.dietcalculator.dao.MealDAO;
-import com.dietcalculator.dto.Day;
+import com.dietcalculator.dto.Food;
+import com.dietcalculator.dto.FoodDetail;
 import com.dietcalculator.dto.Meal;
-import com.dietcalculator.util.MealValues;
-import com.dietcalculator.util.Utils;
+import com.dietcalculator.util.Constants;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,8 +21,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author asout
  */
-public class MealController extends HttpServlet {
-    private final String MEAL_ID_FORMAT_STRING = "MEAL%06d";
+public class FoodDetailController extends HttpServlet {
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -42,50 +40,35 @@ public class MealController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet MealController</title>");            
+            out.println("<title>Servlet FoodDetailController</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet MealController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet FoodDetailController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
     }
     
-    private ArrayList<Meal> generateMeal(Day day, HashMap<Integer, Double> mealProportion){
-        ArrayList<Meal> meals = new ArrayList();
-        
-        //Getting the last ID index
-        MealDAO mealDAO = new MealDAO();
-        String lastIDIndex = mealDAO.lastIDIndex();
-        int lastIndex = Utils.extractIntFromString(lastIDIndex);
-                  
-        //Getting day standard values
-        String userID = day.getUserID();
-        String dayID = day.getDayID();
-        double totalCalstd_day = day.getTotalCalstd();
-        double carbohydratestd_day = day.getCarbohydratestd();
-        double fiberstd_day = day.getFiberstd();
-        double proteinstd_day = day.getProteinstd();
-        double fatstd_day = day.getFatstd();
-        double waterstd_day = day.getWaterstd();
-        for(int i: mealProportion.keySet()){
-            String mealID = String.format(MEAL_ID_FORMAT_STRING, ++lastIndex);
-     
-            //Getting proportion
-            double proportion = mealProportion.get(i);
-   
-            //Generating meal standard values
-            double totalCalstd = totalCalstd_day*proportion;
-            double carbohydratestd = carbohydratestd_day*proportion;
-            double fiberstd = fiberstd_day*proportion;
-            double proteinstd = proteinstd_day*proportion;
-            double fatstd = fatstd_day*proportion;
-            double waterstd = waterstd_day*proportion;
+    private ArrayList<FoodDetail> generateFoodDetail(Meal meal, ArrayList<Food> FoodDataset){
+        ArrayList<FoodDetail> foodDetail = new ArrayList();
+        String mealID = meal.getMealID();
+        double amount = 0;
+        String[] foodCategory = Constants.MEAL_DATASET.get(meal.getMealindex());
+        ArrayList<Food> foodSelection = null;
+        //SIDE MEALS:
+        if(meal.getMealindex() > 3){    //side meal
             
-            //Create a new meal instance
-            meals.add(new Meal(mealID,userID,dayID,i,totalCalstd,carbohydratestd,fiberstd,proteinstd,fatstd,waterstd));
+        }else{
+            
         }
-        return meals;
+        return foodDetail;
+    }
+    
+    private ArrayList<Food> foodSelection(ArrayList<Food> foodDataset, String foodCategory){
+        String[] subFoodCategory = foodCategory.split("/");
+        ArrayList<Food> foodSelection= new ArrayList();
+        
+        return foodSelection;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

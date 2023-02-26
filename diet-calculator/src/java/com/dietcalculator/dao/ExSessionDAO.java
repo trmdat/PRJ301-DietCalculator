@@ -73,15 +73,15 @@ public class ExSessionDAO {
     }
 
     public boolean updateExSession(String sessionID, String exerciseID, String userID, String dayID) {
-        String sql = "UPDATE ExSession SET sessionID = ?, exerciseID = ?, userID = ?, dayID = ?";
+        String sql = "UPDATE ExSession SET exerciseID = ?, userID = ?, dayID = ? WHERE sessionID = ?";
         int row = 0;
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, exerciseID);
-            ps.setString(2, exerciseID);
-            ps.setString(3, userID);
-            ps.setString(4, dayID);
+            ps.setString(2, userID);
+            ps.setString(3, dayID);
+            ps.setString(4, exerciseID);
             row = ps.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex);

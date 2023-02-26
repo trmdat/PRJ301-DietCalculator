@@ -22,8 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author asout
  */
 public class DayController extends HttpServlet {
-    private final String DAY_ID_FORMAT_STRING = "DAY%d";
-    private final int DAY_ID_FORMAT_DIGIT = 5;
+    private final String DAY_ID_FORMAT_STRING = "DAY%05d";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -50,16 +49,25 @@ public class DayController extends HttpServlet {
         }
     }
     
-    private ArrayList<Day> generateDay(String userID, double totalCalories, MealValues mealValues){
+    private ArrayList<Day> generateDay(int week, String userID, double totalCalories, MealValues mealValues){
         ArrayList<Day> days = new ArrayList();
         
         //Getting the last ID index
         DayDAO dayDAO = new DayDAO();
         String lastIDIndex = dayDAO.lastIDIndex();
         int lastIndex = Utils.extractIntFromString(lastIDIndex);
-        
-        
-        
+        for (int i = 0; i < week*7; i++){
+            String dayID = String.format(DAY_ID_FORMAT_STRING, ++lastIndex);
+            double totalCalstd = totalCalories;
+            double carbohydratestd = totalCalories*mealValues.getCarbohydrate();
+            double fiberstd =  totalCalories*mealValues.getFiber();
+            double proteinstd =  totalCalories*mealValues.getProtein();
+            double fatstd =  totalCalories*mealValues.getFat();
+            double waterstd =  totalCalories*mealValues.getWater();
+            
+            //Create a new day instance
+            days.add(new Day(dayID,userID,i+1,totalCalstd,carbohydratestd,fiberstd,proteinstd,fatstd,waterstd));
+        }
         return days;
     }
 

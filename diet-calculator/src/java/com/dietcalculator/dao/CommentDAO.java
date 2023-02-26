@@ -74,16 +74,16 @@ public class CommentDAO {
     }
 
     public boolean updateComment(String commentID, String userID, String productID, double rate, String content) {
-        String sql = "UPDATE Comment SET commentID = ?, userID = ?, productID = ?, rate = ?, content = ?";
+        String sql = "UPDATE Comment SET userID = ?, productID = ?, rate = ?, content = ? WHERE commentID = ?";
         int row = 0;
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, commentID);
-            ps.setString(2, userID);
-            ps.setString(3, productID);
-            ps.setDouble(4, rate);
-            ps.setString(5, content);
+            ps.setString(1, userID);
+            ps.setString(2, productID);
+            ps.setDouble(3, rate);
+            ps.setString(4, content);
+            ps.setString(5, commentID);
             row = ps.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex);
