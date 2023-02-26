@@ -194,4 +194,11 @@ public class Day {
     public void setWater(double water) {
         this.water = water;
     }
+
+    @Override
+    public String toString() {
+        return "Day{" + "dayID=" + dayID + ", userID=" + userID + ", index=" + index + ", totalCalstd=" + totalCalstd + ", carbohydratestd=" + carbohydratestd + ", fiberstd=" + fiberstd + ", proteinstd=" + proteinstd + ", fatstd=" + fatstd + ", waterstd=" + waterstd + ", totalCal=" + totalCal + ", carbohydrate=" + carbohydrate + ", fiber=" + fiber + ", protein=" + protein + ", fat=" + fat + ", water=" + water + '}';
+    }
+    
+    
 }

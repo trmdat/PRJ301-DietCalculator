@@ -74,7 +74,7 @@ public class ExerciseDAO {
     }
 
     public boolean updateExercise(String exerciseID, String exname, double lowerweight, double upperweight, int calorexp) {
-        String sql = "UPDATE Exercise SET exname = ?, lowerweight = ?, upperweight = ?, calorexp = ? WHERE exercesrID = ?";
+        String sql = "UPDATE Exercise SET exname = ?, lowerweight = ?, upperweight = ?, calorexp = ? WHERE exerciseID = ?";
         int row = 0;
         try {
             Connection conn = DBUtils.getConnection();

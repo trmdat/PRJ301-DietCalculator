@@ -61,5 +61,10 @@ public class Exercise {
     public void setCalorexp(int calorexp) {
         this.calorexp = calorexp;
     }
+
+    @Override
+    public String toString() {
+        return "Exercise{" + "exerciseID=" + exerciseID + ", exname=" + exname + ", lowerweight=" + lowerweight + ", upperweight=" + upperweight + ", calorexp=" + calorexp + '}';
+    }
     
 }
