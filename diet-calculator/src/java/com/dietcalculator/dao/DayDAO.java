@@ -79,7 +79,7 @@ public class DayDAO {
             ps.setString(1, userID);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new Day(rs.getString("dayID"), rs.getString("userID"), rs.getInt("index"), rs.getDouble("totalCal"), rs.getDouble("carbohydrate"), rs.getDouble("fiber"), rs.getDouble("protein"), rs.getDouble("fat"), rs.getDouble("water")));
+                list.add(new Day(rs.getString("dayID"), rs.getString("userID"), rs.getInt("index"), rs.getDouble("totalCalstd"), rs.getDouble("carbohydratestd"), rs.getDouble("fiberstd"), rs.getDouble("proteinstd"), rs.getDouble("fatstd"), rs.getDouble("waterstd")));
             }
             rs.close();
             ps.close();
@@ -90,8 +90,8 @@ public class DayDAO {
         return list;
     }
 
-    public boolean createDay(String dayID, String userID, int index, double totalCal, double carbohydrate, double fiber, double protein, double fat, double water) {
-        String sql = "INSERT INTO Day VALUES(?,?,?,?,?,?,?,?,?)";
+    public boolean createDay(String dayID, String userID, int index, double totalCalstd, double carbohydratestd, double fiberstd, double proteinstd, double fatstd, double waterstd, double totalCal, double carbohydrate, double fiber, double protein, double fat, double water) {
+        String sql = "INSERT INTO Day VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         int row = 0;
         try {
             Connection conn = DBUtils.getConnection();
@@ -99,12 +99,18 @@ public class DayDAO {
             ps.setString(1, dayID);
             ps.setString(2, userID);
             ps.setInt(3, index);
-            ps.setDouble(4, totalCal);
-            ps.setDouble(5, carbohydrate);
-            ps.setDouble(6, fiber);
-            ps.setDouble(7, protein);
-            ps.setDouble(8, fat);
-            ps.setDouble(9, water);
+            ps.setDouble(4, totalCalstd);
+            ps.setDouble(5, carbohydratestd);
+            ps.setDouble(6, fiberstd);
+            ps.setDouble(7, proteinstd);
+            ps.setDouble(8, fatstd);
+            ps.setDouble(9, waterstd);
+            ps.setDouble(10, totalCal);
+            ps.setDouble(11, carbohydrate);
+            ps.setDouble(12, fiber);
+            ps.setDouble(13, protein);
+            ps.setDouble(14, fat);
+            ps.setDouble(15, water);
             row = ps.executeUpdate();
             ps.close();
             conn.close();
@@ -114,21 +120,27 @@ public class DayDAO {
         return row > 0;
     }
 
-    public boolean updateDay(String dayID, String userID, int index, double totalCal, double carbohydrate, double fiber, double protein, double fat, double water) {
-        String sql = "UPDATE Day SET userID = ?, index = ?, totalCal = ?, carbohydrate = ?, fiber = ?, protein = ?, fat = ?, water = ? WHERE dayID = ?";
+    public boolean updateDay(String dayID, String userID, int index, double totalCalstd, double carbohydratestd, double fiberstd, double proteinstd, double fatstd, double waterstd, double totalCal, double carbohydrate, double fiber, double protein, double fat, double water) {
+        String sql = "UPDATE Day SET userID = ?, index = ?, totalCalstd = ?, carbohydratestd = ?, fiberstd = ?, proteinstd = ?, fatstd = ?, waterstd = ?, totalCal = ?, carbohydrate = ?, fiber = ?, protein = ?, fat = ?, water = ? WHERE dayID = ?";
         int row = 0;
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(9, dayID);
             ps.setString(1, userID);
             ps.setInt(2, index);
-            ps.setDouble(3, totalCal);
-            ps.setDouble(4, carbohydrate);
-            ps.setDouble(5, fiber);
-            ps.setDouble(6, protein);
-            ps.setDouble(7, fat);
-            ps.setDouble(8, water);
+            ps.setDouble(3, totalCalstd);
+            ps.setDouble(4, carbohydratestd);
+            ps.setDouble(5, fiberstd);
+            ps.setDouble(6, proteinstd);
+            ps.setDouble(7, fatstd);
+            ps.setDouble(7, waterstd);
+            ps.setDouble(9, totalCal);
+            ps.setDouble(10, carbohydrate);
+            ps.setDouble(11, fiber);
+            ps.setDouble(12, protein);
+            ps.setDouble(13, fat);
+            ps.setDouble(14, water);
+            ps.setString(15, dayID);
             row = ps.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex);

@@ -74,16 +74,16 @@ public class ExerciseDAO {
     }
 
     public boolean updateExercise(String exerciseID, String exname, double lowerweight, double upperweight, int calorexp) {
-        String sql = "UPDATE Exercise SET exercesrID = ?, exname = ?, lowerweight = ?, upperweight = ?, calorexp = ?";
+        String sql = "UPDATE Exercise SET exname = ?, lowerweight = ?, upperweight = ?, calorexp = ? WHERE exercesrID = ?";
         int row = 0;
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, exerciseID);
-            ps.setString(2, exname);
-            ps.setDouble(3, upperweight);
-            ps.setDouble(4, lowerweight);
-            ps.setInt(5, calorexp);
+            ps.setString(1, exname);
+            ps.setDouble(2, upperweight);
+            ps.setDouble(3, lowerweight);
+            ps.setInt(4, calorexp);
+            ps.setString(5, exerciseID);
             row = ps.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex);
