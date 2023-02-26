@@ -15,6 +15,25 @@ import java.util.List;
  */
 public class ExSessionDAO {
 
+    public String lastIDIndex() {
+        String sql = "SELECT TOP 1 sessionID FROM ExSession ORDER BY sessionID DESC";
+        String index = "SES00000";
+        try {
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                index = rs.getString("sessionID");
+            }
+            rs.close();
+            ps.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return index;
+    }
+
     public List<ExSession> readExSession() {
         List<ExSession> list = new ArrayList<>();
         String sql = "SELECT * FROM ExSession";

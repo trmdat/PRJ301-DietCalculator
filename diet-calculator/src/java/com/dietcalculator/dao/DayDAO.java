@@ -51,6 +51,25 @@ public class DayDAO {
 //        }
 //    }
 
+    public String lastIDIndex() {
+        String sql = "SELECT TOP 1 dayID FROM Day ORDER BY dayID DESC";
+        String index = "DAY00000";
+        try {
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                index = rs.getString("dayID");
+            }
+            rs.close();
+            ps.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return index;
+    }
+
     public ArrayList<Day> readDayByUserID(String userID) {
         ArrayList<Day> list = new ArrayList();
         String sql = "SELECT * FROM Exercise WHERE userID = ?";

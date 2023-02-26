@@ -15,6 +15,25 @@ import java.util.List;
  */
 public class ExerciseDAO {
 
+    public String lastIDIndex() {
+        String sql = "SELECT TOP 1 exerciseID FROM Exercise ORDER BY exerciseID DESC";
+        String index = "EX000";
+        try {
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                index = rs.getString("exerciseID");
+            }
+            rs.close();
+            ps.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return index;
+    }
+
     public List<Exercise> readExercise() {
         List<Exercise> list = new ArrayList();
         String sql = "SELECT * FROM Exercise";

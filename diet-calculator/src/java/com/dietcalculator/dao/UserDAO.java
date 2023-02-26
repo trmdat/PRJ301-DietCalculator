@@ -16,6 +16,25 @@ import java.util.List;
  */
 public class UserDAO {
 
+    public String lastIDIndex() {
+        String sql = "SELECT TOP 1 userID FROM User ORDER BY userID DESC";
+        String index = "U00000";
+        try {
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                index = rs.getString("userID");
+            }
+            rs.close();
+            ps.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return index;
+    }
+
     public List<User> readUser() {
         List<User> list = new ArrayList();
         String sql = "SELECT * FROM User";
@@ -123,11 +142,11 @@ public class UserDAO {
         }
         return row > 0;
     }
-    public static void main(String[] args) {
-        UserDAO dao = new UserDAO();
-        List<User> list = dao.readUser();
-        for (User food : list) {
-            System.out.println(food.toString());
-        }
-    }
+//    public static void main(String[] args) {
+//        UserDAO dao = new UserDAO();
+//        List<User> list = dao.readUser();
+//        for (User food : list) {
+//            System.out.println(food.toString());
+//        }
+//    }
 }

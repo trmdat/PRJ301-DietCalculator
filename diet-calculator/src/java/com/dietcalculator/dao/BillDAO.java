@@ -15,7 +15,27 @@ import java.util.List;
  * @author admin
  */
 public class BillDAO {
-        public List<Bill> readBillByUserID(String userID) {
+
+    public String lastIDIndex() {
+        String sql = "SELECT TOP 1 billID FROM Bill ORDER BY billID DESC";
+        String index = "BILL000000";
+        try {
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                index = rs.getString("billID");
+            }
+            rs.close();
+            ps.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return index;
+    }
+
+    public List<Bill> readBillByUserID(String userID) {
         List<Bill> list = new ArrayList<>();
         String sql = "SELECT * FROM Bill WHERE userID = ?";
         try {
@@ -34,7 +54,7 @@ public class BillDAO {
         }
         return list;
     }
-    
+
     public boolean createBill(String billID, String userID, Date date, String delivery, String payment) {
         String sql = "INSERT INTO Bill VALUES(?,?,?,?,?)";
         int row = 0;
@@ -54,7 +74,7 @@ public class BillDAO {
         }
         return row > 0;
     }
-    
+
     public boolean updateBill(String billID, String userID, Date date, String delivery, String payment) {
         String sql = "UPDATE Bill SET billID = ?, userID = ?, date = ?, delivery = ?, payment = ?";
         int row = 0;
@@ -72,7 +92,7 @@ public class BillDAO {
         }
         return row > 0;
     }
-    
+
     public boolean deleteBill(String billID) {
         int row = 0;
         String sql = "DELETE FROM Bill WHERE billID = ?";
@@ -86,6 +106,6 @@ public class BillDAO {
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-        return row > 0;        
+        return row > 0;
     }
 }

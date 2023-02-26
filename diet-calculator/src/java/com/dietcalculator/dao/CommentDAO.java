@@ -15,6 +15,25 @@ import java.util.List;
  */
 public class CommentDAO {
 
+    public String lastIDIndex() {
+        String sql = "SELECT TOP 1 commentID FROM Comment ORDER BY commentID DESC";
+        String index = "CMT00000";
+        try {
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                index = rs.getString("commentID");
+            }
+            rs.close();
+            ps.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return index;
+    }
+
     public List<Comment> readComment() {
         List<Comment> list = new ArrayList<>();
         String sql = "SELECT * FROM Comment";
