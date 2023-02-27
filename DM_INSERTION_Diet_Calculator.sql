@@ -304,4 +304,3 @@ INSERT INTO Exercise (exerciseID, exname, lowerweight, upperweight, calorexp) VA
 INSERT INTO Exercise (exerciseID, exname, lowerweight, upperweight, calorexp) VALUES ('EX054', 'Swimming freestyle, slow', '59', '70', '493');
 INSERT INTO Exercise (exerciseID, exname, lowerweight, upperweight, calorexp) VALUES ('EX055', 'Swimming freestyle, slow', '71', '80', '572');
 INSERT INTO Exercise (exerciseID, exname, lowerweight, upperweight, calorexp) VALUES ('EX056', 'Swimming freestyle, slow', '81', '150', '651');
-

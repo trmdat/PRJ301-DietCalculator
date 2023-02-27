@@ -7,6 +7,7 @@ package controller;
 
 import com.dietcalculator.dao.DayDAO;
 import com.dietcalculator.dto.Day;
+import com.dietcalculator.util.Constants;
 import com.dietcalculator.util.MealValues;
 import com.dietcalculator.util.Utils;
 import java.io.IOException;
@@ -71,6 +72,12 @@ public class DayController extends HttpServlet {
         return days;
     }
 
+    public static void main(String[] args) {
+        DayController dc =new DayController();
+        ArrayList<Day> days = dc.generateDay(3,"U00001",2200,Constants.PLATE_PORTION.get(1));
+        for(int i = 0; i < days.size(); i++)
+            System.out.println(days.get(i));
+    }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
