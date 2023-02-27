@@ -72,7 +72,7 @@ public class DayDAO {
 
     public ArrayList<Day> readDayByUserID(String userID) {
         ArrayList<Day> list = new ArrayList();
-        String sql = "SELECT * FROM Exercise WHERE userID = ?";
+        String sql = "SELECT * FROM Day WHERE userID = ?";
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -121,7 +121,7 @@ public class DayDAO {
     }
 
     public boolean updateDay(String dayID, String userID, int index, double totalCalstd, double carbohydratestd, double fiberstd, double proteinstd, double fatstd, double waterstd, double totalCal, double carbohydrate, double fiber, double protein, double fat, double water) {
-        String sql = "UPDATE Day SET userID = ?, index = ?, totalCalstd = ?, carbohydratestd = ?, fiberstd = ?, proteinstd = ?, fatstd = ?, waterstd = ?, totalCal = ?, carbohydrate = ?, fiber = ?, protein = ?, fat = ?, water = ? WHERE dayID = ?";
+        String sql = "UPDATE Day SET userID = ?, [index] = ?, totalCalstd = ?, carbohydratestd = ?, fiberstd = ?, proteinstd = ?, fatstd = ?, waterstd = ?, totalCal = ?, carbohydrate = ?, fiber = ?, protein = ?, fat = ?, water = ? WHERE dayID = ?";
         int row = 0;
         try {
             Connection conn = DBUtils.getConnection();
@@ -133,7 +133,7 @@ public class DayDAO {
             ps.setDouble(5, fiberstd);
             ps.setDouble(6, proteinstd);
             ps.setDouble(7, fatstd);
-            ps.setDouble(7, waterstd);
+            ps.setDouble(8, waterstd);
             ps.setDouble(9, totalCal);
             ps.setDouble(10, carbohydrate);
             ps.setDouble(11, fiber);
