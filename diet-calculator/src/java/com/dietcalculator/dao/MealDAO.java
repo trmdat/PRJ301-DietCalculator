@@ -33,7 +33,7 @@ public class MealDAO {
 
     public ArrayList<Meal> readMealByDayID(String dayID) {
         ArrayList<Meal> list = new ArrayList<>();
-        String sql = "SELECT mealID,userID,dayID,time,calosize FROM Meal WHERE dayID = ?";
+        String sql = "SELECT mealID,userID,dayID,mealindex,totalCalstd,carbohydratestd,fiberstd,proteinstd,fatstd,waterstd,totalCal,carbohydrate,fiber,protein,fat,water FROM Meal WHERE dayID = ?";
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -136,23 +136,24 @@ public class MealDAO {
         
                 System.out.println("Create");
         dao.createMeal("MEAL000000", "U00000", "DAY00000", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-        ArrayList<Meal> list = dao.readMealByDayID("MEAL00000");
+        ArrayList<Meal> list = dao.readMealByDayID("DAY00000");
         for (Meal x : list) {
             System.out.println(x.toString());
         }
 
         System.out.println("Update");
         dao.updateMeal("MEAL000000", "U00000", "DAY00000", 9999, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-         list = dao.readMealByDayID("MEAL00000");
+         list = dao.readMealByDayID("DAY00000");
         for (Meal x : list) {
             System.out.println(x.toString());
         }
 
         System.out.println("Delete");
-        dao.deleteMeal("MEAL00000");
-         list = dao.readMealByDayID("MEAL00000");
+        dao.deleteMeal("MEAL000000");
+         list = dao.readMealByDayID("DAY00000");
         for (Meal x : list) {
             System.out.println(x.toString());
         }
     }
+    
 }
