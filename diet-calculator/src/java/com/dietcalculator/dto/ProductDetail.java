@@ -11,22 +11,21 @@ package com.dietcalculator.dto;
  */
 public class ProductDetail {
     private String detailID;
-    private String saleoffID;
+    
     private String productID;
-    private int percentoff;
-    private float priceoff;
-    private String gift;
+    private String userID;
+    private String billID;
+    private int quantity;
 
     public ProductDetail() {
     }
 
-    public ProductDetail(String detailID, String saleoffID, String productID, int percentoff, float priceoff, String gift) {
+    public ProductDetail(String detailID, String productID, String userID, String billID, int quantity) {
         this.detailID = detailID;
-        this.saleoffID = saleoffID;
         this.productID = productID;
-        this.percentoff = percentoff;
-        this.priceoff = priceoff;
-        this.gift = gift;
+        this.userID = userID;
+        this.billID = billID;
+        this.quantity = quantity;
     }
 
     public String getDetailID() {
@@ -37,14 +36,6 @@ public class ProductDetail {
         this.detailID = detailID;
     }
 
-    public String getSaleoffID() {
-        return saleoffID;
-    }
-
-    public void setSaleoffID(String saleoffID) {
-        this.saleoffID = saleoffID;
-    }
-
     public String getProductID() {
         return productID;
     }
@@ -53,34 +44,34 @@ public class ProductDetail {
         this.productID = productID;
     }
 
-    public int getPercentoff() {
-        return percentoff;
+    public String getUserID() {
+        return userID;
     }
 
-    public void setPercentoff(int percentoff) {
-        this.percentoff = percentoff;
+    public void setUserID(String userID) {
+        this.userID = userID;
     }
 
-    public float getPriceoff() {
-        return priceoff;
+    public String getBillID() {
+        return billID;
     }
 
-    public void setPriceoff(float priceoff) {
-        this.priceoff = priceoff;
+    public void setBillID(String billID) {
+        this.billID = billID;
     }
 
-    public String getGift() {
-        return gift;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setGift(String gift) {
-        this.gift = gift;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     @Override
     public String toString() {
-        return "ProductDetail{" + "detailID=" + detailID + ", saleoffID=" + saleoffID + ", productID=" + productID + ", percentoff=" + percentoff + ", priceoff=" + priceoff + ", gift=" + gift + '}';
+        return "ProductDetail{" + "detailID=" + detailID + ", productID=" + productID + ", userID=" + userID + ", billID=" + billID + ", quantity=" + quantity + '}';
     }
-    
-    
+
+   
 }
