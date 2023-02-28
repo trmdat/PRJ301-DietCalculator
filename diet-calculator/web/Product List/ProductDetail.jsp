@@ -1,3 +1,5 @@
+<%@page import="com.dietcalculator.dto.Image"%>
+<%@page import="com.dietcalculator.dto.Product"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -57,7 +59,12 @@
                   </div>
                </div>
             </div>
-
+                                       <% Product p =(Product) request.getAttribute("product");
+  Image i  = (Image) request.getAttribute("image");
+  out.println("test");
+out.println(p.toString());
+out.println(i.toString());
+%>
             <div class="col-md-6 col-md-offset-1 col-sm-12 col-xs-12">
                <h2 class="name">
                   Product Name Title Here
