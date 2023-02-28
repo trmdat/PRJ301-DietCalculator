@@ -36,14 +36,14 @@ public class ProductDetailDAO {
     
     public ArrayList<ProductDetail> readProductDetail(){
         ArrayList<ProductDetail>list = new ArrayList<>();
-        String sql ="SELECT detatilID, productID, userID, billID, quantity from ProductDetail";
+        String sql ="SELECT detailID, productID, userID, billID, quantity from ProductDetail";
     
         try{
             Connection conn = DBUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                list.add(new ProductDetail(rs.getString("detailID"),rs.getString("saleoffID"), rs.getString("productID"),rs.getInt("percentoff"), rs.getFloat("priceoff"), rs.getString("gift")));
+                list.add(new ProductDetail(rs.getString("detailID"), rs.getString("productID"),rs.getString("userID"),rs.getString("billID"), rs.getInt("quantity")));
                         
             }
             rs.close();
@@ -56,18 +56,19 @@ public class ProductDetailDAO {
         return list;
     }
     
-    public boolean createProductDetail(String detailID, String saleoffID, String productID, int percentoff, float priceoff, String gift){
+    public boolean createProductDetail(String detailID, String productID,String userID,String billID,int quantity){
         int row = 0;
-        String sql ="insert into ProductDetail values(?,?,?,?,?,?)";
+        String sql ="insert into ProductDetail values(?,?,?,?,?)";
         try{
             Connection conn = DBUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, detailID);
             ps.setString(2, productID);
-            ps.setString(3, saleoffID);
-            ps.setInt(4, percentoff);
-            ps.setFloat(5, priceoff);
-            ps.setString(6, gift);
+            ps.setString(3, userID);
+            ps.setString(4, billID);
+            ps.setInt(5, quantity);
+        
+            row = ps.executeUpdate();
             ps.close();
             conn.close();
          }catch (Exception e){
@@ -76,19 +77,20 @@ public class ProductDetailDAO {
         return row > 0;
     }
     
-     public boolean updateProductDetail(String detailID,String saleoffID, String productID, int percentoff, float priceoff, String gift){
+     public boolean updateProductDetail(String detailID, String productID,String userID,String billID,int quantity){
         int row = 0;
-        String sql ="update ProductDetail SET saleoffID = ?, productID =?, percentoff =?, priceoff =?, gift =? where detailID";
+        String sql ="update ProductDetail SET  productID =?, userID = ?, billID =?, quantity =? where detailID = ?";
         try{
             Connection conn = DBUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
           
             ps.setString(1, productID);
-            ps.setString(2, saleoffID);
-            ps.setInt(3, percentoff);
-            ps.setFloat(4, priceoff);
-            ps.setString(5, gift);
-            ps.setString(6, detailID);
+            ps.setString(2, userID);
+            ps.setString(3, billID);
+            ps.setInt(4, quantity);
+            ps.setString(5, detailID);
+            
+            row = ps.executeUpdate();
             ps.close();
             conn.close();
          }catch (Exception e){
@@ -107,6 +109,10 @@ public class ProductDetailDAO {
           
             ps.setString(1, detailID);
         
+            
+            row = ps.executeUpdate();
+            ps.close();
+            conn.close();
          }catch (Exception e){
         System.out.println(e);
         }
@@ -118,7 +124,7 @@ public class ProductDetailDAO {
          ProductDetailDAO dao = new ProductDetailDAO();
          
         System.out.println("Create");
-        dao.createProductDetail("PD00000000", "?", "PRO0000", 0, 0, "Combo 1");
+        dao.createProductDetail("PD00000000", "PRO0001", "U00000", "BILL000000", 0);
          ArrayList<ProductDetail> list = dao.readProductDetail();
          for(ProductDetail product : list){
              System.out.println(product.toString());
@@ -126,7 +132,7 @@ public class ProductDetailDAO {
          
          System.out.println("");
          System.out.println("Update");
-         dao.updateProductDetail("PRO0000","Khoi", "Xau troai", 0, 0, "Quan 10", "USA", 0, "Hoc do", 0, 0);
+         dao.updateProductDetail("PD00000000", "PRO0001", "U00000", "BILL000000", 6);
          list = dao.readProductDetail();
            for(ProductDetail product : list){
              System.out.println(product.toString());
@@ -134,10 +140,11 @@ public class ProductDetailDAO {
            
            System.out.println("");
            System.out.println("Delete");
-           dao.deleteProductDetail("PRO0000");
+           dao.deleteProductDetail("PD00000000");
            list = dao.readProductDetail();
                 for(ProductDetail product : list){
              System.out.println(product.toString());
          }
     
+}
 }

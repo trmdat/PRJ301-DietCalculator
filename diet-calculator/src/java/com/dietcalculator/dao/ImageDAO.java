@@ -168,5 +168,8 @@ public class ImageDAO {
         System.out.println("Delete");
         System.out.println(dao.deleteImage("IMG000000"));
                 dao.createImage("IMG000000", "PRO0001", null, null, "https://www.bootdey.com/image/250x220/FFB6C1/000000");
+                
+                
+        
     }
 }
