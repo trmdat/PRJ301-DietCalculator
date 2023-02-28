@@ -1,3 +1,4 @@
+
 <%-- 
     Document   : ProductDetail
     Created on : Feb 28, 2023, 11:34:14 AM
@@ -72,7 +73,6 @@
                   </div>
                </div>
             </div>
-
             <div class="col-md-6 col-md-offset-1 col-sm-12 col-xs-12">
                <h2 class="name">
                   ${requestScope.product.productName}
