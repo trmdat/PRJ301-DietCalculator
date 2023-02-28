@@ -43,7 +43,7 @@ public class ImageDAO {
             ps.setString(2, productID);
             ps.setString(3, mealID);
             ps.setString(4, commentID);
-            ps.setString(5,  url);
+            ps.setString(5, url);
             row = ps.executeUpdate();
             ps.close();
             conn.close();
@@ -52,7 +52,7 @@ public class ImageDAO {
         }
         return row > 0;
     }
-    
+
     public boolean updateImage(String imageID, String productID, String mealID, String commentID, String url) {
         String sql = "update Image set productID=?, mealID=?, commentID=?,  url=? where imageID=?";
         int row = 0;
@@ -63,7 +63,7 @@ public class ImageDAO {
             ps.setString(1, productID);
             ps.setString(2, mealID);
             ps.setString(3, commentID);
-            ps.setString(4,  url);
+            ps.setString(4, url);
             ps.setString(5, imageID);
             row = ps.executeUpdate();
             ps.close();
@@ -73,8 +73,8 @@ public class ImageDAO {
         }
         return row > 0;
     }
-    
-        public boolean deleteImage(String imageID) {
+
+    public boolean deleteImage(String imageID) {
         String sql = "DELETE FROM Image WHERE imageID = ?";
         int row = 0;
         try {
@@ -91,16 +91,15 @@ public class ImageDAO {
         return row > 0;
     }
 
-    public String readImageUrlByProductID(String productID) {
-        String url = "";
-        String sql = "SELECT url FROM Image WHERE productID = ? ";
+    public ArrayList<Image> readImageByProductID() {
+        ArrayList<Image> list = new ArrayList<>();
+        String sql = "SELECT * FROM Image WHERE productID is not null";
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, productID);
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                url = rs.getString("url");
+            while (rs.next()) {
+                list.add(new Image(rs.getString("imageID"), rs.getString("productID"), rs.getString("mealID"), rs.getString("commentID"), rs.getString("url")));
             }
             rs.close();
             ps.close();
@@ -108,19 +107,18 @@ public class ImageDAO {
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-        return url;
+        return list;
     }
 
-    public String readImageUrlByMealID(String mealID) {
-        String url = "";
-        String sql = "SELECT url FROM Image WHERE mealID = ?";
+    public ArrayList<Image> readImageByMealID() {
+        ArrayList<Image> list = new ArrayList<>();
+        String sql = "SELECT * FROM Image WHERE mealID is not null";
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, mealID);
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                url = rs.getString("url");
+            while (rs.next()) {
+                list.add(new Image(rs.getString("imageID"), rs.getString("productID"), rs.getString("mealID"), rs.getString("commentID"), rs.getString("url")));
             }
             rs.close();
             ps.close();
@@ -128,19 +126,18 @@ public class ImageDAO {
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-        return url;
+        return list;
     }
 
-    public String readImageUrlByCommentID(String commnentID) {
-        String url = "";
-        String sql = "SELECT url FROM Image WHERE commentID = ?";
+    public ArrayList<Image> readImageUrlByCommentID() {
+        ArrayList<Image> list = new ArrayList<>();
+        String sql = "SELECT * FROM Image WHERE commnentID is not null";
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, commnentID);
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                url = rs.getString("url");
+            while (rs.next()) {
+                list.add(new Image(rs.getString("imageID"), rs.getString("productID"), rs.getString("mealID"), rs.getString("commentID"), rs.getString("url")));
             }
             rs.close();
             ps.close();
@@ -148,23 +145,28 @@ public class ImageDAO {
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-        return url;
+        return list;
     }
 
     public static void main(String[] args) {
         ImageDAO dao = new ImageDAO();
 
         System.out.println("Create");
-        dao.createImage("IMG000000", "PRO0001",null,null,"abc");
-        String a = dao.readImageUrlByProductID("PRO0001");
-        System.out.println(a);
-        
+        dao.createImage("IMG000000", "PRO0001", null, null, "abc");
+        ArrayList<Image> list = dao.readImageByProductID();
+        for (Image image : list) {
+            System.out.println(image);
+        }
+
         System.out.println("Update");
         System.out.println(dao.updateImage("IMG000000", "PRO0002", null, null, "bed"));
-        a = dao.readImageUrlByProductID("PRO0002");
-        System.out.println(a);
-        
+        list = dao.readImageByProductID();
+        for (Image image : list) {
+            System.out.println(image);
+        }
+
         System.out.println("Delete");
         System.out.println(dao.deleteImage("IMG000000"));
+                dao.createImage("IMG000000", "PRO0001", null, null, "https://www.bootdey.com/image/250x220/FFB6C1/000000");
     }
 }

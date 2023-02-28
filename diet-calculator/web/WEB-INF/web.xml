@@ -32,6 +32,14 @@
         <servlet-name>FoodController</servlet-name>
         <servlet-class>controller.FoodController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProductListController</servlet-name>
+        <servlet-class>com.dietcalculator.controller.ProductListController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProductInfoController</servlet-name>
+        <servlet-class>com.dietcalculator.controller.ProductInfoController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UserController</servlet-name>
         <url-pattern>/UserController</url-pattern>
@@ -63,6 +71,14 @@
     <servlet-mapping>
         <servlet-name>FoodController</servlet-name>
         <url-pattern>/FoodController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProductListController</servlet-name>
+        <url-pattern>/productlist</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProductInfoController</servlet-name>
+        <url-pattern>/productinfo</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
