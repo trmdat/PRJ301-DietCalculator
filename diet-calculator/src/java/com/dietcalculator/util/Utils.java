@@ -31,7 +31,7 @@ public class Utils {
 
 
     public static java.sql.Date convertJavaDateToSqlDate(int year, int month, int day) {
-        java.util.Date utilDate = new java.util.Date(year - 1900, month, day);
+        java.util.Date utilDate = new java.util.Date(year - 1900, month - 1, day);
 //         java.util.Date utilDate = new java.util.Date();
         return new java.sql.Date(utilDate.getTime());
 

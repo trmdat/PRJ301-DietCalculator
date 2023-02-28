@@ -46,4 +46,11 @@ public class PopUpDetail {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return "PopUpDetail{" + "popupID=" + popupID + ", productID=" + productID + ", description=" + description + '}';
+    }
+    
+    
 }

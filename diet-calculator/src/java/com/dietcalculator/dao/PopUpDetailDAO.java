@@ -59,15 +59,20 @@ public class PopUpDetailDAO {
         return row > 0;
     }
      
-     public boolean updatePopUpDetail(String productID,String description ){
+     public boolean updatePopUpDetail(String popupID, String productID,String description ){
         int row =0;
-        String sql ="UPDATE PopUpDetail SET productID = ?, description = ?"; 
+        String sql =" UPDATE PopUpDetail SET description = ? where popupID = ? and productID = ?"; 
         try{
             Connection conn = DBUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, productID);
-            ps.setString(2, description);
+            
+            
+           
+            ps.setString(1, description);
+            ps.setString(2, popupID);
+            ps.setString(3, productID);
         
+         
             row = ps.executeUpdate();
             ps.close();
             conn.close();
@@ -80,17 +85,48 @@ public class PopUpDetailDAO {
         return row > 0;
     }
      
-     public boolean deletePopUpDetail(String popupID){
+     public boolean deletePopUpDetail(String popupID, String productID){
         int row =0;
-        String sql ="DELETE from PopUpDetail where popupID =?";
+        String sql ="DELETE from PopUpDetail where popupID =? and productID = ?";
         try{
             Connection conn = DBUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1,popupID);
+            ps.setString(2,productID);
+            row = ps.executeUpdate();
+            ps.close();
+            conn.close();
             
         }catch (Exception e){
             System.out.println(e);
         }
         return row > 0;
     }
-}
+     
+     
+      public static void main(String[]args){
+        PopUpDetailDAO dao = new PopUpDetailDAO();
+         
+//        System.out.println("Create");
+//        dao.createPopUpDetail("POP000", "PRO0000","SAn Pham Chat luong kem");
+        ArrayList<PopUpDetail> list = dao.readPopUpDetail();
+        for(PopUpDetail pop : list){
+             System.out.println(pop.toString());
+        }
+//         
+         System.out.println("");
+         System.out.println("Update");
+         dao.updatePopUpDetail("POP000", "PRO0000", "San Pham Chat Luong Cao");
+         list = dao.readPopUpDetail();
+           for(PopUpDetail pop : list){
+             System.out.println(pop.toString());
+         }
+          
+           System.out.println("");
+           System.out.println("Delete");
+           dao.deletePopUpDetail("POP000", "PRO0000");
+          list = dao.readPopUpDetail();
+                for(PopUpDetail pop : list){
+             System.out.println(pop.toString());
+         }
+}}

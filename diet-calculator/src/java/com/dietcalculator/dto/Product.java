@@ -126,5 +126,13 @@ public class Product {
     public void setPurchase(double purchase) {
         this.purchase = purchase;
     }
+
+    @Override
+    public String toString() {
+        return "Product{" + "productID=" + productID + ", productName=" + productName + ", type=" + type + ", price=" + price + ", quantity=" + quantity + ", brand=" + brand + ", origin=" + origin + ", volume=" + volume + ", effect=" + effect + ", rate=" + rate + ", purchase=" + purchase + '}';
+    }
+
+   
+    
     
 }

@@ -62,7 +62,7 @@ public class SaleOffDetailDAO {
      
       public boolean updateSaleOffDetail(String saleoffID, String productID, int percentoff, float priceoff, String gift){
         int row = 0;
-        String sql ="update SaleOffDetail SET saleoffID = ?, productID =?, percentoff =?, priceoff =?, gift =?";
+        String sql ="update SaleOffDetail SET saleoffID = ?, productID =?, percentoff =?, priceoff =?, gift =? where detailID";
         try{
             Connection conn = DBUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);

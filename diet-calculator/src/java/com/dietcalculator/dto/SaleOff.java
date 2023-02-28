@@ -68,4 +68,12 @@ public class SaleOff {
     public void setTarget(int target) {
         this.target = target;
     }
+
+    @Override
+    public String toString() {
+        return "SaleOff{" + "saleoffID=" + saleoffID + ", description=" + description + ", startdate=" + startdate + ", enddate=" + enddate + ", target=" + target + '}';
+    }
+    
+    
+    
 }

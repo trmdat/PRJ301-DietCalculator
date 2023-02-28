@@ -56,4 +56,12 @@ public class PopUp {
     public void setTheme(String theme) {
         this.theme = theme;
     }
+
+    @Override
+    public String toString() {
+        return "PopUp{" + "popupID=" + popupID + ", description=" + description + ", status=" + status + ", theme=" + theme + '}';
+    }
+    
+    
+    
 }

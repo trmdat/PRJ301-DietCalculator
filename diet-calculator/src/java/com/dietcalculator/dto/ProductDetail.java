@@ -76,6 +76,11 @@ public class ProductDetail {
     public void setGift(String gift) {
         this.gift = gift;
     }
+
+    @Override
+    public String toString() {
+        return "ProductDetail{" + "detailID=" + detailID + ", saleoffID=" + saleoffID + ", productID=" + productID + ", percentoff=" + percentoff + ", priceoff=" + priceoff + ", gift=" + gift + '}';
+    }
     
     
 }
