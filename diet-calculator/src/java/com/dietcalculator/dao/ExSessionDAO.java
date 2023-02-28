@@ -17,7 +17,7 @@ public class ExSessionDAO {
 
     public String lastIDIndex() {
         String sql = "SELECT TOP 1 sessionID FROM ExSession ORDER BY sessionID DESC";
-        String index = "SES00000";
+        String index = "SES000000";
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -59,7 +59,7 @@ public class ExSessionDAO {
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, exerciseID);
+            ps.setString(1, sessionID);
             ps.setString(2, exerciseID);
             ps.setString(3, userID);
             ps.setString(4, dayID);
@@ -81,7 +81,7 @@ public class ExSessionDAO {
             ps.setString(1, exerciseID);
             ps.setString(2, userID);
             ps.setString(3, dayID);
-            ps.setString(4, exerciseID);
+            ps.setString(4, sessionID);
             row = ps.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex);
