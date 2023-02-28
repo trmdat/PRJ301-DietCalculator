@@ -1,3 +1,12 @@
+<%-- 
+    Document   : ProductDetail
+    Created on : Feb 28, 2023, 11:34:14 AM
+    Author     : admin
+--%>
+
+<%@page import="com.dietcalculator.dto.Image"%>
+<%@page import="com.dietcalculator.dto.Product"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +14,7 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Detaiks</title>
+   <title>Details</title>
    <!-- Latest compiled and minified CSS -->
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
       integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -21,6 +30,12 @@
 </head>
 
 <body>
+    <%
+//        Product product = new Product();
+//        product = (Product) request.getAttribute("product");
+//        Image image = new Image();
+//        image = (Image) request.getAttribute("image");
+    %>
    <div class="container">
       <!-- product -->
       <div class="product-content product-wrap clearfix product-deatil">
@@ -36,7 +51,7 @@
                      <div class="carousel-inner">
                         <!-- Slide 1 -->
                         <div class="item active">
-                           <img src="https://www.bootdey.com/image/700x400/FFB6C1/000000" class="img-responsive"
+                           <img src="${requestScope.image.url}" class="img-responsive"
                               alt="" />
                         </div>
                         <!-- Slide 2 -->
@@ -60,50 +75,35 @@
 
             <div class="col-md-6 col-md-offset-1 col-sm-12 col-xs-12">
                <h2 class="name">
-                  Product Name Title Here
+                  ${requestScope.product.productName}
                   <small>Product by <a href="javascript:void(0);">Adeline</a></small>
                   <i class="fa fa-star fa-2x text-primary"></i>
                   <i class="fa fa-star fa-2x text-primary"></i>
                   <i class="fa fa-star fa-2x text-primary"></i>
                   <i class="fa fa-star fa-2x text-primary"></i>
                   <i class="fa fa-star fa-2x text-muted"></i>
-                  <span class="fa fa-2x">
-                     <h5>(109) Votes</h5>
-                  </span>
-                  <a href="javascript:void(0);">109 customer reviews</a>
                </h2>
                <hr />
                <h3 class="price-container">
-                  $129.54
+                  ${requestScope.product.price}
                   <small>*includes tax</small>
                </h3>
-               <div class="certified">
-                  <ul>
-                     <li>
-                        <a href="javascript:void(0);">Delivery time<span>7 Working Days</span></a>
-                     </li>
-                     <li>
-                        <a href="javascript:void(0);">Certified<span>Quality Assured</span></a>
-                     </li>
-                  </ul>
-               </div>
-               <hr />
                <div class="description description-tabs">
                   <ul id="myTab" class="nav nav-pills">
-                     <li class="active"><a href="#more-information" data-toggle="tab" class="no-margin">Product
-                           Description </a></li>
-                     <li class=""><a href="#specifications" data-toggle="tab">Specifications</a></li>
-                     <li class=""><a href="#reviews" data-toggle="tab">Reviews</a></li>
+                     <li class="active"><a href="#more-information" data-toggle="tab" class="no-margin">Product Description</a></li>
+<!--                     <li class=""><a href="#specifications" data-toggle="tab">Specifications</a></li>
+                     <li class=""><a href="#reviews" data-toggle="tab">Reviews</a></li>-->
                   </ul>
                   <div id="myTabContent" class="tab-content">
                      <div class="tab-pane fade active in" id="more-information">
                         <br />
                         <strong>Description Title</strong>
                         <p>
-                           Integer egestas, orci id condimentum eleifend, nibh nisi pulvinar eros, vitae ornare massa
+                           ${requestScope.product.effect}
+<!--                           Integer egestas, orci id condimentum eleifend, nibh nisi pulvinar eros, vitae ornare massa
                            neque ut orci. Nam aliquet lectus sed odio eleifend, at iaculis dolor egestas. Nunc elementum
                            pellentesque augue
-                           sodales porta. Etiam aliquet rutrum turpis, feugiat sodales ipsum consectetur nec.
+                           sodales porta. Etiam aliquet rutrum turpis, feugiat sodales ipsum consectetur nec.-->
                         </p>
                      </div>
                      <div class="tab-pane fade" id="specifications">
@@ -210,11 +210,10 @@
                <hr />
                <div class="row">
                   <div class="col-sm-12 col-md-6 col-lg-6">
-                     <a href="javascript:void(0);" class="btn btn-success btn-lg">Add to cart ($129.54)</a>
+                     <a href="javascript:void(0);" class="btn btn-success btn-lg">Add to cart</a>
                   </div>
                   <div class="col-sm-12 col-md-6 col-lg-6">
                      <div class="btn-group pull-right">
-                        <button class="btn btn-white btn-default"><i class="fa fa-star"></i> Add to wishlist</button>
                         <button class="btn btn-white btn-default"><i class="fa fa-envelope"></i> Contact Seller</button>
                      </div>
                   </div>
