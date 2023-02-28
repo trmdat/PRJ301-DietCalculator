@@ -19,9 +19,9 @@ import java.util.ArrayList;
  */
 public class FoodDAO {
 
-    public ArrayList<Food> foodDataSet(ArrayList<String> foodTypeID, ArrayList<String> foodAvoidanceID) {
+    public ArrayList<Food> foodDataSet(int type, ArrayList<String> foodAvoidanceID) {
         ArrayList<Food> list = new ArrayList();
-
+        String sql = "SELECT foodID,foodname,category,size,caloricintake,carbohydrate,fiber,protein,fat,water from Food WHERE ";
         return list;
     }
 

@@ -36,4 +36,11 @@ public class Utils {
 
     }
   
+    public static boolean isInStringArray(String[] array, String element){
+        for (String string : array) 
+            if (element.trim().equalsIgnoreCase(string)) 
+                return true;
+        
+        return false;
+    }
 }
