@@ -1,3 +1,10 @@
+<%-- 
+    Document   : register
+    Created on : Feb 28, 2023, 6:24:02 PM
+    Author     : admin
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -97,3 +104,4 @@
 	<script src="js/login.js"></script>
 </body>
 </html>
+
