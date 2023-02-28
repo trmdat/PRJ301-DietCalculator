@@ -25,7 +25,7 @@ public class FoodDetailDAO {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 list.add(new FoodDetail(rs.getString("foodID"), rs.getString("mealID"), rs.getDouble("amount"),
-                        rs.getDouble("totalCal"),rs.getDouble("carbohydrate"),rs.getDouble("fiber"),rs.getDouble("protein"),rs.getDouble("fat"),rs.getDouble("fat")));
+                        rs.getDouble("totalCal"), rs.getDouble("carbohydrate"), rs.getDouble("fiber"), rs.getDouble("protein"), rs.getDouble("fat"), rs.getDouble("fat")));
             }
             rs.close();
             ps.close();
@@ -46,7 +46,7 @@ public class FoodDetailDAO {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 list.add(new FoodDetail(rs.getString("foodID"), rs.getString("mealID"), rs.getDouble("amount"),
-                        rs.getDouble("totalCal"),rs.getDouble("carbohydrate"),rs.getDouble("fiber"),rs.getDouble("protein"),rs.getDouble("fat"),rs.getDouble("fat")));
+                        rs.getDouble("totalCal"), rs.getDouble("carbohydrate"), rs.getDouble("fiber"), rs.getDouble("protein"), rs.getDouble("fat"), rs.getDouble("fat")));
             }
             rs.close();
             ps.close();
@@ -67,7 +67,7 @@ public class FoodDetailDAO {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 list.add(new FoodDetail(rs.getString("foodID"), rs.getString("mealID"), rs.getDouble("amount"),
-                        rs.getDouble("totalCal"),rs.getDouble("carbohydrate"),rs.getDouble("fiber"),rs.getDouble("protein"),rs.getDouble("fat"),rs.getDouble("fat")));
+                        rs.getDouble("totalCal"), rs.getDouble("carbohydrate"), rs.getDouble("fiber"), rs.getDouble("protein"), rs.getDouble("fat"), rs.getDouble("fat")));
             }
             rs.close();
             ps.close();
@@ -78,15 +78,22 @@ public class FoodDetailDAO {
         return list;
     }
 
-    public boolean createFoodDetail(String foodID, String mealID, double amount) {
+    public boolean createFoodDetail(String foodID, String mealID, double amount, double totalCal, double carbohydrate, double fiber, double protein, double fat, double water) {
         int row = 0;
-        String sql = "INSERT INTO FoodDetail(foodID, mealID, amount) VALUES (?,?,?)";
+        String sql = "INSERT INTO FoodDetail(foodID,mealID,amount,totalCal,carbohydrate,fiber,protein,fat,water)"
+                + " VALUES (?,?,?,?,?,?,?,?,?)";
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, foodID);
             ps.setString(2, mealID);
             ps.setDouble(3, amount);
+            ps.setDouble(4, totalCal);
+            ps.setDouble(5, carbohydrate);
+            ps.setDouble(6, fiber);
+            ps.setDouble(7, protein);
+            ps.setDouble(8, fat);
+            ps.setDouble(9, water);
 
             row = ps.executeUpdate();
             ps.close();
@@ -97,15 +104,22 @@ public class FoodDetailDAO {
         return row > 0;
     }
 
-    public boolean UpdateFoodDetail(String foodID, String mealID, double amount) {
+    public boolean UpdateFoodDetail(String foodID, String mealID, double amount, double totalCal, double carbohydrate, double fiber, double protein, double fat, double water) {
         int row = 0;
-        String sql = "UPDATE FoodDetail SET amount = ? WHERE foodID = ? AND mealID = ?";
+        String sql = "UPDATE FoodDetail SET amount = ? ,totalCal=?, carbohydrate=?, fiber=?,"
+                + "protein=?, fat=? ,water=? WHERE foodID = ? AND mealID = ?";
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setDouble(1, amount);
-            ps.setString(2, foodID);
-            ps.setString(3, mealID);
+            ps.setDouble(2, totalCal);
+            ps.setDouble(3, carbohydrate);
+            ps.setDouble(4, fiber);
+            ps.setDouble(5, protein);
+            ps.setDouble(6, fat);
+            ps.setDouble(7, water);
+            ps.setString(8, foodID);
+            ps.setString(9, mealID);
 
             row = ps.executeUpdate();
             ps.close();
@@ -133,12 +147,33 @@ public class FoodDetailDAO {
         }
         return row > 0;
     }
-    
+
     public static void main(String[] args) {
         FoodDetailDAO dao = new FoodDetailDAO();
         ArrayList<FoodDetail> ls = dao.readFoodDetailByMealID("1");
         for (FoodDetail l : ls) {
             System.out.println(l.toString());
+        }
+
+        System.out.println("Create");
+        dao.createFoodDetail("FD00001", "MEAL000000", 123,0,0,0,0,0,0);
+        ArrayList<FoodDetail> list = dao.readFoodDetail("FD00001", "MEAL000000");
+        for (FoodDetail food : list) {
+            System.out.println(food.toString());
+        }
+
+        System.out.println("Update");
+        dao.UpdateFoodDetail("FD00001", "MEAL000000", 999,0,0,0,0,0,0);
+        list = dao.readFoodDetail("FD00001", "MEAL000000");
+        for (FoodDetail food : list) {
+            System.out.println(food.toString());
+        }
+
+        System.out.println("Delete");
+        dao.DeleteFoodDetail("FD00001", "MEAL000000");
+        list = dao.readFoodDetail("FD00001", "MEAL000000");
+        for (FoodDetail food : list) {
+            System.out.println(food.toString());
         }
     }
 }

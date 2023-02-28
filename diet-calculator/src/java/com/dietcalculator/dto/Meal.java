@@ -9,18 +9,18 @@ public class Meal {
     private String userID;
     private String dayID;
     private int mealindex;
-    double totalCalstd;
-    double carbohydratestd;
-    double fiberstd;
-    double proteinstd;
-    double fatstd;
-    double waterstd;
-    double totalCal;
-    double carbohydrate;
-    double fiber;
-    double protein;
-    double fat;
-    double water;
+    private double totalCalstd;
+    private double carbohydratestd;
+    private double fiberstd;
+    private double proteinstd;
+    private double fatstd;
+    private double waterstd;
+    private double totalCal;
+    private double carbohydrate;
+    private double fiber;
+    private double protein;
+    private double fat;
+    private double water;
 
     public Meal() {
     }

@@ -5,10 +5,8 @@
  */
 package controller;
 
-import com.dietcalculator.dao.DayDAO;
-import com.dietcalculator.dto.Day;
+import com.dietcalculator.dto.Food;
 import com.dietcalculator.util.Constants;
-import com.dietcalculator.util.MealValues;
 import com.dietcalculator.util.Utils;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -22,8 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author asout
  */
-public class DayController extends HttpServlet {
-    private final String DAY_ID_FORMAT_STRING = "DAY%05d";
+public class FoodController extends HttpServlet {
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -41,43 +39,22 @@ public class DayController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet DayController</title>");            
+            out.println("<title>Servlet FoodController</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet DayController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet FoodController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
     }
-    
-    public ArrayList<Day> generateDay(int week, String userID, double totalCalories, MealValues mealValues){
-        ArrayList<Day> days = new ArrayList();
-        
-        //Getting the last ID index
-        DayDAO dayDAO = new DayDAO();
-        String lastIDIndex = dayDAO.lastIDIndex();
-        int lastIndex = Utils.extractIntFromString(lastIDIndex);
-        for (int i = 0; i < week*7; i++){
-            String dayID = String.format(DAY_ID_FORMAT_STRING, ++lastIndex);
-            double totalCalstd = totalCalories;
-            double carbohydratestd = totalCalories*mealValues.getCarbohydrate();
-            double fiberstd =  totalCalories*mealValues.getFiber();
-            double proteinstd =  totalCalories*mealValues.getProtein();
-            double fatstd =  totalCalories*mealValues.getFat();
-            double waterstd =  totalCalories*mealValues.getWater();
-            
-            //Create a new day instance
-            days.add(new Day(dayID,userID,i+1,totalCalstd,carbohydratestd,fiberstd,proteinstd,fatstd,waterstd));
-        }
-        return days;
-    }
 
-    //Check
-    public static void main(String[] args) {
-        DayController dc =new DayController();
-        ArrayList<Day> days = dc.generateDay(3,"U00001",2200,Constants.PLATE_PORTION.get(1));
-        for(int i = 0; i < days.size(); i++)
-            System.out.println(days.get(i));
+    public ArrayList<Food> listFoodByCategory(ArrayList<Food> FoodDataset, String category){
+        ArrayList<Food> foodList = new ArrayList();
+        String[] categories = category.trim().split(Constants.DELIMITER);
+        for(Food x: FoodDataset)
+            if(Utils.isInStringArray(categories, x.getCategory()))
+                foodList.add(x);
+        return foodList;
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

@@ -41,7 +41,7 @@ public class FoodAvoidanceDAO {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, userID);
             ps.setString(2, foodID);
-            
+
             row = ps.executeUpdate();
             ps.close();
             conn.close();
@@ -68,30 +68,39 @@ public class FoodAvoidanceDAO {
         return row > 0;
     }
 
-    public boolean updateFoodAvoidanceByUserID(String userID, String foodID) {
-        String sql = "UPDATE FoodAvoidance SET foodID = ?  WHERE userID = ?";
-        int row = 0;
-        try {
-            Connection conn = DBUtils.getConnection();
-            PreparedStatement ps = conn.prepareStatement(sql);
-    
-            ps.setString(1, foodID);
-            ps.setString(2, userID);
-
-            row = ps.executeUpdate();
-            ps.close();
-            conn.close();
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-        return row > 0;
-    }
-
+//    public boolean updateFoodAvoidanceByUserID(String userID, String foodID) {
+//        String sql = "UPDATE FoodAvoidance SET foodID = ?  WHERE userID = ?";
+//        int row = 0;
+//        try {
+//            Connection conn = DBUtils.getConnection();
+//            PreparedStatement ps = conn.prepareStatement(sql);
+//    
+//            ps.setString(1, foodID);
+//            ps.setString(2, userID);
+//
+//            row = ps.executeUpdate();
+//            ps.close();
+//            conn.close();
+//        } catch (SQLException ex) {
+//            System.out.println(ex);
+//        }
+//        return row > 0;
+//    }
     public static void main(String[] args) {
         FoodAvoidanceDAO dao = new FoodAvoidanceDAO();
-        ArrayList<String> list = dao.readFoodAvoidanceByUserID("US000001");
+        System.out.println("Create");
+        dao.createFoodAvoidance("U00000", "FD00001");
+        dao.createFoodAvoidance("U00000", "FD00002");
+        ArrayList<String> list = dao.readFoodAvoidanceByUserID("U00000");
         for (String x : list) {
             System.out.println(x);
         }
+        dao.deleteFoodAvoidance("U00000", "FD00001");
+        dao.deleteFoodAvoidance("U00000", "FD00002");
+        list = dao.readFoodAvoidanceByUserID("U00000");
+        for (String x : list) {
+            System.out.println(x);
+        }
+
     }
 }

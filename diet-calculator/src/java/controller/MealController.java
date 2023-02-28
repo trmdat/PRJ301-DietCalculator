@@ -8,6 +8,7 @@ package controller;
 import com.dietcalculator.dao.MealDAO;
 import com.dietcalculator.dto.Day;
 import com.dietcalculator.dto.Meal;
+import com.dietcalculator.util.Constants;
 import com.dietcalculator.util.MealValues;
 import com.dietcalculator.util.Utils;
 import java.io.IOException;
@@ -51,7 +52,7 @@ public class MealController extends HttpServlet {
         }
     }
     
-    private ArrayList<Meal> generateMeal(Day day, HashMap<Integer, Double> mealProportion){
+    public ArrayList<Meal> generateMeal(Day day, HashMap<Integer, Double> mealProportion){
         ArrayList<Meal> meals = new ArrayList();
         
         //Getting the last ID index
@@ -86,6 +87,12 @@ public class MealController extends HttpServlet {
             meals.add(new Meal(mealID,userID,dayID,i,totalCalstd,carbohydratestd,fiberstd,proteinstd,fatstd,waterstd));
         }
         return meals;
+    }
+    
+    //Check
+    public static void main(String[] args) {
+        MealController mc = new MealController();
+//        ArrayList<MealController> list = mc.generateMeal(day, Constants.mealProprtion(3, 2));
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

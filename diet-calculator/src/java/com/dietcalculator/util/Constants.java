@@ -16,6 +16,7 @@ import java.util.Iterator;
  */
 public final class Constants {
     //DEFAULT CONSTANTS
+    public static final String DELIMITER = "/";
     //Format Defaults
     public static final String USER_ID_FORMAT = "U\\d{5}";
     public static final String EXERCISE_ID_FORMAT = "EX\\d{3}";
@@ -45,7 +46,7 @@ public final class Constants {
     public static final int CALORIES_PER_KG = 7716;
     public static final double SIDE_MEAL_PROPORTION = 0.08;
     //Relative parameter
-    public static final double RELATIVE_ESTIMATE = 0.8;
+    public static final double RELATIVE_ESTIMATE = 0.85;
     
     //Plate Portion By Preference
     //No Preference (0)
@@ -120,12 +121,13 @@ public final class Constants {
     //Main meals
     public static final int[] MAIN_MEAL_RANGE = {2,3};
     public static final int DEFAULT_MAIN_MEAL = 3;
-    public static final String[] BREAKFAST_CATEGORIES = {"vegetables/fruit","meat/poultry","starch"};
-    public static final String[] LUNCH_DINNER_CATEGORIES = {"vegetables/fruit","fish/seafood/egg","meat/poultry","starch","dairies&dessert","drink"};
+    public static final String[] BREAKFAST_CATEGORIES = {"vegetables","meat/poultry","starch","fruit"};
+    public static final String[] LUNCH_DINNER_CATEGORIES = {"vegetables","fish/seafood/egg","meat/poultry","starch","dairies&dessert","drink","fruit"};
     public static final double VEGETABLES_FIBER_SOURCE = 0.7;
     public static final double FRUIT_FIBER_SOURCE = 0.3;
     public static final double FIRST_PROTEIN_SOURCE = 0.5;
     public static final double SECOND_PROTEIN_SOURCE = 0.5;
+    public static final double FAT_FROM_DAIRIES_AND_DESSERT = 0.5;
     public static final double WATER_PROPORTION = 0.2;
 
     //Side meals
@@ -146,6 +148,15 @@ public final class Constants {
         MEAL.put("DINNER", 3);
         MEAL.put("BRUNCH", 4);
         MEAL.put("SNACK", 5);
+    }
+    
+    public static final HashMap<Integer, String[]> FOOD_DETAIL_BY_MEAL = new HashMap();
+    static{
+        FOOD_DETAIL_BY_MEAL.put(1, BREAKFAST_CATEGORIES);
+        FOOD_DETAIL_BY_MEAL.put(2, LUNCH_DINNER_CATEGORIES);
+        FOOD_DETAIL_BY_MEAL.put(3, LUNCH_DINNER_CATEGORIES);
+        FOOD_DETAIL_BY_MEAL.put(4, SIDE_MEAL_CATEGORIES);
+        FOOD_DETAIL_BY_MEAL.put(5, SIDE_MEAL_CATEGORIES);
     }
     
     public static final HashMap<Integer, String[]> MEAL_DATASET = new HashMap();
@@ -257,77 +268,5 @@ public final class Constants {
         }
         
         return mealProprtion;
-    }
-    
-    //Side meal Calculator with standard SIDE_MEAL_SIZE from sources of fruit, nuts, legumes, dairies&dessert
-    public static final HashMap<Food,Double> sideMealCalculator(double calories, ArrayList<Food> sideMealSources){
-        HashMap<Food,Double> sideMeal = new HashMap();
-        int idx = Utils.randomInt(0, sideMealSources.size() - 1);
-        double amount = calories*sideMealSources.get(idx).getSize()/sideMealSources.get(idx).getCaloricintake();
-        sideMeal.put(sideMealSources.get(idx), amount);
-        return sideMeal;
-    }
-    
-    //Carbohydrate Calculator recieving starch sources
-    public static final HashMap<Food,Double> carbohydrateCalculator(double calories, ArrayList<Food> starchSources){
-        HashMap<Food,Double> starch = new HashMap();
-        int idx = Utils.randomInt(0, starchSources.size() - 1);
-        double amount = calories*starchSources.get(idx).getSize()/(starchSources.get(idx).getCarbohydrate()*CARBOHYDRATE_TO_KCAL);
-        starch.put(starchSources.get(idx), amount);
-        return starch;
-    }
-    
-    //Fiber Calculator from 2 sources: fruit and vegetables
-    public static final HashMap<Food,Double> fiberCalculator(double calories, ArrayList<Food> fruitSources, ArrayList<Food> vegetablesSources){
-        HashMap<Food,Double> fiber = new HashMap();
-        int idxFruit = Utils.randomInt(0, fruitSources.size() - 1);
-        double amountFruit = FRUIT_FIBER_SOURCE*calories*fruitSources.get(idxFruit).getSize()/(fruitSources.get(idxFruit).getCaloricintake());
-        fiber.put(fruitSources.get(idxFruit), amountFruit);
-        
-        int idxVegetables = Utils.randomInt(0, vegetablesSources.size() - 1);
-        double amountVegetables = VEGETABLES_FIBER_SOURCE*calories*vegetablesSources.get(idxVegetables).getSize()/(vegetablesSources.get(idxVegetables).getCaloricintake());
-        fiber.put(vegetablesSources.get(idxVegetables), amountVegetables);
-        
-        return fiber;
-    }
-    
-    //Protein Calculator for breakfasts, which require 1 source of protein from meat/poultry
-    public static final HashMap<Food,Double> proteinCalculator(double calories, ArrayList<Food> proteinSources){
-        HashMap<Food,Double> protein = new HashMap();
-        int idx = Utils.randomInt(0, proteinSources.size() - 1);
-        double amount = calories*proteinSources.get(idx).getSize()/(proteinSources.get(idx).getProtein()*PROTEIN_TO_KCAL);
-        protein.put(proteinSources.get(idx), amount);   
-        return protein;
-    }
-    
-    //Protein Calculator for dinners and lunches, which require 2 sources of protein from meat/poultry and fish/seafood/egg
-    public static final HashMap<Food,Double> proteinCalculator(double calories, ArrayList<Food> mainProteinSources, ArrayList<Food> secondaryProteinSource){
-        HashMap<Food,Double> protein = new HashMap();
-        int idxMain = Utils.randomInt(0, mainProteinSources.size() - 1);
-        double amountMain = FIRST_PROTEIN_SOURCE*calories*mainProteinSources.get(idxMain).getSize()/(mainProteinSources.get(idxMain).getProtein()*PROTEIN_TO_KCAL);
-        
-        int idxSecondary = Utils.randomInt(0, secondaryProteinSource.size() - 1);
-        double amountSecondary = SECOND_PROTEIN_SOURCE*calories*secondaryProteinSource.get(idxMain).getSize()/(secondaryProteinSource.get(idxMain).getProtein()*PROTEIN_TO_KCAL);
-        
-        protein.put(mainProteinSources.get(idxMain), amountMain);
-        protein.put(secondaryProteinSource.get(idxSecondary), amountSecondary);
-        return protein;
-    }
-    
-    //Fat Calculator receiving sources from dairies&dessert
-    public static final HashMap<Food,Double> fatCalculator(double calories, ArrayList<Food> fatSources){
-        HashMap<Food,Double> fat = new HashMap();
-        int idx = Utils.randomInt(0, fatSources.size() - 1);
-        double amount = calories*fatSources.get(idx).getSize()/(fatSources.get(idx).getCarbohydrate()*FAT_TO_KCAL);
-        fat.put(fatSources.get(idx), amount);
-        return fat;
-    }
-    
-    public static final HashMap<Food,Double> waterCalculator(double demand, ArrayList<Food> waterSources){
-        HashMap<Food,Double> water = new HashMap();
-        int idx = Utils.randomInt(0, waterSources.size() - 1);
-        double amount = demand*waterSources.get(idx).getSize()/(waterSources.get(idx).getWater());
-        water.put(waterSources.get(idx), amount);
-        return water;
     }
 }
