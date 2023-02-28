@@ -17,7 +17,7 @@
       integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
       crossorigin="anonymous"></script>
    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
-   <link rel="stylesheet" href="FoodDetail.css">
+   <link rel="stylesheet" href="ProductDetail.css">
 </head>
 
 <body>
