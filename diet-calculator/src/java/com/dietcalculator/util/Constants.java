@@ -46,7 +46,7 @@ public final class Constants {
     public static final int CALORIES_PER_KG = 7716;
     public static final double SIDE_MEAL_PROPORTION = 0.08;
     //Relative parameter
-    public static final double RELATIVE_ESTIMATE = 0.85;
+    public static final double RELATIVE_ESTIMATE = 0.8;
     
     //Plate Portion By Preference
     //No Preference (0)
@@ -63,7 +63,7 @@ public final class Constants {
     public static final double PROTEIN_1 = 0.2;
     public static final double STANDARD_PROTEIN_1 = 0.8;
     public static final double FAT_1 = 0.2;
-    public static final double WATER_1 = 2.25;
+    public static final double WATER_1 = 2250;
     
     //European and North America (2)
     public static final double CARBOHYDRATE_2 = 0.4;
@@ -71,7 +71,7 @@ public final class Constants {
     public static final double PROTEIN_2 = 0.3;
     public static final double STANDARD_PROTEIN_2 = 0.9;
     public static final double FAT_2 = 0.3;
-    public static final double WATER_2 = 2.5;
+    public static final double WATER_2 = 2500;
     
     //Mediterranean & Hispanic(3)
     public static final double CARBOHYDRATE_3 = 0.47;
@@ -79,7 +79,7 @@ public final class Constants {
     public static final double PROTEIN_3 = 0.25;
     public static final double STANDARD_PROTEIN_3 = 0.85;
     public static final double FAT_3 = 0.28;
-    public static final double WATER_3 = 2.5;
+    public static final double WATER_3 = 2500;
     
     //Vegan(4)
     public static final double CARBOHYDRATE_4 = 0.6;
@@ -87,8 +87,9 @@ public final class Constants {
     public static final double PROTEIN_4 = 0.22;
     public static final double STANDARD_PROTEIN_4 = 0.9;
     public static final double FAT_4 = 0.18;
-    public static final double WATER_4 = 2.25;
+    public static final double WATER_4 = 2250;
     
+    //PLATE_PORTION is based on Preference
     public static final HashMap<Integer,MealValues> PLATE_PORTION = new HashMap();
     static{
         PLATE_PORTION.put(0, new MealValues(CARBOHYDRATE_0,FIBER_0,PROTEIN_0,STANDARD_PROTEIN_0,FAT_0,WATER_0));
@@ -122,7 +123,7 @@ public final class Constants {
     public static final int[] MAIN_MEAL_RANGE = {2,3};
     public static final int DEFAULT_MAIN_MEAL = 3;
     public static final String[] BREAKFAST_CATEGORIES = {"vegetables","meat/poultry","starch","fruit"};
-    public static final String[] LUNCH_DINNER_CATEGORIES = {"vegetables","fish/seafood/egg","meat/poultry","starch","dairies&dessert","drink","fruit"};
+    public static final String[] LUNCH_DINNER_CATEGORIES = {"vegetables","fish/seafood/egg","meat/poultry","starch","dairies&dessert","drinks","fruit"};
     public static final double VEGETABLES_FIBER_SOURCE = 0.7;
     public static final double FRUIT_FIBER_SOURCE = 0.3;
     public static final double FIRST_PROTEIN_SOURCE = 0.5;
@@ -141,13 +142,13 @@ public final class Constants {
     public static final double DINNER_3 = 0.3;
 
         
-    public static final HashMap<String, Integer> MEAL = new HashMap();
+    public static final HashMap<Integer, String> MEAL = new HashMap();
     static{
-        MEAL.put("BREAKFAST", 1);
-        MEAL.put("LUNCH", 2);
-        MEAL.put("DINNER", 3);
-        MEAL.put("BRUNCH", 4);
-        MEAL.put("SNACK", 5);
+        MEAL.put(1,"BREAKFAST");
+        MEAL.put(2,"LUNCH");
+        MEAL.put(3,"DINNER");
+        MEAL.put(4,"BRUNCH");
+        MEAL.put(5,"SNACK");
     }
     
     public static final HashMap<Integer, String[]> FOOD_DETAIL_BY_MEAL = new HashMap();
@@ -157,15 +158,6 @@ public final class Constants {
         FOOD_DETAIL_BY_MEAL.put(3, LUNCH_DINNER_CATEGORIES);
         FOOD_DETAIL_BY_MEAL.put(4, SIDE_MEAL_CATEGORIES);
         FOOD_DETAIL_BY_MEAL.put(5, SIDE_MEAL_CATEGORIES);
-    }
-    
-    public static final HashMap<Integer, String[]> MEAL_DATASET = new HashMap();
-    static{
-        MEAL_DATASET.put(1, BREAKFAST_CATEGORIES);
-        MEAL_DATASET.put(2, LUNCH_DINNER_CATEGORIES);
-        MEAL_DATASET.put(3, LUNCH_DINNER_CATEGORIES);
-        MEAL_DATASET.put(4, SIDE_MEAL_CATEGORIES);
-        MEAL_DATASET.put(5, SIDE_MEAL_CATEGORIES);
     }
     
     //Exercises

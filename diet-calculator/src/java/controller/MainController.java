@@ -14,6 +14,7 @@ import com.dietcalculator.util.Constants;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -52,62 +53,59 @@ public class MainController extends HttpServlet {
     }
 
     public static void main(String[] args) {
-        //GETTING SAMPLE FOODDATASET, WHICH IS THE WHOLE FOOD TABLE
+        //SAMPLE DATA
+        String userID = "U00000";
+        int week = 1;
+        int mainMeal = 3;
+        int sideMeal = 2;
+        
+        //Generating Food dataset
         FoodDAO foodDAO = new FoodDAO();
         ArrayList<Food> foodDataset = foodDAO.readFood();
-//        for(Food f: foodDataset)
-//            System.out.println(f);
+        int preference = 1;
+        double caloricNeed = 2200;
         
-        //GENERTING A SAMPLE 20 OF 20 DAYS WITH USERID = U00001, CALORIC NEED = 2200, PREFERENCE = ASIAN AND PACIFIC
+        //Generating days
         DayController dc =new DayController();
-
-        ArrayList<Day> days = dc.generateDay(10,"U00001",2200,Constants.PLATE_PORTION.get(1));
-//        for(Day d: days)
-//            System.out.println(d);
-//        
-        //GENERATING A SAMPLE OF MEALS WITH 3 MAIN MEALS AND 2 SIDE MEALS PER DAY
+        ArrayList<Day> days = dc.generateDay(week, userID, caloricNeed, Constants.PLATE_PORTION.get(preference));
+        
+        //Testing
+        for(Day day: days)
+            System.out.println(day);
+        
+        //Generating meals
         MealController mc = new MealController();
-        ArrayList<Meal> meals = new ArrayList();
-        ArrayList<Meal> subMeals = new ArrayList();
-        for(Day day: days){    
-            subMeals = mc.generateMeal(day, Constants.mealProprtion(3, 2));
-            for(Meal t: subMeals)
-                meals.add(t);
+        HashMap<Integer, Double> mealProportion = Constants.mealProprtion(mainMeal, sideMeal);
+        ArrayList<Meal>[] meals = mc.generateMeal(days, mealProportion);
+        
+        //Testing
+        for(int i = 0; i < meals.length; i++){
+            System.out.println(Constants.MEAL.get(meals[i].get(0).getMealindex()));
+            for(int j = 0; j < days.size(); j++){
+                System.out.println(meals[i].get(j));
+            }
         }
-//        for(Meal m: meals)
-//            System.out.println(m);
 
-//        FoodController fd = new FoodController();
-//        for(Food x: fd.listFoodByCategory(foodDataset, "vegetables/fruit"))
-//            System.out.println(x);
-        //GENERATING SAMPLE FOOD DETAILS
+        //Generating Food Details
         FoodDetailController fdc = new FoodDetailController();
-        
-        //GENERATING FOOD DETAILS FOR 10 DAYS
-//        ArrayList<FoodDetail>[] breakfasts = fdc.generateFoodDetail(foodDataset, meals.get(0), 56);
-//        for(ArrayList<FoodDetail> x: breakfasts)
-//            for(FoodDetail y: x)
-//                System.out.println(y);
-        
-//        ArrayList<FoodDetail>[] lunch = fdc.generateFoodDetail(foodDataset, meals.get(1), 56);
-//        for(ArrayList<FoodDetail> x: lunch)
-//            for(FoodDetail y: x)
-//                System.out.println(y);
-        
-//        ArrayList<FoodDetail>[] dinner = fdc.generateFoodDetail(foodDataset, meals.get(2), 56);
-//        for(ArrayList<FoodDetail> x: dinner)
-//            for(FoodDetail y: x)
-//                System.out.println(y);
-//        
-        ArrayList<FoodDetail>[] brunch = fdc.generateFoodDetail(foodDataset, meals.get(3), 56);
-        for(ArrayList<FoodDetail> x: brunch)
-            for(FoodDetail y: x)
-                System.out.println(y);
-        
-//        ArrayList<FoodDetail>[] supper = fdc.generateFoodDetail(foodDataset, meals.get(4), 56);
-//        for(ArrayList<FoodDetail> x: supper)
-//            for(FoodDetail y: x)
-//                System.out.println(y);
+        ArrayList<FoodDetail>[][] foodDetails = fdc.generateFoodDetail(foodDataset, meals, days);
+        //Tetsing
+        for(int i = 0; i < days.size(); i++){
+            System.out.println("DAY: " + (i+1));
+            for(int j = 0; j < mealProportion.size(); j++){
+                System.out.println("\tMEAL: " + Constants.MEAL.get(meals[j].get(0).getMealindex()));
+                for(int k = 0; k < Constants.FOOD_DETAIL_BY_MEAL.get(meals[j].get(0).getMealindex()).length; k++){
+                    System.out.println(foodDetails[j][k].get(i));
+                }
+            }
+        }
+
+        //CHECK UPDATES ON MEALS AND DAYS
+        for(int i = 0; i < meals.length; i++){
+            System.out.println(Constants.MEAL.get(meals[i].get(0).getMealindex()));
+            for(int j = 0; j < days.size(); j++)
+                System.out.println(meals[i].get(j));
+        }
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

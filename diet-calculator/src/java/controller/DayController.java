@@ -64,7 +64,7 @@ public class DayController extends HttpServlet {
             double fiberstd =  totalCalories*mealValues.getFiber();
             double proteinstd =  totalCalories*mealValues.getProtein();
             double fatstd =  totalCalories*mealValues.getFat();
-            double waterstd =  totalCalories*mealValues.getWater();
+            double waterstd =  mealValues.getWater();
             
             //Create a new day instance
             days.add(new Day(dayID,userID,i+1,totalCalstd,carbohydratestd,fiberstd,proteinstd,fatstd,waterstd));
