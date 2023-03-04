@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package com.dietcalculator.controller;
 
 import com.dietcalculator.dao.MealDAO;
 import com.dietcalculator.dto.Day;
@@ -52,39 +52,49 @@ public class MealController extends HttpServlet {
         }
     }
     
-    public ArrayList<Meal> generateMeal(Day day, HashMap<Integer, Double> mealProportion){
-        ArrayList<Meal> meals = new ArrayList();
+    public ArrayList<Meal>[] generateMeal(ArrayList<Day> days, HashMap<Integer, Double> mealProportion){
+        ArrayList<Meal>[] meals = new ArrayList[mealProportion.size()];
+        //Initializing meals[]
+        for(int i = 0; i < mealProportion.size(); i++)
+            meals[i] = new ArrayList();
         
         //Getting the last ID index
         MealDAO mealDAO = new MealDAO();
         String lastIDIndex = mealDAO.lastIDIndex();
         int lastIndex = Utils.extractIntFromString(lastIDIndex);
-                  
+        
+        //Take a sample day of lists of all days because the intake of each day is the same for all
+        Day day = days.get(0);
+        
         //Getting day standard values
         String userID = day.getUserID();
-        String dayID = day.getDayID();
         double totalCalstd_day = day.getTotalCalstd();
         double carbohydratestd_day = day.getCarbohydratestd();
         double fiberstd_day = day.getFiberstd();
         double proteinstd_day = day.getProteinstd();
         double fatstd_day = day.getFatstd();
         double waterstd_day = day.getWaterstd();
+        int index = 0;
+        
         for(int i: mealProportion.keySet()){
-            String mealID = String.format(MEAL_ID_FORMAT_STRING, ++lastIndex);
-     
-            //Getting proportion
-            double proportion = mealProportion.get(i);
-   
-            //Generating meal standard values
-            double totalCalstd = totalCalstd_day*proportion;
-            double carbohydratestd = carbohydratestd_day*proportion;
-            double fiberstd = fiberstd_day*proportion;
-            double proteinstd = proteinstd_day*proportion;
-            double fatstd = fatstd_day*proportion;
-            double waterstd = waterstd_day*proportion;
-            
-            //Create a new meal instance
-            meals.add(new Meal(mealID,userID,dayID,i,totalCalstd,carbohydratestd,fiberstd,proteinstd,fatstd,waterstd));
+            for(int j = 0; j < days.size(); j++){
+                String mealID = String.format(MEAL_ID_FORMAT_STRING, ++lastIndex);
+                String dayID = days.get(j).getDayID();
+                //Getting proportion
+                double proportion = mealProportion.get(i);
+
+                //Generating meal standard values
+                double totalCalstd = totalCalstd_day*proportion;
+                double carbohydratestd = carbohydratestd_day*proportion;
+                double fiberstd = fiberstd_day*proportion;
+                double proteinstd = proteinstd_day*proportion;
+                double fatstd = fatstd_day*proportion;
+                double waterstd = waterstd_day*proportion;
+
+                //Create a new meal instance
+                meals[index].add(new Meal(mealID,userID,dayID,i,totalCalstd,carbohydratestd,fiberstd,proteinstd,fatstd,waterstd));
+            }
+            index++;
         }
         return meals;
     }

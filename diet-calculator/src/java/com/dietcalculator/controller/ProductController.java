@@ -3,14 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package com.dietcalculator.controller;
 
-import com.dietcalculator.dto.Food;
-import com.dietcalculator.util.Constants;
-import com.dietcalculator.util.Utils;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author asout
  */
-public class FoodController extends HttpServlet {
+public class ProductController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,23 +35,15 @@ public class FoodController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet FoodController</title>");            
+            out.println("<title>Servlet ProductController</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet FoodController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ProductController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
     }
 
-    public ArrayList<Food> listFoodByCategory(ArrayList<Food> FoodDataset, String category){
-        ArrayList<Food> foodList = new ArrayList();
-        String[] categories = category.trim().split(Constants.DELIMITER);
-        for(Food x: FoodDataset)
-            if(Utils.isInStringArray(categories, x.getCategory()))
-                foodList.add(x);
-        return foodList;
-    }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

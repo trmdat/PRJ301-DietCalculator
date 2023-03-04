@@ -3,16 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package com.dietcalculator.controller;
 
-import com.dietcalculator.dao.DayDAO;
+import com.dietcalculator.dao.FoodDAO;
 import com.dietcalculator.dto.Day;
+import com.dietcalculator.dto.Food;
+import com.dietcalculator.dto.FoodDetail;
+import com.dietcalculator.dto.Meal;
 import com.dietcalculator.util.Constants;
-import com.dietcalculator.util.MealValues;
-import com.dietcalculator.util.Utils;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,8 +24,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author asout
  */
-public class DayController extends HttpServlet {
-    private final String DAY_ID_FORMAT_STRING = "DAY%05d";
+public class MainController extends HttpServlet {
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -41,43 +43,69 @@ public class DayController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet DayController</title>");            
+            out.println("<title>Servlet MainController</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet DayController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet MainController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
     }
-    
-    public ArrayList<Day> generateDay(int week, String userID, double totalCalories, MealValues mealValues){
-        ArrayList<Day> days = new ArrayList();
-        
-        //Getting the last ID index
-        DayDAO dayDAO = new DayDAO();
-        String lastIDIndex = dayDAO.lastIDIndex();
-        int lastIndex = Utils.extractIntFromString(lastIDIndex);
-        for (int i = 0; i < week*7; i++){
-            String dayID = String.format(DAY_ID_FORMAT_STRING, ++lastIndex);
-            double totalCalstd = totalCalories;
-            double carbohydratestd = totalCalories*mealValues.getCarbohydrate();
-            double fiberstd =  totalCalories*mealValues.getFiber();
-            double proteinstd =  totalCalories*mealValues.getProtein();
-            double fatstd =  totalCalories*mealValues.getFat();
-            double waterstd =  totalCalories*mealValues.getWater();
-            
-            //Create a new day instance
-            days.add(new Day(dayID,userID,i+1,totalCalstd,carbohydratestd,fiberstd,proteinstd,fatstd,waterstd));
-        }
-        return days;
-    }
 
-    //Check
     public static void main(String[] args) {
+        //SAMPLE DATA
+        String userID = "U00000";
+        int week = 8;
+        int mainMeal = 3;
+        int sideMeal = 2;
+        
+        //Generating Food dataset
+        FoodDAO foodDAO = new FoodDAO();
+        ArrayList<Food> foodDataset = foodDAO.readFood();
+        int preference = 1;
+        double caloricNeed = 2200;
+        
+        //Generating days
         DayController dc =new DayController();
-        ArrayList<Day> days = dc.generateDay(3,"U00001",2200,Constants.PLATE_PORTION.get(1));
-        for(int i = 0; i < days.size(); i++)
-            System.out.println(days.get(i));
+        ArrayList<Day> days = dc.generateDay(week, userID, caloricNeed, Constants.PLATE_PORTION.get(preference));
+        
+        //Testing
+        for(Day day: days)
+            System.out.println(day);
+        
+        //Generating meals
+        MealController mc = new MealController();
+        HashMap<Integer, Double> mealProportion = Constants.mealProprtion(mainMeal, sideMeal);
+        ArrayList<Meal>[] meals = mc.generateMeal(days, mealProportion);
+        
+        //Testing
+        for(int i = 0; i < meals.length; i++){
+            System.out.println(Constants.MEAL.get(meals[i].get(0).getMealindex()));
+            for(int j = 0; j < days.size(); j++){
+                System.out.println(meals[i].get(j));
+            }
+        }
+
+        //Generating Food Details
+        FoodDetailController fdc = new FoodDetailController();
+        ArrayList<FoodDetail>[][] foodDetails = fdc.generateFoodDetail(foodDataset, meals, days);
+        //Tetsing
+        for(int i = 0; i < days.size(); i++){
+            System.out.println("DAY: " + (i+1));
+            for(int j = 0; j < mealProportion.size(); j++){
+                System.out.println("\tMEAL: " + Constants.MEAL.get(meals[j].get(0).getMealindex()));
+                for(int k = 0; k < Constants.FOOD_DETAIL_BY_MEAL.get(meals[j].get(0).getMealindex()).length; k++){
+                    System.out.println(foodDetails[j][k].get(i));
+                }
+            }
+        }
+
+        //CHECK UPDATES ON MEALS AND DAYS
+        for(int i = 0; i < meals.length; i++){
+            System.out.println(Constants.MEAL.get(meals[i].get(0).getMealindex()));
+            for(int j = 0; j < days.size(); j++)
+                System.out.println(meals[i].get(j));
+        }
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
