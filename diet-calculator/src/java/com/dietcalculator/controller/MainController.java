@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package com.dietcalculator.controller;
 
-import com.dietcalculator.dao.MealDAO;
+import com.dietcalculator.dao.FoodDAO;
 import com.dietcalculator.dto.Day;
+import com.dietcalculator.dto.Food;
+import com.dietcalculator.dto.FoodDetail;
 import com.dietcalculator.dto.Meal;
 import com.dietcalculator.util.Constants;
-import com.dietcalculator.util.MealValues;
-import com.dietcalculator.util.Utils;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -24,8 +24,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author asout
  */
-public class MealController extends HttpServlet {
-    private final String MEAL_ID_FORMAT_STRING = "MEAL%06d";
+public class MainController extends HttpServlet {
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -43,68 +43,70 @@ public class MealController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet MealController</title>");            
+            out.println("<title>Servlet MainController</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet MealController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet MainController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
     }
-    
-    public ArrayList<Meal>[] generateMeal(ArrayList<Day> days, HashMap<Integer, Double> mealProportion){
-        ArrayList<Meal>[] meals = new ArrayList[mealProportion.size()];
-        //Initializing meals[]
-        for(int i = 0; i < mealProportion.size(); i++)
-            meals[i] = new ArrayList();
-        
-        //Getting the last ID index
-        MealDAO mealDAO = new MealDAO();
-        String lastIDIndex = mealDAO.lastIDIndex();
-        int lastIndex = Utils.extractIntFromString(lastIDIndex);
-        
-        //Take a sample day of lists of all days because the intake of each day is the same for all
-        Day day = days.get(0);
-        
-        //Getting day standard values
-        String userID = day.getUserID();
-        double totalCalstd_day = day.getTotalCalstd();
-        double carbohydratestd_day = day.getCarbohydratestd();
-        double fiberstd_day = day.getFiberstd();
-        double proteinstd_day = day.getProteinstd();
-        double fatstd_day = day.getFatstd();
-        double waterstd_day = day.getWaterstd();
-        int index = 0;
-        
-        for(int i: mealProportion.keySet()){
-            for(int j = 0; j < days.size(); j++){
-                String mealID = String.format(MEAL_ID_FORMAT_STRING, ++lastIndex);
-                String dayID = days.get(j).getDayID();
-                //Getting proportion
-                double proportion = mealProportion.get(i);
 
-                //Generating meal standard values
-                double totalCalstd = totalCalstd_day*proportion;
-                double carbohydratestd = carbohydratestd_day*proportion;
-                double fiberstd = fiberstd_day*proportion;
-                double proteinstd = proteinstd_day*proportion;
-                double fatstd = fatstd_day*proportion;
-                double waterstd = waterstd_day*proportion;
-
-                //Create a new meal instance
-                meals[index].add(new Meal(mealID,userID,dayID,i,totalCalstd,carbohydratestd,fiberstd,proteinstd,fatstd,waterstd));
-            }
-            index++;
-        }
-        return meals;
-    }
-    
-    //Check
     public static void main(String[] args) {
+        //SAMPLE DATA
+        String userID = "U00000";
+        int week = 8;
+        int mainMeal = 3;
+        int sideMeal = 2;
+        
+        //Generating Food dataset
+        FoodDAO foodDAO = new FoodDAO();
+        ArrayList<Food> foodDataset = foodDAO.readFood();
+        int preference = 1;
+        double caloricNeed = 2200;
+        
+        //Generating days
+        DayController dc =new DayController();
+        ArrayList<Day> days = dc.generateDay(week, userID, caloricNeed, Constants.PLATE_PORTION.get(preference));
+        
+        //Testing
+        for(Day day: days)
+            System.out.println(day);
+        
+        //Generating meals
         MealController mc = new MealController();
-//        ArrayList<MealController> list = mc.generateMeal(day, Constants.mealProprtion(3, 2));
-    }
+        HashMap<Integer, Double> mealProportion = Constants.mealProprtion(mainMeal, sideMeal);
+        ArrayList<Meal>[] meals = mc.generateMeal(days, mealProportion);
+        
+        //Testing
+        for(int i = 0; i < meals.length; i++){
+            System.out.println(Constants.MEAL.get(meals[i].get(0).getMealindex()));
+            for(int j = 0; j < days.size(); j++){
+                System.out.println(meals[i].get(j));
+            }
+        }
 
+        //Generating Food Details
+        FoodDetailController fdc = new FoodDetailController();
+        ArrayList<FoodDetail>[][] foodDetails = fdc.generateFoodDetail(foodDataset, meals, days);
+        //Tetsing
+        for(int i = 0; i < days.size(); i++){
+            System.out.println("DAY: " + (i+1));
+            for(int j = 0; j < mealProportion.size(); j++){
+                System.out.println("\tMEAL: " + Constants.MEAL.get(meals[j].get(0).getMealindex()));
+                for(int k = 0; k < Constants.FOOD_DETAIL_BY_MEAL.get(meals[j].get(0).getMealindex()).length; k++){
+                    System.out.println(foodDetails[j][k].get(i));
+                }
+            }
+        }
+
+        //CHECK UPDATES ON MEALS AND DAYS
+        for(int i = 0; i < meals.length; i++){
+            System.out.println(Constants.MEAL.get(meals[i].get(0).getMealindex()));
+            for(int j = 0; j < days.size(); j++)
+                System.out.println(meals[i].get(j));
+        }
+    }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
