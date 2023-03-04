@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package com.dietcalculator.controller;
 
 import com.dietcalculator.dto.Day;
 import com.dietcalculator.dto.Food;
