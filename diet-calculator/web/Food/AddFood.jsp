@@ -27,31 +27,21 @@
             </div>
             <div class="row tm-edit-product-row">
               <div class="col-xl-12 col-lg-12 col-md-12">
-                <form action="" class="tm-edit-product-form">
+                <form action="/diet-calculator/FoodController" class="tm-edit-product-form">
+                    <input type="hidden" name="action" value="create"/>
                   <div class="form-group mb-3">
                     <label
-                      for="name"
-                      >Product Name
+                      for="foodname"
+                      >Food Name
                     </label>
                     <input
-                      id="name"
-                      name="name"
+                      name="foodname"
                       type="text"
                       class="form-control validate"
                       required
                     />
                   </div>
-                  <div class="form-group mb-3">
-                    <label
-                      for="description"
-                      >Description</label
-                    >
-                    <textarea
-                      class="form-control validate"
-                      rows="3"
-                      required
-                    ></textarea>
-                  </div>
+                  
                   <div class="form-group mb-3">
                     <label
                       for="category"
@@ -59,41 +49,107 @@
                     >
                     <select
                       class="custom-select tm-select-accounts"
-                      id="category"
+                      name="category"
                     >
-                      <option selected>Select category</option>
-                      <option value="1">New Arrival</option>
-                      <option value="2">Most Popular</option>
-                      <option value="3">Trending</option>
+                      <option selected value="fruit">fruit</option>
+                      <option value="vegetables">vegetables</option>
+                      <option value="fish">fish</option>
+                      <option value="seafood">seafood</option>
+                      <option value="meat">meat</option>
+                      <option value="poultry">poultry</option>
+                      <option value="egg">egg</option>
+                      <option value="nuts">nuts</option>
+                      <option value="legumes">legumes</option>
+                      <option value="starch">starch</option>
+                      <option value="dairies&dessert">dairies&dessert</option>
+                      <option value="drinks">drinks</option>
                     </select>
                   </div>
                   <div class="row">
                       <div class="form-group mb-3 col-xs-12 col-sm-6">
                           <label
-                            for="expire_date"
-                            >Expire Date
+                            for="size"
+                            >size
                           </label>
                           <input
-                            id="expire_date"
-                            name="expire_date"
-                            type="text"
-                            class="form-control validate"
-                            data-large-mode="true"
-                          />
-                        </div>
-                        <div class="form-group mb-3 col-xs-12 col-sm-6">
-                          <label
-                            for="stock"
-                            >Units In Stock
-                          </label>
-                          <input
-                            id="stock"
-                            name="stock"
-                            type="text"
+                            name="size"
+                            type="number"
                             class="form-control validate"
                             required
                           />
                         </div>
+                      <div class="form-group mb-3 col-xs-12 col-sm-6">
+                          <label
+                            for="caloricintake"
+                            >caloricintake
+                          </label>
+                          <input
+                            name="caloricintake"
+                            type="number"
+                            class="form-control validate"
+                            required
+                          />
+                        </div>
+                      <div class="form-group mb-3 col-xs-12 col-sm-6">
+                          <label
+                            for="carbohydrate"
+                            >carbohydrate
+                          </label>
+                          <input
+                            name="carbohydrate"
+                            type="number"
+                            class="form-control validate"
+                            required
+                          />
+                        </div>
+                      <div class="form-group mb-3 col-xs-12 col-sm-6">
+                          <label
+                            for="fiber"
+                            >fiber
+                          </label>
+                          <input
+                            name="fiber"
+                            type="number"
+                            class="form-control validate"
+                            required
+                          />
+                        </div>
+                      <div class="form-group mb-3 col-xs-12 col-sm-6">
+                          <label
+                            for="protein"
+                            >protein
+                          </label>
+                          <input
+                            name="protein"
+                            type="number"
+                            class="form-control validate"
+                            required
+                          />
+                        </div>
+                      <div class="form-group mb-3 col-xs-12 col-sm-6">
+                          <label
+                            for="fat"
+                            >fat
+                          </label>
+                          <input
+                            name="fat"
+                            type="number"
+                            class="form-control validate"
+                            required
+                          />
+                        </div>
+                      <div class="form-group mb-3 col-xs-12 col-sm-6">
+                          <label
+                            for="water"
+                            >water
+                          </label>
+                          <input
+                            name="water"
+                            type="number"
+                            class="form-control validate"
+                            required
+                          />
+                        </div>                      
                   </div>
                   
               </div>
@@ -104,7 +160,7 @@
                     onclick="document.getElementById('fileInput').click();"
                   ></i>
                 </div>
-                <div class="custom-file mt-3 mb-3">
+<!--                <div class="custom-file mt-3 mb-3">
                   <input id="fileInput" type="file" style="display:none;" />
                   <input
                     type="button"
@@ -112,10 +168,10 @@
                     value="UPLOAD PRODUCT IMAGE"
                     onclick="document.getElementById('fileInput').click();"
                   />
-                </div>
+                </div>-->
               </div>
               <div class="col-12">
-                <button type="submit" class="btn btn-primary btn-block text-uppercase bg-success">Add Product Now</button>
+                <button type="submit" class="btn btn-primary btn-block text-uppercase bg-success">Add Food</button>
               </div>
             </form>
             </div>

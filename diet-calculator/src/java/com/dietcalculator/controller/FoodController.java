@@ -5,12 +5,14 @@
  */
 package com.dietcalculator.controller;
 
+import com.dietcalculator.dao.FoodDAO;
 import com.dietcalculator.dto.Food;
 import com.dietcalculator.util.Constants;
 import com.dietcalculator.util.Utils;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -34,28 +36,42 @@ public class FoodController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet FoodController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet FoodController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        String action = request.getParameter("action");
+        if (action == null || action.equals("read")) {
+            FoodDAO dao = new FoodDAO();
+            ArrayList<Food> foodList = dao.readFood();
+            RequestDispatcher rd = request.getRequestDispatcher("Food/View&DeleteFood.jsp");
+            request.setAttribute("foodList", foodList);
+            rd.forward(request, response);
+        } else if (action.equals("create")) {
+            
+            
+            RequestDispatcher rd = request.getRequestDispatcher("");
+            rd.forward(request, response);
+        } else if (action.equals("update")) {
+            
+            
+            RequestDispatcher rd = request.getRequestDispatcher("");
+            rd.forward(request, response);
+        } else if (action.equals("delete")) {
+            
+            
+            RequestDispatcher rd = request.getRequestDispatcher("");
+            rd.forward(request, response);
         }
     }
 
-    public ArrayList<Food> listFoodByCategory(ArrayList<Food> FoodDataset, String category){
+    public ArrayList<Food> listFoodByCategory(ArrayList<Food> FoodDataset, String category) {
         ArrayList<Food> foodList = new ArrayList();
         String[] categories = category.trim().split(Constants.DELIMITER);
-        for(Food x: FoodDataset)
-            if(Utils.isInStringArray(categories, x.getCategory()))
+        for (Food x : FoodDataset) {
+            if (Utils.isInStringArray(categories, x.getCategory())) {
                 foodList.add(x);
+            }
+        }
         return foodList;
     }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
