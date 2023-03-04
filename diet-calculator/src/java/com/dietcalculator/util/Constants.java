@@ -160,6 +160,22 @@ public final class Constants {
         FOOD_DETAIL_BY_MEAL.put(5, SIDE_MEAL_CATEGORIES);
     }
     
+    //Time for Meals
+    public static final String BREAKFAST_TIME = "6:30";
+    public static final String LUNCH_TIME = "12:00";
+    public static final String DINNER_TIME = "19:00";
+    public static final String BRUNCH_TIME = "9:30";
+    public static final String SNACK_TIME = "16:30";
+    
+    public static final HashMap<Integer, String> MEAL_TIME = new HashMap();
+    static{
+        MEAL_TIME.put(1, BREAKFAST_TIME);
+        MEAL_TIME.put(2, LUNCH_TIME);
+        MEAL_TIME.put(3, DINNER_TIME);
+        MEAL_TIME.put(4, BRUNCH_TIME);
+        MEAL_TIME.put(5, SNACK_TIME);
+    }
+    
     //Exercises
     public static final int[] EXERCISE_SESSION_RANGE = {1,2,3};
     public static final int DEFAULT_EXERCISE_SESSION = 2;     

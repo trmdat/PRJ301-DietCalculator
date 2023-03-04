@@ -55,7 +55,7 @@ public class MainController extends HttpServlet {
     public static void main(String[] args) {
         //SAMPLE DATA
         String userID = "U00000";
-        int week = 1;
+        int week = 8;
         int mainMeal = 3;
         int sideMeal = 2;
         
