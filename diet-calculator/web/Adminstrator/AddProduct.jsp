@@ -110,8 +110,23 @@
             </div>
             <div class="row tm-edit-product-row">
               <div class="col-xl-12 col-lg-12 col-md-12">
-                <form action="" class="tm-edit-product-form">
+                <form action="" method="post" class="tm-edit-product-form">
                   <div class="form-group mb-3">
+                    <label
+                      for="id"
+                      >Product ID
+                    </label> 
+                    <input
+                      id="id"
+                      name="id"
+                      type="text"
+                      placeholder="Enter Product ID"
+                      class="form-control validate"
+                      required
+                    />
+                  </div>
+                    
+                    <div class="form-group mb-3">
                     <label
                       for="name"
                       >Product Name
@@ -120,22 +135,166 @@
                       id="name"
                       name="name"
                       type="text"
+                      placeholder="Enter Product Name"
                       class="form-control validate"
                       required
                     />
+                    </div>
+                    
+                    <p>Product Type</p>
+                    <div class="row">
+                        <div class="col-md-4">
+                        
+                    <label for="type">
+                        <input
+                      id="type"
+                      name="type"
+                      type="radio"
+                      value ="Vitamin"
+                      required
+                    /> Vitamin
+                        </label> 
+                    </div>
+                        
+                         <div class="col-md-4">
+                    <label for="type">
+                        <input
+                      id="type"
+                      name="type"
+                      type="radio"
+                      value ="Protein"
+                      required
+                    /> Protein
+                    </label> 
                   </div>
-                  <div class="form-group mb-3">
+                    
+                    <div class="col-md-4">
+                    <label for="type">
+                        <input
+                      id="type"
+                      name="type"
+                      type="radio"
+                      value ="Carbohydrate"
+                      required
+                    /> Carbohydrate
+                    </label> 
+                  </div>
+                        
+                    </div>
+                    
+                    
+                   
+                    <div class="row">
+                         <div class="col-md-4">
+                    <label for="type">
+                        <input
+                      id="type"
+                      name="type"
+                      type="radio"
+                      value="Fiber"
+                      required
+                    /> Fiber
+                    </label> 
+                  </div>
+                    
+                    <div class="col-md-4"> 
+                    <label for="type">
+                        <input
+                      id="type"
+                      name="type"
+                      value ="EAA"
+                      type="radio"
+                      required
+                    /> EAA
+                    </label> 
+                  </div>
+                    
+                    <div class="col-md-4">
+                    <label for="type">
+                        <input
+                      id="type"
+                      name="type"
+                      type="radio"
+                      value="BCAA"
+                      required
+                    /> BCAA
+                    </label> 
+                  </div>
+                    </div>
+                   
+                  <div class="row">
+                      <div class="form-group mt-3 mb-3 col-xs-12 col-sm-6">
+                          <label
+                            for="quantity"
+                            >Quantity
+                          </label>
+                          <input
+                            id="quantity"
+                            name="quantity"
+                            type="number"
+                            class="form-control validate"
+                            data-large-mode="true"
+                          />
+                        </div>
+                        <div class="form-group mb-3 col-xs-12 col-sm-6 mt-3">
+                          <label
+                            for="brand"
+                            >Brand
+                          </label>
+                          <input
+                            id="brand"
+                            name="brand"
+                            type="text"
+                            class="form-control validate"
+                            required
+                          />
+                        </div>
+                  </div>   
+                    
+                    <div class="row">
+                      <div class="form-group mt-3 mb-3 col-xs-12 col-sm-6">
+                          <label
+                            for="origin"
+                            >Origin
+                          </label>
+                          <input
+                            id="origin"
+                            name="origin"
+                            type="text"
+                            class="form-control validate"
+                            data-large-mode="true"
+                          />
+                        </div>
+                        <div class="form-group mb-3 col-xs-12 col-sm-6 mt-3">
+                          <label
+                            for="volume"
+                            >Volume
+                          </label>
+                          <input
+                            id="volume"
+                            name="volume"
+                            type="text"
+                            class="form-control validate"
+                            required
+                          />
+                        </div>
+                  </div>   
+           
+                    
+                  <div class="form-group mb-3 mt-3">
                     <label
-                      for="description"
-                      >Description</label
+                      for="effect"
+                      >Effect</label
                     >
                     <textarea
                       class="form-control validate"
-                      rows="3"
+                      id="effect"
+                      rows="4"
                       required
                     ></textarea>
                   </div>
-                  <div class="form-group mb-3">
+                    
+<!--                  <div class="form-group mb-3">
                     <label
                       for="category"
                       >Category</label
@@ -149,16 +308,17 @@
                       <option value="2">Most Popular</option>
                       <option value="3">Trending</option>
                     </select>
-                  </div>
+                  </div>-->
+
                   <div class="row">
                       <div class="form-group mb-3 col-xs-12 col-sm-6">
                           <label
-                            for="expire_date"
-                            >Expire Date
+                            for="rate"
+                            >Rate
                           </label>
                           <input
-                            id="expire_date"
-                            name="expire_date"
+                            id="rate"
+                            name="rate"
                             type="text"
                             class="form-control validate"
                             data-large-mode="true"
@@ -166,12 +326,12 @@
                         </div>
                         <div class="form-group mb-3 col-xs-12 col-sm-6">
                           <label
-                            for="stock"
-                            >Units In Stock
+                            for="purchase"
+                            >Purchase
                           </label>
                           <input
-                            id="stock"
-                            name="stock"
+                            id="purchase"
+                            name="purchase"
                             type="text"
                             class="form-control validate"
                             required
@@ -197,8 +357,8 @@
                   />
                 </div>
               </div>
-              <div class="col-12">
-                <button type="submit" class="btn btn-primary btn-block text-uppercase bg-success">Add Product Now</button>
+              <div class="col-12 mb-5">
+                  <input type="submit" class="btn btn-primary btn-block text-uppercase bg-success" value="Add product">
               </div>
             </form>
             </div>
