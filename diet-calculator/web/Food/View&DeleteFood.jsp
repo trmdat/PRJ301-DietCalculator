@@ -1,3 +1,8 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%@page import="com.dietcalculator.dto.Food"%>
+<%@page import="java.util.ArrayList"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,33 +52,22 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+ 
+                                    <c:forEach items="${foodList}" var="x">
                                         <tr>
-                                            <th scope="row"><input type="checkbox" name="id" value="1"/></th>
-                                            <td class="tm-product-name">Lorem Ipsum Product 1</td>
-                                            <td>1,450</td>
-                                            <td>550</td>
-                                            <td>28 March 2019</td>
-                                            <td>
-                                                <a href="#" class="tm-product-delete-link">
-                                                    <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                                                </a>
-                                            </td>
+                                            <th scope="row"><input type="checkbox" name="id" value="2"/></th>
+                                            <td>${x.getFoodID()}</td>
+                                            <td>${x.getFoodname()}</td>
+                                            <td>${x.getCategory()}</td>
+                                            <td>${x.getSize()}</td>
+                                            <td>${x.getCaloricintake()}</td>
+                                            <td>${x.getCarbohydrate()}</td>
+                                            <td>${x.getFiber()}</td>
+                                            <td>${x.getProtein()}</td>
+                                            <td>${x.getFat()}</td>
+                                            <td>${x.getWater()}</td>
                                         </tr>
-                                        <tr>
-                                            <th scope="row"><input type="checkbox" /></th>
-                                            <td class="tm-product-name">Lorem Ipsum Product 2</td>
-                                            <td>1,250</td>
-                                            <td>750</td>
-                                            <td>21 March 2019</td>
-                                            <td>
-                                                <a href="#" class="tm-product-delete-link">
-                                                    <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    <c:ForEach>
-                                        
-                                    </c:ForEach>
+                                    </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
@@ -88,7 +82,6 @@
 
                     </div>
                 </div>
-
 
                 <script src="js/jquery-3.3.1.min.js"></script>
                 <!-- https://jquery.com/download/ -->
