@@ -40,6 +40,7 @@
                                             class="form-control validate"
                                             readonly
                                             required
+                                            value = "${food.getFoodID()}"
                                             />
                                     </div>
                                     <div class="form-group mb-3">
@@ -52,6 +53,7 @@
                                             type="text"
                                             class="form-control validate"
                                             required
+                                            value = "${food.getFoodname()}"
                                             />
                                     </div>
 
@@ -64,7 +66,8 @@
                                             class="custom-select tm-select-accounts"
                                             name="category"
                                             >
-                                            <option selected value="fruit">fruit</option>
+                                            <option selected value="${food.getCategory()}">${food.getCategory()} (default)</option>
+                                            <option value="fruit">fruit</option>
                                             <option value="vegetables">vegetables</option>
                                             <option value="fish">fish</option>
                                             <option value="seafood">seafood</option>
@@ -89,6 +92,7 @@
                                                 type="number"
                                                 class="form-control validate"
                                                 required
+                                                value = "${food.getSize()}"
                                                 />
                                         </div>
                                         <div class="form-group mb-3 col-xs-12 col-sm-6">
@@ -101,6 +105,7 @@
                                                 type="number"
                                                 class="form-control validate"
                                                 required
+                                                value = "${food.getCaloricintake()}"
                                                 />
                                         </div>
                                         <div class="form-group mb-3 col-xs-12 col-sm-6">
@@ -113,6 +118,7 @@
                                                 type="number"
                                                 class="form-control validate"
                                                 required
+                                                value = "${food.getCarbohydrate()}"
                                                 />
                                         </div>
                                         <div class="form-group mb-3 col-xs-12 col-sm-6">
@@ -125,6 +131,7 @@
                                                 type="number"
                                                 class="form-control validate"
                                                 required
+                                                value = "${food.getCarbohydrate()}"
                                                 />
                                         </div>
                                         <div class="form-group mb-3 col-xs-12 col-sm-6">
@@ -137,6 +144,7 @@
                                                 type="number"
                                                 class="form-control validate"
                                                 required
+                                                value = "${food.getProtein()}"
                                                 />
                                         </div>
                                         <div class="form-group mb-3 col-xs-12 col-sm-6">
@@ -149,6 +157,7 @@
                                                 type="number"
                                                 class="form-control validate"
                                                 required
+                                                value = "${food.getFat()}"
                                                 />
                                         </div>
                                         <div class="form-group mb-3 col-xs-12 col-sm-6">
@@ -161,6 +170,7 @@
                                                 type="number"
                                                 class="form-control validate"
                                                 required
+                                                value = "${food.getWater()}"
                                                 />
                                         </div>                      
                                     </div>
@@ -184,13 +194,6 @@
         <!-- https://jqueryui.com/download/ -->
         <script src="js/bootstrap.min.js"></script>
         <!-- https://getbootstrap.com/ -->
-        <script>
-            $(function () {
-                $("#expire_date").datepicker({
-                    defaultDate: "10/22/2020"
-                });
-            });
-        </script>
     </body>
 
 </html>

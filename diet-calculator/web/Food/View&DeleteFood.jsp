@@ -31,6 +31,7 @@
                                 <h2 class="tm-block-title d-inline-block">View & Delete Food</h2>
                             </div>
                         </div>
+                        <a href="Food/AddFood.jsp" class="btn btn-primary btn-block text-uppercase mb-3 bg-success">Add new Food</a>
                         <form action="/diet-calculator/FoodController" method="get" class="tm-edit-product-form">
                             <div class="tm-product-table-container">
 
@@ -78,15 +79,13 @@
                                             <td>${x.getProtein()}</td>
                                             <td>${x.getFat()}</td>
                                             <td>${x.getWater()}</td>
+                                            <td><a href="FoodController?action=update&foodID=${x.getFoodID()}">Update</a></td>
                                         </tr>
                                     </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
                             <!-- table container -->
-                            <a
-                                href="AddProduct.html"
-                                class="btn btn-primary btn-block text-uppercase mb-3 bg-success">Add new product</a>
                             <button type="submit" class="btn btn-primary btn-block text-uppercase bg-success">
                                 Delete selected products
                             </button>
