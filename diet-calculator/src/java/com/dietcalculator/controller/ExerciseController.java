@@ -70,7 +70,7 @@ public class ExerciseController extends HttpServlet {
             }
             ids.deleteCharAt(ids.length() - 1);
 
-            exerciseDAO.deleteMultipleExercise(ids);
+            exerciseDAO.deleteExercise(ids);
             
             response.sendRedirect("exercisecontroller");
         } else if (action.equals("edit")) {
