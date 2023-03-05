@@ -17,6 +17,10 @@
         <servlet-class>com.dietcalculator.controller.MealController</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ExerciseController</servlet-name>
+        <servlet-class>com.dietcalculator.controller.ExerciseController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>DayController</servlet-name>
         <servlet-class>com.dietcalculator.controller.DayController</servlet-class>
     </servlet>
@@ -71,6 +75,10 @@
     <servlet-mapping>
         <servlet-name>FoodController</servlet-name>
         <url-pattern>/FoodController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ExerciseController</servlet-name>
+        <url-pattern>/exercisecontroller</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ProductListController</servlet-name>
