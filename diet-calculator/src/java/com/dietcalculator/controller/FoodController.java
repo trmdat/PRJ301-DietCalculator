@@ -44,20 +44,23 @@ public class FoodController extends HttpServlet {
             request.setAttribute("foodList", foodList);
             rd.forward(request, response);
         } else if (action.equals("create")) {
-            
-            
+
             RequestDispatcher rd = request.getRequestDispatcher("");
             rd.forward(request, response);
         } else if (action.equals("update")) {
-            
-            
+
             RequestDispatcher rd = request.getRequestDispatcher("");
             rd.forward(request, response);
         } else if (action.equals("delete")) {
-            
-            
-            RequestDispatcher rd = request.getRequestDispatcher("");
-            rd.forward(request, response);
+            String[] ids = request.getParameterValues("foodID");
+            if (ids != null) {
+                FoodDAO dao = new FoodDAO();
+                for (String id : ids) {
+                    dao.deleteFood(id);
+                }
+            }
+
+            response.sendRedirect("FoodController");
         }
     }
 

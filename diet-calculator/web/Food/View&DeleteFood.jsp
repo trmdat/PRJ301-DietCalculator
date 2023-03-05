@@ -52,10 +52,22 @@
                                         </tr>
                                     </thead>
                                     <tbody>
- 
+   <!--                                     <tr>
+                                            <th scope="row"><input type="checkbox" name="id" value="1"/></th>
+                                            <td class="tm-product-name">Lorem Ipsum Product 1</td>
+                                            <td>1,450</td>
+                                            <td>550</td>
+                                            <td>28 March 2019</td>
+                                            <td>
+                                                <a href="#" class="tm-product-delete-link">
+                                                    <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                                                </a>
+                                            </td>
+                                        </tr> -->
+
                                     <c:forEach items="${foodList}" var="x">
                                         <tr>
-                                            <th scope="row"><input type="checkbox" name="id" value="2"/></th>
+                                            <th scope="row"><input type="checkbox" name="foodID" value="${x.getFoodID()}"/></th>
                                             <td>${x.getFoodID()}</td>
                                             <td>${x.getFoodname()}</td>
                                             <td>${x.getCategory()}</td>
