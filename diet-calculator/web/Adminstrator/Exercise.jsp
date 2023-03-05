@@ -75,8 +75,8 @@
                     <div class="tm-bg-primary-dark tm-block tm-block-products">
                         <div class="tm-product-table-container">
                             <form action="exercisecontroller" method="get">
-                                <input type="hidden" name="action" value="delete">
                                 <table class="table table-hover tm-table-small tm-product-table">
+                                    <input type="hidden" name="action" value="delete">
                                     <thead>
                                         <tr>
                                             <th scope="col">&nbsp;</th>
@@ -93,17 +93,14 @@
                                             <% list = (List) request.getAttribute("list");
                                                 if (list != null) {
                                                     for (Exercise ex : list) {
-                                                        out.print("<tr><th scope=\"row\"><input type=\"checkbox\" name=checkId value=" + ex.getExerciseID() + "/></th>"
+                                                        out.print("<tr><th scope=\"row\"><input type=checkbox name=checkId value=\"" + ex.getExerciseID() + "\"/></th>"
                                                                 + "<td>" + ex.getExerciseID() + "</td>"
                                                                 + "<td>" + ex.getExname() + "</td> "
-                                                                + "<td>" + ex.getLowerweight() + "</td> "
-                                                                + "<td>" + ex.getUpperweight() + "</td> "
+                                                                + "<td>" + ex.getLowerweight() + "</td>"
+                                                                + "<td>" + ex.getUpperweight() + "</td>"
                                                                 + "<td>" + ex.getCalorexp() + "</td> "
-                                                                + "<td><form action=\"./exercisecontroller\" method=\"post\">"
-                                                                + "<input type=hidden name=action value=edit>"
-                                                                + "<input type=hidden name=exerciseID value=" + ex.getExerciseID() + ">"
-                                                                + "<input type=hidden name=jump value=true>"
-                                                                + "<input type=submit value=Edit class=\"btn btn-primary btn-block mb-3 bg-success\"></form>" + "</td></tr>");
+                                                                + "<td><a href=\"./exercisecontroller?action=edit&exerciseID=" + ex.getExerciseID() + "&jump=true\">Edit</a>"
+                                                                + "</td></tr>");
                                                     }
                                                 }
                                             %>

@@ -53,26 +53,26 @@ public class ExerciseDAO {
         return list;
     }
 
-    public Exercise readExerciseById(String id) {
-        Exercise exercise = new Exercise();
-        String sql = "SELECT * FROM Exercise WHERE exerciseID = ?";
-        try {
-            Connection conn = DBUtils.getConnection();
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, id);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                exercise = new Exercise(rs.getString("exerciseID"), rs.getString("exname"), 
-                        rs.getDouble("lowerweight"), rs.getDouble("upperweight"), rs.getInt("calorexp"));
-            }
-            rs.close();
-            ps.close();
-            conn.close();
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-        return exercise;
-    }
+//    public Exercise readExerciseById(String id) {
+//        Exercise exercise = new Exercise();
+//        String sql = "SELECT * FROM Exercise WHERE exerciseID = ?";
+//        try {
+//            Connection conn = DBUtils.getConnection();
+//            PreparedStatement ps = conn.prepareStatement(sql);
+//            ps.setString(1, id);
+//            ResultSet rs = ps.executeQuery();
+//            while (rs.next()) {
+//                exercise = new Exercise(rs.getString("exerciseID"), rs.getString("exname"), 
+//                        rs.getDouble("lowerweight"), rs.getDouble("upperweight"), rs.getInt("calorexp"));
+//            }
+//            rs.close();
+//            ps.close();
+//            conn.close();
+//        } catch (SQLException ex) {
+//            System.out.println(ex);
+//        }
+//        return exercise;
+//    }
 
     public boolean createExercise(String exerciseID, String exname, double lowerweight, double upperweight, int calorexp) {
         String sql = "INSERT INTO Exercise VALUES(?,?,?,?,?)";
