@@ -68,37 +68,37 @@
                         <div class = "row">
                             <div class="column-tooltip column-50">Carrot</div>
                             <div class="column-tooltip column-25">100g</div>
-                            <div class="column-tooltip column-25">25KCal</div>
+                            <!--<div class="column-tooltip column-25">25KCal</div>-->
                         </div>
                         <div class = "row">
                             <div class="column-tooltip column-50">Chicken</div>
                             <div class="column-tooltip column-25"> 100g</div>
-                            <div class="column-tooltip column-25">64KCal</div>
+                            <!--<div class="column-tooltip column-25">64KCal</div>-->
                         </div>
                         <div class = "row">
                             <div class="column-tooltip column-50">Rice</div>
                             <div class="column-tooltip column-25">280g</div>
-                            <div class="column-tooltip column-25">250KCal</div>
+                            <!--<div class="column-tooltip column-25">250KCal</div>-->
                         </div>
                         <div class = "row">
                             <div class="column-tooltip column-50">Oyster</div>
                             <div class="column-tooltip column-25">49g</div>
-                            <div class="column-tooltip column-25">86KCal</div>
+                            <!--<div class="column-tooltip column-25">86KCal</div>-->
                         </div>
                         <div class = "row">
                             <div class="column-tooltip column-50">Banana</div>
                             <div class="column-tooltip column-25">100g</div>
-                            <div class="column-tooltip column-25">25KCal</div>
+                            <!--<div class="column-tooltip column-25">25KCal</div>-->
                         </div>
                         <div class = "row">
                             <div class="column-tooltip column-50">Pudding</div>
                             <div class="column-tooltip column-25">100g</div>
-                            <div class="column-tooltip column-25">140KCal</div>
+                            <!--<div class="column-tooltip column-25">140KCal</div>-->
                         </div>
                         <div class = "row">
                             <div class="column-tooltip column-50">Tea</div>
                             <div class="column-tooltip column-25">100g</div>
-                            <div class="column-tooltip column-25">25KCal</div>
+                            <!--<div class="column-tooltip column-25">25KCal</div>-->
                         </div>
                     </span>
                 </td>
