@@ -44,4 +44,18 @@ public class Utils {
         
         return false;
     }
+    
+    public static java.sql.Date convertStringToSqlDate(String str){
+        //FORMAT: yyyy-mm-dd
+        String[] components = str.split("-");
+        int year = 0, month = 0, day = 0;
+        try{
+            year = Integer.parseInt(components[0]);
+            month = Integer.parseInt(components[1]);
+            day = Integer.parseInt(components[2]);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        return convertJavaDateToSqlDate(year,month,day);
+    }
 }

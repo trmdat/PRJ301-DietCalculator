@@ -35,8 +35,8 @@ public class UserDAO {
         return index;
     }
 
-    public List<User> readUser() {
-        List<User> list = new ArrayList();
+    public ArrayList<User> readUser() {
+        ArrayList<User> list = new ArrayList();
         String sql = "SELECT * FROM [User]";
         try {
             Connection conn = DBUtils.getConnection();
