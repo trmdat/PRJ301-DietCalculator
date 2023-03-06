@@ -48,6 +48,14 @@
         <servlet-name>PopUpController</servlet-name>
         <servlet-class>com.dietcalculator.controller.PopUpController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PopUpDetailController</servlet-name>
+        <servlet-class>com.dietcalculator.controller.PopUpDetailController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SaleOffController</servlet-name>
+        <servlet-class>com.dietcalculator.controller.SaleOffController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UserController</servlet-name>
         <url-pattern>/UserController</url-pattern>
@@ -85,6 +93,10 @@
         <url-pattern>/exercisecontroller</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>SaleOffController</servlet-name>
+        <url-pattern>/SaleOffController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>ProductListController</servlet-name>
         <url-pattern>/productlist</url-pattern>
     </servlet-mapping>
@@ -97,6 +109,8 @@
         <url-pattern>/popupcontroller</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>PopUpDetailController</servlet-name>
+        <servlet-url>/popupdetailcontroller</servlet-url>
     </servlet-mapping>
     <session-config>
         <session-timeout>

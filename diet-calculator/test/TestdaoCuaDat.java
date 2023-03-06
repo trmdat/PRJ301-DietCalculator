@@ -40,16 +40,16 @@ public class TestdaoCuaDat {
 
 
 //        EXERCISE TEST
-        ExerciseDAO dao = new ExerciseDAO();
+//        ExerciseDAO dao = new ExerciseDAO();
 //        boolean rs = dao.createExercise("EX057", "push up", 2.5, 5.2, 1000);
 //        boolean rs = dao.updateExercise("EX057", "plank", 5, 3.2, 500);
 //        boolean rs = dao.deleteExercise("EX057");
-        StringBuilder sb = new StringBuilder();
-        sb.append("'EX057'").append(",");
-        sb.append("'EX058'");
-        System.out.println(sb);
-        boolean rs = dao.deleteMultipleExercise(sb);
-        System.out.println(rs);
+//        StringBuilder sb = new StringBuilder();
+//        sb.append("'EX057'").append(",");
+//        sb.append("'EX058'");
+//        System.out.println(sb);
+//        boolean rs = dao.deleteMultipleExercise(sb);
+//        System.out.println(rs);
 //        List<Exercise> list = dao.readExercise();
 //        for(Exercise ex: list)
 //            System.out.println(ex.toString());
