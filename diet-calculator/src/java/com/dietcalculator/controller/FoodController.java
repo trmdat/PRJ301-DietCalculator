@@ -38,28 +38,31 @@ public class FoodController extends HttpServlet {
 
         String action = request.getParameter("action");
         FoodDAO dao = new FoodDAO();
-        
+
         if (action == null || action.equals("read")) {
 
             ArrayList<Food> foodList = dao.readFood();
-             request.setAttribute("foodList", foodList);
+            request.setAttribute("foodList", foodList);
             RequestDispatcher rd = request.getRequestDispatcher("Food/View&DeleteFood.jsp");
-           
+
             rd.forward(request, response);
         } else if (action.equals("create")) {
             if (!request.getParameter("foodID").isEmpty()) {
-                String foodID = request.getParameter("foodID");
-                String foodname = request.getParameter("foodname");
-                String category = request.getParameter("category");
-                int size = Integer.parseInt(request.getParameter("size"));
-                int caloricintake = Integer.parseInt(request.getParameter("caloricintake"));
-                Double carbohydrate = Double.parseDouble(request.getParameter("carbohydrate"));
-                Double fiber = Double.parseDouble(request.getParameter("fiber"));
-                Double protein = Double.parseDouble(request.getParameter("protein"));
-                Double fat = Double.parseDouble(request.getParameter("fat"));
-                Double water = Double.parseDouble(request.getParameter("water"));
+                try {
+                    String foodID = request.getParameter("foodID");
+                    String foodname = request.getParameter("foodname");
+                    String category = request.getParameter("category");
+                    int size = Integer.parseInt(request.getParameter("size"));
+                    int caloricintake = Integer.parseInt(request.getParameter("caloricintake"));
+                    Double carbohydrate = Double.parseDouble(request.getParameter("carbohydrate"));
+                    Double fiber = Double.parseDouble(request.getParameter("fiber"));
+                    Double protein = Double.parseDouble(request.getParameter("protein"));
+                    Double fat = Double.parseDouble(request.getParameter("fat"));
+                    Double water = Double.parseDouble(request.getParameter("water"));
+                    dao.createFood(foodID, foodname, category, size, caloricintake, carbohydrate, fiber, protein, fat, water);
+                } catch (Exception e) {
+                }
 
-                dao.createFood(foodID, foodname, category, size, caloricintake, carbohydrate, fiber, protein, fat, water);
                 response.sendRedirect("FoodController");
             } else {
                 response.sendRedirect("FoodController");
@@ -71,17 +74,20 @@ public class FoodController extends HttpServlet {
                 RequestDispatcher rd = request.getRequestDispatcher("Food/EditFood.jsp");
                 rd.forward(request, response);
             } else if (!request.getParameter("foodname").isEmpty()) {
-                String foodID = request.getParameter("foodID");
-                String foodname = request.getParameter("foodname");
-                String category = request.getParameter("category");
-                int size = Integer.parseInt(request.getParameter("size"));
-                int caloricintake = Integer.parseInt(request.getParameter("caloricintake"));
-                Double carbohydrate = Double.parseDouble(request.getParameter("carbohydrate"));
-                Double fiber = Double.parseDouble(request.getParameter("fiber"));
-                Double protein = Double.parseDouble(request.getParameter("protein"));
-                Double fat = Double.parseDouble(request.getParameter("fat"));
-                Double water = Double.parseDouble(request.getParameter("water"));
-                dao.updateFood(foodID, foodname, category, size, caloricintake, carbohydrate, fiber, protein, fat, water);
+                try {
+                    String foodID = request.getParameter("foodID");
+                    String foodname = request.getParameter("foodname");
+                    String category = request.getParameter("category");
+                    int size = Integer.parseInt(request.getParameter("size"));
+                    int caloricintake = Integer.parseInt(request.getParameter("caloricintake"));
+                    Double carbohydrate = Double.parseDouble(request.getParameter("carbohydrate"));
+                    Double fiber = Double.parseDouble(request.getParameter("fiber"));
+                    Double protein = Double.parseDouble(request.getParameter("protein"));
+                    Double fat = Double.parseDouble(request.getParameter("fat"));
+                    Double water = Double.parseDouble(request.getParameter("water"));
+                    dao.updateFood(foodID, foodname, category, size, caloricintake, carbohydrate, fiber, protein, fat, water);
+                } catch (Exception e) {
+                }
                 response.sendRedirect("FoodController");
             }
         } else if (action.equals("delete")) {
@@ -95,7 +101,7 @@ public class FoodController extends HttpServlet {
 //              RequestDispatcher rd = request.getRequestDispatcher("FoodController");   
 //              request.removeAttribute("action");
 //              rd.forward(request, response);
-//            response.sendRedirect("FoodController");
+            response.sendRedirect("FoodController");
         }
     }
 

@@ -90,7 +90,7 @@
                                         </label>
                                         <input
                                             name="size"
-                                            type="text"
+                                            type="number"
                                             class="form-control validate"
                                             required
                                             />
@@ -102,7 +102,7 @@
                                         </label>
                                         <input
                                             name="caloricintake"
-                                            type="text"
+                                            type="number"
                                             class="form-control validate"
                                             required
                                             />
