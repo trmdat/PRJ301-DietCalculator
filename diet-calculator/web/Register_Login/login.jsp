@@ -27,12 +27,16 @@
                         <div class="card shadow-lg">
                             <div class="card-body p-5">
                                 <h1 class="fs-4 card-title fw-bold mb-4">Login</h1>
-                                <form method="POST" class="needs-validation" novalidate="" autocomplete="off">
+                                
+                               <div class="text-danger">${error}</div>
+                               
+                                <form action="/diet-calculator/login" method="POST" class="needs-validation" novalidate="" autocomplete="off">
+                                    <input type="hidden" name="action" value="login">
                                     <div class="mb-3">
-                                        <label class="mb-2 text-muted" for="email">E-Mail Address</label>
-                                        <input id="email" type="email" class="form-control" name="email" value="" required autofocus>
+                                        <label class="mb-2 text-muted" for="username">Username</label>
+                                        <input type="text" class="form-control" name="username" value="" required autofocus>
                                         <div class="invalid-feedback">
-                                            Email is invalid
+                                            Username is invalid
                                         </div>
                                     </div>
 
@@ -50,10 +54,10 @@
                                     </div>
 
                                     <div class="d-flex align-items-center">
-                                        <div class="form-check">
+<!--                                        <div class="form-check">
                                             <input type="checkbox" name="remember" id="remember" class="form-check-input">
                                             <label for="remember" class="form-check-label">Remember Me</label>
-                                        </div>
+                                        </div>-->
                                         <button type="submit" class="btn btn-success ms-auto">
                                             Login
                                         </button>
@@ -62,7 +66,7 @@
                             </div>
                             <div class="card-footer py-3 border-0">
                                 <div class="text-center">
-                                    Don't have an account? <a href="register.jsp" class="text-dark">Create One</a>
+                                    Don't have an account? <a href="Register_Login/register.jsp" class="text-dark">Create One</a>
                                 </div>
                             </div>
                         </div>

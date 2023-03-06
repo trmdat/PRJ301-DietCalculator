@@ -27,17 +27,18 @@
 					<div class="card shadow-lg">
 						<div class="card-body p-5">
 							<h1 class="fs-4 card-title fw-bold mb-4">Register</h1>
-							<form method="POST" class="needs-validation" novalidate="" autocomplete="off">
+							<form action="/diet-calculator/login" method="GET" class="needs-validation" novalidate="" autocomplete="off">
+                                                            <input type="hidden" name="action" value="register">
 								<div class="mb-3">
-									<label class="mb-2 text-muted" for="name">Name</label>
-									<input id="name" type="text" class="form-control" name="name" value="" required autofocus>
+									<label class="mb-2 text-muted" for="username">Username</label>
+									<input type="text" class="form-control" name="username" value="" required autofocus>
 									<div class="invalid-feedback">
 										Name is required	
 									</div>
 								</div>
 
 								<div class="mb-3">
-									<label class="mb-2 text-muted" for="name">Date of Birth</label>
+									<label class="mb-2 text-muted" for="dob">Date of Birth</label>
 									<input id="name" type="date" class="form-control" name="dob" value="" required>
 									<div class="invalid-feedback">
 										Date of Birth is required
@@ -45,7 +46,7 @@
 								</div>
 
 								<div class="mb-3">
-									<label class="mb-2 text-muted" for="name">Phone</label>
+									<label class="mb-2 text-muted" for="phone">Phone</label>
 									<input id="name" type="text" class="form-control" name="phone" value="" required>
 									<div class="invalid-feedback">
 										Phone is required
@@ -53,7 +54,7 @@
 								</div>
 
 								<div class="mb-3">
-									<label class="mb-2 text-muted" for="name">Address</label>
+									<label class="mb-2 text-muted" for="address">Address</label>
 									<input id="name" type="text" class="form-control" name="address" value="" required>
 									<div class="invalid-feedback">
 										Address is required
@@ -89,7 +90,7 @@
 						</div>
 						<div class="card-footer py-3 border-0">
 							<div class="text-center">
-								Already have an account? <a href="login.html" class="text-dark">Login</a>
+								Already have an account? <a href="login.jsp" class="text-dark">Login</a>
 							</div>
 						</div>
 					</div>

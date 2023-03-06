@@ -44,7 +44,10 @@
         <servlet-name>ProductInfoController</servlet-name>
         <servlet-class>com.dietcalculator.controller.ProductInfoController</servlet-class>
     </servlet>
-   
+    <servlet>
+        <servlet-name>LoginController</servlet-name>
+        <servlet-class>com.dietcalculator.controller.LoginController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UserController</servlet-name>
         <url-pattern>/UserController</url-pattern>
@@ -89,7 +92,10 @@
         <servlet-name>ProductInfoController</servlet-name>
         <url-pattern>/productinfo</url-pattern>
     </servlet-mapping>
-
+    <servlet-mapping>
+        <servlet-name>LoginController</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

@@ -16,6 +16,35 @@ import java.util.List;
  */
 public class UserDAO {
 
+    public User login (String username, String password){
+                
+        String sql = "SELECT * FROM [User] where username = ? and password = ?";
+        User user = new User();
+        try {
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, username);
+            ps.setString(2, password);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                user = new User(rs.getString("userID"), rs.getString("username"),
+                        rs.getDate("dob"), rs.getString("phone"), rs.getString("address"),
+                        rs.getString("email"), rs.getString("password"), rs.getDouble("weight"),
+                        rs.getDouble("height"), rs.getInt("gender"), rs.getInt("activity"), rs.getInt("preference"),
+                        rs.getInt("goal"), rs.getDouble("amount"), rs.getInt("duration"), rs.getInt("main"),
+                        rs.getInt("side"), rs.getInt("session"), rs.getInt("rank"), rs.getDate("createdate"));
+            }
+            rs.close();
+            ps.close();
+            conn.close();
+            return user;
+        }
+        catch (SQLException ex) {
+            System.out.println("Query error!" + ex.getMessage());
+        }
+        return null;
+    }
+    
     public String lastIDIndex() {
         String sql = "SELECT TOP 1 userID FROM [User] ORDER BY userID DESC";
         String index = "U00000";
@@ -141,5 +170,9 @@ public class UserDAO {
             System.out.println(ex);
         }
         return row > 0;
+    }
+    public static void main(String[] args) {
+        UserDAO dao = new UserDAO();
+        System.out.println(dao.login("123", "123"));
     }
 }

@@ -48,8 +48,8 @@ public class TestdaoCuaDat {
         sb.append("'EX057'").append(",");
         sb.append("'EX058'");
         System.out.println(sb);
-        boolean rs = dao.deleteMultipleExercise(sb);
-        System.out.println(rs);
+//        boolean rs = dao.deleteMultipleExercise(sb);
+//        System.out.println(rs);
 //        List<Exercise> list = dao.readExercise();
 //        for(Exercise ex: list)
 //            System.out.println(ex.toString());
