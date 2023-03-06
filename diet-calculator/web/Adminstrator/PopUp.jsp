@@ -1,12 +1,9 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%-- 
-    Document   : Exercise
-    Created on : Mar 4, 2023, 3:28:12 PM
+    Document   : PopUp
+    Created on : Mar 6, 2023, 3:49:22 PM
     Author     : admin
 --%>
 
-<%@page import="com.dietcalculator.dto.Exercise"%>
-<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
