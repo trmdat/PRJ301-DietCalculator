@@ -1,3 +1,4 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%-- 
     Document   : Exercise
     Created on : Mar 4, 2023, 3:28:12 PM
@@ -73,10 +74,11 @@
             <div class="row tm-content-row">
                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 tm-block-col">
                     <div class="tm-bg-primary-dark tm-block tm-block-products">
+                        <a href="Adminstrator/AddExercise.jsp" class="btn btn-primary btn-block text-uppercase mb-3 bg-success">Add new Exercise</a>
                         <div class="tm-product-table-container">
                             <form action="exercisecontroller" method="get">
+                                <input type="hidden" name="action" value="delete">
                                 <table class="table table-hover tm-table-small tm-product-table">
-                                    <input type="hidden" name="action" value="delete">
                                     <thead>
                                         <tr>
                                             <th scope="col">&nbsp;</th>
@@ -89,35 +91,25 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                            <%! List<Exercise> list;%>
-                                            <% list = (List) request.getAttribute("list");
-                                                if (list != null) {
-                                                    for (Exercise ex : list) {
-                                                        out.print("<tr><th scope=\"row\"><input type=checkbox name=checkId value=\"" + ex.getExerciseID() + "\"/></th>"
-                                                                + "<td>" + ex.getExerciseID() + "</td>"
-                                                                + "<td>" + ex.getExname() + "</td> "
-                                                                + "<td>" + ex.getLowerweight() + "</td>"
-                                                                + "<td>" + ex.getUpperweight() + "</td>"
-                                                                + "<td>" + ex.getCalorexp() + "</td> "
-                                                                + "<td><a href=\"./exercisecontroller?action=edit&exerciseID=" + ex.getExerciseID() + "&jump=true\">Edit</a>"
-                                                                + "</td></tr>");
-                                                    }
-                                                }
-                                            %>
-
-
+                                        <c:forEach var="e" items="${list}">
+                                            <tr>
+                                                <th scope=row><input type="checkbox" name="checkId" value=${e.exerciseID}></th>
+                                                <td> ${e.exerciseID} </td>
+                                                <td> ${e.exname} </td>
+                                                <td> ${e.lowerweight} </td>
+                                                <td> ${e.upperweight} </td>
+                                                <td> ${e.calorexp} </td>
+                                                <td><a href="./exercisecontroller?action=edit&exerciseID=${e.exerciseID}&jump=true" 
+                                                       class="btn btn-primary btn-block bg-success">Edit</a></td>
+                                            </tr>
+                                        </c:forEach>    
                                     </tbody>
                                 </table>
                                 <input type="submit" value="Delete selected Exercises" class="btn btn-primary btn-block text-uppercase bg-success">
-                             </form>
+                            </form>
                         </div>
                         <!-- table container -->
-                        <a
-                            href="Adminstrator/AddExercise.jsp"
-                            class="btn btn-primary btn-block text-uppercase mb-3 bg-success">Add new Exercise</a>
-                        <!--                        <form action="./exercisecontroller" class="btn btn-primary btn-block text-uppercase bg-success">
-                                                    Delete selected Exercises
-                                                </form>-->
+
                     </div>
                 </div>
                 <!-- <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 tm-block-col">

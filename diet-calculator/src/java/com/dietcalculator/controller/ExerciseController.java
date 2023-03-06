@@ -3,12 +3,9 @@ package com.dietcalculator.controller;
 import com.dietcalculator.dao.ExerciseDAO;
 import com.dietcalculator.dto.Exercise;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -60,18 +57,16 @@ public class ExerciseController extends HttpServlet {
             if (id != null) {
                 exerciseDAO.createExercise(id, exName, lowerweight, upperweight, calorexp);
             }
-            
+
             response.sendRedirect("exercisecontroller");
         } else if (action.equals("delete")) {
-            StringBuilder ids = new StringBuilder();
-            
-            for (String checkedid : request.getParameterValues("checkId")) {
-                ids.append("'").append(checkedid).append("',");
+            String[] ids = request.getParameterValues("checkId");
+            if (ids != null) {
+                for (String checkedid : ids) {
+                    exerciseDAO.deleteExercise(checkedid);
+                }
             }
-            ids.deleteCharAt(ids.length() - 1);
 
-            exerciseDAO.deleteExercise(ids);
-            
             response.sendRedirect("exercisecontroller");
         } else if (action.equals("edit")) {
             if (request.getParameter("jump") != null) {
@@ -98,18 +93,17 @@ public class ExerciseController extends HttpServlet {
                     exerciseDAO.updateExercise(id, exName, lowerweight, upperweight, calorexp);
                 }
 
-                
                 response.sendRedirect("exercisecontroller");
             }
 
         }
     }
-    
+
     protected Exercise readexerciseByID(String exID) {
         ExerciseDAO dao = new ExerciseDAO();
         List<Exercise> list = dao.readExercise();
         for (Exercise ex : list) {
-            if(ex.getExerciseID().equals(exID)){
+            if (ex.getExerciseID().equals(exID)) {
                 return ex;
             }
         }
