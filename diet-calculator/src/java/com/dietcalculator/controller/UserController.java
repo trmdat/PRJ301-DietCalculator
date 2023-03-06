@@ -76,7 +76,14 @@ public class UserController extends HttpServlet {
                 }
             response.sendRedirect("UserController");
         }else if(action.equalsIgnoreCase("update")){
-             if(!request.getParameter("username").isEmpty()){
+            if(request.getParameter("username") == null){ //Request for update page
+                String userID = request.getParameter("username");
+                User user = userDAO.searchUser(request.getParameter("userID"));
+                request.setAttribute("user", user);
+                RequestDispatcher rd = request.getRequestDispatcher("Administrator/EditUser.jsp");
+                rd.forward(request, response);
+            }
+            else if(!request.getParameter("username").isEmpty()){
                 try{
                     String username = request.getParameter("username");
                     Date dob = Utils.convertStringToSqlDate(request.getParameter("dob"));
@@ -103,10 +110,13 @@ public class UserController extends HttpServlet {
             }else
                 response.sendRedirect("UserController");
         }else if(action.equalsIgnoreCase("delete")){
-            
-        }else{
-            
+            String[] itemsToDelete = request.getParameterValues("checkbox");
+            if(itemsToDelete != null){
+                for(String id: itemsToDelete)
+                    userDAO.deleteUser(id);
             }
+        }
+            response.sendRedirect("UserController");
         }
     }
 

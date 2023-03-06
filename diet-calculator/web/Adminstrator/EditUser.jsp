@@ -26,59 +26,6 @@
             aria-label="Toggle navigation">
             <i class="fas fa-bars tm-nav-icon"></i>
          </button>
-
-         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mx-auto h-100">
-               <li class="nav-item">
-                  <a class="nav-link" href="">
-                     <i class="fas fa-tachometer-alt"></i> Dashboard
-                     <span class="sr-only">(current)</span>
-                  </a>
-               </li>
-               <!-- <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                     aria-haspopup="true" aria-expanded="false">
-                     <i class="far fa-file-alt"></i>
-                     <span> Reports <i class="fas fa-angle-down"></i> </span>
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                     <a class="dropdown-item" href="#">Daily Report</a>
-                     <a class="dropdown-item" href="#">Weekly Report</a>
-                     <a class="dropdown-item" href="#">Yearly Report</a>
-                  </div>
-               </li> -->
-               <li class="nav-item">
-                  <a class="nav-link active" href="products.html">
-                     <i class="fas fa-shopping-cart"></i> Products
-                  </a>
-               </li>
-
-               <li class="nav-item">
-                  <a class="nav-link" href="">
-                     <i class="far fa-user"></i> Accounts
-                  </a>
-               </li>
-               <!-- <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                     aria-haspopup="true" aria-expanded="false">
-                     <i class="fas fa-cog"></i>
-                     <span> Settings <i class="fas fa-angle-down"></i> </span>
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                     <a class="dropdown-item" href="#">Profile</a>
-                     <a class="dropdown-item" href="#">Billing</a>
-                     <a class="dropdown-item" href="#">Customize</a>
-                  </div>
-               </li> -->
-            </ul>
-            <!-- <ul class="navbar-nav">
-               <li class="nav-item">
-                  <a class="nav-link d-block" href="login.html">
-                     Admin, <b>Logout</b>
-                  </a>
-               </li>
-            </ul> -->
-         </div>
       </div>
    </nav>
    <div class="container tm-mt-big tm-mb-big">
@@ -96,35 +43,39 @@
                         <div class="form-group mb-3">
                            <label for="userID">UserID
                            </label>
-                            <input id="userID" name="userID" type="text" value="U00000" readonly
+                            <input id="userID" name="userID" type="text" value="${user.getUserID()}" readonly
                               class="form-control validate" />
                         </div>
                          <div class="row">
                             <div class="form-group mb-3 col-xs-12 col-md-6">
                               <label for="username">User Name
                               </label>
-                              <input id="username" name="username" type="text" value="Nguyen Hoang Nam"
-                                 class="form-control validate" />
+                              <input id="username" name="username" type="text" value ='${user.getUsername()}'
+                                 class="form-control validate" required/>
                            </div>
                            <div class="form-group mb-3 col-xs-12 col-md-6">
                               <p>Gender</p>
-                              <label for=gender"><input id="gender" name="gender" type=radio value="1"
-                                                        class="form-control validate" checked/>Male</label>
-                              <label for="type"><input id="gender" name="gender" type=radio value="0"
+                              <label for=male"><input id="male" name="gender" type=radio value="1"
+                                                        class="form-control validate"/>Male</label>
+                              <label for="female"><input id="female" name="gender" type=radio value="0"
                                                        class="form-control validate" />Female</label>
                            </div>
+                            <script>
+                                <c:if test='${user.getGender() == 1}'>
+                                    
+                            </script>
                          </div>
                          <div class="row">
                             <div class="form-group mb-3 col-xs-12 col-md-6">
                                <label for="dob">Date of Birth
                                </label>
-                                <input id="dob" name="dob" type=date value="2001-01-18"
+                                <input id="dob" name="dob" type=date required value='${user.getDob()}'
                                   class="form-control validate" />
                             </div>
                              <div class="form-group mb-3 col-xs-12 col-md-6">
                                <label for="phone">Phone Number
                                </label>
-                               <input id="phone" name="phone" type="text" value="01728973394"
+                               <input id="phone" name="phone" type="text" required value='${user.getPhone()}'
                                   class="form-control validate" />
                             </div>
                          </div>
@@ -132,13 +83,13 @@
                             <div class="form-group mb-3 col-xs-12 col-md-6">
                               <label for="email">Email
                                 </label>
-                                <input id="email" name="email" type="text" value="namngutn1@gmail.com"
+                                <input id="email" name="email" type="text" required value='${user.getEmail()}'
                                    class="form-control validate" />
                              </div>
                               <div class="form-group mb-3 col-xs-12 col-md-6">
                                 <label for="password">Password
                                 </label>
-                                  <input id="password" name="password" type=text value="nam123"
+                                  <input id="password" name="password" type=text required ${user.getPassword()}
                                    class="form-control validate" />
                              </div>
                          </div>
@@ -146,13 +97,13 @@
                          <div class="form-group mb-3 col-xs-12 col-md-6">
                            <label for="weight">Weight
                            </label>
-                             <input id="weight" name="weight" type=number step=0.1 min="0" value=64
+                             <input id="weight" name="weight" type=number step=0.1 min="0" required ${user.getWeight()}
                               class="form-control validate" />
                         </div>
                          <div class="form-group mb-3 col-xs-12 col-md-6">
                            <label for="height">Height
                            </label>
-                           <input id="height" name="heght" type=number step=0.1 min="0" value=168.5
+                           <input id="height" name="heght" type=number step=0.1 min="0" required ${user.getHeight()}
                               class="form-control validate" />
                         </div>
                           </div>
@@ -161,6 +112,7 @@
                            <label for="activity">Activity
                            </label>
                            <select class="custom-select tm-select-accounts" id="activity">
+                                <option selected value='${user.getActivity()}'></option>
                               <option value="1">Sedentary</option>
                               <option value="2" selected>Lightly Active</option>
                               <option value="3">Moderately Active</option>
@@ -184,39 +136,42 @@
                             <div class="form-group mb-3 col-xs-12 col-md-4">
                               <label for="goal">Goal
                               </label>
-                              <input id="goal" name="goal" type=number step =1 min =-1 max =1 value=0
-                                 class="form-control validate" />
+                              <select class="custom-select tm-select-accounts" id="activity">
+                                <option value="0" selected>Weight Maintenance</option>
+                                <option value="1">Gain Weight</option>
+                                <option value="-1">Lose Weight</option>
+                              </select>
                            </div>
                             <div class="form-group mb-3 col-xs-12 col-md-4">
                               <label for="amount">Amount of Change
                               </label>
-                              <input id="amount" name="amount" type=number step =0.1 min =0 value=0
+                              <input id="amount" name="amount" type=number step =0.1 min =0 required
                                  class="form-control validate" />
                            </div>
                             <div class="form-group mb-3 col-xs-12 col-md-4">
-                              <label for="duration">Duration
+                              <label for="duration">Duration (weeks)
                               </label>
-                              <input id="duration" name="duration" type=number step =1 min =1 max =12 value=8
+                              <input id="duration" name="duration" type=number step =1 min =1 max =12 required
                                  class="form-control validate" />
                            </div>
                          </div>
                          <div class="row">
                             <div class="form-group mb-3 col-xs-12 col-md-4">
-                              <label for="main">Main Meals
+                              <label for="main">Main Meals per Day
                               </label>
-                              <input id="main" name="main" type=number step =1 min =2 max =3 value=3
+                              <input id="main" name="main" type=number step =1 min =2 max =3 required
                                  class="form-control validate" />
                            </div>
                             <div class="form-group mb-3 col-xs-12 col-md-4">
-                              <label for="side">Side Meals
+                              <label for="side">Side Meals per Day
                               </label>
-                              <input id="side" name="side" type=number step =1 min =0 max =2 value=2
+                              <input id="side" name="side" type=number step =1 min =0 max =2 required
                                  class="form-control validate" />
                            </div>
                             <div class="form-group mb-3 col-xs-12 col-md-4">
-                              <label for="session">Ex Session
+                              <label for="session">Ex Session per Day
                               </label>
-                              <input id="session" name="session" type=number step =1 min =1 max =3 value=2
+                              <input id="session" name="session" type=number step =1 min =1 max =3 required
                                  class="form-control validate" />
                            </div>
                          </div>
@@ -224,13 +179,13 @@
                             <div class="form-group mb-3 col-xs-12 col-md-6">
                               <label for="rank">Rank
                               </label>
-                              <input id="rank" name="rank" type=number step =1 min =1 max =3 value=1
+                              <input id="rank" name="rank" type=number step =1 min =1 max =3 required
                                  class="form-control validate" />
                            </div>
                             <div class="form-group mb-3 col-xs-12 col-md-6">
                               <label for="createdate">Create Date
                               </label>
-                              <input id="createdate" name="createdate" type=date value= "2023-03-04"
+                                <input id="createdate" name="createdate" type=date value=''
                                  class="form-control validate" />
                             </div>
                          </div>
@@ -258,16 +213,6 @@
          </div>
       </div>
    </div>
-   <!-- <footer class="tm-footer row tm-mt-small">
-      <div class="col-12 font-weight-light">
-         <p class="text-center text-white mb-0 px-4 small">
-            Copyright &copy; <b>2018</b> All rights reserved.
-
-            Design: <a rel="nofollow noopener" href="https://templatemo.com" class="tm-footer-link">Template Mo</a>
-         </p>
-      </div>
-   </footer> -->
-
    <script src="js/jquery-3.3.1.min.js"></script>
    <!-- https://jquery.com/download/ -->
    <script src="jquery-ui-datepicker/jquery-ui.min.js"></script>

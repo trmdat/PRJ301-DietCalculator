@@ -124,9 +124,8 @@
                                      <c:forEach items="${userList}" var="x">
                                         <tr>
                                            <td class="align-middle col-check">
-                                              <div
-                                                 class="custom-control custom-control-inline custom-checkbox custom-control-nameless m-0 align-top">
-                                                 <input type="checkbox" class="custom-control-input" id="item-1">
+                                              <div class="custom-control custom-control-inline custom-checkbox custom-control-nameless m-0 align-top">
+                                                 <input type="checkbox" class="custom-control-input" id="item-1" name='checkbox' value='${x.getUserID()}'>
                                                  <label class="custom-control-label" for="item-1"></label>
                                               </div>
                                            </td>
@@ -178,7 +177,7 @@
                            </div>
                         </div>
                          <a
-                        href="AddProduct.html"
+                        href="AddUser.jsp"
                         class="btn btn-primary btn-block text-uppercase mb-3 bg-success">Add new product</a>
                       <button class="btn btn-primary btn-block text-uppercase bg-success">
                         Delete selected products
