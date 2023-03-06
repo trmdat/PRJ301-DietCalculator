@@ -5,8 +5,15 @@
  */
 package com.dietcalculator.controller;
 
+import com.dietcalculator.dao.UserDAO;
+import com.dietcalculator.dto.User;
+import com.dietcalculator.util.Constants;
+import com.dietcalculator.util.Utils;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,18 +37,76 @@ public class UserController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet UserController</title>");         
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet UserController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        //Catching the action
+        boolean check;
+        String action = request.getParameter("action");
+        UserDAO userDAO = new UserDAO();
+        if(action == null || action.equalsIgnoreCase("read")){  //LIST ALL USERS
+            request.setAttribute("userList", userDAO.readUser());
+            RequestDispatcher rd = request.getRequestDispatcher(action);
+            rd.forward(request, response);
+        }else if(action.equalsIgnoreCase("create")){            //CREATE A NEW USER
+            if(!request.getParameter("userID").isEmpty()){
+                try{
+                    String lastUserIndex = userDAO.lastIDIndex();
+                    int lastIndex = Utils.extractIntFromString(lastUserIndex);
+                    String userID = String.format(Constants.USER_ID_FORMAT, ++lastIndex);
+                    String username = request.getParameter("username");
+                    Date dob = Utils.convertStringToSqlDate(request.getParameter("dob"));
+                    String phone = request.getParameter("phone");
+                    String address = request.getParameter("address");
+                    String email = request.getParameter("email");
+                    String password = request.getParameter("password");
+                    double weight = Double.parseDouble(request.getParameter("weight"));
+                    double height = Double.parseDouble(request.getParameter("height"));
+                    int gender = Integer.parseInt(request.getParameter("gender"));
+                    int activity = Integer.parseInt(request.getParameter("activity"));
+                    int preference = Integer.parseInt(request.getParameter("preference"));
+                    int goal = Integer.parseInt(request.getParameter("goal"));
+                    double amount = Double.parseDouble(request.getParameter("amount"));
+                    int duration = Integer.parseInt(request.getParameter("duration"));
+                    int main = Integer.parseInt(request.getParameter("main"));
+                    int side = Integer.parseInt(request.getParameter("side"));
+                    int session = Integer.parseInt(request.getParameter("session"));
+                    int rank = Integer.parseInt(request.getParameter("rank"));
+                    Date createdate = Utils.convertStringToSqlDate(request.getParameter("createdate"));
+                    check = userDAO.createUser(userID, username, dob, phone, address, email, password, weight, height, gender, activity, preference, goal, amount, duration, main, side, session, rank, createdate);
+                }catch(Exception e){
+                    System.out.println(e.getMessage());
+                }
+            response.sendRedirect("");
+        }else if(action.equalsIgnoreCase("update")){
+             if(!request.getParameter("username").isEmpty()){
+                try{
+                    String username = request.getParameter("username");
+                    Date dob = Utils.convertStringToSqlDate(request.getParameter("dob"));
+                    String phone = request.getParameter("phone");
+                    String address = request.getParameter("address");
+                    String email = request.getParameter("email");
+                    String password = request.getParameter("password");
+                    double weight = Double.parseDouble(request.getParameter("weight"));
+                    double height = Double.parseDouble(request.getParameter("height"));
+                    int gender = Integer.parseInt(request.getParameter("gender"));
+                    int activity = Integer.parseInt(request.getParameter("activity"));
+                    int preference = Integer.parseInt(request.getParameter("preference"));
+                    int goal = Integer.parseInt(request.getParameter("goal"));
+                    double amount = Double.parseDouble(request.getParameter("amount"));
+                    int duration = Integer.parseInt(request.getParameter("duration"));
+                    int main = Integer.parseInt(request.getParameter("main"));
+                    int side = Integer.parseInt(request.getParameter("side"));
+                    int session = Integer.parseInt(request.getParameter("session"));
+                    int rank = Integer.parseInt(request.getParameter("rank"));
+                    Date createdate = Utils.convertStringToSqlDate(request.getParameter("createdate"));
+                }catch(Exception e){
+                    System.out.println(e.getMessage());
+                }
+            }else
+                response.sendRedirect("");
+        }else if(action.equalsIgnoreCase("delete")){
+            
+        }else{
+            
+            }
         }
     }
 

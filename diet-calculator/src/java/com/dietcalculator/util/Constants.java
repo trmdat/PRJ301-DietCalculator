@@ -39,8 +39,8 @@ public final class Constants {
     public static final int DEFAULT_RANK = 1;
 
     public static final int[] PREFERENCE_RANGE = {0,1,2,3,4};
-    public static final int[] WEEK_RANGE = {0,1,2,3,4,5,6,7,8,9,10,11,12};
-    public static final int[] RANK_RANGE = {1,2};
+    public static final int[] WEEK_RANGE = {1,2,3,4,5,6,7,8,9,10,11,12};
+    public static final int[] RANK_RANGE = {1,2,3};
 
     //Diet constants
     public static final int CALORIES_PER_KG = 7716;
@@ -186,20 +186,29 @@ public final class Constants {
         GENDER.put("FEMALE", 0);
     }
     
-    public static final HashMap<String ,Double> ACTIVITY_LEVEL = new HashMap(); 
+    public static final HashMap<Integer,String> ACTIVITY = new HashMap();
     static{
-        ACTIVITY_LEVEL.put("SEDENTARY", 1.2);
-        ACTIVITY_LEVEL.put("LIGHTLY_ACTIVE", 1.375);
-        ACTIVITY_LEVEL.put("MODERATELY_ACTIVE", 1.55);
-        ACTIVITY_LEVEL.put("ACTIVE", 1.725);
-        ACTIVITY_LEVEL.put("VERY_ACTIVE", 1.9);
+        ACTIVITY.put(1,"SEDENTARY");
+        ACTIVITY.put(2,"LIGHTLY_ACTIVE");
+        ACTIVITY.put(3,"MODERATELY_ACTIVE");
+        ACTIVITY.put(4,"ACTIVE");
+        ACTIVITY.put(5,"VERY_ACTIVE");
+    }
+    
+    public static final HashMap<Integer ,Double> ACTIVITY_LEVEL = new HashMap(); 
+    static{
+        ACTIVITY_LEVEL.put(1, 1.2);
+        ACTIVITY_LEVEL.put(2, 1.375);
+        ACTIVITY_LEVEL.put(3, 1.55);
+        ACTIVITY_LEVEL.put(4, 1.725);
+        ACTIVITY_LEVEL.put(5, 1.9);
     }
     
     public static final HashMap<String, Integer> PREFERENCE = new HashMap();
     static{
         PREFERENCE.put("NO_PREFERENCE", 0);
         PREFERENCE.put("ASIAN&PACIFIC", 1);
-        PREFERENCE.put("EUROPEAN&NORTH_AMERICA", 2);
+        PREFERENCE.put("EUROPEAN&NORTH_AMERICAN", 2);
         PREFERENCE.put("MEDITERRANEAN&HISPANIC", 3);
         PREFERENCE.put("VEGAN", 4);
     }
@@ -217,17 +226,18 @@ public final class Constants {
         return Math.round(bmi*100)/100;
     }
     
-    public static final int totalCaloricNeed(String gender, double weight, double height, int age, String activityLevel, String goalStr, double amount, int week){
+    public static final int totalCaloricNeed(int gender, double weight, double height, int age, int activity, String goalStr, double amount, int week){
         //Calculating BMR
         double bmr = 0;
-        for(String x: GENDER.keySet())
-            if(x.equals("MALE"))
-                bmr = 66.5 + (13.75*weight) + (5.003*height) - (6.775*age);
-            else if(x.equals("FEMALE"))
-                bmr = 655.1 + (9.563*weight) + (1.85*height) - (4.676*age);
+        if(gender == 1) //MALE
+            bmr = 66.5 + (13.75*weight) + (5.003*height) - (6.775*age);
+        else if(gender == 0)    //FEMALE
+            bmr = 655.1 + (9.563*weight) + (1.85*height) - (4.676*age);
         
         //Calculating AMR
-        double amr = ACTIVITY_LEVEL.keySet().stream().filter((x) -> (x.equals(activityLevel))).map((x) -> ACTIVITY_LEVEL.get(x)).reduce(bmr, (accumulator, _item) -> accumulator * _item);
+        double amr = 0;
+        for(int x: ACTIVITY_LEVEL.keySet())
+            if(x == activity) amr = bmr*ACTIVITY_LEVEL.get(x);
         
         //Getting goal value
         int goal = 0;
