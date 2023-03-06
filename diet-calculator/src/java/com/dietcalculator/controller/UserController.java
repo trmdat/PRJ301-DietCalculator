@@ -43,7 +43,7 @@ public class UserController extends HttpServlet {
         UserDAO userDAO = new UserDAO();
         if(action == null || action.equalsIgnoreCase("read")){  //LIST ALL USERS
             request.setAttribute("userList", userDAO.readUser());
-            RequestDispatcher rd = request.getRequestDispatcher(action);
+            RequestDispatcher rd = request.getRequestDispatcher("/Administrator/UserList.jsp");
             rd.forward(request, response);
         }else if(action.equalsIgnoreCase("create")){            //CREATE A NEW USER
             if(!request.getParameter("userID").isEmpty()){
@@ -74,7 +74,7 @@ public class UserController extends HttpServlet {
                 }catch(Exception e){
                     System.out.println(e.getMessage());
                 }
-            response.sendRedirect("");
+            response.sendRedirect("UserController");
         }else if(action.equalsIgnoreCase("update")){
              if(!request.getParameter("username").isEmpty()){
                 try{
@@ -101,7 +101,7 @@ public class UserController extends HttpServlet {
                     System.out.println(e.getMessage());
                 }
             }else
-                response.sendRedirect("");
+                response.sendRedirect("UserController");
         }else if(action.equalsIgnoreCase("delete")){
             
         }else{

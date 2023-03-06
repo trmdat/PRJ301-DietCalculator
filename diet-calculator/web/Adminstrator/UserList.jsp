@@ -25,7 +25,7 @@
       }
       
       th, td{
-          outline: 0.5px solid #DEE2E6;
+          outline: 0.6px solid #DEE2E6;
           background: white;
       }
       
@@ -40,7 +40,7 @@
       }
       
       .col-name{
-          left: 144px;
+          left: 141px;
           position: sticky;
       }
       
@@ -121,7 +121,7 @@
                                     </tr>
                                  </thead>
                                  <tbody>
-                                     <c:forEach ietms="${userList}" var="x">
+                                     <c:forEach items="${userList}" var="x">
                                         <tr>
                                            <td class="align-middle col-check">
                                               <div
@@ -157,7 +157,7 @@
                                            <td class="text-center align-middle">${x.getRank()}</td>
                                            <td class="text-center align-middle"><span>${x.getCreatedate()}</span></td>
                                            <td class="text-center align-middle">
-                                                 <button class="btn btn-sm btn-outline-secondary badge" type="button"
+                                                 <a href='UserController?action=update&userID=${x.getUserID()}'><button class="btn btn-sm btn-outline-secondary badge" type="button"
                                                     data-toggle="modal" data-target="#user-form-modal">Edit</button>
                                            </td>
                                         </tr>
