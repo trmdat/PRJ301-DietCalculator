@@ -34,11 +34,11 @@
                     <div class="tm-bg-primary-dark tm-block tm-block-products">
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="tm-block-title d-inline-block">View & Delete Food</h2>
+                                <h2 class="tm-block-title d-inline-block">View & Delete Product</h2>
                             </div>
                         </div>
-                        <a href="Food/AddFood.jsp" class="btn btn-primary btn-block text-uppercase mb-3 bg-success">Add new Food</a>
-                        <form action="/diet-calculator/FoodController" method="get" class="tm-edit-product-form">
+                        <a href="Adminstrator/AddProduct.jsp" class="btn btn-primary btn-block text-uppercase mb-3 bg-success">Add new Product</a>
+                        <form action="/diet-calculator/ProductController" method="get" class="tm-edit-product-form">
                             <div class="tm-product-table-container">
 
                                 <table class="table table-hover tm-table-small tm-product-table">
@@ -49,13 +49,14 @@
                                             <th scope="col">Product ID</th>
                                             <th scope="col">Product name</th>
                                             <th scope="col">Type</th>
-                                            <th scope="col">size</th>
-                                            <th scope="col">caloricintake</th>
-                                            <th scope="col">carbohydrate</th>
-                                            <th scope="col">fiber</th>
-                                            <th scope="col">protein</th>
-                                            <th scope="col">fat</th>
-                                            <th scope="col">water</th>
+                                            <th scope="col">Price</th>
+                                            <th scope="col">Quantity</th>
+                                            <th scope="col">Brand</th>
+                                            <th scope="col">Origin</th>
+                                            <th scope="col">Volume</th>
+                                            <th scope="col">Effect</th>
+                                            <th scope="col">Rate</th>
+                                            <th scope="col">Purchase</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -72,20 +73,21 @@
                                             </td>
                                         </tr> -->
 
-                                    <c:forEach items="${foodList}" var="x">
+                                    <c:forEach items="${productList}" var="x">
                                         <tr>
-                                            <th scope="row"><input type="checkbox" name="foodID" value="${x.getFoodID()}"/></th>
-                                            <td>${x.getFoodID()}</td>
-                                            <td>${x.getFoodname()}</td>
-                                            <td>${x.getCategory()}</td>
-                                            <td>${x.getSize()}</td>
-                                            <td>${x.getCaloricintake()}</td>
-                                            <td>${x.getCarbohydrate()}</td>
-                                            <td>${x.getFiber()}</td>
-                                            <td>${x.getProtein()}</td>
-                                            <td>${x.getFat()}</td>
-                                            <td>${x.getWater()}</td>
-                                            <td><a href="FoodController?action=update&foodID=${x.getFoodID()}">Update</a></td>
+                                            <th scope="row"><input type="checkbox" name="foodID" value="${x.getProductID()}"/></th>
+                                            <td>${x.getProductID()}</td>
+                                            <td>${x.getProductName()}</td>
+                                            <td>${x.getType()}</td>
+                                            <td>${x.getPrice()}</td>
+                                            <td>${x.getQuantity()}</td>
+                                            <td>${x.getBrand()}</td>
+                                            <td>${x.getOrigin()}</td>
+                                            <td>${x.getVolume()}</td>
+                                            <td>${x.getEffect()}</td>
+                                            <td>${x.getRate()}</td>
+                                            <td>${x.getPurchase()}</td>
+                                            <td><a href="FoodController?action=update&foodID=${x.getProductID()}">Update</a></td>
                                         </tr>
                                     </c:forEach>
                                     </tbody>
