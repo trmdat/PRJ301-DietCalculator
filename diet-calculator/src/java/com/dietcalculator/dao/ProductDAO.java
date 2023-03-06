@@ -45,8 +45,17 @@ public class ProductDAO {
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()){
-                list.add(new Product(rs.getString("productID"),rs.getString("productname"),rs.getString("type"), rs.getDouble("price"),
-                                    rs.getInt("quantity"), rs.getString("brand"), rs.getString("origin"),rs.getDouble("volume"), rs.getString("effect"), rs.getDouble("rate"), rs.getDouble("purchase")));
+                list.add(new Product(rs.getString("productID"),
+                                    rs.getString("productname"),
+                                    rs.getString("type"), 
+                                    rs.getDouble("price"),
+                                    rs.getInt("quantity"), 
+                                    rs.getString("brand"), 
+                                    rs.getString("origin"),
+                                    rs.getDouble("volume"), 
+                                    rs.getString("effect"), 
+                                    rs.getDouble("rate"), 
+                                    rs.getDouble("purchase")));
             }
             rs.close();
             ps.close();
