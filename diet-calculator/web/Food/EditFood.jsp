@@ -94,7 +94,7 @@
                                             </label>
                                             <input
                                                 name="size"
-                                                type="number"
+                                                type="text"
                                                 class="form-control validate"
                                                 required
                                                 value = "${food.getSize()}"
@@ -107,7 +107,7 @@
                                             </label>
                                             <input
                                                 name="caloricintake"
-                                                type="number"
+                                                type="text"
                                                 class="form-control validate"
                                                 required
                                                 value = "${food.getCaloricintake()}"
@@ -120,7 +120,7 @@
                                             </label>
                                             <input
                                                 name="carbohydrate"
-                                                type="number"
+                                                type="text"
                                                 class="form-control validate"
                                                 required
                                                 value = "${food.getCarbohydrate()}"
@@ -133,7 +133,7 @@
                                             </label>
                                             <input
                                                 name="fiber"
-                                                type="number"
+                                                type="text"
                                                 class="form-control validate"
                                                 required
                                                 value = "${food.getCarbohydrate()}"
@@ -146,7 +146,7 @@
                                             </label>
                                             <input
                                                 name="protein"
-                                                type="number"
+                                                type="text"
                                                 class="form-control validate"
                                                 required
                                                 value = "${food.getProtein()}"
@@ -159,7 +159,7 @@
                                             </label>
                                             <input
                                                 name="fat"
-                                                type="number"
+                                                type="text"
                                                 class="form-control validate"
                                                 required
                                                 value = "${food.getFat()}"
@@ -172,7 +172,7 @@
                                             </label>
                                             <input
                                                 name="water"
-                                                type="number"
+                                                type="text"
                                                 class="form-control validate"
                                                 required
                                                 value = "${food.getWater()}"

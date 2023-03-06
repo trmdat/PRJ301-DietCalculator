@@ -90,7 +90,7 @@
                                         </label>
                                         <input
                                             name="size"
-                                            type="number"
+                                            type="text"
                                             class="form-control validate"
                                             required
                                             />
@@ -102,7 +102,7 @@
                                         </label>
                                         <input
                                             name="caloricintake"
-                                            type="number"
+                                            type="text"
                                             class="form-control validate"
                                             required
                                             />
@@ -114,7 +114,7 @@
                                         </label>
                                         <input
                                             name="carbohydrate"
-                                            type="number"
+                                            type="text"
                                             class="form-control validate"
                                             required
                                             />
@@ -126,7 +126,7 @@
                                         </label>
                                         <input
                                             name="fiber"
-                                            type="number"
+                                            type="text"
                                             class="form-control validate"
                                             required
                                             />
@@ -138,7 +138,7 @@
                                         </label>
                                         <input
                                             name="protein"
-                                            type="number"
+                                            type="text"
                                             class="form-control validate"
                                             required
                                             />
@@ -150,7 +150,7 @@
                                         </label>
                                         <input
                                             name="fat"
-                                            type="number"
+                                            type="text"
                                             class="form-control validate"
                                             required
                                             />
@@ -162,7 +162,7 @@
                                         </label>
                                         <input
                                             name="water"
-                                            type="number"
+                                            type="text"
                                             class="form-control validate"
                                             required
                                             />
