@@ -7,6 +7,7 @@ package com.dietcalculator.controller;
 
 import com.dietcalculator.dao.UserDAO;
 import com.dietcalculator.dto.User;
+import com.dietcalculator.util.Constants;
 import com.dietcalculator.util.Utils;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -49,7 +50,7 @@ public class UserController extends HttpServlet {
                 try{
                     String lastUserIndex = userDAO.lastIDIndex();
                     int lastIndex = Utils.extractIntFromString(lastUserIndex);
-                    String userID = 
+                    String userID = String.format(Constants.USER_ID_FORMAT, ++lastIndex);
                     String username = request.getParameter("username");
                     Date dob = Utils.convertStringToSqlDate(request.getParameter("dob"));
                     String phone = request.getParameter("phone");

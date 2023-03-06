@@ -44,7 +44,10 @@
         <servlet-name>ProductInfoController</servlet-name>
         <servlet-class>com.dietcalculator.controller.ProductInfoController</servlet-class>
     </servlet>
-   
+    <servlet>
+        <servlet-name>PopUpController</servlet-name>
+        <servlet-class>com.dietcalculator.controller.PopUpController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UserController</servlet-name>
         <url-pattern>/UserController</url-pattern>
@@ -89,7 +92,10 @@
         <servlet-name>ProductInfoController</servlet-name>
         <url-pattern>/productinfo</url-pattern>
     </servlet-mapping>
-
+    <servlet-mapping>
+        <servlet-name>PopUpController</servlet-name>
+        <url-pattern>/popupcontroller</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

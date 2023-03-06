@@ -112,28 +112,13 @@ public class ExerciseDAO {
         return row > 0;
     }
 
-//    public boolean deleteExercise(String exerciseID) {
-//        int row = 0;
-//        String sql = "DELETE FROM Exercise WHERE exerciseID = ?";
-//        try {
-//            Connection conn = DBUtils.getConnection();
-//            PreparedStatement ps = conn.prepareStatement(sql);
-//            ps.setString(1, exerciseID);
-//            row = ps.executeUpdate();
-//            ps.close();
-//            conn.close();
-//        } catch (SQLException ex) {
-//            System.out.println(ex);
-//        }
-//        return row > 0;
-//    }
-    
-    public boolean deleteExercise(StringBuilder exerciseID) {
+    public boolean deleteExercise(String exerciseID) {
         int row = 0;
-        String sql = "DELETE FROM Exercise WHERE exerciseID in (" + exerciseID + ")";
+        String sql = "DELETE FROM Exercise WHERE exerciseID = ?";
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, exerciseID);
             row = ps.executeUpdate();
             ps.close();
             conn.close();
