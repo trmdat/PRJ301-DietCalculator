@@ -27,8 +27,13 @@
                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 tm-block-col">
                     <div class="tm-bg-primary-dark tm-block tm-block-products">
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col-10">
                                 <h2 class="tm-block-title d-inline-block">View & Delete Food</h2>
+                            </div>
+                            <div class="col-2">
+                                <form action="/diet-calculator/FoodController">
+                                    <button type="submit" class="btn btn-primary btn-block text-uppercase bg-success"> << Return</button>                            
+                                </form>
                             </div>
                         </div>
                         <a href="Food/AddFood.jsp" class="btn btn-primary btn-block text-uppercase mb-3 bg-success">Add new Food</a>
@@ -53,35 +58,35 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-   <!--                                     <tr>
-                                            <th scope="row"><input type="checkbox" name="id" value="1"/></th>
-                                            <td class="tm-product-name">Lorem Ipsum Product 1</td>
-                                            <td>1,450</td>
-                                            <td>550</td>
-                                            <td>28 March 2019</td>
-                                            <td>
-                                                <a href="#" class="tm-product-delete-link">
-                                                    <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                                                </a>
-                                            </td>
-                                        </tr> -->
+                                        <!--                                     <tr>
+                                                                                 <th scope="row"><input type="checkbox" name="id" value="1"/></th>
+                                                                                 <td class="tm-product-name">Lorem Ipsum Product 1</td>
+                                                                                 <td>1,450</td>
+                                                                                 <td>550</td>
+                                                                                 <td>28 March 2019</td>
+                                                                                 <td>
+                                                                                     <a href="#" class="tm-product-delete-link">
+                                                                                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                                                                                     </a>
+                                                                                 </td>
+                                                                             </tr> -->
 
-                                    <c:forEach items="${foodList}" var="x">
-                                        <tr>
-                                            <th scope="row"><input type="checkbox" name="foodID" value="${x.getFoodID()}"/></th>
-                                            <td>${x.getFoodID()}</td>
-                                            <td>${x.getFoodname()}</td>
-                                            <td>${x.getCategory()}</td>
-                                            <td>${x.getSize()}</td>
-                                            <td>${x.getCaloricintake()}</td>
-                                            <td>${x.getCarbohydrate()}</td>
-                                            <td>${x.getFiber()}</td>
-                                            <td>${x.getProtein()}</td>
-                                            <td>${x.getFat()}</td>
-                                            <td>${x.getWater()}</td>
-                                            <td><a href="FoodController?action=update&foodID=${x.getFoodID()}">Update</a></td>
-                                        </tr>
-                                    </c:forEach>
+                                        <c:forEach items="${foodList}" var="x">
+                                            <tr>
+                                                <th scope="row"><input type="checkbox" name="foodID" value="${x.getFoodID()}"/></th>
+                                                <td>${x.getFoodID()}</td>
+                                                <td>${x.getFoodname()}</td>
+                                                <td>${x.getCategory()}</td>
+                                                <td>${x.getSize()}</td>
+                                                <td>${x.getCaloricintake()}</td>
+                                                <td>${x.getCarbohydrate()}</td>
+                                                <td>${x.getFiber()}</td>
+                                                <td>${x.getProtein()}</td>
+                                                <td>${x.getFat()}</td>
+                                                <td>${x.getWater()}</td>
+                                                <td><a href="FoodController?action=update&foodID=${x.getFoodID()}">Update</a></td>
+                                            </tr>
+                                        </c:forEach>
                                     </tbody>
                                 </table>
                             </div>

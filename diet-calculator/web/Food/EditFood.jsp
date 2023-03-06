@@ -21,8 +21,13 @@
                 <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
                     <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col-10">
                                 <h2 class="tm-block-title d-inline-block">Edit Product</h2>
+                            </div>
+                            <div class="col-2">
+                                <form action="/diet-calculator/FoodController">
+                                    <button type="submit" class="btn btn-primary btn-block text-uppercase bg-success"> << Return</button>                            
+                                </form>
                             </div>
                         </div>
                         <div class="row tm-edit-product-row">

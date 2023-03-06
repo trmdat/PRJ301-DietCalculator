@@ -35,21 +35,19 @@ public class FoodController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+
         String action = request.getParameter("action");
         FoodDAO dao = new FoodDAO();
+        
         if (action == null || action.equals("read")) {
 
             ArrayList<Food> foodList = dao.readFood();
+             request.setAttribute("foodList", foodList);
             RequestDispatcher rd = request.getRequestDispatcher("Food/View&DeleteFood.jsp");
-            request.setAttribute("foodList", foodList);
+           
             rd.forward(request, response);
         } else if (action.equals("create")) {
-
-            if (request.getParameter("foodID") == null) {
-                RequestDispatcher rd = request.getRequestDispatcher("Food/AddFood.jsp");
-                rd.forward(request, response);;
-            } else if (!request.getParameter("foodID").isEmpty()) {
+            if (!request.getParameter("foodID").isEmpty()) {
                 String foodID = request.getParameter("foodID");
                 String foodname = request.getParameter("foodname");
                 String category = request.getParameter("category");
@@ -97,7 +95,7 @@ public class FoodController extends HttpServlet {
 //              RequestDispatcher rd = request.getRequestDispatcher("FoodController");   
 //              request.removeAttribute("action");
 //              rd.forward(request, response);
-            response.sendRedirect("FoodController");
+//            response.sendRedirect("FoodController");
         }
     }
 
