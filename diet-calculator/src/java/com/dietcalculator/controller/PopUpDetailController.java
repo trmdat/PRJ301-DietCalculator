@@ -1,9 +1,10 @@
 package com.dietcalculator.controller;
 
-import com.dietcalculator.dao.ExerciseDAO;
-import com.dietcalculator.dto.Exercise;
+import com.dietcalculator.dao.PopUpDetailDAO;
+import com.dietcalculator.dto.PopUpDetail;
 import java.io.IOException;
-import java.util.List;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,8 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author admin
  */
-//@WebServlet(name = "ExerciseController", urlPatterns = {"/exercisecontroller"})
-public class ExerciseController extends HttpServlet {
+public class PopUpDetailController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -28,82 +28,80 @@ public class ExerciseController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+                String action = request.getParameter("action");
 
-        String action = request.getParameter("action");
+        PopUpDetailDAO popupdetailDao = new PopUpDetailDAO();
 
-        ExerciseDAO exerciseDAO = new ExerciseDAO();
-
-        String id = "";
-        String exName = "";
-        double lowerweight = 0;
-        double upperweight = 0;
-        int calorexp = 0;
+        String popupId = "";
+        String productId = "";
+        String description = "";
 
         if (action == null || action.equals("list")) {
-            List<Exercise> list = exerciseDAO.readExercise();
+            ArrayList<PopUpDetail> list = popupdetailDao.readPopUpDetail();
 
             request.setAttribute("list", list);
-            RequestDispatcher rd = request.getRequestDispatcher("Adminstrator/Exercise.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("Adminstrator/PopUpDetail.jsp");
             rd.forward(request, response);
         } else if (action.equals("create")) {
             try {
-                id = request.getParameter("exerciseID");
-                exName = request.getParameter("exname");
-                lowerweight = Double.parseDouble(request.getParameter("lowerweight"));
-                upperweight = Double.parseDouble(request.getParameter("upperweight"));
-                calorexp = Integer.parseInt(request.getParameter("calorexp"));
+                popupId = request.getParameter("popupID");
+                productId = request.getParameter("productID");
+                description = request.getParameter("description");
             } catch (Exception e) {
             }
-            if (id != null) {
-                exerciseDAO.createExercise(id, exName, lowerweight, upperweight, calorexp);
+            if (popupId != null) {
+                popupdetailDao.createPopUpDetail(popupId, productId, description);
             }
 
-            response.sendRedirect("exercisecontroller");
+            response.sendRedirect("popupdetailcontroller");
         } else if (action.equals("delete")) {
             String[] ids = request.getParameterValues("checkId");
+            try {
+                productId = request.getParameter("checkProductId");
+            } catch (Exception e) {
+            }
             if (ids != null) {
                 for (String checkedid : ids) {
-                    exerciseDAO.deleteExercise(checkedid);
+                    popupdetailDao.deletePopUpDetail(checkedid, productId);
                 }
             }
 
-            response.sendRedirect("exercisecontroller");
+            response.sendRedirect("popupdetailcontroller");
         } else if (action.equals("edit")) {
             if (request.getParameter("jump") != null) {
                 try {
-                    id = request.getParameter("exerciseID");
+                    popupId = request.getParameter("popupID");
+                    productId = request.getParameter("productID");
                 } catch (NumberFormatException ex) {
                 }
-                Exercise ex = readexerciseByID(id);
+                PopUpDetail p = readPopUpDetailByID(popupId, productId);
 
-                request.setAttribute("exercise", ex);
-                RequestDispatcher rd = request.getRequestDispatcher("Adminstrator/EditExercise.jsp");
+                request.setAttribute("popup", p);
+                RequestDispatcher rd = request.getRequestDispatcher("Adminstrator/EditPopUpDetail.jsp");
                 rd.forward(request, response);
             } else {
                 try {
-                    id = request.getParameter("exerciseID");
-                    exName = request.getParameter("exname");
-                    lowerweight = Double.parseDouble(request.getParameter("lowerweight"));
-                    upperweight = Double.parseDouble(request.getParameter("upperweight"));
-                    calorexp = Integer.parseInt(request.getParameter("calorexp"));
+                    popupId = request.getParameter("popupID");
+                    productId = request.getParameter("productID");
+                    description = request.getParameter("description");
                 } catch (NumberFormatException ex) {
                 }
 
-                if (id != null) {
-                    exerciseDAO.updateExercise(id, exName, lowerweight, upperweight, calorexp);
+                if (popupId != null) {
+                    popupdetailDao.updatePopUpDetail(popupId, productId, description);
                 }
 
-                response.sendRedirect("exercisecontroller");
+                response.sendRedirect("popupdetailcontroller");
             }
 
         }
     }
 
-    protected Exercise readexerciseByID(String exID) {
-        ExerciseDAO dao = new ExerciseDAO();
-        List<Exercise> list = dao.readExercise();
-        for (Exercise ex : list) {
-            if (ex.getExerciseID().equals(exID)) {
+    protected PopUpDetail readPopUpDetailByID(String popupID, String productID) {
+        PopUpDetailDAO dao = new PopUpDetailDAO();
+        ArrayList<PopUpDetail> list = dao.readPopUpDetail();
+        for (PopUpDetail ex : list) {
+            if (ex.getPopupID().equals(popupID) && ex.getProductID().equals(productID)) {
                 return ex;
             }
         }

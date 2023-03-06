@@ -1,10 +1,9 @@
 <%-- 
-    Document   : EditExercise
-    Created on : Mar 4, 2023, 4:20:28 PM
+    Document   : EditPopUp
+    Created on : Mar 6, 2023, 5:17:30 PM
     Author     : admin
 --%>
 
-<%@page import="com.dietcalculator.dto.Exercise"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +26,7 @@
         <nav class="navbar navbar-expand-xl">
             <div class="container h-100">
                 <a class="navbar-brand" href="">
-                    <h1 class="tm-site-title mb-0 text-success">Exercise Admin</h1>
+                    <h1 class="tm-site-title mb-0 text-success">PopUp Admin</h1>
                 </a>
                 <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -93,33 +92,28 @@
             <div class="row">
                 <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
                     <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
-
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="tm-block-title d-inline-block">Edit Exercise <strong>${exercise.exerciseID}</strong></h2>
+                                <h2 class="tm-block-title d-inline-block">Edit PopUp <strong>${popup.popupID}</strong></h2>
                             </div>
                         </div>
                         <div class="row tm-edit-product-row">
                             <div class="col-xl-12 col-lg-12 col-md-12">
-                                <form action="exercisecontroller" method="get" class="tm-edit-product-form">
+                                <form action="popupcontroller" method="get" class="tm-edit-product-form">
                                     <input type=hidden name="action" value="edit">
-                                    <input type=hidden name="exerciseID" value="${exercise.exerciseID}">
+                                    <input type=hidden name="popupID" value="${popup.popupID}">
                                     <div class="form-group mb-3">
-                                        <label for="name">Exercise Name</label>
-                                        <input type="text" name="exname" value="${exercise.exname}" class="form-control validate" required/>
+                                        <label for="name">Description</label>
+                                        <input type="text" name="description" value="${popup.description}" class="form-control validate" required/>
                                     </div>
                                     <div class="row">
                                         <div class="form-group mb-3 col-xs-12 col-sm-4">
-                                            <label for="lowerweight">Lower Weight</label>
-                                            <input type="text" name="lowerweight" value="${exercise.lowerweight}" class="form-control validate" required/>
+                                            <label for="lowerweight">Status</label>
+                                            <input type="text" name="status" value="${popup.status}" class="form-control validate" required/>
                                         </div>
                                         <div class="form-group mb-3 col-xs-12 col-sm-4">
-                                            <label for="upperweight">Upper Weight</label>
-                                            <input type="text" name="upperweight" value="${exercise.upperweight}" class="form-control validate" required/>
-                                        </div>
-                                        <div class="form-group mb-3 col-xs-12 col-sm-4">
-                                            <label for="calorexp">Calorexp</label>
-                                            <input type="text" name="calorexp" value="${exercise.calorexp}" class="form-control validate" required/>
+                                            <label for="upperweight">Theme</label>
+                                            <input type="text" name="theme" value="${popup.theme}" class="form-control validate"/>
                                         </div>
                                         <div class="col-12">
                                             <input type="submit" value="Update Now" class="btn btn-primary btn-block text-uppercase bg-success">

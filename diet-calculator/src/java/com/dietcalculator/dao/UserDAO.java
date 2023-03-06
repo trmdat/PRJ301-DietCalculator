@@ -64,8 +64,8 @@ public class UserDAO {
         return index;
     }
 
-    public List<User> readUser() {
-        List<User> list = new ArrayList();
+    public ArrayList<User> readUser() {
+        ArrayList<User> list = new ArrayList();
         String sql = "SELECT * FROM [User]";
         try {
             Connection conn = DBUtils.getConnection();
@@ -171,8 +171,30 @@ public class UserDAO {
         }
         return row > 0;
     }
-    public static void main(String[] args) {
-        UserDAO dao = new UserDAO();
-        System.out.println(dao.login("123", "123"));
+
+    public User searchUser(String userID){
+        String sql = "SELECT userID, username, dob, phone, address, email, password, weight, height, gender, activity, preference, goal, amount, duration, main, side, session, rank, createdate FROM [User] WHERE userID = ?";
+        User user = null;
+        try {
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, userID);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                user = new User(rs.getString("userID"), rs.getString("username"),
+                    rs.getDate("dob"), rs.getString("phone"), rs.getString("address"),
+                    rs.getString("email"), rs.getString("password"), rs.getDouble("weight"),
+                    rs.getDouble("height"), rs.getInt("gender"), rs.getInt("activity"), rs.getInt("preference"),
+                    rs.getInt("goal"), rs.getDouble("amount"), rs.getInt("duration"), rs.getInt("main"),
+                    rs.getInt("side"), rs.getInt("session"), rs.getInt("rank"), rs.getDate("createdate"));
+            }
+            rs.close();
+            ps.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return user;
+
     }
 }

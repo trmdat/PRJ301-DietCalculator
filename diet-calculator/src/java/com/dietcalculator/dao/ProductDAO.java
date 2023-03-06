@@ -17,6 +17,9 @@ import java.util.ArrayList;
  * @author MSI
  */
 public class ProductDAO {
+    
+  
+    
     public String lastIDIndex(){
         String sql = "select top 1 productID from Product order by productID desc";
         String index = "PRO0000";

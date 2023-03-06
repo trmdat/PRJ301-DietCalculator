@@ -1,6 +1,6 @@
 <%-- 
-    Document   : AddExercise
-    Created on : Mar 4, 2023, 4:20:06 PM
+    Document   : AddPopUp
+    Created on : Mar 6, 2023, 8:18:46 PM
     Author     : admin
 --%>
 
@@ -24,7 +24,7 @@
         <nav class="navbar navbar-expand-xl">
             <div class="container h-100">
                 <a class="navbar-brand" href="">
-                    <h1 class="tm-site-title mb-0 text-success">Exercise Admin</h1>
+                    <h1 class="tm-site-title mb-0 text-success">PopUp Admin</h1>
                 </a>
                 <button
                     class="navbar-toggler ml-auto mr-0"
@@ -112,37 +112,33 @@
                     <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="tm-block-title d-inline-block">Add Exercise</h2>
+                                <h2 class="tm-block-title d-inline-block">Add PopUp</h2>
                             </div>
                         </div>
                         <div class="row tm-edit-product-row">
                             <div class="col-xl-12 col-lg-12 col-md-12">
-                                <form action="../exercisecontroller" method="post" class="tm-edit-product-form">
+                                <form action="../popupcontroller" method="post" class="tm-edit-product-form">
                                     <input type=hidden name="action" value="create">
                                     <div class="form-group mb-3">
-                                        <label for="id">Exercise ID</label>
-                                        <input type="text" name ="exerciseID" class="form-control validate" required/>
+                                        <label for="id">PopUp ID</label>
+                                        <input type="text" name ="popupID" class="form-control validate" required/>
                                     </div>
                                     <div class="form-group mb-3">
-                                        <label for="name">Exercise Name</label>
-                                        <input type="text" name="exname" class="form-control validate" required/>
+                                        <label for="name">Description</label>
+                                        <input type="text" name="description" class="form-control validate" required/>
                                     </div>
                                     <div class="row">
                                         <div class="form-group mb-3 col-xs-12 col-sm-4">
-                                            <label for="lowerweight">Lower Weight</label>
-                                            <input type="text" name="lowerweight" class="form-control validate" required/>
+                                            <label for="lowerweight">Status</label>
+                                            <input type="text" name="status" class="form-control validate" required/>
                                         </div>
                                         <div class="form-group mb-3 col-xs-12 col-sm-4">
-                                            <label for="upperweight">Upper Weight</label>
-                                            <input type="text" name="upperweight" class="form-control validate" required/>
-                                        </div>
-                                        <div class="form-group mb-3 col-xs-12 col-sm-4">
-                                            <label for="calorexp">Calorexp</label>
-                                            <input type="text" name="calorexp" class="form-control validate" required/>
+                                            <label for="calorexp">Theme</label>
+                                            <input type="text" name="theme" class="form-control validate"/>
                                         </div>
                                     </div>
                                     <div class="col-12">
-                                        <input type="submit" value="Add Product Now" class="btn btn-primary btn-block text-uppercase bg-success">
+                                        <input type="submit" value="Add PopUp Now" class="btn btn-primary btn-block text-uppercase bg-success">
                                     </div>
                                 </form>
                             </div>
