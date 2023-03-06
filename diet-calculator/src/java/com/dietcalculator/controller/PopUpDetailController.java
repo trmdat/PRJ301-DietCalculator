@@ -1,8 +1,9 @@
 package com.dietcalculator.controller;
 
-import com.dietcalculator.dao.PopUpDAO;
-import com.dietcalculator.dto.PopUp;
+import com.dietcalculator.dao.PopUpDetailDAO;
+import com.dietcalculator.dto.PopUpDetail;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author admin
  */
-public class PopUpController extends HttpServlet {
+public class PopUpDetailController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -27,96 +28,97 @@ public class PopUpController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String action = request.getParameter("action");
+                String action = request.getParameter("action");
 
-        PopUpDAO popupDao = new PopUpDAO();
+        PopUpDetailDAO popupdetailDao = new PopUpDetailDAO();
 
         String popupId = "";
+        String productId = "";
         String description = "";
-        int status = 0;
-        String theme = "";
 
         if (action == null || action.equals("list")) {
-            ArrayList<PopUp> list = popupDao.readPopUp();
+            ArrayList<PopUpDetail> list = popupdetailDao.readPopUpDetail();
 
             request.setAttribute("list", list);
-            RequestDispatcher rd = request.getRequestDispatcher("Adminstrator/PopUp.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("Adminstrator/PopUpDetail.jsp");
             rd.forward(request, response);
         } else if (action.equals("create")) {
             try {
                 popupId = request.getParameter("popupID");
+                productId = request.getParameter("productID");
                 description = request.getParameter("description");
-                status = Integer.parseInt(request.getParameter("status"));
-                theme = request.getParameter("theme");
             } catch (Exception e) {
             }
             if (popupId != null) {
-                popupDao.createPopUp(popupId, description, status, theme);
+                popupdetailDao.createPopUpDetail(popupId, productId, description);
             }
 
-            response.sendRedirect("popupcontroller");
+            response.sendRedirect("popupdetailcontroller");
         } else if (action.equals("delete")) {
             String[] ids = request.getParameterValues("checkId");
+            try {
+                productId = request.getParameter("checkProductId");
+            } catch (Exception e) {
+            }
             if (ids != null) {
                 for (String checkedid : ids) {
-                    popupDao.deletePopUp(checkedid);
+                    popupdetailDao.deletePopUpDetail(checkedid, productId);
                 }
             }
 
-            response.sendRedirect("popupcontroller");
+            response.sendRedirect("popupdetailcontroller");
         } else if (action.equals("edit")) {
             if (request.getParameter("jump") != null) {
                 try {
                     popupId = request.getParameter("popupID");
+                    productId = request.getParameter("productID");
                 } catch (NumberFormatException ex) {
                 }
-                PopUp p = readPopUpByID(popupId);
+                PopUpDetail p = readPopUpDetailByID(popupId, productId);
 
                 request.setAttribute("popup", p);
-                RequestDispatcher rd = request.getRequestDispatcher("Adminstrator/EditPopUp.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("Adminstrator/EditPopUpDetail.jsp");
                 rd.forward(request, response);
             } else {
                 try {
                     popupId = request.getParameter("popupID");
+                    productId = request.getParameter("productID");
                     description = request.getParameter("description");
-                    status = Integer.parseInt(request.getParameter("status"));
-                    theme = request.getParameter("theme");
                 } catch (NumberFormatException ex) {
                 }
 
                 if (popupId != null) {
-                    popupDao.updatePopUp(popupId, description, status, theme);
+                    popupdetailDao.updatePopUpDetail(popupId, productId, description);
                 }
 
-                response.sendRedirect("popupcontroller");
+                response.sendRedirect("popupdetailcontroller");
             }
 
         }
     }
 
-    protected PopUp readPopUpByID(String popupID) {
-        PopUpDAO dao = new PopUpDAO();
-        ArrayList<PopUp> list = dao.readPopUp();
-        for (PopUp ex : list) {
-            if (ex.getPopupID().equals(popupID)) {
+    protected PopUpDetail readPopUpDetailByID(String popupID, String productID) {
+        PopUpDetailDAO dao = new PopUpDetailDAO();
+        ArrayList<PopUpDetail> list = dao.readPopUpDetail();
+        for (PopUpDetail ex : list) {
+            if (ex.getPopupID().equals(popupID) && ex.getProductID().equals(productID)) {
                 return ex;
             }
         }
         return null;
     }
 
-
-// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-/**
- * Handles the HTTP <code>GET</code> method.
- *
- * @param request servlet request
- * @param response servlet response
- * @throws ServletException if a servlet-specific error occurs
- * @throws IOException if an I/O error occurs
- */
-@Override
-        protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -130,7 +132,7 @@ public class PopUpController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-        protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -141,7 +143,7 @@ public class PopUpController extends HttpServlet {
      * @return a String containing servlet description
      */
     @Override
-        public String getServletInfo() {
+    public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 

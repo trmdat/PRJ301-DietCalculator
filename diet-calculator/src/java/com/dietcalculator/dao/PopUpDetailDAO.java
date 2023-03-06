@@ -31,6 +31,7 @@ public class PopUpDetailDAO {
             }
             rs.close();
             ps.close();
+            conn.close();
         }catch (Exception e){
             System.out.println(e);
         }

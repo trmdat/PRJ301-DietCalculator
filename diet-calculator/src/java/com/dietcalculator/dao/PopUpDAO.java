@@ -54,6 +54,7 @@ public class PopUpDAO {
             }
             rs.close();
             ps.close();
+            conn.close();
         }catch (Exception e){
             System.out.println(e);
         }
@@ -129,13 +130,13 @@ public class PopUpDAO {
              System.out.println(pop.toString());
         }
 //         
-         System.out.println("");
-         System.out.println("Update");
-         dao.updatePopUp("POP000", "Khoi xau troai", 0, "do");
-         list = dao.readPopUp();
-           for(PopUp pop : list){
-             System.out.println(pop.toString());
-         }
+//         System.out.println("");
+//         System.out.println("Update");
+//         dao.updatePopUp("POP000", "Khoi xau troai", 0, "do");
+//         list = dao.readPopUp();
+//           for(PopUp pop : list){
+//             System.out.println(pop.toString());
+//         }
            
 //           System.out.println("");
 //           System.out.println("Delete");

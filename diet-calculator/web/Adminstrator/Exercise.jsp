@@ -54,7 +54,7 @@
                         <li class="nav-item dropdown">
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="product.html">
+                            <a class="nav-link active" href="">
                                 <i class="fas fa-shopping-cart"></i> Products
                             </a>
                         </li>

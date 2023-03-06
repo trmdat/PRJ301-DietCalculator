@@ -307,3 +307,5 @@ INSERT INTO Exercise (exerciseID, exname, lowerweight, upperweight, calorexp) VA
 
 --INSERT POPUP
 INSERT INTO PopUp (popupID, [description], [status], theme) VALUES ('POP001', N'Dành cho người dùng mới', 1, '')
+--INSERT POPUPDETAIL
+INSERT INTO PopUpDetail(popupID, productID, [description]) VALUES ('POP001', 'PRO0001', N'Dành cho người dùng mới')

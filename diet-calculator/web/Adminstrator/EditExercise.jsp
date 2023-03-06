@@ -147,13 +147,13 @@
             <!-- https://jqueryui.com/download/ -->
             <script src="js/bootstrap.min.js"></script>
             <!-- https://getbootstrap.com/ -->
-            <script>
+<!--            <script>
                 $(function () {
                     $("#expire_date").datepicker({
                         defaultDate: "10/22/2020"
                     });
                 });
-            </script>
+            </script>-->
     </body>
 
 </html>
