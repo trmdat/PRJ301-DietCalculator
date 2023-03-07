@@ -40,7 +40,7 @@ public class PopUpController extends HttpServlet {
             ArrayList<PopUp> list = popupDao.readPopUp();
 
             request.setAttribute("list", list);
-            RequestDispatcher rd = request.getRequestDispatcher("Adminstrator/PopUp.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("Administrator/PopUp.jsp");
             rd.forward(request, response);
         } else if (action.equals("create")) {
             try {
@@ -54,7 +54,7 @@ public class PopUpController extends HttpServlet {
                 popupDao.createPopUp(popupId, description, status, theme);
             }
 
-            response.sendRedirect("popupcontroller");
+            response.sendRedirect("PopUpController");
         } else if (action.equals("delete")) {
             String[] ids = request.getParameterValues("checkId");
             if (ids != null) {
@@ -63,7 +63,7 @@ public class PopUpController extends HttpServlet {
                 }
             }
 
-            response.sendRedirect("popupcontroller");
+            response.sendRedirect("PopUpController");
         } else if (action.equals("edit")) {
             if (request.getParameter("jump") != null) {
                 try {
@@ -73,7 +73,7 @@ public class PopUpController extends HttpServlet {
                 PopUp p = readPopUpByID(popupId);
 
                 request.setAttribute("popup", p);
-                RequestDispatcher rd = request.getRequestDispatcher("Adminstrator/EditPopUp.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("Administrator/EditPopUp.jsp");
                 rd.forward(request, response);
             } else {
                 try {
@@ -88,7 +88,7 @@ public class PopUpController extends HttpServlet {
                     popupDao.updatePopUp(popupId, description, status, theme);
                 }
 
-                response.sendRedirect("popupcontroller");
+                response.sendRedirect("PopUpController");
             }
 
         }

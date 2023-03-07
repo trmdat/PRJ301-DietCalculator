@@ -74,7 +74,7 @@
             <div class="row tm-content-row">
                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 tm-block-col">
                     <div class="tm-bg-primary-dark tm-block tm-block-products">
-                        <a href="Adminstrator/AddExercise.jsp" class="btn btn-primary btn-block text-uppercase mb-3 bg-success">Add new Exercise</a>
+                        <a href="Administrator/AddExercise.jsp" class="btn btn-primary btn-block text-uppercase mb-3 bg-success">Add new Exercise</a>
                         <div class="tm-product-table-container">
                             <form action="exercisecontroller" method="get">
                                 <input type="hidden" name="action" value="delete">

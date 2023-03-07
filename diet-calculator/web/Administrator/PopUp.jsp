@@ -73,7 +73,7 @@
             <div class="row tm-content-row">
                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 tm-block-col">
                     <div class="tm-bg-primary-dark tm-block tm-block-products">
-                        <a href="Adminstrator/AddPopUp.jsp" class="btn btn-primary btn-block text-uppercase mb-3 bg-success">Add new PopUp</a>
+                        <a href="Administrator/AddPopUp.jsp" class="btn btn-primary btn-block text-uppercase mb-3 bg-success">Add new PopUp</a>
                         <div class="tm-product-table-container">
                             <form action="popupcontroller" method="get">
                                 <input type="hidden" name="action" value="delete">

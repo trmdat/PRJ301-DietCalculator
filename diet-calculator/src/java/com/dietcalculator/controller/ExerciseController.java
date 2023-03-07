@@ -43,7 +43,7 @@ public class ExerciseController extends HttpServlet {
             List<Exercise> list = exerciseDAO.readExercise();
 
             request.setAttribute("list", list);
-            RequestDispatcher rd = request.getRequestDispatcher("Adminstrator/Exercise.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("./Administrator/Exercise.jsp");
             rd.forward(request, response);
         } else if (action.equals("create")) {
             try {
@@ -58,7 +58,7 @@ public class ExerciseController extends HttpServlet {
                 exerciseDAO.createExercise(id, exName, lowerweight, upperweight, calorexp);
             }
 
-            response.sendRedirect("exercisecontroller");
+            response.sendRedirect("ExerciseController");
         } else if (action.equals("delete")) {
             String[] ids = request.getParameterValues("checkId");
             if (ids != null) {
@@ -67,7 +67,7 @@ public class ExerciseController extends HttpServlet {
                 }
             }
 
-            response.sendRedirect("exercisecontroller");
+            response.sendRedirect("ExerciseController");
         } else if (action.equals("edit")) {
             if (request.getParameter("jump") != null) {
                 try {
@@ -77,7 +77,7 @@ public class ExerciseController extends HttpServlet {
                 Exercise ex = readexerciseByID(id);
 
                 request.setAttribute("exercise", ex);
-                RequestDispatcher rd = request.getRequestDispatcher("Adminstrator/EditExercise.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("./Administrator/EditExercise.jsp");
                 rd.forward(request, response);
             } else {
                 try {
@@ -93,7 +93,7 @@ public class ExerciseController extends HttpServlet {
                     exerciseDAO.updateExercise(id, exName, lowerweight, upperweight, calorexp);
                 }
 
-                response.sendRedirect("exercisecontroller");
+                response.sendRedirect("ExerciseController");
             }
 
         }
