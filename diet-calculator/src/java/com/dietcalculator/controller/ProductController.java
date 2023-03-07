@@ -44,7 +44,7 @@ public class ProductController extends HttpServlet {
         if(action == null || action.equals("read")){
             ArrayList<Product> productList = dao.readProduct();
             request.setAttribute("productList", productList);
-            RequestDispatcher rd = request.getRequestDispatcher("Adminstrator/ViewDeleteProduct.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("./Administrator/ViewDeleteProduct.jsp");
             
             rd.forward(request, response);
         }else if(action.equals("create")){
