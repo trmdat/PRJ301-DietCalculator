@@ -124,7 +124,6 @@
     <servlet-mapping>
         <servlet-name>PopUpDetailController</servlet-name>
         <servlet-url>/popupdetailcontroller</servlet-url>
-        >>>>>>> 8ee0c3490b5826f7b52acfba82676020178f754c
     </servlet-mapping>
     <session-config>
         <session-timeout>
