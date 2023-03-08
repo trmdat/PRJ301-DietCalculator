@@ -4,6 +4,8 @@
     Author     : ADMIN
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -208,7 +210,7 @@
                         }
                     %>
                     <%
-                        ArrayList<Product> productlist = (ArrayList<Product>) request.getAttribute("productlist");
+                        List<Product> productlist = (List<Product>) request.getAttribute("productlist");
                         ArrayList<Image> imagelist = (ArrayList<Image>) request.getAttribute("imagelist");
 //                        out.print(imagelist.get(0).getUrl());
                         for (int i = 0; i < 12; i++) {

@@ -53,6 +53,9 @@ public class ProductListController extends HttpServlet {
 //                imagelist.add(idao.searchImageByProductID(product.getProductID()).get(0));
                 imagelist.add(new Image("", "", "", "", "https://www.bootdey.com/image/250x220/FFB6C1/000000"));
             }
+         
+            int maxPage = (int)Math.ceil(fullProductList.size()/12);
+            request.setAttribute("maxpage", maxPage);
             RequestDispatcher rd = request.getRequestDispatcher("Product List/ProductList.jsp");
             request.setAttribute("productlist", productList);
             request.setAttribute("imagelist", imagelist);
