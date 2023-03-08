@@ -7,6 +7,7 @@ import com.dietcalculator.dto.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -35,16 +36,53 @@ public class ProductListController extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             ProductDAO pdao = new ProductDAO();
-            ArrayList<Product> productlist = pdao.readProduct();
+            ArrayList<Product> fullProductList = pdao.readProduct();
             ImageDAO idao = new ImageDAO();
-            ArrayList<Image> imagelist = idao.readImageByProductID();
+            ArrayList<Image> imagelist = new ArrayList<>();
+            Integer page = null;
+            try {
+                page = Integer.parseInt(request.getParameter("page"));
+            } catch (Exception e) {
+            }
+            if(page == null){
+                page = 1;
+            } 
             
+            List<Product> productList  = fullProductList.subList((page-1)*12, page*12);
+            for (Product product : productList) {
+//                imagelist.add(idao.searchImageByProductID(product.getProductID()).get(0));
+                imagelist.add(new Image("", "", "", "", "https://www.bootdey.com/image/250x220/FFB6C1/000000"));
+            }
             RequestDispatcher rd = request.getRequestDispatcher("Product List/ProductList.jsp");
-            request.setAttribute("productlist", productlist);
+            request.setAttribute("productlist", productList);
             request.setAttribute("imagelist", imagelist);
             rd.forward(request, response);
         }
     }
+//    public static void main(String[] args) {
+//          ProductDAO pdao = new ProductDAO();
+//            ArrayList<Product> fullProductList = pdao.readProduct();
+//            ImageDAO idao = new ImageDAO();
+//            ArrayList<Image> imagelist = new ArrayList<>();
+//            Integer page = null;
+//            try {
+//                page = Integer.parseInt(request.getParameter("page"));
+//            } catch (Exception e) {
+//            }
+//            if(page == null){
+//                page = 1;
+//            } 
+//            
+//            List<Product> productList  = fullProductList.subList((page-1)*12, page*12);
+//  
+//                    for (Product product : productList) {
+////                imagelist.add(idao.searchImageByProductID(product.getProductID()).get(0));
+//                imagelist.add(new Image("", "", "", "", "https://www.bootdey.com/image/250x220/FFB6C1/000000"));
+//            }
+//                    for (Image Image : imagelist) {
+//                        System.out.println(Image.getUrl());
+//        }
+//    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

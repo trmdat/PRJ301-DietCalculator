@@ -109,6 +109,25 @@ public class ImageDAO {
         }
         return list;
     }
+        public ArrayList<Image> searchImageByProductID(String id) {
+        ArrayList<Image> list = new ArrayList<>();
+        String sql = "SELECT * FROM Image WHERE productID = ?";
+        try {
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Image(rs.getString("imageID"), rs.getString("productID"), rs.getString("mealID"), rs.getString("commentID"), rs.getString("url")));
+            }
+            rs.close();
+            ps.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return list;
+    }
 
     public ArrayList<Image> readImageByMealID() {
         ArrayList<Image> list = new ArrayList<>();

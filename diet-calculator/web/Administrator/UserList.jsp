@@ -121,8 +121,8 @@
                                     </tr>
                                  </thead>
                                  <tbody>
-                                     <%--<c:forEach items="${userList}" var="x">--%>
-<!--                                        <tr>
+                                     <c:forEach items="${userList}" var="x">
+                                        <tr>
                                            <td class="align-middle col-check">
                                               <div class="custom-control custom-control-inline custom-checkbox custom-control-nameless m-0 align-top">
                                                  <input type="checkbox" class="custom-control-input" id="item-1" name='checkbox' value='${x.getUserID()}'>
@@ -159,8 +159,8 @@
                                                  <a href='UserController?action=update&userID=${x.getUserID()}'><button class="btn btn-sm btn-outline-secondary badge" type="button"
                                                     data-toggle="modal" data-target="#user-form-modal">Edit</button>
                                            </td>
-                                        </tr>-->
-                                     <%--</c:forEach>--%>
+                                        </tr>
+                                     </c:forEach>
                                  </tbody>
                               </table>
                            </div>

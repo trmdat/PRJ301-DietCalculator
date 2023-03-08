@@ -173,10 +173,11 @@
                     <div class="panel-body">
                         <div class="pull-right">
                             <ul class="pagination pagination-sm pro-page-list">
-                                <li><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">Â»</a></li>
+                                
+                                <li><a href="ProductListController?page=1">1</a></li>
+                                <li><a href="ProductListController?page=2">2</a></li>
+                                <li><a href="ProductListController?page=3">3</a></li>
+                                <li><a href="ProductListController?page=4">»</a></li>
                             </ul>
                         </div>
                     </div>
@@ -199,7 +200,7 @@
                                     + "                      <a href=\"productinfo?productID=" + p.getProductID() + "&imageID=" + i.getImageID()
                                     + "\" class=\"pro-title\">" + p.getProductName() + "</a>"
                                     + "                </h4>"
-                                    + "       <p class=\"price\">" + p.getPrice() + " VND</p>"
+                                    + "       <p class=\"price\">" + p.getPrice() + " VND</p>"  
                                     + "          </div>"
                                     + "         </section>"
                                     + "   </div>";
@@ -211,7 +212,7 @@
                         ArrayList<Image> imagelist = (ArrayList<Image>) request.getAttribute("imagelist");
 //                        out.print(imagelist.get(0).getUrl());
                         for (int i = 0; i < 12; i++) {
-                            out.print(product(productlist.get(i), imagelist.get(0)));
+                            out.print(product(productlist.get(i), imagelist.get(i)));
                         }
                     %>
 
