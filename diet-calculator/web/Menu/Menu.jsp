@@ -3,7 +3,7 @@
     Created on : Mar 2, 2023, 6:45:19 PM
     Author     : asout
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="com.dietcalculator.dto.FoodDetail"%>
 <%@page import="com.dietcalculator.dto.Day"%>
 <%@page import="java.util.ArrayList"%>
@@ -47,62 +47,68 @@
                </tr>
             </thead>
             <tbody>
-               <tr>
-                  <td class="align-middle">09:00am</td>
-                  <td class="tooltips" style="border: none;width: 8em;height: 10em;padding-left: 0px">
-                     <span
-                        class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">Breakfast</span>
-                     <div class="font-size13 text-light-gray" style = "margin-top: 5px">126KCal</div>
-                     <div class = "row">
-                        <div class="column">Carrot</div>
-                        <div class="column">Rice</div>
-                        <div class="column">Chicken</div>
-                       <div class="column">Tea</div>
-                    </div>
-                    <div class = "row">
-                        <div class="column">Oyster</div>
-                        <div class="column">Banana</div>
-                        <div class="column">Pudding</div>
-                    </div>
-                    <span class = "tooltiptext" style = "">
-                        <div class = "row">
-                            <div class="column-tooltip column-50">Carrot</div>
-                            <div class="column-tooltip column-25">100g</div>
-                            <!--<div class="column-tooltip column-25">25KCal</div>-->
-                        </div>
-                        <div class = "row">
-                            <div class="column-tooltip column-50">Chicken</div>
-                            <div class="column-tooltip column-25"> 100g</div>
-                            <!--<div class="column-tooltip column-25">64KCal</div>-->
-                        </div>
-                        <div class = "row">
-                            <div class="column-tooltip column-50">Rice</div>
-                            <div class="column-tooltip column-25">280g</div>
-                            <!--<div class="column-tooltip column-25">250KCal</div>-->
-                        </div>
-                        <div class = "row">
-                            <div class="column-tooltip column-50">Oyster</div>
-                            <div class="column-tooltip column-25">49g</div>
-                            <!--<div class="column-tooltip column-25">86KCal</div>-->
-                        </div>
-                        <div class = "row">
-                            <div class="column-tooltip column-50">Banana</div>
-                            <div class="column-tooltip column-25">100g</div>
-                            <!--<div class="column-tooltip column-25">25KCal</div>-->
-                        </div>
-                        <div class = "row">
-                            <div class="column-tooltip column-50">Pudding</div>
-                            <div class="column-tooltip column-25">100g</div>
-                            <!--<div class="column-tooltip column-25">140KCal</div>-->
-                        </div>
-                        <div class = "row">
-                            <div class="column-tooltip column-50">Tea</div>
-                            <div class="column-tooltip column-25">100g</div>
-                            <!--<div class="column-tooltip column-25">25KCal</div>-->
-                        </div>
-                    </span>
-                </td>
-                  <td>
+                <c:forEach items="${meals}" var="x">
+                    <tr>
+                       <td class="align-middle">09:00am</td>
+                        <c:forEach items="${x}" var="y">
+                            <td class="tooltips" style="border: none;width: 8em;height: 10em;padding-left: 0px">
+                                <span
+                                   class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">Breakfast</span>
+                                <div class="font-size13 text-light-gray" style = "margin-top: 5px">126KCal</div>
+                                <div class = "row">
+                                   <div class="column">Carrot</div>
+                                   <div class="column">Rice</div>
+                                   <div class="column">Chicken</div>
+                                  <div class="column">Tea</div>
+                               </div>
+                               <div class = "row">
+                                   <div class="column">Oyster</div>
+                                   <div class="column">Banana</div>
+                                   <div class="column">Pudding</div>
+                               </div>
+                                    <span class = "tooltiptext" style = "">
+                                        <div class = "row">
+                                            <div class="column-tooltip column-50">Carrot</div>
+                                            <div class="column-tooltip column-25">100g</div>
+                                            <!--<div class="column-tooltip column-25">25KCal</div>-->
+                                        </div>
+                                        <div class = "row">
+                                            <div class="column-tooltip column-50">Chicken</div>
+                                            <div class="column-tooltip column-25"> 100g</div>
+                                            <!--<div class="column-tooltip column-25">64KCal</div>-->
+                                        </div>
+                                        <div class = "row">
+                                            <div class="column-tooltip column-50">Rice</div>
+                                            <div class="column-tooltip column-25">280g</div>
+                                            <!--<div class="column-tooltip column-25">250KCal</div>-->
+                                        </div>
+                                        <div class = "row">
+                                            <div class="column-tooltip column-50">Oyster</div>
+                                            <div class="column-tooltip column-25">49g</div>
+                                            <!--<div class="column-tooltip column-25">86KCal</div>-->
+                                        </div>
+                                        <div class = "row">
+                                            <div class="column-tooltip column-50">Banana</div>
+                                            <div class="column-tooltip column-25">100g</div>
+                                            <!--<div class="column-tooltip column-25">25KCal</div>-->
+                                        </div>
+                                        <div class = "row">
+                                            <div class="column-tooltip column-50">Pudding</div>
+                                            <div class="column-tooltip column-25">100g</div>
+                                            <!--<div class="column-tooltip column-25">140KCal</div>-->
+                                        </div>
+                                        <div class = "row">
+                                            <div class="column-tooltip column-50">Tea</div>
+                                            <div class="column-tooltip column-25">100g</div>
+                                            <!--<div class="column-tooltip column-25">25KCal</div>-->
+                                        </div>
+                                     </span>
+                                </td>
+                            </c:foreach>
+                        </td>
+                    </tr>
+                </c:foreach>
+<!--                  <td>
                      <span
                         class="bg-green padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">Yoga</span>
                      <div class="margin-10px-top font-size14">9:00-10:00</div>
@@ -263,7 +269,7 @@
                      <div class="margin-10px-top font-size14">1:00-2:00</div>
                      <div class="font-size13 text-light-gray">Ivana Wong</div>
                   </td>
-               </tr>
+               </tr>-->
             </tbody>
          </table>
       </div>

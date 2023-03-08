@@ -305,6 +305,8 @@ INSERT INTO Exercise (exerciseID, exname, lowerweight, upperweight, calorexp) VA
 INSERT INTO Exercise (exerciseID, exname, lowerweight, upperweight, calorexp) VALUES ('EX055', 'Swimming freestyle, slow', '71', '80', '572');
 INSERT INTO Exercise (exerciseID, exname, lowerweight, upperweight, calorexp) VALUES ('EX056', 'Swimming freestyle, slow', '81', '150', '651');
 
+--INSERT IMAGE
+
 --INSERT POPUP
 INSERT INTO PopUp (popupID, [description], [status], theme) VALUES ('POP001', N'Dành cho người dùng mới', 1, '')
 --INSERT POPUPDETAIL
