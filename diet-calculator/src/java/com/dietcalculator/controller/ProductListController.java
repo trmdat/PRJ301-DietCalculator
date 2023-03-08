@@ -39,29 +39,41 @@ public class ProductListController extends HttpServlet {
             ArrayList<Product> fullProductList = pdao.readProduct();
             ImageDAO idao = new ImageDAO();
             ArrayList<Image> imagelist = new ArrayList<>();
+
+            int pageSize = 12;
+            int totalPages = (int) Math.ceil(fullProductList.size() / pageSize);
             Integer page = null;
             try {
                 page = Integer.parseInt(request.getParameter("page"));
             } catch (Exception e) {
             }
-            if(page == null){
+            if (page == null) {
                 page = 1;
-            } 
-            
-            List<Product> productList  = fullProductList.subList((page-1)*12, page*12);
+            } else if (page > totalPages) {
+                page = totalPages;
+            }
+            List<Product> productList = paginProducts(page, pageSize, fullProductList);
             for (Product product : productList) {
 //                imagelist.add(idao.searchImageByProductID(product.getProductID()).get(0));
                 imagelist.add(new Image("", "", "", "", "https://www.bootdey.com/image/250x220/FFB6C1/000000"));
             }
-         
-            int maxPage = (int)Math.ceil(fullProductList.size()/12);
-            request.setAttribute("maxpage", maxPage);
-            RequestDispatcher rd = request.getRequestDispatcher("Product List/ProductList.jsp");
+
+            request.setAttribute("page", (int) page);
+            request.setAttribute("totalPages", totalPages);
             request.setAttribute("productlist", productList);
             request.setAttribute("imagelist", imagelist);
+            RequestDispatcher rd = request.getRequestDispatcher("Product List/ProductList.jsp");
             rd.forward(request, response);
         }
     }
+
+    public List<Product> paginProducts(int pageNum, int pageSize, List<Product> products) {
+        int startIndex = (pageNum - 1) * pageSize;
+        int endIndex = Math.min(startIndex + pageSize, products.size());
+        List<Product> productList = products.subList(startIndex, endIndex);
+        return productList;
+    }
+
 //    public static void main(String[] args) {
 //          ProductDAO pdao = new ProductDAO();
 //            ArrayList<Product> fullProductList = pdao.readProduct();
@@ -86,8 +98,7 @@ public class ProductListController extends HttpServlet {
 //                        System.out.println(Image.getUrl());
 //        }
 //    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

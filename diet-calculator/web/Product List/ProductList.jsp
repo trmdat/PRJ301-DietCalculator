@@ -3,7 +3,7 @@
     Created on : Feb 28, 2023, 11:33:23 AM
     Author     : ADMIN
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.util.List"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
@@ -176,10 +176,26 @@
                         <div class="pull-right">
                             <ul class="pagination pagination-sm pro-page-list">
                                 
-                                <li><a href="ProductListController?page=1">1</a></li>
-                                <li><a href="ProductListController?page=2">2</a></li>
-                                <li><a href="ProductListController?page=3">3</a></li>
-                                <li><a href="ProductListController?page=4">»</a></li>
+                                <li class="page-item ${page == 1 ? 'disabled' : ''}">
+                                    <a class="page-link" href="ProductListController?page=${page>1?page - 1:1}" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                </li>
+                                
+                                <c:forEach var="i" begin="1" end="${totalPages}">
+                          
+                                   
+                                    <li class="page-item ${i == page ? 'active' : ''}">
+                                        <a class="page-link" href="ProductListController?page=${i}">${i}</a>
+                                    </li>
+                                </c:forEach>
+                                <li class="page-item ${page == totalPages ? 'disabled' : ''}">
+                                    <a class="page-link" href="ProductListController?page=${page<totalPages?page + 1:totalPages}" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -191,7 +207,7 @@
 
                             String html = "<div class=\"col-md-4\"> "
                                     + "<section class=\"panel\"> <div class=\"pro-img-box\"> "
-                                    + "<a href=\"productinfo?productID=" + p.getProductID() + "&imageID=" + i.getImageID()+ "\" class=\"pro-title\">" 
+                                    + "<a href=\"productinfo?productID=" + p.getProductID() + "&imageID=" + i.getImageID() + "\" class=\"pro-title\">"
                                     + "<img src=\"" + i.getUrl() + "\" alt=\"Image not found\" />" + "</a>"
                                     + "                     <a href=\"\" class=\"adtocart\">"
                                     + "                     <i class=\"fa fa-shopping-cart\"></i>"
@@ -202,7 +218,7 @@
                                     + "                      <a href=\"productinfo?productID=" + p.getProductID() + "&imageID=" + i.getImageID()
                                     + "\" class=\"pro-title\">" + p.getProductName() + "</a>"
                                     + "                </h4>"
-                                    + "       <p class=\"price\">" + p.getPrice() + " VND</p>"  
+                                    + "       <p class=\"price\">" + p.getPrice() + " VND</p>"
                                     + "          </div>"
                                     + "         </section>"
                                     + "   </div>";
@@ -212,7 +228,7 @@
                     <%
                         List<Product> productlist = (List<Product>) request.getAttribute("productlist");
                         ArrayList<Image> imagelist = (ArrayList<Image>) request.getAttribute("imagelist");
-//                        out.print(imagelist.get(0).getUrl());
+                        //                        out.print(imagelist.get(0).getUrl());
                         for (int i = 0; i < 12; i++) {
                             out.print(product(productlist.get(i), imagelist.get(i)));
                         }
