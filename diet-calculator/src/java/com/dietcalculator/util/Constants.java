@@ -226,7 +226,7 @@ public final class Constants {
         return Math.round(bmi*100)/100;
     }
     
-    public static final int totalCaloricNeed(int gender, double weight, double height, int age, int activity, String goalStr, double amount, int week){
+    public static final int totalCaloricNeed(int gender, double weight, double height, int age, int activity, int goal, double amount, int week){
         //Calculating BMR
         double bmr = 0;
         if(gender == 1) //MALE
@@ -238,12 +238,6 @@ public final class Constants {
         double amr = 0;
         for(int x: ACTIVITY_LEVEL.keySet())
             if(x == activity) amr = bmr*ACTIVITY_LEVEL.get(x);
-        
-        //Getting goal value
-        int goal = 0;
-        for (String x : GOAL.keySet())
-            if(x.equals(goalStr))
-                goal = GOAL.get(x);
         
         double total = amr + goal*amount*CALORIES_PER_KG/(week*7);
         return (int) Math.round(total);

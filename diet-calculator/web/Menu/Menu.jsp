@@ -50,7 +50,7 @@
                 <c:forEach items="${meals}" var="x">
                     <tr>
                        <td class="align-middle">09:00am</td>
-                        <c:forEach items="${x}" var="y">
+                       <c:forEach items="${x}" var="y">
                             <td class="tooltips" style="border: none;width: 8em;height: 10em;padding-left: 0px">
                                 <span
                                    class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">Breakfast</span>
@@ -104,10 +104,10 @@
                                         </div>
                                      </span>
                                 </td>
-                            </c:foreach>
+                            </c:forEach>
                         </td>
                     </tr>
-                </c:foreach>
+                </c:forEach>
 <!--                  <td>
                      <span
                         class="bg-green padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">Yoga</span>

@@ -5,6 +5,8 @@
  */
 package com.dietcalculator.util;
 
+import java.util.List;
+
 /**
  *
  * @author asout
@@ -57,5 +59,12 @@ public class Utils {
             System.out.println(e.getMessage());
         }
         return convertJavaDateToSqlDate(year,month,day);
+    }
+    
+    public List pagingItems(int pageNum, int pageSize, List list) {
+        int startIndex = (pageNum - 1) * pageSize;
+        int endIndex = Math.min(startIndex + pageSize, list.size());
+        List subList = list.subList(startIndex, endIndex);
+        return subList;
     }
 }
