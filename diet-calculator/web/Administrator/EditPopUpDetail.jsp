@@ -1,6 +1,6 @@
 <%-- 
-    Document   : EditPopUp
-    Created on : Mar 6, 2023, 5:17:30 PM
+    Document   : EditPopUpDetail
+    Created on : Mar 9, 2023, 10:17:16 PM
     Author     : admin
 --%>
 
@@ -99,25 +99,19 @@
                         </div>
                         <div class="row tm-edit-product-row">
                             <div class="col-xl-12 col-lg-12 col-md-12">
-                                <form action="PopUpController" method="post" class="tm-edit-product-form">
+                                <form action="PopUpDetailController" method="post" class="tm-edit-product-form">
                                     <input type=hidden name="action" value="update">
                                     <input type=hidden name="popupID" value="${popup.popupID}">
+                                    <div class="form-group mb-3">
+                                        <label for="productID">Product ID</label>
+                                        <input type="text" name="productID" value="${popup.productID}" class="form-control validate" required/>
+                                    </div>
                                     <div class="form-group mb-3">
                                         <label for="name">Description</label>
                                         <input type="text" name="description" value="${popup.description}" class="form-control validate" required/>
                                     </div>
-                                    <div class="row">
-                                        <div class="form-group mb-3 col-xs-12 col-sm-4">
-                                            <label for="lowerweight">Status</label>
-                                            <input type="text" name="status" value="${popup.status}" class="form-control validate" required/>
-                                        </div>
-                                        <div class="form-group mb-3 col-xs-12 col-sm-4">
-                                            <label for="upperweight">Theme</label>
-                                            <input type="text" name="theme" value="${popup.theme}" class="form-control validate"/>
-                                        </div>
-                                        <div class="col-12">
-                                            <input type="submit" value="Update Now" class="btn btn-primary btn-block text-uppercase bg-success">
-                                        </div>
+                                    <div class="col-12">
+                                        <input type="submit" value="Update Detail Now" class="btn btn-primary btn-block text-uppercase bg-success">
                                     </div>
                                 </form>
                             </div>
@@ -141,13 +135,13 @@
             <!-- https://jqueryui.com/download/ -->
             <script src="js/bootstrap.min.js"></script>
             <!-- https://getbootstrap.com/ -->
-<!--            <script>
-                $(function () {
-                    $("#expire_date").datepicker({
-                        defaultDate: "10/22/2020"
-                    });
-                });
-            </script>-->
+            <!--            <script>
+                            $(function () {
+                                $("#expire_date").datepicker({
+                                    defaultDate: "10/22/2020"
+                                });
+                            });
+                        </script>-->
     </body>
 
 </html>

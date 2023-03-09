@@ -27,7 +27,7 @@
         <nav class="navbar navbar-expand-xl">
             <div class="container h-100">
                 <a class="navbar-brand" href="">
-                    <h1 class="tm-site-title mb-0 text-success">PopUpDetail Admin</h1>
+                    <h1 class="tm-site-title mb-0 text-success">Details for PopUp ${popup}</h1>
                 </a>
                 <button
                     class="navbar-toggler ml-auto mr-0"
@@ -72,9 +72,9 @@
             <div class="row tm-content-row">
                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 tm-block-col">
                     <div class="tm-bg-primary-dark tm-block tm-block-products">
-                        <a href="Adminstrator/AddPopUpDetail.jsp" class="btn btn-primary btn-block text-uppercase mb-3 bg-success">Add new PopUp</a>
+                        <a href="PopUpDetailController?action=create&popupID=${popup}" class="btn btn-primary btn-block text-uppercase mb-3 bg-success">Add new details for PopUp</a>
                         <div class="tm-product-table-container">
-                            <form action="popupdetailcontroller" method="get">
+                            <form action="PopUpDetailController" method="post">
                                 <input type="hidden" name="action" value="delete">
                                 <table class="table table-hover tm-table-small tm-product-table">
                                     <thead>
@@ -93,13 +93,13 @@
                                             <td> ${p.popupID} </td>
                                             <td> ${p.productID} </td>
                                             <td> ${p.description} </td>
-                                            <td><a href="./popupdetailcontroller?action=edit&popupID=${p.popupID}&productID=${p.productID}&jump=true" 
+                                            <td><a href="./PopUpDetailController?action=edit&popupID=${p.popupID}&productID=${p.productID}" 
                                                    class="btn btn-primary btn-block bg-success">Edit</a></td>
                                             </tr>
                                         </c:forEach>    
                                     </tbody>
                                 </table>
-                                <input type="submit" value="Delete selected PopUp" class="btn btn-primary btn-block text-uppercase bg-success">
+                                <input type="submit" value="Delete selected PopUp Details" class="btn btn-primary btn-block text-uppercase bg-success">
 
                             </form>
                         </div>
@@ -234,12 +234,4 @@
                 </script>-->
     </body>
 
-</html>
-
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
 </html>

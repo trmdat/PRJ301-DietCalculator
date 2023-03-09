@@ -75,7 +75,7 @@
                     <div class="tm-bg-primary-dark tm-block tm-block-products">
                         <a href="Administrator/AddPopUp.jsp" class="btn btn-primary btn-block text-uppercase mb-3 bg-success">Add new PopUp</a>
                         <div class="tm-product-table-container">
-                            <form action="popupcontroller" method="get">
+                            <form action="PopUpController" method="get">
                                 <input type="hidden" name="action" value="delete">
                                 <table class="table table-hover tm-table-small tm-product-table">
                                     <thead>
@@ -85,6 +85,7 @@
                                             <th scope="col">DESCRIPTION</th>
                                             <th scope="col">STATUS</th>
                                             <th scope="col">THEME</th>
+                                            <th scope="col">&nbsp;</th>
                                             <th scope="col">&nbsp;</th>
                                         </tr>
                                     </thead>
@@ -96,8 +97,10 @@
                                                 <td> ${p.description} </td>
                                                 <td> ${p.status} </td>
                                                 <td> ${p.theme} </td>
-                                                <td><a href="./popupcontroller?action=edit&popupID=${p.popupID}&jump=true" 
+                                                <td><a href="./PopUpController?action=edit&popupID=${p.popupID}&jump=true" 
                                                        class="btn btn-primary btn-block bg-success">Edit</a></td>
+                                                <td><a href="./PopUpDetailController?popupID=${p.popupID}" 
+                                                       class="btn btn-primary btn-block bg-success">Details</a></td>
                                             </tr>
                                         </c:forEach>    
                                     </tbody>

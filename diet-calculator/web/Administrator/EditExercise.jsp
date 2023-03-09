@@ -101,7 +101,7 @@
                         </div>
                         <div class="row tm-edit-product-row">
                             <div class="col-xl-12 col-lg-12 col-md-12">
-                                <form action="exercisecontroller" method="get" class="tm-edit-product-form">
+                                <form action="ExerciseController" method="post" class="tm-edit-product-form">
                                     <input type=hidden name="action" value="edit">
                                     <input type=hidden name="exerciseID" value="${exercise.exerciseID}">
                                     <div class="form-group mb-3">
