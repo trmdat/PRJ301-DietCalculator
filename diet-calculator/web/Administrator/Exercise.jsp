@@ -76,7 +76,7 @@
                     <div class="tm-bg-primary-dark tm-block tm-block-products">
                         <a href="Administrator/AddExercise.jsp" class="btn btn-primary btn-block text-uppercase mb-3 bg-success">Add new Exercise</a>
                         <div class="tm-product-table-container">
-                            <form action="exercisecontroller" method="get">
+                            <form action="ExerciseController" method="get">
                                 <input type="hidden" name="action" value="delete">
                                 <table class="table table-hover tm-table-small tm-product-table">
                                     <thead>
@@ -99,7 +99,7 @@
                                                 <td> ${e.lowerweight} </td>
                                                 <td> ${e.upperweight} </td>
                                                 <td> ${e.calorexp} </td>
-                                                <td><a href="./exercisecontroller?action=edit&exerciseID=${e.exerciseID}&jump=true" 
+                                                <td><a href="./ExerciseController?action=edit&exerciseID=${e.exerciseID}&jump=true" 
                                                        class="btn btn-primary btn-block bg-success">Edit</a></td>
                                             </tr>
                                         </c:forEach>    
