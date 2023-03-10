@@ -1,11 +1,8 @@
 package com.dietcalculator.controller;
 
-import com.dietcalculator.dao.ImageDAO;
 import com.dietcalculator.dao.ProductDAO;
-import com.dietcalculator.dto.Image;
 import com.dietcalculator.dto.Product;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ADMIN
  */
-public class ProductInfoController extends HttpServlet {
+public class RelatedProduct extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,53 +28,30 @@ public class ProductInfoController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            ProductDAO pd = new ProductDAO();
-            ArrayList<Product> pl = pd.readProduct();
-            ImageDAO id = new ImageDAO();
-            ArrayList<Image> il = id.readImageByProductID();
-            String productID = request.getParameter("productID");
-            Product p = new Product();
-            for (Product product : pl) {
-                if (product.getProductID().equals(productID)) {
-                    p = product;
+        ProductDAO dao = new ProductDAO();
+
+        String type = null;
+        type = String.valueOf(request.getAttribute("type"));
+        if (type != null) {
+            ArrayList<Product> productList = dao.readProduct();
+            ArrayList<Product> relateList = new ArrayList<>();
+            for (Product product : productList) {
+                if (product.getType().equals(type)) {
+                    relateList.add(product);
                 }
             }
-           
-            Image i = new Image();
-            for (Image image : il) {
-                if(image.getProductID().equals(p.getProductID())){
-                    i = image;
-                }
-            }      
-            RequestDispatcher rd = request.getRequestDispatcher("Product List/ProductDetail.jsp");
-            request.setAttribute("product", p);
-            request.setAttribute("image", i);
-            rd.include(request, response);
-            rd = request.getRequestDispatcher("RelatedProduct");
-            request.setAttribute("type", p.getType());
+            request.setAttribute("relateList", relateList);
+            RequestDispatcher rd = request.getRequestDispatcher("Product List/RelatedProduct.jsp");
+            try {
+                Thread.sleep(2000); // delay 
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
             rd.include(request, response);
         }
+
     }
-//    public static void main(String[] args) {
-//                    ProductDAO pd = new ProductDAO();
-//            ArrayList<Product> pl = pd.readProduct();
-//            ImageDAO id = new ImageDAO();
-//            ArrayList<Image> il = id.readImageByProductID();
-//
-//            Product p = new Product();
-//            for (Product product : pl) {
-//                if (product.getProductID().equals("PRO0001")) {
-//                    p = product;
-//                }
-//            }
-//            Image i = new Image();
-//
-//            i.setUrl("https://www.bootdey.com/image/250x220/FFB6C1/000000");
-//            System.out.println(p.toString()+","+i.getUrl());
-//    }
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

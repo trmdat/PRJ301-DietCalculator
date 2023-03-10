@@ -66,6 +66,8 @@ public class FoodController extends HttpServlet {
             } else {
                 response.sendRedirect("FoodController");
             }
+            
+            
         } else if (action.equals("update")) {
             if (request.getParameter("foodname") == null) {
                 Food food = foodByID(request.getParameter("foodID"));
