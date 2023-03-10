@@ -135,19 +135,110 @@
         <!--about section start -->
         <div class="about_section layout_padding">
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-6 padding_0">
-                        <div class="abiut_images_main rounded">
-                            <div><img src="images/img-1.jpg" class="image_1"></div>
-                            <div><img src="images/img-2.jpg" class="image_2"></div>
-                            <div class="main"><img src="images/img-3.jpg" class="image_3"></div>
+               <section class="slide-wrapper">
+                  <div class="container-fluid">
+                     <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                           <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                           <li data-target="#myCarousel" data-slide-to="1"></li>
+                           <li data-target="#myCarousel" data-slide-to="2"></li>
+                           <li data-target="#myCarousel" data-slide-to="3"></li>
+                        </ol>
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner">
+                           <div class="carousel-item active">
+                              <div class="container">
+                                 <h1 class="banner_taital">Diet Calculator</h1>
+                                 <p class="banner_text">Hello! We are team PGNB</p>
+                                 <div class="btn_main">
+                                    <div class="contact_bt"><a href="MenuController">Calculate diet</a></div>
+                                    
+                                 </div>
+                                 <div class="number_text">01</div>
+                              </div>
+                           </div>
+                           <div class="carousel-item">
+                              <div class="container">
+                                 <h1 class="banner_taital">Diet Calculator</h1>
+                                 <p class="banner_text">Hello! We are team PGNB</p>
+                                 <div class="btn_main">
+                                    <div class="contact_bt"><a href="MenuController">Calculate diet</a></div>
+                             
+                                 </div>
+                                 <div class="number_text">02</div>
+                              </div>
+                           </div>
+                           <div class="carousel-item">
+                              <div class="container">
+                                 <h1 class="banner_taital">Diet Calculator</h1>
+                                 <p class="banner_text">Hello! We are team PGNB</p>
+                                 <div class="btn_main">
+                                    <div class="contact_bt"><a href="MenuController">Calculate diet</a></div>
+                                    
+                                 </div>
+                                 <div class="number_text">03</div>
+                              </div>
+                           </div>
+                           <div class="carousel-item">
+                              <div class="container">
+                                 <h1 class="banner_taital">Diet Calculator</h1>
+                                 <p class="banner_text">Hello! We are team PGNB</p>
+                                 <div class="btn_main">
+                                    <div class="contact_bt"><a href="MenuController">Calculate diet</a></div>
+                                    
+                                 </div>
+                                 <div class="number_text">04</div>
+                              </div>
+                           </div>
                         </div>
-                    </div>
-                    <div class="col-lg-6 padding_0">
-                        <div class="about_taital_main">
-                            <h1 class="about_taital">Diet Calculator</h1>
-                            <p class="about_text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is tha</p>
-                            <div class="read_bt"><a href="#">Get your diet now</a></div>
+                     </div>
+                  </div>
+               </section>
+            </div>
+         </div>
+         <!--banner section end -->
+      </div>
+      <!--header section end -->
+      <!--about section start -->
+      <div class="about_section layout_padding">
+         <div class="container-fluid">
+            <div class="row">
+               <div class="col-lg-6 padding_0">
+                  <div class="abiut_images_main rounded">
+                     <div><img src="images/img-1.jpg" class="image_1"></div>
+                     <div><img src="images/img-2.jpg" class="image_2"></div>
+                     <div class="main"><img src="images/img-3.jpg" class="image_3"></div>
+                  </div>
+               </div>
+               <div class="col-lg-6 padding_0">
+                  <div class="about_taital_main">
+                     <h1 class="about_taital">Diet Calculator</h1>
+                     <p class="about_text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is tha</p>
+                     <div class="read_bt"><a href="MenuController">Get your diet now</a></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!--about section end -->
+      <!-- vitamin section start -->
+      <div class="vitamin_section layout_padding">
+         <div class="container-fluid">
+            <div class="row">
+               <div class="col-lg-6 padding_left_30">
+                  <div class="vitamin_img"><img src="images/product_vitamin.png"></div>
+               </div>
+               <div class="col-lg-6">
+                  <div class="vitamin_taital_main">
+                     <h3 class="vitamin_taital">Vitamin supliment product</h3>
+                     <p class="vitamin_text">It is a long established fact that a reader will be distracted by the readable content of a page </p>
+                     <div class="vitamin_section_2">
+                        <div class="vitamin_taital_left">
+                           <div class="car_box">
+                              <img src="https://thumbs2.imgbox.com/4e/a9/s08fsXhS_t.jpg" alt="image host" class="car_image"/>
+                              
+                           </div>
                         </div>
                     </div>
                 </div>
