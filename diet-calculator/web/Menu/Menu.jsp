@@ -3,6 +3,8 @@
     Created on : Mar 2, 2023, 6:45:19 PM
     Author     : asout
 --%>
+<%@page import="com.dietcalculator.dto.Image"%>
+<%@page import="java.util.List"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="com.dietcalculator.dto.FoodDetail"%>
 <%@page import="com.dietcalculator.dto.Day"%>
@@ -47,229 +49,111 @@
                </tr>
             </thead>
             <tbody>
-                <c:forEach items="${meals}" var="x">
-                    <tr>
-                       <td class="align-middle">09:00am</td>
-                       <c:forEach items="${x}" var="y">
-                            <td class="tooltips" style="border: none;width: 8em;height: 10em;padding-left: 0px">
-                                <span
-                                   class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">Breakfast</span>
-                                <div class="font-size13 text-light-gray" style = "margin-top: 5px">126KCal</div>
-                                <div class = "row">
-                                   <div class="column">Carrot</div>
-                                   <div class="column">Rice</div>
-                                   <div class="column">Chicken</div>
-                                  <div class="column">Tea</div>
-                               </div>
-                               <div class = "row">
-                                   <div class="column">Oyster</div>
-                                   <div class="column">Banana</div>
-                                   <div class="column">Pudding</div>
-                               </div>
-                                    <span class = "tooltiptext" style = "">
-                                        <div class = "row">
-                                            <div class="column-tooltip column-50">Carrot</div>
-                                            <div class="column-tooltip column-25">100g</div>
-                                            <!--<div class="column-tooltip column-25">25KCal</div>-->
-                                        </div>
-                                        <div class = "row">
-                                            <div class="column-tooltip column-50">Chicken</div>
-                                            <div class="column-tooltip column-25"> 100g</div>
-                                            <!--<div class="column-tooltip column-25">64KCal</div>-->
-                                        </div>
-                                        <div class = "row">
-                                            <div class="column-tooltip column-50">Rice</div>
-                                            <div class="column-tooltip column-25">280g</div>
-                                            <!--<div class="column-tooltip column-25">250KCal</div>-->
-                                        </div>
-                                        <div class = "row">
-                                            <div class="column-tooltip column-50">Oyster</div>
-                                            <div class="column-tooltip column-25">49g</div>
-                                            <!--<div class="column-tooltip column-25">86KCal</div>-->
-                                        </div>
-                                        <div class = "row">
-                                            <div class="column-tooltip column-50">Banana</div>
-                                            <div class="column-tooltip column-25">100g</div>
-                                            <!--<div class="column-tooltip column-25">25KCal</div>-->
-                                        </div>
-                                        <div class = "row">
-                                            <div class="column-tooltip column-50">Pudding</div>
-                                            <div class="column-tooltip column-25">100g</div>
-                                            <!--<div class="column-tooltip column-25">140KCal</div>-->
-                                        </div>
-                                        <div class = "row">
-                                            <div class="column-tooltip column-50">Tea</div>
-                                            <div class="column-tooltip column-25">100g</div>
-                                            <!--<div class="column-tooltip column-25">25KCal</div>-->
-                                        </div>
-                                     </span>
-                                </td>
-                            </c:forEach>
-                        </td>
-                    </tr>
-                </c:forEach>
-<!--                  <td>
-                     <span
-                        class="bg-green padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">Yoga</span>
-                     <div class="margin-10px-top font-size14">9:00-10:00</div>
-                     <div class="font-size13 text-light-gray">Marta Healy</div>
-                  </td>
+    <%!
+        public final String[] MEAL_COLOR_INDEX = {"bg-sky","bg-green","bg-yellow","bg-lightred","bg-purple"};
+        //FORMAT FOR PARAMETERS
+            //meal = side+main; day = 7
+            //ArrayList<FoodDetail>[meal][day]
+            //ArrayList<Image>[meal][day]
+            //ArrayList<Meal>[meal]; ArrayList: 7 days
+            //ArrayList<Day>: 7 days
 
-                  <td>
-                     <span
-                        class="bg-yellow padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">Music</span>
-                     <div class="margin-10px-top font-size14">9:00-10:00</div>
-                     <div class="font-size13 text-light-gray">Ivana Wong</div>
-                  </td>
-                  <td>
-                     <span
-                        class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">Dance</span>
-                     <div class="margin-10px-top font-size14">9:00-10:00</div>
-                     <div class="font-size13 text-light-gray">Ivana Wong</div>
-                  </td>
-                  <td>
-                     <span
-                        class="bg-purple padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">Art</span>
-                     <div class="margin-10px-top font-size14">9:00-10:00</div>
-                     <div class="font-size13 text-light-gray">Kate Alley</div>
-                  </td>
-                  <td>
-                     <span
-                        class="bg-pink padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">English</span>
-                     <div class="margin-10px-top font-size14">9:00-10:00</div>
-                     <div class="font-size13 text-light-gray">James Smith</div>
-                  </td>
-               </tr>
+        public final String menuCode(ArrayList<FoodDetail>[][] foodDetailsByWeek, ArrayList<Image>[][] imagesByWeek, ArrayList<Meal>[] meals, ArrayList<Day> days){
+            String html = "";
+            int numOfMeals = meals.length;  //= number of rows
+            for(int index = 0; index < numOfMeals; index++){
+                int mealIndex = meals[index].get(0).getMealindex();
+                html += printMealByRow(mealIndex,meals[index],foodDetailsByWeek[index],imagesByWeek[index]);
+            }
+            return html;
+        }
 
-               <tr>
-                  <td class="align-middle">10:00am</td>
-                  <td>
-                     <span
-                        class="bg-yellow padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">Music</span>
-                     <div class="margin-10px-top font-size14">10:00-11:00</div>
-                     <div class="font-size13 text-light-gray">Ivana Wong</div>
-                  </td>
-                  <td class="blank-gray">
-                  </td>
-                  <td>
-                     <span
-                        class="bg-purple padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">Art</span>
-                     <div class="margin-10px-top font-size14">10:00-11:00</div>
-                     <div class="font-size13 text-light-gray">Kate Alley</div>
-                  </td>
-                  <td>
-                     <span
-                        class="bg-green padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">Yoga</span>
-                     <div class="margin-10px-top font-size14">10:00-11:00</div>
-                     <div class="font-size13 text-light-gray">Marta Healy</div>
-                  </td>
-                  <td>
-                     <span
-                        class="bg-pink padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">English</span>
-                     <div class="margin-10px-top font-size14">10:00-11:00</div>
-                     <div class="font-size13 text-light-gray">James Smith</div>
-                  </td>
-                  <td class="bg-light-gray"></td>
-               </tr>
+        public final String printMealByRow(int mealIndex, ArrayList<Meal> meals, ArrayList<FoodDetail>[] foodDetailsByRow, ArrayList<Image>[] imagesByRow){
+        //GEETING GENERAL INFORMATION
+            String color = MEAL_COLOR_INDEX[mealIndex - 1];
+            int numOfFoodDetail = foodDetailsByRow[0].size();
+            String mealIndexStr = Constants.MEAL.get(mealIndex);
+            String time = Constants.MEAL_TIME.get(mealIndex);
+        
+        //HTML CODE
+            String html=    "<tr>\n"
+                            +"<td class=\"align-middle\">" + time + "</td>\n";
+            for(int day = 0; day < 7; day++){
+                    html += "<td class=\"tooltips\" style=\"border: none;width: 8em;height: 10em;padding-left: 0px\">\n"
+                            +" <span "
+                            +"   class=\"" + color + " padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13\">" + mealIndexStr + "</span>\n"
+                            +"<div class=\"font-size13 text-light-gray\" style = \"margin-top: 5px\">" + meals.get(day).getTotalCal() + " KCal</div>";
+                    //IMPORT IMAGES INTO TOOLTIP
+                    html +=  displayImage(mealIndex, imagesByRow[day]);
 
-               <tr>
-                  <td class="align-middle">11:00am</td>
-                  <td>
-                     <span
-                        class="bg-lightred padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">Break</span>
-                     <div class="margin-10px-top font-size14">11:00-12:00</div>
-                  </td>
-                  <td>
-                     <span
-                        class="bg-lightred padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">Break</span>
-                     <div class="margin-10px-top font-size14">11:00-12:00</div>
-                  </td>
-                  <td>
-                     <span
-                        class="bg-lightred padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">Break</span>
-                     <div class="margin-10px-top font-size14">11:00-12:00</div>
-                  </td>
-                  <td>
-                     <span
-                        class="bg-lightred padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">Break</span>
-                     <div class="margin-10px-top font-size14">11:00-12:00</div>
-                  </td>
-                  <td>
-                     <span
-                        class="bg-lightred padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">Break</span>
-                     <div class="margin-10px-top font-size14">11:00-12:00</div>
-                  </td>
-                  <td>
-                     <span
-                        class="bg-lightred padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">Break</span>
-                     <div class="margin-10px-top font-size14">11:00-12:00</div>
-                  </td>
-               </tr>
+                    //IMPORT DETAILS OF FOODDETAIL INTO TOOLTIPTEXT
+                    html +=  displayDetailsFoodDetail(foodDetailsByRow[day]);
+                    html += "</td>";
+            }
+            //END THE ROW
+            html += "</tr>";
 
-               <tr>
-                  <td class="align-middle">12:00pm</td>
-                  <td class="bg-light-gray"></td>
-                  <td>
-                     <span
-                        class="bg-purple padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">Art</span>
-                     <div class="margin-10px-top font-size14">12:00-1:00</div>
-                     <div class="font-size13 text-light-gray">Kate Alley</div>
-                  </td>
-                  <td>
-                     <span
-                        class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">Dance</span>
-                     <div class="margin-10px-top font-size14">12:00-1:00</div>
-                     <div class="font-size13 text-light-gray">Ivana Wong</div>
-                  </td>
-                  <td>
-                     <span
-                        class="bg-yellow padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">Music</span>
-                     <div class="margin-10px-top font-size14">12:00-1:00</div>
-                     <div class="font-size13 text-light-gray">Ivana Wong</div>
-                  </td>
-                  <td class="bg-light-gray"></td>
-                  <td>
-                     <span
-                        class="bg-green padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">Yoga</span>
-                     <div class="margin-10px-top font-size14">12:00-1:00</div>
-                     <div class="font-size13 text-light-gray">Marta Healy</div>
-                  </td>
-               </tr>
+            return html;
+        }
 
-               <tr>
-                  <td class="align-middle">01:00pm</td>
-                  <td>
-                     <span
-                        class="bg-pink padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">English</span>
-                     <div class="margin-10px-top font-size14">1:00-2:00</div>
-                     <div class="font-size13 text-light-gray">James Smith</div>
-                  </td>
-                  <td>
-                     <span
-                        class="bg-yellow padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">Music</span>
-                     <div class="margin-10px-top font-size14">1:00-2:00</div>
-                     <div class="font-size13 text-light-gray">Ivana Wong</div>
-                  </td>
-                  <td class="bg-light-gray"></td>
-                  <td>
-                     <span
-                        class="bg-pink padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">English</span>
-                     <div class="margin-10px-top font-size14">1:00-2:00</div>
-                     <div class="font-size13 text-light-gray">James Smith</div>
-                  </td>
-                  <td>
-                     <span
-                        class="bg-green padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">Yoga</span>
-                     <div class="margin-10px-top font-size14">1:00-2:00</div>
-                     <div class="font-size13 text-light-gray">Marta Healy</div>
-                  </td>
-                  <td>
-                     <span
-                        class="bg-yellow padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">Music</span>
-                     <div class="margin-10px-top font-size14">1:00-2:00</div>
-                     <div class="font-size13 text-light-gray">Ivana Wong</div>
-                  </td>
-               </tr>-->
+        public final String displayImage(int mealIndex, ArrayList<Image> imagesByWeek){
+            //GETTING BASIC INFORMATION
+            final int size = 25;
+            int numOfFoodDetail = 0;
+            String html = "";  //INITIALIZING FIRST ROW
+            if(mealIndex <= 1){
+                numOfFoodDetail = Constants.BREAKFAST_CATEGORIES.length;
+                for(int i = 1; i <= numOfFoodDetail; i++){
+                    if(i%2 == 1)
+                        html += "<div class = \"row\">";
+                    
+                    html += "<div class=\"col-md-6 col-sm-6\" style='padding-bottom:20px;'><img src=\"" + imagesByWeek.get(i-1).getUrl() + "\" width=" + size + " height=" + size + " ></div>\n";
+                    
+                    if(i%2 == 0)
+                        html += "</div>\n";
+                }
+            }else if(mealIndex <= 3){
+                numOfFoodDetail = Constants.LUNCH_DINNER_CATEGORIES.length;
+                for(int i = 1; i <= numOfFoodDetail; i++){
+                    if(i%2 == 1)
+                        html += "<div class = \"row\">";
+                    
+                    html += "<div class=\"col-md-6 col-sm-6\"><img src=\"" + imagesByWeek.get(i-1).getUrl() + "\" width=" + size + " height=" + size + " ></div>\n";
+                    
+                    if(i%2 == 0)
+                        html += "</div>\n";
+                }
+                html += "</div>\n";
+            }else{
+                numOfFoodDetail = Constants.SIDE_MEAL_CATEGORIES.length;
+                html += "<div class = \"row\">";
+                    html += "<div class=\"col-md-12 col-sm-12\" style='padding: 30px'><img src=\"" + imagesByWeek.get(0).getUrl() + "\" width=" + size + " height=" + size + " ></div>\n";
+                html += "</div>\n";
+            }
+            return html;
+        }
+
+        public String displayDetailsFoodDetail(ArrayList<FoodDetail> fd){
+            String html = "<span class = \"tooltiptext\" style = \"\">";
+            for(FoodDetail x: fd){
+                html += "<div class = \"row\">"
+                       +"<div class=\"column-tooltip column-50\">" + x.getFoodID() + "</div>"
+                       +"<div class=\"column-tooltip column-25\">"+ x.getAmount() +" g</div>'"
+                       +"<div class=\"column-tooltip column-25\">" + x.getTotalCal() + " KCal</div>"
+                       +"</div>";
+            }
+                html += "</span>";
+            return html;
+        }
+    %>
+    
+    <%
+        ArrayList<FoodDetail>[][] foodDetailsByWeek = (ArrayList<FoodDetail>[][]) request.getAttribute("foodDetailsByWeek");
+        ArrayList<Image>[][] imagesByWeek = (ArrayList<Image>[][]) request.getAttribute("imagesByWeek");
+        ArrayList<Meal>[] meals = (ArrayList<Meal>[]) request.getAttribute("meals");
+        ArrayList<Day>  days = (ArrayList<Day>) request.getAttribute("days");
+        out.print(menuCode(foodDetailsByWeek,imagesByWeek,meals,days));
+    %>
             </tbody>
          </table>
       </div>
@@ -282,21 +166,7 @@
       <a class="btn btn-success" target="__blank" href="MenuEditor.html">Edit</a>
    </div>
     <div>
-    <%!
-        public final String BREAKFAST_BG = "green";
-        public final String LUNCH_BG = "blue";
-        public final String DINNER_BG = "yellow";
-        public final String BRUNCH_BG = "red";
-        public final String SNACK_BG = "purple";
-
-        public final String printMealByRow(ArrayList<Meal>[] meals, ArrayList<FoodDetail>[][] foodDetails){
-//            String time = ;
-            String html = "td class='" +"'></td>";
-//            String mealType = Constants.MEAL.get(meal.getMealindex());
-
-            return html;
-        }
-    %>
+    
     </div>
 
 </body>
