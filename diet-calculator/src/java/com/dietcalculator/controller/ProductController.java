@@ -73,6 +73,8 @@ public class ProductController extends HttpServlet {
                response.sendRedirect("ProductController");
             }
             
+            
+            
         }else if (action.equals("update")){
             if(request.getParameter("productname") == null){
                 Product product = productByID(request.getParameter("productID"));
@@ -91,14 +93,17 @@ public class ProductController extends HttpServlet {
                     double volume = Double.parseDouble(request.getParameter("volume"));
                     String effect = request.getParameter("effect");
                     double rate = Double.parseDouble(request.getParameter("rate"));
-                    int purchase = Integer.parseInt(request.getParameter("purchase"));
+                    double purchase = Double.parseDouble(request.getParameter("purchase"));
                     dao.updateProduct(productID, productname, type, price, quantity, brand, origin, volume, effect, rate, purchase);
-//                    dao.updateProduct("PRO0000", "Khoi1", "", 0, 0, "", "", 0, "", 0, 0);
                 }catch (Exception e){
-                    System.out.println(e);
+                   
                 }
+                
+               
                 response.sendRedirect("ProductController");
             }
+                
+        
         }else if(action.equals("delete")){
             String [] ids = request.getParameterValues("productID");
             if(ids != null){

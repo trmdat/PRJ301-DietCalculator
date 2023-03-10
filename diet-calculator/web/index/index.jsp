@@ -83,8 +83,8 @@
                                  <h1 class="banner_taital">Diet Calculator</h1>
                                  <p class="banner_text">Hello! We are team PGNB</p>
                                  <div class="btn_main">
-                                    <div class="contact_bt"><a href="#">Calculate diet</a></div>
-                                    <div class="readmore_bt active"><a href="#">Read More</a></div>
+                                    <div class="contact_bt"><a href="MenuController">Calculate diet</a></div>
+                                    
                                  </div>
                                  <div class="number_text">01</div>
                               </div>
@@ -94,8 +94,8 @@
                                  <h1 class="banner_taital">Diet Calculator</h1>
                                  <p class="banner_text">Hello! We are team PGNB</p>
                                  <div class="btn_main">
-                                    <div class="contact_bt"><a href="#">Calculate diet</a></div>
-                                    <div class="readmore_bt active"><a href="#">Read More</a></div>
+                                    <div class="contact_bt"><a href="MenuController">Calculate diet</a></div>
+                             
                                  </div>
                                  <div class="number_text">02</div>
                               </div>
@@ -105,8 +105,8 @@
                                  <h1 class="banner_taital">Diet Calculator</h1>
                                  <p class="banner_text">Hello! We are team PGNB</p>
                                  <div class="btn_main">
-                                    <div class="contact_bt"><a href="#">Calculate diet</a></div>
-                                    <div class="readmore_bt active"><a href="#">Read More</a></div>
+                                    <div class="contact_bt"><a href="MenuController">Calculate diet</a></div>
+                                    
                                  </div>
                                  <div class="number_text">03</div>
                               </div>
@@ -116,8 +116,8 @@
                                  <h1 class="banner_taital">Diet Calculator</h1>
                                  <p class="banner_text">Hello! We are team PGNB</p>
                                  <div class="btn_main">
-                                    <div class="contact_bt"><a href="#">Calculate diet</a></div>
-                                    <div class="readmore_bt active"><a href="#">Read More</a></div>
+                                    <div class="contact_bt"><a href="MenuController">Calculate diet</a></div>
+                                    
                                  </div>
                                  <div class="number_text">04</div>
                               </div>
@@ -146,7 +146,7 @@
                   <div class="about_taital_main">
                      <h1 class="about_taital">Diet Calculator</h1>
                      <p class="about_text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is tha</p>
-                     <div class="read_bt"><a href="#">Get your diet now</a></div>
+                     <div class="read_bt"><a href="MenuController">Get your diet now</a></div>
                   </div>
                </div>
             </div>
