@@ -40,8 +40,24 @@ public class ExerciseController extends HttpServlet {
         int calorexp = 0;
 
         if (action == null || action.equals("list")) {
-            List<Exercise> list = exerciseDAO.readExercise();
+            List<Exercise> fullList = exerciseDAO.readExercise();
 
+            int pageSize = 12;
+            int totalPages = (int) Math.ceil(fullList.size() / pageSize);
+            Integer page = null;
+            try {
+                page = Integer.parseInt(request.getParameter("page"));
+            } catch (Exception e) {
+            }
+            if (page == null) {
+                page = 1;
+            } else if (page > totalPages) {
+                page = totalPages;
+            }
+            List<Exercise> list = paginExercise(page, pageSize, fullList);
+
+            request.setAttribute("page", (int) page);
+            request.setAttribute("totalPages", totalPages);
             request.setAttribute("list", list);
             RequestDispatcher rd = request.getRequestDispatcher("./Administrator/Exercise.jsp");
             rd.forward(request, response);
@@ -108,6 +124,13 @@ public class ExerciseController extends HttpServlet {
             }
         }
         return null;
+    }
+
+    public List<Exercise> paginExercise(int pageNum, int pageSize, List<Exercise> exercises) {
+        int startIndex = (pageNum - 1) * pageSize;
+        int endIndex = Math.min(startIndex + pageSize, exercises.size());
+        List<Exercise> exerciseList = exercises.subList(startIndex, endIndex);
+        return exerciseList;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
