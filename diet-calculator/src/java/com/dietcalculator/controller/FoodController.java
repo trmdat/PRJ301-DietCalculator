@@ -40,7 +40,6 @@ public class FoodController extends HttpServlet {
         FoodDAO dao = new FoodDAO();
 
         if (action == null || action.equals("read")) {
-
             ArrayList<Food> foodList = dao.readFood();
             request.setAttribute("foodList", foodList);
             RequestDispatcher rd = request.getRequestDispatcher("Food/View&DeleteFood.jsp");
