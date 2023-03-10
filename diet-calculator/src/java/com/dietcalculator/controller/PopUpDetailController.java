@@ -42,11 +42,15 @@ public class PopUpDetailController extends HttpServlet {
             } catch (Exception e) {
             }
             ArrayList<PopUpDetail> list = popupdetailDao.readPopUpDetail(popupId);
-            String popDetID = list.get(0).getPopupID();
-            request.setAttribute("list", list);
-            request.setAttribute("popup", popDetID);
-            RequestDispatcher rd = request.getRequestDispatcher("Administrator/PopUpDetail.jsp");
-            rd.forward(request, response);
+            if (!list.isEmpty()) {
+                String popDetID = list.get(0).getPopupID();
+                request.setAttribute("list", list);
+                request.setAttribute("popup", popDetID);
+                RequestDispatcher rd = request.getRequestDispatcher("Administrator/PopUpDetail.jsp");
+                rd.forward(request, response);
+            } else {
+                response.sendRedirect("Administrator/PopUpDetail.jsp");
+            }
         } else if (action.equals("create")) {
             popupId = request.getParameter("popupID");
             request.setAttribute("pID", popupId);
