@@ -40,13 +40,15 @@ public class ProductController extends HttpServlet {
         
         String action = request.getParameter("action");
         ProductDAO dao = new ProductDAO();
-        
+       
         if(action == null || action.equals("read")){
             ArrayList<Product> productList = dao.readProduct();
+            
             request.setAttribute("productList", productList);
             RequestDispatcher rd = request.getRequestDispatcher("./Administrator/ViewDeleteProduct.jsp");
             
             rd.forward(request, response);
+            
         }else if(action.equals("create")){
             if(!request.getParameter("productID").isEmpty()){
                 try {
@@ -61,7 +63,8 @@ public class ProductController extends HttpServlet {
                     String effect = request.getParameter("effect");
                     double rate = Double.parseDouble(request.getParameter("rate"));
                     int purchase = Integer.parseInt(request.getParameter("purchase"));
-                    
+                 dao.createProduct(productID, productname, type, price, quantity, brand, origin, volume, effect, rate, purchase);
+
                 }catch (Exception e){
                     System.out.println(e);
                 }
@@ -69,13 +72,14 @@ public class ProductController extends HttpServlet {
             }else{
                response.sendRedirect("ProductController");
             }
+            
         }else if (action.equals("update")){
             if(request.getParameter("productname") == null){
                 Product product = productByID(request.getParameter("productID"));
                 request.setAttribute("product", product);
-                RequestDispatcher rd = request.getRequestDispatcher("Adminstrator/EditProduct.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("Administrator/EditProduct.jsp");
                 rd.forward(request, response);
-            }else if(!request.getParameter("productnam").isEmpty()){
+            }else if(!request.getParameter("productname").isEmpty()){
                 try{
                     String productID = request.getParameter("productID");
                     String productname = request.getParameter("productname");
@@ -88,7 +92,8 @@ public class ProductController extends HttpServlet {
                     String effect = request.getParameter("effect");
                     double rate = Double.parseDouble(request.getParameter("rate"));
                     int purchase = Integer.parseInt(request.getParameter("purchase"));
-                    
+                    dao.updateProduct(productID, productname, type, price, quantity, brand, origin, volume, effect, rate, purchase);
+//                    dao.updateProduct("PRO0000", "Khoi1", "", 0, 0, "", "", 0, "", 0, 0);
                 }catch (Exception e){
                     System.out.println(e);
                 }

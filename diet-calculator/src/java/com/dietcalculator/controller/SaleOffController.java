@@ -43,7 +43,7 @@ public class SaleOffController extends HttpServlet {
         if(action == null || action.equals("read")){
             ArrayList<SaleOff> saleoffList = dao.readSaleOff();
             request.setAttribute("saleoffList", saleoffList);
-            RequestDispatcher rd = request.getRequestDispatcher("Adminstrator/ViewDeleteSaleOff.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("./Administrator/ViewDeleteSaleOff.jsp");
             
             rd.forward(request, response);
         }else if(action.equals("create")){
@@ -54,7 +54,7 @@ public class SaleOffController extends HttpServlet {
                     Date startdate = Utils.convertStringToSqlDate(request.getParameter("startdate"));
                     Date enddate = Utils.convertStringToSqlDate(request.getParameter("enddate"));
                     int target = Integer.parseInt(request.getParameter("target"));
-                   
+                   dao.createSaleOff(saleoffID, description, startdate, enddate, target);
                     
                 }catch (Exception e){
                     System.out.println(e);
@@ -68,7 +68,7 @@ public class SaleOffController extends HttpServlet {
             if(request.getParameter("description") == null){
                 SaleOff saleoff = saleoffByID(request.getParameter("saleoffID"));
                 request.setAttribute("saleoff", saleoff);
-                RequestDispatcher rd = request.getRequestDispatcher("Adminstrator/EditSaleOff.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("Administrator/EditSaleOff.jsp");
                 rd.forward(request, response);
             }else if(!request.getParameter("description").isEmpty()){
                 try{
@@ -77,6 +77,7 @@ public class SaleOffController extends HttpServlet {
                     Date startdate = Utils.convertStringToSqlDate(request.getParameter("startdate"));
                     Date enddate = Utils.convertStringToSqlDate(request.getParameter("enddate"));
                     int target = Integer.parseInt(request.getParameter("target"));
+                    dao.updateSaleOff(saleoffID, description, startdate, enddate, target);
                 }catch (Exception e){
                     System.out.println(e);
                 }
@@ -90,6 +91,8 @@ public class SaleOffController extends HttpServlet {
                 }
             }
         }
+        
+        response.sendRedirect("SaleOffController");
        
     }
 

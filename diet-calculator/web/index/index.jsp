@@ -167,7 +167,8 @@
                      <div class="vitamin_section_2">
                         <div class="vitamin_taital_left">
                            <div class="car_box">
-                              <img src="images/car-img.png" class="car_image">
+                              <img src="https://thumbs2.imgbox.com/4e/a9/s08fsXhS_t.jpg" alt="image host" class="car_image"/>
+                              
                            </div>
                         </div>
                         <div class="vitamin_taital_right">
@@ -178,7 +179,7 @@
                      <div class="vitamin_section_2">
                         <div class="vitamin_taital_left">
                            <div class="car_box">
-                              <img src="images/balls-img.png" class="car_image">
+                               <img src="https://thumbs2.imgbox.com/f1/68/LYzuXjKo_t.jpg" alt="image host"/>
                            </div>
                         </div>
                         <div class="vitamin_taital_right">
@@ -189,7 +190,7 @@
                      <div class="vitamin_section_2">
                         <div class="vitamin_taital_left">
                            <div class="car_box">
-                              <img src="images/water-bottle-img.png" class="car_image">
+                              <img src="https://thumbs2.imgbox.com/9a/24/bHVe3vjJ_t.jpg" alt="image host" class="car_image"/>
                            </div>
                         </div>
                         <div class="vitamin_taital_right">

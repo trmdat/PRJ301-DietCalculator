@@ -85,6 +85,7 @@ public class ProductDAO {
             ps.setString(9, effect);
             ps.setDouble(10, rate);
             ps.setDouble(11, purchase);
+            
             row = ps.executeUpdate();
             ps.close();
             conn.close();
@@ -114,6 +115,7 @@ public class ProductDAO {
             ps.setDouble(9, rate);
             ps.setDouble(10, purchase);
             ps.setString(11, productID);
+            
             row = ps.executeUpdate();
             ps.close();
             conn.close();
@@ -149,8 +151,8 @@ public class ProductDAO {
      public static void main(String[]args){
          ProductDAO dao = new ProductDAO();
          
-//         System.out.println("Create");
-//         dao.createProduct("PRO0000", "Khoi", "Dep troai", 0, 0, "Quan 9", "VietNam", 0, "Hoc gioi", 0, 0);
+         System.out.println("Create");
+         dao.createProduct("PRO0000", "Khoi", "Dep troai", 0, 0, "Quan 9", "VietNam", 0, "Hoc gioi", 0, 0);
          ArrayList<Product> list = dao.readProduct();
          for(Product product : list){
              System.out.println(product.toString());
@@ -158,7 +160,8 @@ public class ProductDAO {
          
          System.out.println("");
          System.out.println("Update");
-         dao.updateProduct("PRO0000","Khoi", "Xau troai", 0, 0, "Quan 10", "USA", 0, "Hoc do", 0, 0);
+         
+         System.out.println(dao.updateProduct("PRO0000","Khoi", "Xau troai", 0, 0, "Quan 10", "USA", 0, "Hljkasdnfkljasnasdnfb", 0, 0));
          list = dao.readProduct();
            for(Product product : list){
              System.out.println(product.toString());

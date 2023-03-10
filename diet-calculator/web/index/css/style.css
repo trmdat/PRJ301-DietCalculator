@@ -610,11 +610,13 @@ img.image_3 {
 
 .car_image {
     text-align: center;
+    object-fit: cover;
+    border-radius: 10px;
 }
 
 .car_box {
     width: 100px;
-    height: 120px;
+    
     background-color: #ffffff;
     border-radius: 10%;
     display: flex;

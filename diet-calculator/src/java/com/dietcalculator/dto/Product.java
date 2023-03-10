@@ -11,7 +11,7 @@ package com.dietcalculator.dto;
  */
 public class Product {
     private String productID;
-    private String productName;
+    private String productname;
     private String type;
     private double price;
     private int quantity;
@@ -25,9 +25,9 @@ public class Product {
     public Product() {
     }
 
-    public Product(String productID, String productName, String type, double price, int quantity, String brand, String origin, double volume, String effect, double rate, double purchase) {
+    public Product(String productID, String productname, String type, double price, int quantity, String brand, String origin, double volume, String effect, double rate, double purchase) {
         this.productID = productID;
-        this.productName = productName;
+        this.productname = productname;
         this.type = type;
         this.price = price;
         this.quantity = quantity;
@@ -47,12 +47,12 @@ public class Product {
         this.productID = productID;
     }
 
-    public String getProductName() {
-        return productName;
+    public String getProductname() {
+        return productname;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setProductname(String productname) {
+        this.productname = productname;
     }
 
     public String getType() {
@@ -129,7 +129,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" + "productID=" + productID + ", productName=" + productName + ", type=" + type + ", price=" + price + ", quantity=" + quantity + ", brand=" + brand + ", origin=" + origin + ", volume=" + volume + ", effect=" + effect + ", rate=" + rate + ", purchase=" + purchase + '}';
+        return "Product{" + "productID=" + productID + ", productname=" + productname + ", type=" + type + ", price=" + price + ", quantity=" + quantity + ", brand=" + brand + ", origin=" + origin + ", volume=" + volume + ", effect=" + effect + ", rate=" + rate + ", purchase=" + purchase + '}';
     }
 
    

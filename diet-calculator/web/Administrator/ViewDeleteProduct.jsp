@@ -1,14 +1,8 @@
-<%-- 
-    Document   : ViewDeleteProduct
-    Created on : Mar 6, 2023, 11:18:17 AM
-    Author     : MSI
---%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%@page import="com.dietcalculator.dto.Product"%>
+<%@page import="com.dietcalculator.dto.Food"%>
 <%@page import="java.util.ArrayList"%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,11 +27,17 @@
                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 tm-block-col">
                     <div class="tm-bg-primary-dark tm-block tm-block-products">
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col-10">
                                 <h2 class="tm-block-title d-inline-block">View & Delete Product</h2>
                             </div>
+                            <div class="col-2">
+                                <form action="/diet-calculator/ProductController">
+                                    <button type="submit" class="btn btn-primary btn-block text-uppercase bg-success"> << Return</button>                            
+                                </form>
+                            </div>
                         </div>
-                        <a href="Adminstrator/AddProduct.jsp" class="btn btn-primary btn-block text-uppercase mb-3 bg-success">Add new Product</a>
+                        <a href="Administrator/AddProduct.jsp" class="btn btn-primary btn-block text-uppercase mb-3 bg-success">Add new Product</a>
+                                <p>${test}</p>
                         <form action="/diet-calculator/ProductController" method="get" class="tm-edit-product-form">
                             <div class="tm-product-table-container">
 
@@ -60,36 +60,36 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-   <!--                                     <tr>
-                                            <th scope="row"><input type="checkbox" name="id" value="1"/></th>
-                                            <td class="tm-product-name">Lorem Ipsum Product 1</td>
-                                            <td>1,450</td>
-                                            <td>550</td>
-                                            <td>28 March 2019</td>
-                                            <td>
-                                                <a href="#" class="tm-product-delete-link">
-                                                    <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                                                </a>
-                                            </td>
-                                        </tr> -->
+                                        <!--                                     <tr>
+                                                                                 <th scope="row"><input type="checkbox" name="id" value="1"/></th>
+                                                                                 <td class="tm-product-name">Lorem Ipsum Product 1</td>
+                                                                                 <td>1,450</td>
+                                                                                 <td>550</td>
+                                                                                 <td>28 March 2019</td>
+                                                                                 <td>
+                                                                                     <a href="#" class="tm-product-delete-link">
+                                                                                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                                                                                     </a>
+                                                                                 </td>
+                                                                             </tr> -->
 
-                                    <c:forEach items="${productList}" var="x">
-                                        <tr>
-                                            <th scope="row"><input type="checkbox" name="foodID" value="${x.getProductID()}"/></th>
-                                            <td>${x.getProductID()}</td>
-                                            <td>${x.getProductName()}</td>
-                                            <td>${x.getType()}</td>
-                                            <td>${x.getPrice()}</td>
-                                            <td>${x.getQuantity()}</td>
-                                            <td>${x.getBrand()}</td>
-                                            <td>${x.getOrigin()}</td>
-                                            <td>${x.getVolume()}</td>
-                                            <td>${x.getEffect()}</td>
-                                            <td>${x.getRate()}</td>
-                                            <td>${x.getPurchase()}</td>
-                                            <td><a href="FoodController?action=update&foodID=${x.getProductID()}">Update</a></td>
-                                        </tr>
-                                    </c:forEach>
+                                        <c:forEach items="${productList}" var="x">
+                                            <tr>
+                                                <th scope="row"><input type="checkbox" name="productID" value="${x.getProductID()}"/></th>
+                                                <td>${x.getProductID()}</td>
+                                                <td>${x.getProductname()}</td>
+                                                <td>${x.getType()}</td>
+                                                <td>${x.getPrice()}</td>
+                                                <td>${x.getQuantity()}</td>
+                                                <td>${x.getBrand()}</td>
+                                                <td>${x.getOrigin()}</td>
+                                                <td>${x.getVolume()}</td>
+                                                <td>${x.getEffect()}</td>
+                                                <td>${x.getRate()}</td>
+                                                <td>${x.getPurchase()}</td>
+                                                <td><a href="ProductController?action=update&productID=${x.getProductID()}">Update</a></td>
+                                            </tr>
+                                        </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
