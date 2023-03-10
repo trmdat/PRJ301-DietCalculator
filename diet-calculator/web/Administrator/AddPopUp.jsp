@@ -117,7 +117,7 @@
                         </div>
                         <div class="row tm-edit-product-row">
                             <div class="col-xl-12 col-lg-12 col-md-12">
-                                <form action="../popupcontroller" method="post" class="tm-edit-product-form">
+                                <form action="../PopUpController" method="post" class="tm-edit-product-form">
                                     <input type=hidden name="action" value="create">
                                     <div class="form-group mb-3">
                                         <label for="id">PopUp ID</label>

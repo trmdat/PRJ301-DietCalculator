@@ -101,8 +101,8 @@ public class ExerciseDAO {
             Connection conn = DBUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, exname);
-            ps.setDouble(2, upperweight);
-            ps.setDouble(3, lowerweight);
+            ps.setDouble(2, lowerweight);
+            ps.setDouble(3, upperweight);
             ps.setInt(4, calorexp);
             ps.setString(5, exerciseID);
             row = ps.executeUpdate();

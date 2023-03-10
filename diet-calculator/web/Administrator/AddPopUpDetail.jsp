@@ -1,6 +1,6 @@
 <%-- 
-    Document   : AddExercise
-    Created on : Mar 4, 2023, 4:20:06 PM
+    Document   : AddPopUpDetail
+    Created on : Mar 9, 2023, 9:30:58 PM
     Author     : admin
 --%>
 
@@ -24,7 +24,7 @@
         <nav class="navbar navbar-expand-xl">
             <div class="container h-100">
                 <a class="navbar-brand" href="">
-                    <h1 class="tm-site-title mb-0 text-success">Exercise Admin</h1>
+                    <h1 class="tm-site-title mb-0 text-success">PopUp Admin</h1>
                 </a>
                 <button
                     class="navbar-toggler ml-auto mr-0"
@@ -112,40 +112,31 @@
                     <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="tm-block-title d-inline-block">Add Exercise</h2>
+                                <h2 class="tm-block-title d-inline-block">Add new detais for PopUp ${pID}</h2>
                             </div>
                         </div>
                         <div class="row tm-edit-product-row">
                             <div class="col-xl-12 col-lg-12 col-md-12">
-                                <form action="../ExerciseController" method="post" class="tm-edit-product-form">
-                                    <input type=hidden name="action" value="create">
-                                    <div class="form-group mb-3">
-                                        <label for="id">Exercise ID</label>
-                                        <input type="text" name ="exerciseID" class="form-control validate" required/>
-                                    </div>
-                                    <div class="form-group mb-3">
-                                        <label for="name">Exercise Name</label>
-                                        <input type="text" name="exname" class="form-control validate" required/>
-                                    </div>
+                                <form action="./PopUpDetailController" method="post" class="tm-edit-product-form">
+                                    <input type=hidden name="action" value="insert">
+                                    <input type=hidden name="popupID" value="${pID}">
                                     <div class="row">
-                                        <div class="form-group mb-3 col-xs-12 col-sm-4">
-                                            <label for="lowerweight">Lower Weight</label>
-                                            <input type="text" name="lowerweight" class="form-control validate" required/>
+                                        <div class="form-group mb-3 col-xs-12 col-sm-12">
+                                            <label for="lowerweight">Product ID</label>
+                                            <input type="text" name="productID" class="form-control validate" required/>
                                         </div>
-                                        <div class="form-group mb-3 col-xs-12 col-sm-4">
-                                            <label for="upperweight">Upper Weight</label>
-                                            <input type="text" name="upperweight" class="form-control validate" required/>
-                                        </div>
-                                        <div class="form-group mb-3 col-xs-12 col-sm-4">
-                                            <label for="calorexp">Calorexp</label>
-                                            <input type="text" name="calorexp" class="form-control validate" required/>
-                                        </div>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="name">Description</label>
+                                        <input type="text" name="description" class="form-control validate" required/>
                                     </div>
                                     <div class="col-12">
-                                        <input type="submit" value="Add Exercise Now" class="btn btn-primary btn-block text-uppercase bg-success">
+                                        <input type="submit" value="Add Detail Now" class="btn btn-primary btn-block text-uppercase bg-success">
                                     </div>
                                 </form>
                             </div>
+
+
                         </div>
                     </div>
                 </div>
@@ -166,10 +157,10 @@
     <!-- https://jquery.com/download/ -->
     <script src="js/bootstrap.min.js"></script>
     <!-- https://getbootstrap.com/ -->
-<!--    <script>
-        $(function () {
-            $("#expire_date").datepicker();
-        });
-    </script>-->
+    <!--    <script>
+            $(function () {
+                $("#expire_date").datepicker();
+            });
+        </script>-->
 </body>
 </html>

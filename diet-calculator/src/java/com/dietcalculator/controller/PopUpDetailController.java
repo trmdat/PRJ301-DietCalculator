@@ -28,7 +28,7 @@ public class PopUpDetailController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                String action = request.getParameter("action");
+        String action = request.getParameter("action");
 
         PopUpDetailDAO popupdetailDao = new PopUpDetailDAO();
 
@@ -37,12 +37,26 @@ public class PopUpDetailController extends HttpServlet {
         String description = "";
 
         if (action == null || action.equals("list")) {
-            ArrayList<PopUpDetail> list = popupdetailDao.readPopUpDetail();
-
-            request.setAttribute("list", list);
-            RequestDispatcher rd = request.getRequestDispatcher("Adminstrator/PopUpDetail.jsp");
-            rd.forward(request, response);
+            try {
+                popupId = request.getParameter("popupID");
+            } catch (Exception e) {
+            }
+            ArrayList<PopUpDetail> list = popupdetailDao.readPopUpDetail(popupId);
+            if (!list.isEmpty()) {
+                String popDetID = list.get(0).getPopupID();
+                request.setAttribute("list", list);
+                request.setAttribute("popup", popDetID);
+                RequestDispatcher rd = request.getRequestDispatcher("Administrator/PopUpDetail.jsp");
+                rd.forward(request, response);
+            } else {
+                response.sendRedirect("Administrator/PopUpDetail.jsp");
+            }
         } else if (action.equals("create")) {
+            popupId = request.getParameter("popupID");
+            request.setAttribute("pID", popupId);
+            RequestDispatcher rd = request.getRequestDispatcher("Administrator/AddPopUpDetail.jsp");
+            rd.forward(request, response);
+        } else if (action.equals("insert")) {
             try {
                 popupId = request.getParameter("popupID");
                 productId = request.getParameter("productID");
@@ -53,7 +67,7 @@ public class PopUpDetailController extends HttpServlet {
                 popupdetailDao.createPopUpDetail(popupId, productId, description);
             }
 
-            response.sendRedirect("popupdetailcontroller");
+            response.sendRedirect("PopUpController");
         } else if (action.equals("delete")) {
             String[] ids = request.getParameterValues("checkId");
             try {
@@ -66,40 +80,35 @@ public class PopUpDetailController extends HttpServlet {
                 }
             }
 
-            response.sendRedirect("popupdetailcontroller");
+            response.sendRedirect("PopUpDetailController");
         } else if (action.equals("edit")) {
-            if (request.getParameter("jump") != null) {
-                try {
-                    popupId = request.getParameter("popupID");
-                    productId = request.getParameter("productID");
-                } catch (NumberFormatException ex) {
-                }
-                PopUpDetail p = readPopUpDetailByID(popupId, productId);
-
-                request.setAttribute("popup", p);
-                RequestDispatcher rd = request.getRequestDispatcher("Adminstrator/EditPopUpDetail.jsp");
-                rd.forward(request, response);
-            } else {
-                try {
-                    popupId = request.getParameter("popupID");
-                    productId = request.getParameter("productID");
-                    description = request.getParameter("description");
-                } catch (NumberFormatException ex) {
-                }
-
-                if (popupId != null) {
-                    popupdetailDao.updatePopUpDetail(popupId, productId, description);
-                }
-
-                response.sendRedirect("popupdetailcontroller");
+            try {
+                popupId = request.getParameter("popupID");
+                productId = request.getParameter("productID");
+            } catch (NumberFormatException ex) {
             }
+            PopUpDetail p = readPopUpDetailByID(popupId, productId);
 
+            request.setAttribute("popup", p);
+            RequestDispatcher rd = request.getRequestDispatcher("Administrator/EditPopUpDetail.jsp");
+            rd.forward(request, response);
+        } else if (action.equals("update")) {
+            try {
+                popupId = request.getParameter("popupID");
+                productId = request.getParameter("productID");
+                description = request.getParameter("description");
+            } catch (NumberFormatException ex) {
+            }
+            if (popupId != null) {
+                popupdetailDao.updatePopUpDetail(popupId, productId, description);
+            }
+            response.sendRedirect("PopUpController");
         }
     }
 
     protected PopUpDetail readPopUpDetailByID(String popupID, String productID) {
         PopUpDetailDAO dao = new PopUpDetailDAO();
-        ArrayList<PopUpDetail> list = dao.readPopUpDetail();
+        ArrayList<PopUpDetail> list = dao.readPopUpDetail(popupID);
         for (PopUpDetail ex : list) {
             if (ex.getPopupID().equals(popupID) && ex.getProductID().equals(productID)) {
                 return ex;
