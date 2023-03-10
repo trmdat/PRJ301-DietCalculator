@@ -138,9 +138,11 @@ public class FoodDetailController extends HttpServlet {
     public final ArrayList<FoodDetail>[][] generateFoodDetail(ArrayList<Food> allApplicableFood, ArrayList<Meal>[] meals, ArrayList<Day> days){
         //Calculate the number of days
         int numOfDay = days.size();
-        
+        int numOfMeal = meals.length;
         //Creating loads of food details for each kind of meals
-        ArrayList<FoodDetail>[][] foodDetails = new ArrayList[meals.length][7];
+        ArrayList<FoodDetail>[][] foodDetails = new ArrayList[meals.length][Constants.MAX_FOODDETAIL];
+        //meals.length = number of meals per day
+        //MAX_FOODDETAIL = max number of FoodDetail per meal
         //Looping through each of the type of meals
         for(int i = 0; i < meals.length; i++)
                 foodDetails[i] = generateLoadsOfFoodDetail(allApplicableFood,meals[i].get(0),numOfDay);//Meals = a load of breakfasts, a load of lunches, ....

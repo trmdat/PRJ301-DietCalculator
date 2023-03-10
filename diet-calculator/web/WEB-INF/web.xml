@@ -60,6 +60,10 @@
         <servlet-name>UserController</servlet-name>
         <servlet-class>com.dietcalculator.controller.UserController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ImageController</servlet-name>
+        <servlet-class>com.dietcalculator.controller.ImageController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>DayController</servlet-name>
         <url-pattern>/DayController</url-pattern>
@@ -119,6 +123,10 @@
     <servlet-mapping>
         <servlet-name>UserController</servlet-name>
         <url-pattern>/UserController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ImageController</servlet-name>
+        <url-pattern>/ImageController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
