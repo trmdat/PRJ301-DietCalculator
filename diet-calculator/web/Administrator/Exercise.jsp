@@ -10,12 +10,12 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
+        <title>Exercise List</title>
+        <jsp:include page="../index/AdminHeader.jsp" />
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Exercise List</title>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700" />
         <link rel="stylesheet" href="css/fontawesome.min.css" />
         <link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -31,7 +31,7 @@
                 <a class="navbar-brand" href="">
                     <h1 class="tm-site-title mb-0 text-success">Exercise Admin</h1>
                 </a>
-                <button
+<!--                <button
                     class="navbar-toggler ml-auto mr-0"
                     type="button"
                     data-toggle="collapse"
@@ -65,7 +65,7 @@
                             </a>
                         </li>
                     </ul>
-                </div>
+                </div>-->
             </div>
         </nav>
 
@@ -216,27 +216,12 @@
                 </div> -->
             </div>
         </div>
-        <!-- <footer class="tm-footer row tm-mt-small">
-          <div class="col-12 font-weight-light">
-            <p class="text-center text-white mb-0 px-4 small">
-              Copyright &copy; <b>2018</b> All rights reserved. 
-              
-              Design: <a rel="nofollow noopener" href="https://templatemo.com" class="tm-footer-link">Template Mo</a>
-            </p>
-          </div>
-        </footer> -->
-
+        <br>
         <script src="js/jquery-3.3.1.min.js"></script>
         <!-- https://jquery.com/download/ -->
         <script src="js/bootstrap.min.js"></script>
         <!-- https://getbootstrap.com/ -->
-<!--        <script>
-            $(function () {
-                $(".tm-product-name").on("click", function () {
-                    window.location.href = "EditProduct.html";
-                });
-            });
-        </script>-->
-    </body>
+        <jsp:include page="../index/AdminFooter.jsp" />
+        </body>
 
-</html>
+    </html>
