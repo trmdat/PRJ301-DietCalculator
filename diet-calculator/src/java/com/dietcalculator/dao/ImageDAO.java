@@ -129,14 +129,15 @@ public class ImageDAO {
         return list;
     }
 
-    public ArrayList<Image> readImageByMealID() {
-        ArrayList<Image> list = new ArrayList<>();
-        String sql = "SELECT * FROM Image WHERE mealID is not null";
+    public ArrayList<Image> readImageByFoodID(String foodID) {
+        ArrayList<Image> list = new ArrayList();
+        String sql = "SELECT * FROM Image WHERE foodID = ?";
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, foodID);
             ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
+            while(rs.next()) {
                 list.add(new Image(rs.getString("imageID"), rs.getString("productID"), rs.getString("mealID"), rs.getString("commentID"), rs.getString("url")));
             }
             rs.close();
