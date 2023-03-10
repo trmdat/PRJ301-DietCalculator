@@ -55,7 +55,7 @@ public class ProductListController extends HttpServlet {
             List<Product> productList = paginProducts(page, pageSize, fullProductList);
             for (Product product : productList) {
 //                imagelist.add(idao.searchImageByProductID(product.getProductID()).get(0));
-                imagelist.add(new Image("", "", "", "", "https://www.bootdey.com/image/250x220/FFB6C1/000000"));
+                imagelist.add(new Image("IMG000000", "", "", "", "https://www.bootdey.com/image/250x220/FFB6C1/000000"));
             }
 
             request.setAttribute("page", (int) page);
@@ -80,10 +80,7 @@ public class ProductListController extends HttpServlet {
 //            ImageDAO idao = new ImageDAO();
 //            ArrayList<Image> imagelist = new ArrayList<>();
 //            Integer page = null;
-//            try {
-//                page = Integer.parseInt(request.getParameter("page"));
-//            } catch (Exception e) {
-//            }
+//
 //            if(page == null){
 //                page = 1;
 //            } 

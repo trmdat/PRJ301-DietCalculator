@@ -28,6 +28,212 @@
         crossorigin="anonymous"></script>
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="ProductDetail.css">
+        <style>::-webkit-scrollbar {
+                width: 8px;
+            }
+            /* Track */
+            ::-webkit-scrollbar-track {
+                background: #f1f1f1; 
+            }
+
+            /* Handle */
+            ::-webkit-scrollbar-thumb {
+                background: #888; 
+            }
+
+            /* Handle on hover */
+            ::-webkit-scrollbar-thumb:hover {
+                background: #555; 
+            }  @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800,900|Rubik:300,400,500,700,900');
+
+            * {
+                margin: 0;
+                padding: 0;
+                -webkit-font-smoothing: antialiased;
+                -webkit-text-shadow: rgba(0, 0, 0, .01) 0 0 1px;
+                text-shadow: rgba(0, 0, 0, .01) 0 0 1px
+            }
+
+            body {
+                font-family: 'Rubik', sans-serif;
+                font-size: 14px;
+                font-weight: 400;
+                background: #eff6fa;
+                color: #000000
+            }
+
+            div {
+                display: block;
+                position: relative;
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box
+            }
+
+
+
+
+            .bbb_viewed {
+                padding-top: 51px;
+                padding-bottom: 60px;
+                background: #eff6fa
+            }
+
+            .bbb_main_container{
+                background-color: #fff;
+                padding: 11px;
+            }
+
+            .bbb_viewed_title_container {
+                border-bottom: solid 1px #dadada
+            }
+
+            .bbb_viewed_title {
+                margin-bottom: 16px;
+                margin-top: 8px;
+
+            }
+
+            .bbb_viewed_nav_container {
+                position: absolute;
+                right: -5px;
+                bottom: 14px
+            }
+
+            .bbb_viewed_nav {
+                display: inline-block;
+                cursor: pointer
+            }
+
+            .bbb_viewed_nav i {
+                color: #dadada;
+                font-size: 18px;
+                padding: 5px;
+                -webkit-transition: all 200ms ease;
+                -moz-transition: all 200ms ease;
+                -ms-transition: all 200ms ease;
+                -o-transition: all 200ms ease;
+                transition: all 200ms ease
+            }
+
+            .bbb_viewed_nav:hover i {
+                color: #606264
+            }
+
+            .bbb_viewed_prev {
+                margin-right: 15px
+            }
+
+            .bbb_viewed_slider_container {
+                padding-top: 13px;
+            }
+
+            .bbb_viewed_item {
+                width: 100%;
+                background: #FFFFFF;
+                border-radius: 2px;
+                padding-top: 25px;
+                padding-bottom: 25px;
+                padding-left: 30px;
+                padding-right: 30px
+            }
+
+            .bbb_viewed_image {
+                width: 150px;
+                height: 150px;
+            }
+
+            .bbb_viewed_image img {
+                display: block;
+                max-width: 100%
+            }
+
+            .bbb_viewed_content {
+                width: 100%;
+                margin-top: 25px
+            }
+
+            .bbb_viewed_price {
+                font-size: 16px;
+                color: #000000;
+                font-weight: 500
+            }
+
+            .bbb_viewed_item.discount .bbb_viewed_price {
+                color: #df3b3b
+            }
+
+            .bbb_viewed_price span {
+                position: relative;
+                font-size: 12px;
+                font-weight: 400;
+                color: rgba(0, 0, 0, 0.6);
+                margin-left: 8px
+            }
+
+            .bbb_viewed_price span::after {
+                display: block;
+                position: absolute;
+                top: 6px;
+                left: -2px;
+                width: calc(100% + 4px);
+                height: 1px;
+                background: #8d8d8d;
+                content: ''
+            }
+
+            .bbb_viewed_name {
+                margin-top: 3px
+            }
+
+            .bbb_viewed_name a {
+                font-size: 14px;
+                color: #000000;
+                -webkit-transition: all 200ms ease;
+                -moz-transition: all 200ms ease;
+                -ms-transition: all 200ms ease;
+                -o-transition: all 200ms ease;
+                transition: all 200ms ease
+            }
+
+            .bbb_viewed_name a:hover {
+                color: #0e8ce4
+            }
+
+            .item_marks {
+                position: absolute;
+                top: 18px;
+                left: 18px
+            }
+
+            .item_mark {
+                display: none;
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                color: #FFFFFF;
+                font-size: 10px;
+                font-weight: 500;
+                line-height: 36px;
+                text-align: center
+            }
+
+            .item_discount { 
+                background: #df3b3b;
+                margin-right: 5px
+            }
+
+            .item_new {
+                background: #0e8ce4
+            }
+
+            .bbb_viewed_item.discount .item_discount {
+                display: inline-block
+            }
+
+            .bbb_viewed_item.is_new .item_new {
+                display: inline-block
+            }</style>
     </head>
 
     <body>
@@ -75,7 +281,7 @@
                     </div>
                     <div class="col-md-6 col-md-offset-1 col-sm-12 col-xs-12">
                         <h2 class="name">
-                            ${requestScope.product.productName}
+                            ${requestScope.product.productname}
                         </h2>
                         <small>Product by ${requestScope.product.brand}</a></small>
                         <i class="fa fa-star fa-2x text-primary"></i>

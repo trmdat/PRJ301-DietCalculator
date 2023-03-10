@@ -5,7 +5,6 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.util.List"%>
-<%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -207,7 +206,7 @@
 
                             String html = "<div class=\"col-md-4\"> "
                                     + "<section class=\"panel\"> <div class=\"pro-img-box\"> "
-                                    + "<a href=\"productinfo?productID=" + p.getProductID() + "&imageID=" + i.getImageID() + "\" class=\"pro-title\">"
+                                    + "<a href=\"ProductInfoController?productID=" + p.getProductID() + "\" class=\"pro-title\">"
                                     + "<img src=\"" + i.getUrl() + "\" alt=\"Image not found\" />" + "</a>"
                                     + "                     <a href=\"\" class=\"adtocart\">"
                                     + "                     <i class=\"fa fa-shopping-cart\"></i>"
@@ -215,8 +214,8 @@
                                     + "    </div>"
                                     + "       <div class=\"panel-body text-center\">"
                                     + "           <h4>"
-                                    + "                      <a href=\"productinfo?productID=" + p.getProductID() + "&imageID=" + i.getImageID()
-                                    + "\" class=\"pro-title\">" + p.getProductName() + "</a>"
+                                    + "                      <a href=\"ProductInfoController?productID=" + p.getProductID() 
+                                    + "\" class=\"pro-title\">" + p.getProductname() + "</a>"
                                     + "                </h4>"
                                     + "       <p class=\"price\">" + p.getPrice() + " VND</p>"
                                     + "          </div>"
