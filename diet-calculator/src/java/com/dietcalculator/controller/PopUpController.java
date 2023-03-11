@@ -35,13 +35,15 @@ public class PopUpController extends HttpServlet {
         String description = "";
         int status = 0;
         String theme = "";
+        
 
         if (action == null || action.equals("list")) {
-            ArrayList<PopUp> list = popupDao.readPopUp();
+            ArrayList<PopUp> fullList = popupDao.readPopUp();
 
-            request.setAttribute("list", list);
+            request.setAttribute("list", fullList);
             RequestDispatcher rd = request.getRequestDispatcher("Administrator/PopUp.jsp");
             rd.forward(request, response);
+
         } else if (action.equals("create")) {
             try {
                 popupId = request.getParameter("popupID");

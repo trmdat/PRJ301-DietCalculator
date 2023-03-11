@@ -124,16 +124,20 @@
                                         <input type="text" name ="popupID" class="form-control validate" required/>
                                     </div>
                                     <div class="form-group mb-3">
-                                        <label for="name">Description</label>
+                                        <label for="des">Description</label>
                                         <input type="text" name="description" class="form-control validate" required/>
                                     </div>
                                     <div class="row">
-                                        <div class="form-group mb-3 col-xs-12 col-sm-4">
-                                            <label for="lowerweight">Status</label>
-                                            <input type="text" name="status" class="form-control validate" required/>
+                                        <div class="form-group mb-3 col-xs-12 col-sm-2">
+                                            <label for="status">Status</label>
+                                            <select name="status" class="form-control validate" required>
+                                                <option value="1">On</option>
+                                                <option value="0">Off</option>
+                                            </select>
+                                            <!--<input type="text" name="status" class="form-control validate" required/>-->
                                         </div>
-                                        <div class="form-group mb-3 col-xs-12 col-sm-4">
-                                            <label for="calorexp">Theme</label>
+                                        <div class="form-group mb-3 col-xs-12 col-sm-10">
+                                            <label for="theme">Theme</label>
                                             <input type="text" name="theme" class="form-control validate"/>
                                         </div>
                                     </div>

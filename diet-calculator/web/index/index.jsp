@@ -186,9 +186,6 @@
         </div>
     </div>
     <!-- contact section end -->
-    <!-- footer section start -->
-    <jsp:include page="UserFooter.jsp" />
-    <!-- footer section end -->
     <!-- Javascript files-->
     <script src="js/jquery.min.js"></script>
     <script src="js/popper.min.js"></script>
@@ -201,5 +198,6 @@
     <!-- javascript --> 
     <script src="js/owl.carousel.js"></script>
     <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+    <jsp:include page="UserFooter.jsp" />
 </body>
 </html>

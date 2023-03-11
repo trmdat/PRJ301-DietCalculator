@@ -61,6 +61,26 @@ public class PopUpDAO {
         return list;
     }
     
+    public ArrayList<PopUp> readAvailablePopUp(int status){
+        ArrayList<PopUp> list = new ArrayList<>();
+        String sql = "SELECT popupID,description,status,theme FROM PopUp WHERE status = ?";
+         try {
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, status);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                list.add(new PopUp(rs.getString("popupID"),rs.getString("description"),rs.getInt("status"), rs.getString("theme")));
+            }
+            rs.close();
+            ps.close();
+            conn.close();
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return list;
+    }
+    
      public boolean createPopUp(String popupID, String description, int status, String theme){
         int row = 0;
         String sql = "insert into PopUp values (?,?,?,?) ";
@@ -125,7 +145,7 @@ public class PopUpDAO {
          
 //        System.out.println("Create");
 //        dao.createPopUp("POP000", "Khoi dep troai", 0, "xanh");
-        ArrayList<PopUp> list = dao.readPopUp();
+        ArrayList<PopUp> list = dao.readAvailablePopUp(1);
         for(PopUp pop : list){
              System.out.println(pop.toString());
         }
