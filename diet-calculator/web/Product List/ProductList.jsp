@@ -27,6 +27,7 @@
         <link rel="stylesheet" href="ProductList.css">
     </head>
     <body>
+        <jsp:include page="../index/UserHeader.jsp" />
         <div class="container bootdey">
             <div class="col-md-3">
                 <section class="panel">
@@ -174,17 +175,17 @@
                     <div class="panel-body">
                         <div class="pull-right">
                             <ul class="pagination pagination-sm pro-page-list">
-                                
+
                                 <li class="page-item ${page == 1 ? 'disabled' : ''}">
                                     <a class="page-link" href="ProductListController?page=${page>1?page - 1:1}" aria-label="Previous">
                                         <span aria-hidden="true">&laquo;</span>
                                         <span class="sr-only">Previous</span>
                                     </a>
                                 </li>
-                                
+
                                 <c:forEach var="i" begin="1" end="${totalPages}">
-                          
-                                   
+
+
                                     <li class="page-item ${i == page ? 'active' : ''}">
                                         <a class="page-link" href="ProductListController?page=${i}">${i}</a>
                                     </li>
@@ -214,7 +215,7 @@
                                     + "    </div>"
                                     + "       <div class=\"panel-body text-center\">"
                                     + "           <h4>"
-                                    + "                      <a href=\"ProductInfoController?productID=" + p.getProductID() 
+                                    + "                      <a href=\"ProductInfoController?productID=" + p.getProductID()
                                     + "\" class=\"pro-title\">" + p.getProductname() + "</a>"
                                     + "                </h4>"
                                     + "       <p class=\"price\">" + p.getPrice() + " VND</p>"
@@ -236,5 +237,7 @@
                 </div>
             </div>
         </div>
+        <br>
+        <jsp:include page="../index/UserFooter.jsp" />
     </body>
 </html>

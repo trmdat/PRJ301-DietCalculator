@@ -16,6 +16,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Details</title>
+        <jsp:include page="../index/UserHeader.jsp" />
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
               integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -295,11 +296,11 @@
                             <small>*includes tax</small>
                         </h3>
                         <div class="description description-tabs">
-<!--                            <ul id="myTab" class="nav nav-pills">
-                                <li class="active" data-toggle="tab" class="no-margin">Product Description</li>
-                                                     <li class=""><a href="#specifications" data-toggle="tab">Specifications</a></li>
-                                                     <li class=""><a href="#reviews" data-toggle="tab">Reviews</a></li>
-                            </ul>-->
+                            <!--                            <ul id="myTab" class="nav nav-pills">
+                                                            <li class="active" data-toggle="tab" class="no-margin">Product Description</li>
+                                                                                 <li class=""><a href="#specifications" data-toggle="tab">Specifications</a></li>
+                                                                                 <li class=""><a href="#reviews" data-toggle="tab">Reviews</a></li>
+                                                        </ul>-->
                             <div id="myTabContent" class="tab-content">
                                 <div class="tab-pane fade active in" id="more-information">
                                     <br />
@@ -425,7 +426,7 @@
             </div>
             <!-- end product -->
         </div>
-
+        
 
     </body>
 

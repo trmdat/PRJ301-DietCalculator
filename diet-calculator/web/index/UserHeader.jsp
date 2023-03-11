@@ -21,28 +21,28 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <!-- bootstrap css -->
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="./index/css/bootstrap.min.css">
         <!-- style css -->
-        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="./index/css/style.css">
         <!-- Responsive-->
-        <link rel="stylesheet" href="css/responsive.css">
+        <link rel="stylesheet" href="./index/css/responsive.css">
         <!-- fevicon -->
-        <link rel="icon" href="images/logo.jpg" type="image/gif" />
+        <link rel="icon" href="./index/images/logo.jpg" type="image/gif" />
         <!-- Scrollbar Custom CSS -->
-        <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+        <link rel="stylesheet" href="./index/css/jquery.mCustomScrollbar.min.css">
         <!-- Tweaks for older IEs-->
         <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
         <!-- fonts -->
         <link href="https://fonts.googleapis.com/css?family=Poppins:400,700|Raleway:400,700&display=swap" rel="stylesheet">
         <!-- owl stylesheets --> 
-        <link rel="stylesheet" href="css/owl.carousel.min.css">
-        <link rel="stylesheet" href="css/owl.theme.default.min.css">
+        <link rel="stylesheet" href="./index/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="./index/css/owl.theme.default.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light main_navbar bg-success">
             <div class="logo">
-                <a href=""><img class="logo img-responsive" src="./images/logo.jpg" alt="logo"><h1 class="title">Diet Calculator</h1></a>
+                <a href=""><img class="logo img-responsive" src="./index/images/logo.jpg" alt="logo"><h1 class="title">Diet Calculator</h1></a>
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -59,7 +59,7 @@
                         <a class="nav-link" href="">Contact Us</a>
                     </li>               
                 </ul>
-                <div class="user-logo"><a href="../LoginController"><img src="images/user-logo.jpg" alt="user_logo"></a></div>
+                <div class="user-logo"><a href="../LoginController"><img src="./index/images/user-logo.jpg" alt="user_logo"></a></div>
             </div>
         </nav>
     </body>

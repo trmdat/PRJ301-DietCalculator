@@ -15,6 +15,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>PopUp List</title>
+        <jsp:include page="../index/AdminHeader.jsp" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700" />
         <link rel="stylesheet" href="css/fontawesome.min.css" />
         <link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -112,119 +113,10 @@
 
                     </div>
                 </div>
-                <!-- <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 tm-block-col">
-                  <div class="tm-bg-primary-dark tm-block tm-block-product-categories">
-                    <h2 class="tm-block-title">Product Categories</h2>
-                    <div class="tm-product-table-container">
-                      <table class="table tm-table-small tm-product-table">
-                        <tbody>
-                          <tr>
-                            <td class="tm-product-name">Product Category 1</td>
-                            <td class="text-center">
-                              <a href="#" class="tm-product-delete-link">
-                                <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                              </a>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td class="tm-product-name">Product Category 2</td>
-                            <td class="text-center">
-                              <a href="#" class="tm-product-delete-link">
-                                <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                              </a>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td class="tm-product-name">Product Category 3</td>
-                            <td class="text-center">
-                              <a href="#" class="tm-product-delete-link">
-                                <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                              </a>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td class="tm-product-name">Product Category 4</td>
-                            <td class="text-center">
-                              <a href="#" class="tm-product-delete-link">
-                                <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                              </a>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td class="tm-product-name">Product Category 5</td>
-                            <td class="text-center">
-                              <a href="#" class="tm-product-delete-link">
-                                <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                              </a>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td class="tm-product-name">Product Category 6</td>
-                            <td class="text-center">
-                              <a href="#" class="tm-product-delete-link">
-                                <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                              </a>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td class="tm-product-name">Product Category 7</td>
-                            <td class="text-center">
-                              <a href="#" class="tm-product-delete-link">
-                                <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                              </a>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td class="tm-product-name">Product Category 8</td>
-                            <td class="text-center">
-                              <a href="#" class="tm-product-delete-link">
-                                <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                              </a>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td class="tm-product-name">Product Category 9</td>
-                            <td class="text-center">
-                              <a href="#" class="tm-product-delete-link">
-                                <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                              </a>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td class="tm-product-name">Product Category 10</td>
-                            <td class="text-center">
-                              <a href="#" class="tm-product-delete-link">
-                                <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                              </a>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td class="tm-product-name">Product Category 11</td>
-                            <td class="text-center">
-                              <a href="#" class="tm-product-delete-link">
-                                <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                              </a>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                    <button class="btn btn-primary btn-block text-uppercase mb-3">
-                      Add new category
-                    </button>
-                  </div>
-                </div> -->
             </div>
         </div>
-        <!-- <footer class="tm-footer row tm-mt-small">
-          <div class="col-12 font-weight-light">
-            <p class="text-center text-white mb-0 px-4 small">
-              Copyright &copy; <b>2018</b> All rights reserved. 
-              
-              Design: <a rel="nofollow noopener" href="https://templatemo.com" class="tm-footer-link">Template Mo</a>
-            </p>
-          </div>
-        </footer> -->
+        <br>
+        <jsp:include page="../index/AdminFooter.jsp" />
 
         <script src="js/jquery-3.3.1.min.js"></script>
         <!-- https://jquery.com/download/ -->
