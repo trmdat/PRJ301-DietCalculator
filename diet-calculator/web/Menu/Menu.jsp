@@ -53,8 +53,8 @@
         public final String[] MEAL_COLOR_INDEX = {"bg-sky","bg-green","bg-yellow","bg-lightred","bg-purple"};
         //FORMAT FOR PARAMETERS
             //meal = side+main; day = 7
-            //ArrayList<FoodDetail>[meal][day]
-            //ArrayList<Image>[meal][day]
+            //ArrayList<FoodDetail>[meal][foodDetail]
+            //ArrayList<Image>[meal][foodDetail]
             //ArrayList<Meal>[meal]; ArrayList: 7 days
             //ArrayList<Day>: 7 days
 

@@ -27,7 +27,7 @@
                </div>
                <div class="row tm-edit-product-row">
                   <div class="col-xl-12 col-lg-12 col-md-12">
-                     <form action="" method="post" class="tm-edit-product-form">
+                     <form action="../MenuController" method="get" class="tm-edit-product-form">
                          <div class="row">
                             <div class="form-group mb-3 col-xs-12 col-md-6">
                                 <label for="username">Age
@@ -53,7 +53,7 @@
                          <div class="form-group mb-3 col-xs-12 col-md-6">
                            <label for="height">Height
                            </label>
-                           <input id="height" name="heght" type=number step=0.1 min="0" required
+                           <input id="height" name="height" type=number step=0.1 min="0" required
                               class="form-control validate" />
                         </div>
                           </div>
@@ -62,7 +62,7 @@
                             <div class="form-group mb-3 col-xs-12 col-md-6">
                                <label for="activity">Activity
                                 </label>
-                                <select class="custom-select tm-select-accounts" id="activity">
+                                <select class="custom-select tm-select-accounts" id="activity" name='activity'>
                                    <option value="1">Sedentary (little or no exercise)</option>
                                    <option value="2" selected>Lightly Active(exercise 1-3 days/week)</option>
                                    <option value="3">Moderately Active (exercise 3-5 days/week)</option>
@@ -73,7 +73,7 @@
                              <div class="form-group mb-3 col-xs-12 col-md-6">
                                 <label for="preference">Preference
                                 </label>
-                                <select class="custom-select tm-select-accounts" id="preference">
+                                <select class="custom-select tm-select-accounts" id="preference" name='preference'>
                                   <option value="0" selected>No Preference</option>
                                   <option value="1">Asian & Pacific</option>
                                   <option value="2">European & North American</option>
@@ -85,7 +85,7 @@
                          <div class="row">
                             <div class="form-group mb-3 col-xs-12 col-md-6">
                                 <label for="goal">Goal</label>
-                                <select class="custom-select tm-select-accounts" id="activity">
+                                <select class="custom-select tm-select-accounts" id="goal" name='goal'>
                                     <option value="0" selected>Weight Maintenance</option>
                                     <option value="1">Gain Weight</option>
                                     <option value="-1">Lose Weight</option>
@@ -137,15 +137,11 @@
                         <i class="fas fa-cloud-upload-alt tm-upload-icon"
                            onclick="document.getElementById('fileInput').click();"></i>
                      </div>
-                     <div class="custom-file mt-3 mb-3">
-                        <input id="fileInput" type="file" style="display:none;" />
-                        <input type="button" class="btn btn-primary btn-block mx-auto bg-success" value="CHANGE IMAGE NOW"
-                           onclick="document.getElementById('fileInput').click();" />
-                     </div>
                   </div>
                   <div class="col-12">
-                     <button type="submit" class="btn btn-primary btn-block text-uppercase bg-success">Update Now</button>
+                     <button type="submit" class="btn btn-primary btn-block text-uppercase bg-success">Design Diet</button>
                   </div>
+                    <input type='text' name='action' value='generate' hidden>
                   </form>
                </div>
             </div>

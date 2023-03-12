@@ -33,7 +33,7 @@ public class ImageDAO {
         return index;
     }
 
-    public boolean createImage(String imageID, String productID, String mealID, String commentID, String url) {
+    public boolean createImage(String imageID, String productID, String foodID, String commentID, String url) {
         String sql = "insert into Image values (?,?,?,?,?)";
         int row = 0;
         try {
@@ -41,7 +41,7 @@ public class ImageDAO {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, imageID);
             ps.setString(2, productID);
-            ps.setString(3, mealID);
+            ps.setString(3, foodID);
             ps.setString(4, commentID);
             ps.setString(5, url);
             row = ps.executeUpdate();
@@ -53,15 +53,15 @@ public class ImageDAO {
         return row > 0;
     }
 
-    public boolean updateImage(String imageID, String productID, String mealID, String commentID, String url) {
-        String sql = "update Image set productID=?, mealID=?, commentID=?,  url=? where imageID=?";
+    public boolean updateImage(String imageID, String productID, String foodID, String commentID, String url) {
+        String sql = "update Image set productID=?, foodID=?, commentID=?,  url=? where imageID=?";
         int row = 0;
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
 
             ps.setString(1, productID);
-            ps.setString(2, mealID);
+            ps.setString(2, foodID);
             ps.setString(3, commentID);
             ps.setString(4, url);
             ps.setString(5, imageID);
@@ -99,7 +99,7 @@ public class ImageDAO {
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new Image(rs.getString("imageID"), rs.getString("productID"), rs.getString("mealID"), rs.getString("commentID"), rs.getString("url")));
+                list.add(new Image(rs.getString("imageID"), rs.getString("productID"), rs.getString("foodID"), rs.getString("commentID"), rs.getString("url")));
             }
             rs.close();
             ps.close();
@@ -118,7 +118,7 @@ public class ImageDAO {
             ps.setString(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new Image(rs.getString("imageID"), rs.getString("productID"), rs.getString("mealID"), rs.getString("commentID"), rs.getString("url")));
+                list.add(new Image(rs.getString("imageID"), rs.getString("productID"), rs.getString("foodID"), rs.getString("commentID"), rs.getString("url")));
             }
             rs.close();
             ps.close();
@@ -138,7 +138,7 @@ public class ImageDAO {
             ps.setString(1, foodID);
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
-                list.add(new Image(rs.getString("imageID"), rs.getString("productID"), rs.getString("mealID"), rs.getString("commentID"), rs.getString("url")));
+                list.add(new Image(rs.getString("imageID"), rs.getString("productID"), rs.getString("foodID"), rs.getString("commentID"), rs.getString("url")));
             }
             rs.close();
             ps.close();
@@ -157,7 +157,7 @@ public class ImageDAO {
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new Image(rs.getString("imageID"), rs.getString("productID"), rs.getString("mealID"), rs.getString("commentID"), rs.getString("url")));
+                list.add(new Image(rs.getString("imageID"), rs.getString("productID"), rs.getString("foodID"), rs.getString("commentID"), rs.getString("url")));
             }
             rs.close();
             ps.close();

@@ -79,7 +79,7 @@
                                             <h1 class="banner_taital">Diet Calculator</h1>
                                             <p class="banner_text">Hello! We are team PGNB</p>
                                             <div class="btn_main">
-                                                <div class="contact_bt"><a href="#">Calculate diet</a></div>
+                                                <div class="contact_bt"><a href="../calculator/DietForm.jsp">Calculate diet</a></div>
                                                 <div class="readmore_bt active"><a href="#">Read More</a></div>
                                             </div>
                                         </div>

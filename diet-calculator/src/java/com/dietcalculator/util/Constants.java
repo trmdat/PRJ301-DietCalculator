@@ -151,6 +151,8 @@ public final class Constants {
         MEAL.put(5,"SNACK");
     }
     
+    public static final int MAX_FOODDETAIL = 7;
+    
     public static final HashMap<Integer, String[]> FOOD_DETAIL_BY_MEAL = new HashMap();
     static{
         FOOD_DETAIL_BY_MEAL.put(1, BREAKFAST_CATEGORIES);
