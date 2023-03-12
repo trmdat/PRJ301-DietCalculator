@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -45,7 +46,7 @@ public class MenuController extends HttpServlet {
         
         //GETTING ACTION
         String action = request.getParameter("action");
-        
+
         if(action.equals("generate")){
             //GETTING FORM PARAMETERS
             int age = Integer.parseInt(request.getParameter("age"));
@@ -68,7 +69,8 @@ public class MenuController extends HttpServlet {
             double totalCaloricNeed = Constants.totalCaloricNeed(gender, weight, height, age, activity, goal, amount, age);
 
             //GENERATING FOOD DATASET
-            ArrayList<Food> foodDataset = new ArrayList();
+            FoodDAO foodDAO = new FoodDAO();
+            ArrayList<Food> foodDataset = foodDAO.readFood();
 
             //GENERTAING DAYS, format: ArrayList: all days in a program
             DayController dc = new DayController();
@@ -77,21 +79,25 @@ public class MenuController extends HttpServlet {
             //GENERATING MEALS, format: ArrayList<Meal>[meals], ArrayList: all days in a program
             MealController mc = new MealController();
             HashMap<Integer, Double> mealProportion = Constants.mealProprtion(main, side);
-            ArrayList<Meal>[] meals = mc.generateMeal(days, mealProportion);
+            ArrayList<ArrayList<Meal>> meals = mc.generateMeal(days, mealProportion);
 
             //GENERATING FOOD DETAILS, format: ArrayList<FoodDetail>[meals][foodDetails], ArrayList: all days in a program
             FoodDetailController fdc = new FoodDetailController();
-            ArrayList<FoodDetail>[][] foodDetails = fdc.generateFoodDetail(foodDataset, meals, days);
+//            ArrayList<FoodDetail>[][] foodDetails = fdc.generateFoodDetail(foodDataset, meals, days);
             
             //GENERATING IMAGES, format: ArrayList<Image>[meals], ArrayList: all days in a program
             ImageController ic = new ImageController();
-            ArrayList<Image>[][] images = ic.generateImage(foodDetails, meals);
+//            ArrayList<Image>[][] images = ic.generateImage(foodDetails, meals);
             
             //SETTING THESE ATTRIBUTES TO THE CURRENT SESSION
             currentSession.setAttribute("days", days);
             currentSession.setAttribute("meals", meals);
-            currentSession.setAttribute("foodDetails", foodDetails);
-            currentSession.setAttribute("images", images);
+//            currentSession.setAttribute("foodDetails", foodDetails);
+//            currentSession.setAttribute("images", images);
+            
+            RequestDispatcher rd = request.getRequestDispatcher("/MenuController?action=show");
+            rd.forward(request, response);
+            
         }else if(action.equals("show")){
             //GETTING PAGE NUMBER
             final int PAGE_SIZE = 7;       //7 days in a week
@@ -105,12 +111,28 @@ public class MenuController extends HttpServlet {
             if(page == null)
                 page = 0;
             
-            ArrayList<FoodDetail>[][] foodDetailsByWeek = null;
-            ArrayList<Image>[][] imagesByWeek = null;
-
+//            if(currentSession.getAttribute("userID") == null){   //Not a signed user
+                ArrayList<Day> days = (ArrayList<Day>) currentSession.getAttribute("days");
+                ArrayList<Meal>[] meals = (ArrayList<Meal>[])currentSession.getAttribute("meals");
+                ArrayList<FoodDetail>[][] foodDetails = (ArrayList<FoodDetail>[][])currentSession.getAttribute("foodDetails");
+                ArrayList<Image>[][] images = (ArrayList<Image>[][])currentSession.getAttribute("images");
+//            }else{
+                
+//            }
             
+            //SETTING PARAMETERS FOR VIEW
+            for(int i = page; i < page + PAGE_SIZE; i++){
+                
             }
+            
+            request.setAttribute("days", days);
+            request.setAttribute("meals", meals);
+            request.setAttribute("foodDetails", foodDetails);
+            request.setAttribute("images", images);
+            RequestDispatcher rd = request.getRequestDispatcher("/Menu/Menu.jsp");
+            rd.forward(request, response);
         }
+    }
 //
     public static void main(String[] args) {
         //SAMPLE DATA
@@ -132,48 +154,45 @@ public class MenuController extends HttpServlet {
         //Testing
 //        for(Day day: days)
 //            System.out.println(day);
-//        
+        
         //Generating meals
         MealController mc = new MealController();
         HashMap<Integer, Double> mealProportion = Constants.mealProprtion(mainMeal, sideMeal);
-        ArrayList<Meal>[] meals = mc.generateMeal(days, mealProportion);
+        ArrayList<ArrayList<Meal>> meals = mc.generateMeal(days, mealProportion);
         
         //Testing
-//        for(int i = 0; i < meals.length; i++){
-//            System.out.println(Constants.MEAL.get(meals[i].get(0).getMealindex()));
-//            for(int j = 0; j < days.size(); j++){
-//                System.out.println(meals[i].get(j));
-//            }
-//        }
-
-        //Generating Food Details
-        FoodDetailController fdc = new FoodDetailController();
-        ArrayList<FoodDetail>[][] foodDetails = fdc.generateFoodDetail(foodDataset, meals, days);
-        
-        //Generating Images
-        ImageController ic = new ImageController();
-        ArrayList<Image>[][] images = ic.generateImage(foodDetails, meals);
-        
-        //Tetsing
-        for(int i = 0; i < days.size(); i++){
-            System.out.println("DAY: " + (i+1));
-            for(int j = 0; j < mealProportion.size(); j++){
-                System.out.println("\tMEAL: " + Constants.MEAL.get(meals[j].get(0).getMealindex()));
-                for(int k = 0; k < Constants.FOOD_DETAIL_BY_MEAL.get(meals[j].get(0).getMealindex()).length; k++){
-                    System.out.println(foodDetails[j][k].get(i));
-                    System.out.println(images[j][k].get(i));
-                }
+        for(int j = 0; j < days.size(); j++){
+            for(int i = 0; i < meals.get(j).size(); i++){
+                 System.out.println(meals.get(j).get(i));
             }
         }
         
-         
 
-        //CHECK UPDATES ON MEALS AND DAYS
-        for(int i = 0; i < meals.length; i++){
-            System.out.println(Constants.MEAL.get(meals[i].get(0).getMealindex()));
-            for(int j = 0; j < days.size(); j++)
-                System.out.println(meals[i].get(j));
-        }
+//        //Generating Food Details
+//        FoodDetailController fdc = new FoodDetailController();
+//        ArrayList<FoodDetail>[][] foodDetails = fdc.generateFoodDetail(foodDataset, meals, days);
+//        
+//        //Generating Images
+//        ImageController ic = new ImageController();
+//        ArrayList<Image>[][] images = ic.generateImage(foodDetails, meals);
+//        
+//        //Tetsing
+//        for(int i = 0; i < days.size(); i++){
+//            System.out.println("DAY: " + (i+1));
+//            for(int j = 0; j < mealProportion.size(); j++){
+//                System.out.println("\tMEAL: " + Constants.MEAL.get(meals[j].get(0).getMealindex()));
+//                for(int k = 0; k < Constants.FOOD_DETAIL_BY_MEAL.get(meals[j].get(0).getMealindex()).length; k++){
+//                    System.out.println(foodDetails[j][k].get(i));
+//                    System.out.println(images[j][k].get(i));
+//                }
+//            }
+//        }
+//        //CHECK UPDATES ON MEALS AND DAYS
+//        for(int i = 0; i < meals.length; i++){
+//            System.out.println(Constants.MEAL.get(meals[i].get(0).getMealindex()));
+//            for(int j = 0; j < days.size(); j++)
+//                System.out.println(meals[i].get(j));
+//        }
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

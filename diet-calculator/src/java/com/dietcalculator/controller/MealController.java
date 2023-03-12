@@ -41,12 +41,9 @@ public class MealController extends HttpServlet {
        
     }
     
-    public ArrayList<Meal>[] generateMeal(ArrayList<Day> days, HashMap<Integer, Double> mealProportion){
-        ArrayList<Meal>[] meals = new ArrayList[mealProportion.size()];
-        //Initializing meals[]
-        for(int i = 0; i < mealProportion.size(); i++)
-            meals[i] = new ArrayList();
-        
+    public ArrayList<ArrayList<Meal>> generateMeal(ArrayList<Day> days, HashMap<Integer, Double> mealProportion){
+        ArrayList<ArrayList<Meal>> meals = new ArrayList();
+       
         //Getting the last ID index
         MealDAO mealDAO = new MealDAO();
         String lastIDIndex = mealDAO.lastIDIndex();
@@ -63,10 +60,11 @@ public class MealController extends HttpServlet {
         double proteinstd_day = day.getProteinstd();
         double fatstd_day = day.getFatstd();
         double waterstd_day = day.getWaterstd();
-        int index = 0;
         
-        for(int i: mealProportion.keySet()){
-            for(int j = 0; j < days.size(); j++){
+        ArrayList<Meal> mealsPerDay = new ArrayList();
+        
+        for(int j = 0; j < days.size(); j++){
+            for(int i: mealProportion.keySet()){
                 String mealID = String.format(MEAL_ID_FORMAT_STRING, ++lastIndex);
                 String dayID = days.get(j).getDayID();
                 //Getting proportion
@@ -81,9 +79,12 @@ public class MealController extends HttpServlet {
                 double waterstd = waterstd_day*proportion;
 
                 //Create a new meal instance
-                meals[index].add(new Meal(mealID,userID,dayID,i,totalCalstd,carbohydratestd,fiberstd,proteinstd,fatstd,waterstd));
+                mealsPerDay.add(new Meal(mealID,userID,dayID,i,totalCalstd,carbohydratestd,fiberstd,proteinstd,fatstd,waterstd));
             }
-            index++;
+            meals.add(mealsPerDay);
+            
+            //RESET mealsPerDay
+            mealsPerDay = new ArrayList();
         }
         return meals;
     }
