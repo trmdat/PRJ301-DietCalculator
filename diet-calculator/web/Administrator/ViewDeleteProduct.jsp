@@ -11,6 +11,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Product List</title>
+        <jsp:include page="../index/AdminHeader.jsp" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700" />
         <link rel="stylesheet" href="css/fontawesome.min.css" />
         <link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -37,7 +38,7 @@
                             </div>
                         </div>
                         <a href="Administrator/AddProduct.jsp" class="btn btn-primary btn-block text-uppercase mb-3 bg-success">Add new Product</a>
-                                <p>${test}</p>
+                        <p>${test}</p>
                         <form action="/diet-calculator/ProductController" method="get" class="tm-edit-product-form">
                             <div class="tm-product-table-container">
 
@@ -101,18 +102,21 @@
 
                     </div>
                 </div>
+            </div>
+        </div>
+        <br>
+        <jsp:include page="../index/AdminFooter.jsp" />
+        <script src="js/jquery-3.3.1.min.js"></script>
+        <!-- https://jquery.com/download/ -->
+        <script src="js/bootstrap.min.js"></script>
+        <!-- https://getbootstrap.com/ -->
+        <!--                <script>
+                            $(function () {
+                                $(".tm-product-name").on("click", function () {
+                                    window.location.href = "EditProduct.html";
+                                });
+                            });
+                        </script>-->
+    </body>
 
-                <script src="js/jquery-3.3.1.min.js"></script>
-                <!-- https://jquery.com/download/ -->
-                <script src="js/bootstrap.min.js"></script>
-                <!-- https://getbootstrap.com/ -->
-                <script>
-                    $(function () {
-                        $(".tm-product-name").on("click", function () {
-                            window.location.href = "EditProduct.html";
-                        });
-                    });
-                </script>
-                </body>
-
-                </html>
+</html>

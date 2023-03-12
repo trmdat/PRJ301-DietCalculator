@@ -42,7 +42,7 @@
     <body>
         <nav class="navbar navbar-expand-lg navbar-light main_navbar bg-success">
             <div class="logo">
-                <a href=""><img class="logo img-responsive" src="./index/images/logo.jpg" alt="logo"><h1 class="title">Diet Calculator</h1></a>
+                <a href=""><img class="logo img-responsive" src="https://images2.imgbox.com/08/79/vGFMh0Gr_o.jpg" alt="logo"><h1 class="title">Diet Calculator</h1></a>
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -74,7 +74,7 @@
                         <a class="nav-link text-white" href="./ImageController">Image</a>
                     </li>
                 </ul>
-                <div class="user-logo"><a href="./LoginController"><img src="./index/images/user-logo.jpg" alt="user_logo"></a></div>
+                <div class="user-logo"><a href="./LoginController"><img src="https://images2.imgbox.com/71/a7/2NJ2EeTY_o.jpg" alt="user_logo"></a></div>
             </div>
         </nav>
     </body>

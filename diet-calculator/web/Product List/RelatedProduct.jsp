@@ -338,6 +338,7 @@
                 myLink.addEventListener('click', function (e) {
                     e.preventDefault();
                 });</script>
-
+        <br>
+        <jsp:include page="../index/UserFooter.jsp" />
     </body>
 </html>

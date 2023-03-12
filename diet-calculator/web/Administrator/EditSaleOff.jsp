@@ -6,6 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Edit Sale off</title>
+        <jsp:include page="../index/AdminHeader.jsp" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700" />
         <link rel="stylesheet" href="css/fontawesome.min.css" />
         <link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -61,7 +62,7 @@
                                             value = "${saleoff.getDescription()}"
                                             />
                                     </div>
-                                            
+
                                     <div class="form-group mb-3">
                                         <label
                                             for="target"
@@ -76,7 +77,7 @@
                                             />
                                     </div>
 
-                                   
+
                                     <div class="row">
                                         <div class="form-group mb-3 col-xs-12 col-sm-6">
                                             <label
@@ -103,23 +104,25 @@
                                                 required
                                                 value = "${saleoff.getEnddate()}"
                                                 />
-                                                             
+
+                                        </div>
+
+
                                     </div>
-                                    
 
+
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-primary btn-block text-uppercase bg-success">Update</button>
+                                    </div>
+                                </form>
                             </div>
-
-
-                            <div class="col-12">
-                                <button type="submit" class="btn btn-primary btn-block text-uppercase bg-success">Update</button>
-                            </div>
-                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
+        <br>
+        <jsp:include page="../index/AdminFooter.jsp" />
         <script src="js/jquery-3.3.1.min.js"></script>
         <!-- https://jquery.com/download/ -->
         <script src="jquery-ui-datepicker/jquery-ui.min.js"></script>

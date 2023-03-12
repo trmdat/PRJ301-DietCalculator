@@ -11,6 +11,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Sale Off List</title>
+        <jsp:include page="../index/AdminHeader.jsp" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700" />
         <link rel="stylesheet" href="css/fontawesome.min.css" />
         <link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -36,7 +37,7 @@
                                 </form>
                             </div>
                         </div>
-                        <a href="Adminstrator/AddSaleOff.jsp" class="btn btn-primary btn-block text-uppercase mb-3 bg-success">Add new Sale Off</a>
+                        <a href="Administrator/AddSaleOff.jsp" class="btn btn-primary btn-block text-uppercase mb-3 bg-success">Add new Sale Off</a>
                         <form action="/diet-calculator/SaleOffController" method="get" class="tm-edit-product-form">
                             <div class="tm-product-table-container">
 
@@ -50,7 +51,7 @@
                                             <th scope="col">Start date</th>
                                             <th scope="col">End date</th>
                                             <th scope="col">Target</th>
-                                            
+
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -74,7 +75,7 @@
                                                 <td>${x.getStartdate()}</td>
                                                 <td>${x.getEnddate()}</td>
                                                 <td>${x.getTarget()}</td>
-                                                
+
                                                 <td><a href="SaleOffController?action=update&saleoffID=${x.getSaleoffID()}">Update</a></td>
                                             </tr>
                                         </c:forEach>
@@ -89,18 +90,21 @@
 
                     </div>
                 </div>
+            </div>
+        </div>
+        <br>
+        <jsp:include page="../index/AdminFooter.jsp" />
+        <script src="js/jquery-3.3.1.min.js"></script>
+        <!-- https://jquery.com/download/ -->
+        <script src="js/bootstrap.min.js"></script>
+        <!-- https://getbootstrap.com/ -->
+        <script>
+            $(function () {
+                $(".tm-description").on("click", function () {
+                    window.location.href = "EditSaleOff.html";
+                });
+            });
+        </script>
+    </body>
 
-                <script src="js/jquery-3.3.1.min.js"></script>
-                <!-- https://jquery.com/download/ -->
-                <script src="js/bootstrap.min.js"></script>
-                <!-- https://getbootstrap.com/ -->
-                <script>
-                    $(function () {
-                        $(".tm-description").on("click", function () {
-                            window.location.href = "EditSaleOff.html";
-                        });
-                    });
-                </script>
-                </body>
-
-                </html>
+</html>
