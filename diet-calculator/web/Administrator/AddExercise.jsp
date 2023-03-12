@@ -7,8 +7,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
+
     <head>
-        <title>Add New Exercise</title>
+        <title>Edit Exercise</title>
         <jsp:include page="../index/AdminHeader.jsp" />
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,21 +22,16 @@
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     </head>
+
     <body>
         <nav class="navbar navbar-expand-xl">
             <div class="container h-100">
                 <a class="navbar-brand" href="">
                     <h1 class="tm-site-title mb-0 text-success">Exercise Admin</h1>
                 </a>
-                <button
-                    class="navbar-toggler ml-auto mr-0"
-                    type="button"
-                    data-toggle="collapse"
-                    data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-                    >
+                <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                        aria-label="Toggle navigation">
                     <i class="fas fa-bars tm-nav-icon"></i>
                 </button>
 
@@ -68,17 +64,13 @@
                     <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="tm-block-title d-inline-block">Add Exercise</h2>
+                                <h2 class="tm-block-title d-inline-block">Add new Exercise</h2>
                             </div>
                         </div>
                         <div class="row tm-edit-product-row">
                             <div class="col-xl-12 col-lg-12 col-md-12">
-                                <form action="../ExerciseController" method="post" class="tm-edit-product-form">
+                                <form action="ExerciseController" method="post" class="tm-edit-product-form">
                                     <input type=hidden name="action" value="create">
-                                    <div class="form-group mb-3">
-                                        <label for="id">Exercise ID</label>
-                                        <input type="text" name ="exerciseID" class="form-control validate" required/>
-                                    </div>
                                     <div class="form-group mb-3">
                                         <label for="name">Exercise Name</label>
                                         <input type="text" name="exname" class="form-control validate" required/>
@@ -96,9 +88,9 @@
                                             <label for="calorexp">Calorexp</label>
                                             <input type="text" name="calorexp" class="form-control validate" required/>
                                         </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <input type="submit" value="Add Exercise Now" class="btn btn-primary btn-block text-uppercase bg-success">
+                                        <div class="col-12">
+                                            <input type="submit" value="Add Now" class="btn btn-primary btn-block text-uppercase bg-success">
+                                        </div>
                                     </div>
                                 </form>
                             </div>
@@ -107,9 +99,7 @@
                 </div>
             </div>
         </div>
-
         <br>
-
         <script src="js/jquery-3.3.1.min.js"></script>
         <!-- https://jquery.com/download/ -->
         <script src="js/bootstrap.min.js"></script>

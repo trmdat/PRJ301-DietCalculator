@@ -98,7 +98,7 @@
                                                 <td> ${p.description} </td>
                                                 <td> ${p.status} </td>
                                                 <td> ${p.theme} </td>
-                                                <td><a href="./PopUpController?action=edit&popupID=${p.popupID}&jump=true" 
+                                                <td><a href="./PopUpController?action=edit&popupID=${p.popupID}" 
                                                        class="btn btn-primary btn-block bg-success">Edit</a></td>
                                                 <td><a href="./PopUpDetailController?popupID=${p.popupID}" 
                                                        class="btn btn-primary btn-block bg-success">Details</a></td>

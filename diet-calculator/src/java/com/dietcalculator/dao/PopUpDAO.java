@@ -143,20 +143,20 @@ public class PopUpDAO {
      public static void main(String[]args){
         PopUpDAO dao = new PopUpDAO();
          
-//        System.out.println("Create");
-//        dao.createPopUp("POP000", "Khoi dep troai", 0, "xanh");
+        System.out.println("Create");
+        dao.createPopUp("POP000", "Khoi dep troai", 0, "xanh");
         ArrayList<PopUp> list = dao.readAvailablePopUp(1);
         for(PopUp pop : list){
              System.out.println(pop.toString());
         }
 //         
-//         System.out.println("");
-//         System.out.println("Update");
-//         dao.updatePopUp("POP000", "Khoi xau troai", 0, "do");
-//         list = dao.readPopUp();
-//           for(PopUp pop : list){
-//             System.out.println(pop.toString());
-//         }
+         System.out.println("");
+         System.out.println("Update");
+         dao.updatePopUp("POP000", "Khoi xau troai", 0, "do");
+         list = dao.readPopUp();
+           for(PopUp pop : list){
+             System.out.println(pop.toString());
+         }
            
 //           System.out.println("");
 //           System.out.println("Delete");

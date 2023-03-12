@@ -50,7 +50,7 @@ public class ProductInfoController extends HttpServlet {
                 if(image.getProductID().equals(p.getProductID())){
                     i = image;
                 }
-            }      
+            }
             RequestDispatcher rd = request.getRequestDispatcher("Product List/ProductDetail.jsp");
             request.setAttribute("product", p);
             request.setAttribute("image", i);

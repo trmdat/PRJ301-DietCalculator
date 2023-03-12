@@ -111,13 +111,13 @@
                                     <div class="row">
                                         <div class="form-group mb-3 col-xs-12 col-sm-2">
                                             <label for="status">Status</label>
-                                            <select name="status" class="form-control validate" required>
+<!--                                            <select name="status" class="form-control validate" required>
                                                 <option value="1" <c:if test="${popup.status == 1 ? 'selected' : ' '}">
                                                         </c:if>>On</option>
                                                 <option value="0" <c:if test="${popup.status == 0 ? 'selected' : ' '}">
                                                         </c:if>>Off</option>
-                                            </select>
-                                            <!--<input type="text" name="status" value="${popup.status}" class="form-control validate" required/>-->
+                                            </select>-->
+                                            <input type="text" name="status" value="${popup.status}" class="form-control validate" required/>
                                         </div>
                                         <div class="form-group mb-3 col-xs-12 col-sm-10">
                                             <label for="theme">Theme</label>

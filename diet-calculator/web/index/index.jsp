@@ -57,6 +57,9 @@
                                 <a class="nav-link" href="">Menu Cart</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link" href="">Shopping Cart</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="">Contact Us</a>
                             </li>               
                         </ul>
