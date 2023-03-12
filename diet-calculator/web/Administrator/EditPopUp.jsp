@@ -13,7 +13,8 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Edit Product</title>
+        <title>Edit PopUp</title>
+        <jsp:include page="../index/AdminHeader.jsp" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700" />
         <link rel="stylesheet" href="css/fontawesome.min.css" />
         <link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -112,9 +113,9 @@
                                             <label for="status">Status</label>
                                             <select name="status" class="form-control validate" required>
                                                 <option value="1" <c:if test="${popup.status == 1 ? 'selected' : ' '}">
-                                                </c:if>>On</option>
+                                                        </c:if>>On</option>
                                                 <option value="0" <c:if test="${popup.status == 0 ? 'selected' : ' '}">
-                                                </c:if>>Off</option>
+                                                        </c:if>>Off</option>
                                             </select>
                                             <!--<input type="text" name="status" value="${popup.status}" class="form-control validate" required/>-->
                                         </div>
@@ -132,29 +133,15 @@
                     </div>
                 </div>
             </div>
-            <!-- <footer class="tm-footer row tm-mt-small">
-               <div class="col-12 font-weight-light">
-                  <p class="text-center text-white mb-0 px-4 small">
-                     Copyright &copy; <b>2018</b> All rights reserved.
-         
-                     Design: <a rel="nofollow noopener" href="https://templatemo.com" class="tm-footer-link">Template Mo</a>
-                  </p>
-               </div>
-            </footer> -->
-
-            <script src="js/jquery-3.3.1.min.js"></script>
-            <!-- https://jquery.com/download/ -->
-            <script src="jquery-ui-datepicker/jquery-ui.min.js"></script>
-            <!-- https://jqueryui.com/download/ -->
-            <script src="js/bootstrap.min.js"></script>
-            <!-- https://getbootstrap.com/ -->
-<!--            <script>
-                $(function () {
-                    $("#expire_date").datepicker({
-                        defaultDate: "10/22/2020"
-                    });
-                });
-            </script>-->
+        </div>
+        <br>
+        <jsp:include page="../index/AdminFooter.jsp" />
+        <script src="js/jquery-3.3.1.min.js"></script>
+        <!-- https://jquery.com/download/ -->
+        <script src="jquery-ui-datepicker/jquery-ui.min.js"></script>
+        <!-- https://jqueryui.com/download/ -->
+        <script src="js/bootstrap.min.js"></script>
+        <!-- https://getbootstrap.com/ -->
     </body>
 
 </html>

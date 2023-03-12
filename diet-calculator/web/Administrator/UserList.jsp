@@ -7,6 +7,7 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>User Management</title>
+   <jsp:include page="../index/AdminHeader.jsp" />
    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -178,9 +179,9 @@
                         </div>
                          <a
                         href="AddUser.jsp"
-                        class="btn btn-primary btn-block text-uppercase mb-3 bg-success">Add new product</a>
+                        class="btn btn-primary btn-block text-uppercase mb-3 bg-success">Add new User</a>
                       <button class="btn btn-primary btn-block text-uppercase bg-success">
-                        Delete selected products
+                        Delete selected User
                       </button>
                      </div>
                   </div>
@@ -365,6 +366,8 @@
          </div>
       </div>
    </div>
+    <br>
+    <jsp:include page="../index/AdminFooter.jsp" />
    <script src="js/jquery-3.3.1.min.js"></script>
    <!-- https://jquery.com/download/ -->
    <script src="js/bootstrap.min.js"></script>
