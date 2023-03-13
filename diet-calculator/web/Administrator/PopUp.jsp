@@ -100,7 +100,7 @@
                                                 <td> ${p.theme} </td>
                                                 <td><a href="./PopUpController?action=edit&popupID=${p.popupID}" 
                                                        class="btn btn-primary btn-block bg-success">Edit</a></td>
-                                                <td><a href="./PopUpDetailController?popupID=${p.popupID}" 
+                                                <td><a href="./PopUpDetailController?popupID=${p.popupID}"
                                                        class="btn btn-primary btn-block bg-success">Details</a></td>
                                             </tr>
                                         </c:forEach>    
@@ -110,7 +110,6 @@
                             </form>
                         </div>
                         <!-- table container -->
-
                     </div>
                 </div>
             </div>

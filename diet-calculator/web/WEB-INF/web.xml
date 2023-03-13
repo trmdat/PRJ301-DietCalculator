@@ -64,6 +64,14 @@
         <servlet-name>RelatedProduct</servlet-name>
         <servlet-class>com.dietcalculator.controller.RelatedProduct</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ShowPopUpController</servlet-name>
+        <servlet-class>com.dietcalculator.controller.ShowPopUpController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HomeController</servlet-name>
+        <servlet-class>com.dietcalculator.controller.HomeController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>DayController</servlet-name>
         <url-pattern>/DayController</url-pattern>
@@ -127,6 +135,14 @@
     <servlet-mapping>
         <servlet-name>RelatedProduct</servlet-name>
         <url-pattern>/RelatedProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowPopUpController</servlet-name>
+        <url-pattern>/ShowPopUpController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HomeController</servlet-name>
+        <url-pattern>/HomeController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

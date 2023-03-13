@@ -1,6 +1,4 @@
-<%@page import="com.dietcalculator.dto.PopUp"%>
-<%@page import="com.dietcalculator.dao.PopUpDAO"%>
-<%@page import="java.util.ArrayList"%>
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%-- 
     Document   : ShowPopUp
@@ -34,20 +32,23 @@
                 <div class="modal-content bg-transparent border-0">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     <%
-                        PopUpDAO popupDao = new PopUpDAO();
-                        ArrayList<PopUp> list = popupDao.readAvailablePopUp(1);
-                        if (list != null) {
-                            for (PopUp p : list) {
-                                out.print("<img src=" + p.getTheme() + " class=\"img-responsive\" />"
-                                        + "<h2 class=\"text-center text-light\">" + p.getDescription() + "</h2>");
-                            }
-                        }
+//                        PopUpDAO popupDao = new PopUpDAO();
+//                        ArrayList<PopUp> list = popupDao.readAvailablePopUp(1);
+//                        if (list != null) {
+//                            for (PopUp p : list) {
+//                                out.print("<img src=" + p.getTheme() + " class=\"img-responsive\" />"
+//                                        + "<h2 class=\"text-center text-light\">" + p.getDescription() + "</h2>");
+//                            }
+//                        }
                     %>
 
-                    <%--<c:forEach var="pop" items="${list}">--%>
-                        <!--<img src="${pop.theme}" class="img-responsive" alt="deal"/>-->
-                        <!--<h2 class="text-center">${pop.description}</h2>-->
-                    <%--</c:forEach>--%>
+                    <c:forEach var="pop" items="${list}">
+                        <img src="${pop.theme}" class="img-responsive" alt="deal"/>
+                        <c:forEach var="pro" items="${productList}">
+                            <h3>${pro.productname}</h3>
+                        </c:forEach>
+                        <h2 class="text-center">${pop.description}</h2>
+                    </c:forEach>
                 </div>
             </div>
         </div>

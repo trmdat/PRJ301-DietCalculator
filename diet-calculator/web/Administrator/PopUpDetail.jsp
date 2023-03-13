@@ -88,8 +88,8 @@
                                     </thead>
                                     <tbody>
                                         <c:forEach var="p" items="${list}">
-                                            <tr><th scope=row><input type="checkbox" name="checkId" value=${p.popupID}></th>
-                                            <input type="hidden" name="checkProductId" value=${p.productID}>
+                                            <tr><th scope=row><input type="checkbox" name="checkProductId" value=${p.productID}></th>
+                                            <input type="hidden" name="popUpId" value=${p.popupID}>
                                             <td> ${p.popupID} </td>
                                             <td> ${p.productID} </td>
                                             <td> ${p.description} </td>

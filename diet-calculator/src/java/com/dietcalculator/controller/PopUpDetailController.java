@@ -43,13 +43,14 @@ public class PopUpDetailController extends HttpServlet {
             }
             ArrayList<PopUpDetail> list = popupdetailDao.readPopUpDetail(popupId);
             if (!list.isEmpty()) {
-                String popDetID = list.get(0).getPopupID();
                 request.setAttribute("list", list);
-                request.setAttribute("popup", popDetID);
+                request.setAttribute("popup", popupId);
                 RequestDispatcher rd = request.getRequestDispatcher("Administrator/PopUpDetail.jsp");
                 rd.forward(request, response);
             } else {
-                response.sendRedirect("Administrator/PopUpDetail.jsp");
+                request.setAttribute("popup", popupId);
+                RequestDispatcher rd = request.getRequestDispatcher("Administrator/PopUpDetail.jsp");
+                rd.forward(request, response);
             }
         } else if (action.equals("create")) {
             popupId = request.getParameter("popupID");
@@ -67,20 +68,28 @@ public class PopUpDetailController extends HttpServlet {
                 popupdetailDao.createPopUpDetail(popupId, productId, description);
             }
 
+//            request.setAttribute("action", "list");
+//            request.setAttribute("popupID", popupId);
+//            RequestDispatcher rd = request.getRequestDispatcher("PopUpDetailController");
+//            rd.forward(request, response);
             response.sendRedirect("PopUpController");
         } else if (action.equals("delete")) {
-            String[] ids = request.getParameterValues("checkId");
+            String[] ids = request.getParameterValues("checkProductId");
             try {
-                productId = request.getParameter("checkProductId");
+                popupId = request.getParameter("popUpId");
             } catch (Exception e) {
             }
             if (ids != null) {
                 for (String checkedid : ids) {
-                    popupdetailDao.deletePopUpDetail(checkedid, productId);
+                    popupdetailDao.deletePopUpDetail(popupId, checkedid);
                 }
             }
 
-            response.sendRedirect("PopUpDetailController");
+//            request.setAttribute("action", "list");
+//            request.setAttribute("popupID", popupId);
+//            RequestDispatcher rd = request.getRequestDispatcher("PopUpDetailController");
+//            rd.forward(request, response);
+            response.sendRedirect("PopUpController");
         } else if (action.equals("edit")) {
             try {
                 popupId = request.getParameter("popupID");
@@ -102,6 +111,11 @@ public class PopUpDetailController extends HttpServlet {
             if (popupId != null) {
                 popupdetailDao.updatePopUpDetail(popupId, productId, description);
             }
+            
+//            request.setAttribute("action", "list");
+//            request.setAttribute("popupID", popupId);
+//            RequestDispatcher rd = request.getRequestDispatcher("PopUpDetailController");
+//            rd.forward(request, response);
             response.sendRedirect("PopUpController");
         }
     }

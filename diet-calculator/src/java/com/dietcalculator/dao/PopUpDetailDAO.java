@@ -85,7 +85,7 @@ public class PopUpDetailDAO {
 
     public boolean deletePopUpDetail(String popupID, String productID) {
         int row = 0;
-        String sql = "DELETE from PopUpDetail where popupID =? and productID = ?";
+        String sql = "DELETE from PopUpDetail where popupID = ? and productID = ?";
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
