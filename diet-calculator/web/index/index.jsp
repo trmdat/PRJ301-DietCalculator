@@ -16,7 +16,6 @@
         <meta name="viewport" content="initial-scale=1, maximum-scale=1">
         <!-- site metas -->
         <title>Diet Calculator</title>
-        <%--<jsp:include page="ShowPopUp.jsp" />--%>
         <meta name="keywords" content="">
         <meta name="description" content="">
         <meta name="author" content="">
@@ -44,7 +43,7 @@
         <div class="header_section">
             <div class="header-nav">
                 <nav class="navbar navbar-expand-lg navbar-light main_navbar">
-                    <div class="logo"><a href="index.jsp"><img class="logo" src="./images/logo.jpg" alt="logo"><h1 class="title">Diet Calculator</h1></a></div>
+                    <div class="logo"><a href="index.jsp"><img class="logo" src="https://images2.imgbox.com/08/79/vGFMh0Gr_o.jpg" alt="logo"><h1 class="title">Diet Calculator</h1></a></div>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -63,7 +62,7 @@
                                 <a class="nav-link" href="">Contact Us</a>
                             </li>               
                         </ul>
-                        <div class="user-logo"><a href="../LoginController"><img src="images/user-logo.jpg" alt="user_logo"></a></div>
+                        <div class="user-logo"><a href="../LoginController"><img src="https://images2.imgbox.com/71/a7/2NJ2EeTY_o.jpg" alt="user_logo"></a></div>
                     </div>
                 </nav>
             </div>
@@ -100,9 +99,9 @@
             <div class="row">
                 <div class="col-lg-6 padding_0">
                     <div class="abiut_images_main rounded">
-                        <div><img src="images/img-1.jpg" class="image_1"></div>
-                        <div><img src="images/img-2.jpg" class="image_2"></div>
-                        <div class="main"><img src="images/img-3.jpg" class="image_3"></div>
+                        <div><img src="https://images2.imgbox.com/95/fe/To0YzXmn_o.jpg" class="image_1"></div>
+                        <div><img src="https://images2.imgbox.com/3d/f7/upQHLqmN_o.jpg" class="image_2"></div>
+                        <div class="main"><img src="https://images2.imgbox.com/e5/89/mvpeeKuc_o.jpg" class="image_3"></div>
                     </div>
                 </div>
                 <div class="col-lg-6 padding_0">
@@ -121,7 +120,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-6 padding_left_30">
-                    <div class="vitamin_img"><img src="images/product_vitamin.png"></div>
+                    <div class="vitamin_img"><img src="https://images2.imgbox.com/87/33/E8AHOfRo_o.png"></div>
                 </div>
                 <div class="col-lg-6">
                     <div class="vitamin_taital_main">
