@@ -3,7 +3,7 @@
     Created on : Mar 4, 2023, 11:34:40 AM
     Author     : admin
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,67 +41,40 @@
    <div class="container">
       <div class="row">
          <div class="col-md-12">
+             <h1>Meal Details</h1>
             <div class="table-responsive">
                <table class="table table-bordered">
                   <thead>
                      <tr>
-                        <th>#</th>
+                        <th>Index</th>
                         <th>Name</th>
                         <th>Amount</th>
                         <th>Calories</th>
-                        <th>Carbonhydrate</th>
+                        <th>Carbohydrate</th>
                         <th>Fiber</th>
                         <th>Protein</th>
                         <th>Fat</th>
                         <th>Water</th>
+                        <th>Substitute</th>
                      </tr>
                   </thead>
                   <tbody>
+                      <%--<c:set var="i"value="1"></c:set>--%>
+                      <c:forEach items="${foodDetail}" var="x">
                      <tr>
                         <th scope="row">1</th>
                         <td></td>
+                        <td>${x.getAmount()}</td>
+                        <td>${x.getTotalCal()}</td>
+                        <td>${x.getCarbohydrate()}</td>
+                        <td>${x.getFiber()}</td>
+                        <td>${x.getProtein()}</td>
+                        <td>${x.getFat()}</td>
+                        <td>${x.getWater()}</td>
                         <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <!-- <td class="toggleDisplay">Td 1</td>
-                        <td class="toggleDisplay">Td 2</td>
-                        <td class="toggleDisplay">Td 3</td>
-                        <td class="toggleDisplay">Td 4</td> -->
+                        <%--<c:set var="i" value="${i+1}"></c:set>--%>
                      </tr>
-                     <tr>
-                        <th scope="row">2</th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <!-- <td class="toggleDisplay">Td 1</td>
-                        <td class="toggleDisplay">Td 2</td>
-                        <td class="toggleDisplay">Td 3</td>
-                        <td class="toggleDisplay">Td 4</td> -->
-                     </tr>
-                     <tr>
-                        <th scope="row">3</th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <!-- <td class="toggleDisplay">Td 1</td>
-                        <td class="toggleDisplay">Td 2</td>
-                        <td class="toggleDisplay">Td 3</td>
-                        <td class="toggleDisplay">Td 4</td> -->
-                     </tr>
+                     </c:forEach>
                   </tbody>
                </table>
             </div>

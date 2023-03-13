@@ -3,6 +3,7 @@
     Created on : Mar 2, 2023, 6:45:19 PM
     Author     : asout
 --%>
+<%@page import="com.dietcalculator.dto.Food"%>
 <%@page import="com.dietcalculator.dto.Image"%>
 <%@page import="java.util.List"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -24,6 +25,213 @@
    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
    <link rel="stylesheet" href="Menu.css" />
+   <style>
+       body{
+   margin-top:20px;
+}
+.bg-light-gray {
+   background-color: #f7f7f7;
+}
+.table-bordered thead td, .table-bordered thead th {
+   border-bottom-width: 2px;
+}
+.table thead th {
+   vertical-align: bottom;
+   border-bottom: 2px solid #dee2e6;
+}
+.table-bordered td, .table-bordered th {
+   border: 1px solid #dee2e6;
+}
+
+.bg-sky.box-shadow {
+   box-shadow: 0px 5px 0px 0px #00a2a7
+}
+
+.bg-orange.box-shadow {
+   box-shadow: 0px 5px 0px 0px #af4305
+}
+
+.bg-green.box-shadow {
+   box-shadow: 0px 5px 0px 0px #4ca520
+}
+
+.bg-yellow.box-shadow {
+   box-shadow: 0px 5px 0px 0px #dcbf02
+}
+
+.bg-pink.box-shadow {
+   box-shadow: 0px 5px 0px 0px #e82d8b
+}
+
+.bg-purple.box-shadow {
+   box-shadow: 0px 5px 0px 0px #8343e8
+}
+
+.bg-lightred.box-shadow {
+   box-shadow: 0px 5px 0px 0px #d84213
+}
+
+
+.bg-sky {
+   background-color: #02c2c7
+}
+
+.bg-orange {
+   background-color: #e95601
+}
+
+.bg-green {
+   background-color: #5bbd2a
+}
+
+.bg-yellow {
+   background-color: #f0d001
+}
+
+.bg-pink {
+   background-color: #ff48a4
+}
+
+.bg-purple {
+   background-color: #9d60ff
+}
+
+.bg-lightred {
+   background-color: #ff5722
+}
+
+.padding-15px-lr {
+   padding-left: 15px;
+   padding-right: 15px;
+}
+.padding-5px-tb {
+   padding-top: 5px;
+   padding-bottom: 5px;
+}
+.margin-10px-bottom {
+   margin-bottom: 10px;
+}
+.border-radius-5 {
+   border-radius: 5px;
+}
+
+.margin-10px-top {
+   margin-top: 10px;
+}
+.font-size14 {
+   font-size: 14px;
+}
+
+.text-light-gray {
+   color: #d6d5d5;
+}
+.font-size13 {
+   font-size: 13px;
+}
+
+.font-size12 {
+   font-size: 1px;
+}
+
+.table-bordered td, .table-bordered th {
+   border: 1px solid #dee2e6;
+}
+.table td, .table th {
+   padding: .75rem;
+   vertical-align: top;
+   border-top: 1px solid #dee2e6;
+}
+a:hover {
+   text-decoration: none;
+}
+
+.round {
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 50%;
+}
+
+.round:hover{
+  background-color: #ddd;
+  color: black;
+}
+
+.previous {
+  background-color: #f1f1f1;
+  color: black;
+}
+
+.next {
+  background-color: #04AA6D;
+  color: white;
+}
+
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 70%;
+  font-family:Cambria;
+  font-size: 14px;
+  margin-top: 3px; 
+  padding-left: 1.3em;
+  text-align: left;
+}
+
+.column-tooltip{
+  font-family:Cambria;
+  font-size: 11px;
+  margin-top: 2px; 
+  padding-left: 0.5em;
+  text-align: left;
+}
+
+.column-50 {
+  width: 40%;
+  padding-left: 1.5em;
+}
+.column-25{
+ width: 25%;
+}
+
+.tooltips{
+  position: relative;
+  display: inline-block;
+}
+
+.tooltiptext{
+  visibility: hidden;
+  width: 9.2em;
+  height: 11.3em;
+  background-color: white;
+  color: #000;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: -6%;
+  left: 50%;
+  margin-left: -4.7em;
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.tooltips:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+.blank-gray{
+    width: 10.5em;
+    height: 10em;
+    background-color: #f7f7f7;
+    background-image: url("./logo.jpg");
+}
+
+   </style>
 </head>
 
 <body>
@@ -34,7 +242,7 @@
       <div class="text-center">
           <h1>Week 1</h1>
       </div>     
-      <div class="table-responsive">
+      <div class="table-responsive" style="width: 1250px;padding-right: 150px;overflow-x: hidden;">
          <table class="table table-bordered text-center">
             <thead>
                <tr class="bg-light-gray">
@@ -49,29 +257,29 @@
                </tr>
             </thead>
             <tbody>
-    <%!
+   <%!
         public final String[] MEAL_COLOR_INDEX = {"bg-sky","bg-green","bg-yellow","bg-lightred","bg-purple"};
         //FORMAT FOR PARAMETERS
             //meal = side+main; day = 7
-            //ArrayList<FoodDetail>[meal][foodDetail]
-            //ArrayList<Image>[meal][foodDetail]
-            //ArrayList<Meal>[meal]; ArrayList: 7 days
-            //ArrayList<Day>: 7 days
+            //ArrayList<ArrayList<ArrayList<FoodDetail>>>   MEALS-DAYS-FOODDETAILS
+            //ArrayList<ArrayList<ArrayList<Image>>>   MEALS-DAYS-FOODDETAILS
+            //ArrayList<ArrayList<Meal>>                MEALS-DAYS
+            //ArrayList<Day>
 
-        public final String menuCode(ArrayList<FoodDetail>[][] foodDetailsByWeek, ArrayList<Image>[][] imagesByWeek, ArrayList<Meal>[] meals, ArrayList<Day> days){
+        public final String menuCode(ArrayList<ArrayList<ArrayList<FoodDetail>>> foodDetailsByWeek, ArrayList<ArrayList<ArrayList<Image>>> imagesByWeek, ArrayList<ArrayList<Meal>> meals, ArrayList<Day> days, ArrayList<Food> foodDataset){
             String html = "";
-            int numOfMeals = meals.length;  //= number of rows
+            int numOfMeals = meals.size();  //= number of rows
             for(int index = 0; index < numOfMeals; index++){
-                int mealIndex = meals[index].get(0).getMealindex();
-                html += printMealByRow(mealIndex,meals[index],foodDetailsByWeek[index],imagesByWeek[index]);
+                int mealIndex = meals.get(index).get(0).getMealindex();
+                html += printMealByRow(mealIndex,meals.get(index),foodDetailsByWeek.get(index),imagesByWeek.get(index), foodDataset);
             }
             return html;
         }
 
-        public final String printMealByRow(int mealIndex, ArrayList<Meal> meals, ArrayList<FoodDetail>[] foodDetailsByRow, ArrayList<Image>[] imagesByRow){
+        public final String printMealByRow(int mealIndex, ArrayList<Meal> meals, ArrayList<ArrayList<FoodDetail>> foodDetailsByRow, ArrayList<ArrayList<Image>> imagesByRow, ArrayList<Food> foodDataset){
         //GEETING GENERAL INFORMATION
             String color = MEAL_COLOR_INDEX[mealIndex - 1];
-            int numOfFoodDetail = foodDetailsByRow[0].size();
+            int numOfFoodDetail = foodDetailsByRow.get(0).size();
             String mealIndexStr = Constants.MEAL.get(mealIndex);
             String time = Constants.MEAL_TIME.get(mealIndex);
         
@@ -79,16 +287,18 @@
             String html=    "<tr>\n"
                             +"<td class=\"align-middle\">" + time + "</td>\n";
             for(int day = 0; day < 7; day++){
-                    html += "<td class=\"tooltips\" style=\"border: none;width: 8em;height: 10em;padding-left: 0px\">\n"
+                    html += "<td>\n"
+                            +"<div class=\"tooltips\" style=\"border: none;width: 8em;height: 10em;padding-left: 0px\">"
                             +" <span "
                             +"   class=\"" + color + " padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13\">" + mealIndexStr + "</span>\n"
                             +"<div class=\"font-size13 text-light-gray\" style = \"margin-top: 5px\">" + meals.get(day).getTotalCal() + " KCal</div>";
                     //IMPORT IMAGES INTO TOOLTIP
-                    html +=  displayImage(mealIndex, imagesByRow[day]);
+                    html +=  displayImage(mealIndex, imagesByRow.get(day));
 
                     //IMPORT DETAILS OF FOODDETAIL INTO TOOLTIPTEXT
-                    html +=  displayDetailsFoodDetail(foodDetailsByRow[day]);
-                    html += "</td>";
+                    html +=  displayDetailsFoodDetail(foodDetailsByRow.get(day), foodDataset);
+                    html += "</div>";
+                    html += "</td>\n";
             }
             //END THE ROW
             html += "</tr>";
@@ -133,26 +343,39 @@
             return html;
         }
 
-        public String displayDetailsFoodDetail(ArrayList<FoodDetail> fd){
+        public String displayDetailsFoodDetail(ArrayList<FoodDetail> fd, ArrayList<Food> foodDataset){
             String html = "<span class = \"tooltiptext\" style = \"\">";
             for(FoodDetail x: fd){
                 html += "<div class = \"row\">"
-                       +"<div class=\"column-tooltip column-50\">" + x.getFoodID() + "</div>"
-                       +"<div class=\"column-tooltip column-25\">"+ x.getAmount() +" g</div>'"
-                       +"<div class=\"column-tooltip column-25\">" + x.getTotalCal() + " KCal</div>"
+                       +"<div class=\"column-tooltip column-50\">" + searchFoodNameByFoodID(x.getFoodID(),foodDataset) + "</div>"
+                       +"<div class=\"column-tooltip column-25\">"+ x.getAmount() +" g</div>"
+                       //+"<div class=\"column-tooltip column-25\">" + x.getTotalCal() + " KCal</div>"
                        +"</div>";
             }
+                html += "<form action=\"MenuController\" method=\"get\">\n"
+                       + "<input type=text name=action value=details hidden/>"
+                       + "<input type=text name=mealID value=" + fd.get(0).getMealID() +  " hidden/>"
+                       + "<input type=submit value=details>"
+                       + "</form>";
                 html += "</span>";
             return html;
+        }
+
+        public String searchFoodNameByFoodID(String foodID, ArrayList<Food> foodDataset){
+            for(Food x: foodDataset)
+                if(x.getFoodID().equals(foodID))
+                    return x.getFoodname();
+            return "Unknown";
         }
     %>
     
     <%
-        ArrayList<FoodDetail>[][] foodDetailsByWeek = (ArrayList<FoodDetail>[][]) request.getAttribute("foodDetailsByWeek");
-        ArrayList<Image>[][] imagesByWeek = (ArrayList<Image>[][]) request.getAttribute("imagesByWeek");
-        ArrayList<Meal>[] meals = (ArrayList<Meal>[]) request.getAttribute("meals");
+        ArrayList<ArrayList<ArrayList<FoodDetail>>> foodDetailsByWeek = (ArrayList<ArrayList<ArrayList<FoodDetail>>>) request.getAttribute("foodDetails");
+        ArrayList<ArrayList<ArrayList<Image>>> imagesByWeek = (ArrayList<ArrayList<ArrayList<Image>>>) request.getAttribute("images");
+        ArrayList<ArrayList<Meal>>  meals = (ArrayList<ArrayList<Meal>> ) request.getAttribute("meals");
         ArrayList<Day>  days = (ArrayList<Day>) request.getAttribute("days");
-        out.print(menuCode(foodDetailsByWeek,imagesByWeek,meals,days));
+        ArrayList<Food> foodDataset = (ArrayList<Food>) request.getAttribute("foodDataset");
+        out.print(menuCode(foodDetailsByWeek,imagesByWeek,meals,days,foodDataset));
     %>
             </tbody>
          </table>

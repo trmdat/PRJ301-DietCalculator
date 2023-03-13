@@ -68,4 +68,7 @@ public class Utils {
         return subList;
     }
 
+    public static final int roundDouble(double num){
+        return (int)Math.round(num);
+    }
 }

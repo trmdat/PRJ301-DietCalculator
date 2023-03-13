@@ -61,10 +61,10 @@ public class MealController extends HttpServlet {
         double fatstd_day = day.getFatstd();
         double waterstd_day = day.getWaterstd();
         
-        ArrayList<Meal> mealsPerDay = new ArrayList();
+        ArrayList<Meal> mealsPerMeal = new ArrayList();
         
-        for(int j = 0; j < days.size(); j++){
-            for(int i: mealProportion.keySet()){
+        for(int i: mealProportion.keySet()){
+            for(int j = 0; j < days.size(); j++){
                 String mealID = String.format(MEAL_ID_FORMAT_STRING, ++lastIndex);
                 String dayID = days.get(j).getDayID();
                 //Getting proportion
@@ -79,12 +79,12 @@ public class MealController extends HttpServlet {
                 double waterstd = waterstd_day*proportion;
 
                 //Create a new meal instance
-                mealsPerDay.add(new Meal(mealID,userID,dayID,i,totalCalstd,carbohydratestd,fiberstd,proteinstd,fatstd,waterstd));
+                mealsPerMeal.add(new Meal(mealID,userID,dayID,i,totalCalstd,carbohydratestd,fiberstd,proteinstd,fatstd,waterstd));
             }
-            meals.add(mealsPerDay);
+            meals.add(mealsPerMeal);
             
             //RESET mealsPerDay
-            mealsPerDay = new ArrayList();
+            mealsPerMeal = new ArrayList();
         }
         return meals;
     }

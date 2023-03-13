@@ -20,36 +20,6 @@ import java.util.List;
  * @author asout
  */
 public class DayDAO {
-//    public void generateDayByUserID(String userID, int day){
-//        //SQL for getting the last dayID
-//        String sql1 = "SELECT TOP 1 dayID FROM Day ORDER BY dayID DESC";
-//        int lastIdx;
-//        String sql2 = "INSERT INTO Day VALUES(?,?,?,?,?,?,?,?,?)";
-//        String sqlFinal = "";
-//        try {
-//            Connection conn = DBUtils.getConnection();
-//            //Get the last dayID
-//            PreparedStatement ps;
-//            ResultSet rs;
-//            ps = conn.prepareStatement(sql1);
-//            rs = ps.executeQuery();
-//            if(rs.next()) lastIdx = Utils.extractIntFromString(rs.getString("dayID"));
-//            else lastIdx = 0;
-//            //Insertion with loops
-//            for(int i = 0; i < day; i++){
-//                
-//            }
-//            
-//            ps.setString(1, userID);
-//            
-//            
-//            rs.close();
-//            ps.close();
-//            conn.close();
-//        } catch (SQLException ex) {
-//             System.out.println(ex);
-//        }
-//    }
 
     public String lastIDIndex() {
         String sql = "SELECT TOP 1 dayID FROM Day ORDER BY dayID DESC";
@@ -162,5 +132,25 @@ public class DayDAO {
             System.out.println(ex);
         }
         return row > 0;
+    }
+    
+    public Day readDayByDayID(String dayID) {
+        Day day = null;
+        String sql = "SELECT * FROM Day WHERE dayID = ?";
+        try {
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, dayID);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()) {
+                day = new Day(rs.getString("dayID"), rs.getString("userID"), rs.getInt("index"), rs.getDouble("totalCalstd"), rs.getDouble("carbohydratestd"), rs.getDouble("fiberstd"), rs.getDouble("proteinstd"), rs.getDouble("fatstd"), rs.getDouble("waterstd"));
+            }
+            rs.close();
+            ps.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return day;
     }
 }

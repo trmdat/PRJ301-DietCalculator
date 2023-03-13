@@ -131,6 +131,26 @@ public class MealDAO {
         return row > 0;
     }
     
+    public Meal readMealByMealID(String mealID) {
+        String sql = "SELECT mealID,userID,dayID,mealindex,totalCalstd,carbohydratestd,fiberstd,proteinstd,fatstd,waterstd,totalCal,carbohydrate,fiber,protein,fat,water FROM Meal WHERE mealID = ?";
+        Meal meal = null;
+        try {
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, mealID);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()) {
+                meal = new Meal(rs.getString("mealID"), rs.getString("userID"), rs.getString("dayID"), rs.getInt("mealindex"), rs.getDouble("totalCalstd"),rs.getDouble("carbohydratestd"),rs.getDouble("fiberstd"),rs.getDouble("proteinstd"),rs.getDouble("fatstd"),rs.getDouble("waterstd"),rs.getDouble("totalCal"),rs.getDouble("carbohydrate"),rs.getDouble("fiber"),rs.getDouble("protein"),rs.getDouble("fat"),rs.getDouble("water"));
+            }
+            rs.close();
+            ps.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return meal;
+    }
+    
     public static void main(String[] args) {
         MealDAO dao = new MealDAO();
         

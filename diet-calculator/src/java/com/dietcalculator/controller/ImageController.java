@@ -50,21 +50,31 @@ public class ImageController extends HttpServlet {
         }
     }
     
-    public final ArrayList<Image>[][] generateImage(ArrayList<FoodDetail>[][] foodDetails, ArrayList<Meal>[] meals){
-        int numOfMeals = meals.length;
-        int numOfDay = foodDetails[0][0].size();
-        ArrayList<Image>[][] images = new ArrayList[numOfMeals][Constants.MAX_FOODDETAIL];
-        //Looping through each of the type of meals
-        for(int i = 0; i < numOfMeals; i++)
-            for(int j = 0; j < Constants.FOOD_DETAIL_BY_MEAL.get(meals[i].get(0).getMealindex()).length; j++)
-                images[i][j] = new ArrayList();
+    public final ArrayList<ArrayList<ArrayList<Image>>> generateImage(ArrayList<ArrayList<ArrayList<FoodDetail>>> foodDetails, ArrayList<ArrayList<Meal>> meals){
+        int numOfMeals = meals.size();
+        int numOfDay = foodDetails.get(0).size();
+        ArrayList<ArrayList<ArrayList<Image>>> images = new ArrayList();
+        
+        //INITIALIZING THE ARRAYLIST
+        ArrayList<Image> listOfMeal = new ArrayList();
+        ArrayList<ArrayList<Image>> listOfDay = new ArrayList();
             
         ImageDAO imageDAO = new ImageDAO();
-        for(int i = 0; i < numOfMeals; i++)
-            for(int j = 0; j < Constants.FOOD_DETAIL_BY_MEAL.get(meals[i].get(0).getMealindex()).length; j++)
-                for(int k = 0; k < numOfDay; k++)
-                    images[i][j].add(imageDAO.readImageByFoodID(foodDetails[i][j].get(k).getFoodID()).get(0));
-        
+        for(int i = 0; i < numOfMeals; i++){
+            for(int k = 0; k < numOfDay; k++){
+                for(int j = 0; j < Constants.FOOD_DETAIL_BY_MEAL.get(meals.get(i).get(0).getMealindex()).length; j++){
+                    listOfMeal.add(imageDAO.readImageByFoodID(foodDetails.get(i).get(k).get(j).getFoodID()).get(0));
+                }
+               listOfDay.add(listOfMeal);
+               
+               //RESET listOfMeal
+               listOfMeal = new ArrayList();
+            }
+            images.add(listOfDay);
+            
+            //RESET listOfDay
+            listOfDay = new ArrayList();
+        }
         return images;
     }
 

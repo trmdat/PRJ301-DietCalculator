@@ -71,91 +71,94 @@ public class FoodDetailController extends HttpServlet {
         double calories = 0;
         if(category.equalsIgnoreCase("fruit/nuts/legumes/dairies&dessert")){
             //the amount of break fast is based on Calories 
-            calories = meal.getCarbohydratestd();   //NO NEED FOR RELATIVE_ESTIMATE
-            ratio = calories/foodDataset.get(idx).getCaloricintake();
+            calories = Utils.roundDouble(meal.getCarbohydratestd());   //NO NEED FOR RELATIVE_ESTIMATE
+            ratio = Utils.roundDouble(calories/foodDataset.get(idx).getCaloricintake());
         }else if(category.equalsIgnoreCase("vegetables")){
             //the amount of vegetables is based on Fiber 
-            calories = RELATIVE_ESTIMATE*meal.getFiberstd()*VEGETABLES_FIBER_SOURCE;
-            ratio = calories/(foodDataset.get(idx).getFiber()*CARBOHYDRATE_TO_KCAL);
+            calories = Utils.roundDouble(RELATIVE_ESTIMATE*meal.getFiberstd()*VEGETABLES_FIBER_SOURCE);
+            ratio = Utils.roundDouble(calories/(foodDataset.get(idx).getFiber()*CARBOHYDRATE_TO_KCAL));
         }else if(category.equalsIgnoreCase("fruit")){
             //the amount of fruit is based on Fiber 
-            calories = RELATIVE_ESTIMATE*meal.getFiberstd()*FRUIT_FIBER_SOURCE;
-            ratio = calories/(foodDataset.get(idx).getFiber()*CARBOHYDRATE_TO_KCAL);
+            calories = Utils.roundDouble(RELATIVE_ESTIMATE*meal.getFiberstd()*FRUIT_FIBER_SOURCE);
+            ratio = Utils.roundDouble(calories/(foodDataset.get(idx).getFiber()*CARBOHYDRATE_TO_KCAL));
         }else if(category.equalsIgnoreCase("meat/poultry")){
             //the amount of meat is based on Protein 
-            calories = RELATIVE_ESTIMATE*meal.getProteinstd()*FIRST_PROTEIN_SOURCE;
-            ratio = calories/(foodDataset.get(idx).getProtein()*PROTEIN_TO_KCAL);
+            calories =Utils.roundDouble(RELATIVE_ESTIMATE*meal.getProteinstd()*FIRST_PROTEIN_SOURCE);
+            ratio = Utils.roundDouble(calories/(foodDataset.get(idx).getProtein()*PROTEIN_TO_KCAL));
         }else if(category.equalsIgnoreCase("fish/seafood/egg")){
             //the amount of fish/seafood/egg is based on Protein 
-            calories = RELATIVE_ESTIMATE*meal.getProteinstd()*SECOND_PROTEIN_SOURCE;
-            ratio = calories/(foodDataset.get(idx).getProtein()*PROTEIN_TO_KCAL);
+            calories = Utils.roundDouble(RELATIVE_ESTIMATE*meal.getProteinstd()*SECOND_PROTEIN_SOURCE);
+            ratio = Utils.roundDouble(calories/(foodDataset.get(idx).getProtein()*PROTEIN_TO_KCAL));
         }else if(category.equalsIgnoreCase("starch")){
             //the amount of starch is based on Carbohydrate 
-            calories = RELATIVE_ESTIMATE*meal.getCarbohydratestd();
-            ratio = calories/(foodDataset.get(idx).getCarbohydrate()*CARBOHYDRATE_TO_KCAL);}
+            calories = Utils.roundDouble(RELATIVE_ESTIMATE*meal.getCarbohydratestd());
+            ratio = Utils.roundDouble(calories/(foodDataset.get(idx).getCarbohydrate()*CARBOHYDRATE_TO_KCAL));}
         else if(category.equalsIgnoreCase("dairies&dessert")){
             //the amount of dairies and dessert is based on Fat 
-            calories = FAT_FROM_DAIRIES_AND_DESSERT*meal.getFatstd();   //FAT ALSO COMES FROM MEAT AND OTHER FOOD
-            ratio = calories/(foodDataset.get(idx).getCarbohydrate()*FAT_TO_KCAL);}
+            calories = Utils.roundDouble(FAT_FROM_DAIRIES_AND_DESSERT*meal.getFatstd());   //FAT ALSO COMES FROM MEAT AND OTHER FOOD
+            ratio = Utils.roundDouble(calories/(foodDataset.get(idx).getCarbohydrate()*FAT_TO_KCAL));}
         else if(category.equalsIgnoreCase("drinks")){
             //the amount of drink is based on Water 
-            calories = meal.getWaterstd();  //NO NEED FOR RELATIVE_ESTIMATE
-            ratio = calories/(foodDataset.get(idx).getWater());
+            calories = Utils.roundDouble(meal.getWaterstd());  //NO NEED FOR RELATIVE_ESTIMATE
+            ratio = Utils.roundDouble(calories/(foodDataset.get(idx).getWater()));
         }
         
         //Setting parameters
         detail.setFoodID(foodDataset.get(idx).getFoodID());
         detail.setMealID("");
-        detail.setAmount(ratio*foodDataset.get(idx).getSize());
-        detail.setTotalCal(ratio*foodDataset.get(idx).getCaloricintake());
-        detail.setCarbohydrate(ratio*foodDataset.get(idx).getCarbohydrate());
-        detail.setFiber(ratio*foodDataset.get(idx).getFiber());
-        detail.setProtein(ratio*foodDataset.get(idx).getProtein());
-        detail.setFat(ratio*foodDataset.get(idx).getFat());
-        detail.setWater(ratio*foodDataset.get(idx).getWater());
+        detail.setAmount(Utils.roundDouble(ratio*foodDataset.get(idx).getSize()));
+        detail.setTotalCal(Utils.roundDouble(ratio*foodDataset.get(idx).getCaloricintake()));
+        detail.setCarbohydrate(Utils.roundDouble(ratio*foodDataset.get(idx).getCarbohydrate()));
+        detail.setFiber(Utils.roundDouble(ratio*foodDataset.get(idx).getFiber()));
+        detail.setProtein(Utils.roundDouble(ratio*foodDataset.get(idx).getProtein()));
+        detail.setFat(Utils.roundDouble(ratio*foodDataset.get(idx).getFat()));
+        detail.setWater(Utils.roundDouble(ratio*foodDataset.get(idx).getWater()));
         
         return detail;
     }
     
-    public final ArrayList<FoodDetail>[] generateLoadsOfFoodDetail(ArrayList<Food> allApplicableFood, Meal meal, int numDay){
+    public final ArrayList<ArrayList<FoodDetail>> generateLoadsOfFoodDetail(ArrayList<Food> allApplicableFood, Meal meal, int numDay){
         String[] listOfFoodDetail = Constants.FOOD_DETAIL_BY_MEAL.get(meal.getMealindex());
-        ArrayList<FoodDetail>[] details = new ArrayList[listOfFoodDetail.length];
-        //Initializing the array
-        for(int i = 0; i < listOfFoodDetail.length; i++)
-            details[i] = new ArrayList();
+        ArrayList<ArrayList<FoodDetail>> details = new ArrayList(); //MEALS-DAYS-DETAILS
         
         FoodController fc = new FoodController();
-        ArrayList<Food> foodOfCategory= null;
-            for(int i = 0; i < listOfFoodDetail.length; i++){
-                foodOfCategory = fc.listFoodByCategory(allApplicableFood, listOfFoodDetail[i]);
-                for(int j = 0; j < numDay; j++){
-                    details[i].add(generateFoodDetail(meal,foodOfCategory,listOfFoodDetail[i]));
+        ArrayList<Food> foodOfCategory;
+        ArrayList<FoodDetail> foodDetailByDay = new ArrayList();
+            for(int j = 0; j < numDay; j++){            //DAYS
+                for(int i = 0; i < listOfFoodDetail.length; i++){       //DETAILS
+                    foodOfCategory = fc.listFoodByCategory(allApplicableFood, listOfFoodDetail[i]);
+                    foodDetailByDay.add(generateFoodDetail(meal,foodOfCategory,listOfFoodDetail[i]));
                 }
+                details.add(foodDetailByDay);
+                
+                //RESET foodDetailByMeal
+                foodDetailByDay = new ArrayList();
             }
         return details;
     }
     
-    public final ArrayList<FoodDetail>[][] generateFoodDetail(ArrayList<Food> allApplicableFood, ArrayList<Meal>[] meals, ArrayList<Day> days){
+    public final ArrayList<ArrayList<ArrayList<FoodDetail>>> generateFoodDetail(ArrayList<Food> allApplicableFood, ArrayList<ArrayList<Meal>> meals, ArrayList<Day> days){
         //Calculate the number of days
         int numOfDay = days.size();
-        int numOfMeal = meals.length;
+        int numOfMeal = meals.size();
         //Creating loads of food details for each kind of meals
-        ArrayList<FoodDetail>[][] foodDetails = new ArrayList[meals.length][Constants.MAX_FOODDETAIL];
+        ArrayList<ArrayList<ArrayList<FoodDetail>>> foodDetails = new ArrayList();
+                //[meals.length][Constants.MAX_FOODDETAIL];
         //meals.length = number of meals per day
         //MAX_FOODDETAIL = max number of FoodDetail per meal
         //Looping through each of the type of meals
-        for(int i = 0; i < meals.length; i++)
-                foodDetails[i] = generateLoadsOfFoodDetail(allApplicableFood,meals[i].get(0),numOfDay);//Meals = a load of breakfasts, a load of lunches, ....
+        for(int i = 0; i < numOfMeal; i++)
+                foodDetails.add(generateLoadsOfFoodDetail(allApplicableFood,meals.get(i).get(0),numOfDay));//Meals = a load of breakfasts, a load of lunches, ....
         //Getting the first meal of each type of meal = get(0);
         
         //Mapping meals with their corresponding food details
-        for(int j = 0; j < meals.length; j++){
-            for(int k = 0; k < Constants.FOOD_DETAIL_BY_MEAL.get(meals[j].get(0).getMealindex()).length; k++){
-                for(int i = 0; i < numOfDay; i++){
+        for(int j = 0; j < numOfMeal; j++){
+            for(int i = 0; i < numOfDay; i++){
+                for(int k = 0; k < Constants.FOOD_DETAIL_BY_MEAL.get(meals.get(j).get(0).getMealindex()).length; k++){
                     //Getting the mealID
-                    String mealID = meals[j].get(i).getMealID();
+                    String mealID = meals.get(j).get(i).getMealID();
                     //Update the mealID for food details
-                    foodDetails[j][k].get(i).setMealID(mealID);
+                    foodDetails.get(j).get(i).get(k).setMealID(mealID);
                 }
             }
         }
@@ -167,38 +170,24 @@ public class FoodDetailController extends HttpServlet {
         double totalFatMeal = 0;
         double totalWaterMeal = 0;
         
-        double totalCaloriesDay = 0;
-        double totalCarbohydrateDay = 0;
-        double totalFiberDay = 0;
-        double totalProteinDay = 0;
-        double totalFatDay = 0;
-        double totalWaterDay = 0;
-        
-        for(int i = 0; i < numOfDay; i++){
-            for(int j = 0; j < meals.length; j++){
-                for(int k = 0; k < Constants.FOOD_DETAIL_BY_MEAL.get(meals[j].get(0).getMealindex()).length; k++){                 
-                    totalCaloriesMeal += foodDetails[j][k].get(i).getTotalCal();
-                    totalCarbohydrateMeal += foodDetails[j][k].get(i).getCarbohydrate();
-                    totalFiberMeal += foodDetails[j][k].get(i).getFiber(); 
-                    totalProteinMeal += foodDetails[j][k].get(i).getProtein();
-                    totalFatMeal += foodDetails[j][k].get(i).getFat();
-                    totalWaterMeal += foodDetails[j][k].get(i).getWater();
+        //UPDATING INATKES FOR MEALS
+        for(int j = 0; j < numOfMeal; j++){
+            for(int i = 0; i < numOfDay; i++){
+                for(int k = 0; k < Constants.FOOD_DETAIL_BY_MEAL.get(meals.get(j).get(0).getMealindex()).length; k++){                 
+                    totalCaloriesMeal += foodDetails.get(j).get(i).get(k).getTotalCal();
+                    totalCarbohydrateMeal += foodDetails.get(j).get(i).get(k).getCarbohydrate();
+                    totalFiberMeal += foodDetails.get(j).get(i).get(k).getFiber(); 
+                    totalProteinMeal += foodDetails.get(j).get(i).get(k).getProtein();
+                    totalFatMeal += foodDetails.get(j).get(i).get(k).getFat();
+                    totalWaterMeal += foodDetails.get(j).get(i).get(k).getWater();
                 }
                 //Updating meals
-                meals[j].get(i).setTotalCal(totalCaloriesMeal);
-                meals[j].get(i).setCarbohydrate(totalCarbohydrateMeal);
-                meals[j].get(i).setFiber(totalFiberMeal);
-                meals[j].get(i).setProtein(totalProteinMeal);
-                meals[j].get(i).setFat(totalFatMeal);
-                meals[j].get(i).setWater(totalWaterMeal);
-                
-                //Update day accumulatives
-                totalCaloriesDay += totalCaloriesMeal;
-                totalCarbohydrateDay += totalCarbohydrateMeal;
-                totalFiberDay += totalFiberMeal;
-                totalProteinDay += totalProteinMeal;
-                totalFatDay += totalFatMeal;
-                totalWaterDay += totalWaterMeal;
+                meals.get(j).get(i).setTotalCal(totalCaloriesMeal);
+                meals.get(j).get(i).setCarbohydrate(totalCarbohydrateMeal);
+                meals.get(j).get(i).setFiber(totalFiberMeal);
+                meals.get(j).get(i).setProtein(totalProteinMeal);
+                meals.get(j).get(i).setFat(totalFatMeal);
+                meals.get(j).get(i).setWater(totalWaterMeal);
                 
                 //Reset meal accumulatives
                 totalCaloriesMeal = 0;
@@ -208,14 +197,34 @@ public class FoodDetailController extends HttpServlet {
                 totalFatMeal = 0;
                 totalWaterMeal = 0;
             }
-            //Updating days
+        }
+        
+        double totalCaloriesDay = 0;
+        double totalCarbohydrateDay = 0;
+        double totalFiberDay = 0;
+        double totalProteinDay = 0;
+        double totalFatDay = 0;
+        double totalWaterDay = 0;
+        
+        
+        //UPDATING INTAKES FOR DAYS
+        for(int i = 0; i < numOfDay; i++){
+            for(int j = 0; j < numOfMeal; j++){
+                //Update day accumulatives
+                totalCaloriesDay += meals.get(j).get(i).getTotalCal();
+                totalCarbohydrateDay += meals.get(j).get(i).getCarbohydrate();
+                totalFiberDay += meals.get(j).get(i).getFiber();
+                totalProteinDay += meals.get(j).get(i).getProtein();
+                totalFatDay += meals.get(j).get(i).getFat();
+                totalWaterDay += meals.get(j).get(i).getWater();
+            }
             days.get(i).setTotalCal(totalCaloriesDay);
             days.get(i).setCarbohydrate(totalCarbohydrateDay);
             days.get(i).setFiber(totalFiberDay);
             days.get(i).setProtein(totalProteinDay);
             days.get(i).setFat(totalFatDay);
             days.get(i).setWater(totalWaterDay);
-            
+
             //Reset day accumulatives
             totalCaloriesDay = 0;
             totalCarbohydrateDay = 0;
