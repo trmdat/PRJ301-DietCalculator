@@ -20,22 +20,22 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <!-- bootstrap css -->
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="./index/css/bootstrap.min.css">
         <!-- style css -->
-        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="./index/css/style.css">
         <!-- Responsive-->
-        <link rel="stylesheet" href="css/responsive.css">
+        <link rel="stylesheet" href="./index/css/responsive.css">
         <!-- fevicon -->
-        <link rel="icon" href="images/logo.jpg" type="image/gif" />
+        <link rel="icon" href="./index/images/logo.jpg" type="image/gif" />
         <!-- Scrollbar Custom CSS -->
-        <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+        <link rel="stylesheet" href="./index/css/jquery.mCustomScrollbar.min.css">
         <!-- Tweaks for older IEs-->
         <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
         <!-- fonts -->
         <link href="https://fonts.googleapis.com/css?family=Poppins:400,700|Raleway:400,700&display=swap" rel="stylesheet">
         <!-- owl stylesheets --> 
-        <link rel="stylesheet" href="css/owl.carousel.min.css">
-        <link rel="stylesheet" href="css/owl.theme.default.min.css">
+        <link rel="stylesheet" href="./index/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="./index/css/owl.theme.default.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
     </head>
     <body>
@@ -189,16 +189,16 @@
     </div>
     <!-- contact section end -->
     <!-- Javascript files-->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/jquery-3.0.0.min.js"></script>
-    <script src="js/plugin.js"></script>
+    <script src="./index/js/jquery.min.js"></script>
+    <script src="./index/js/popper.min.js"></script>
+    <script src="./index/js/bootstrap.bundle.min.js"></script>
+    <script src="./index/js/jquery-3.0.0.min.js"></script>
+    <script src="./index/js/plugin.js"></script>
     <!-- sidebar -->
-    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="js/custom.js"></script>
+    <script src="./index/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="./index/js/custom.js"></script>
     <!-- javascript --> 
-    <script src="js/owl.carousel.js"></script>
+    <script src="./index/js/owl.carousel.js"></script>
     <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
     <jsp:include page="UserFooter.jsp" />
 </body>

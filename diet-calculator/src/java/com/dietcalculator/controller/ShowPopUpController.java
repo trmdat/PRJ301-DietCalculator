@@ -1,8 +1,10 @@
 package com.dietcalculator.controller;
 
+import com.dietcalculator.dao.ImageDAO;
 import com.dietcalculator.dao.PopUpDAO;
 import com.dietcalculator.dao.PopUpDetailDAO;
 import com.dietcalculator.dao.ProductDAO;
+import com.dietcalculator.dto.Image;
 import com.dietcalculator.dto.PopUp;
 import com.dietcalculator.dto.PopUpDetail;
 import com.dietcalculator.dto.Product;
@@ -36,10 +38,14 @@ public class ShowPopUpController extends HttpServlet {
         PopUpDAO popupDao = new PopUpDAO();
         PopUpDetailDAO popupdetDao = new PopUpDetailDAO();
         Product p = new Product();
+        Image image = new Image();
+        ImageDAO imageDao = new ImageDAO();
 
         ArrayList<PopUp> popupList = popupDao.readAvailablePopUp(1);
         ArrayList<PopUpDetail> detailList = new ArrayList<>();
         ArrayList<Product> productList = new ArrayList<>();
+        ArrayList<Image> imageList = new ArrayList<>();
+
         for (PopUp popUp : popupList) {
             detailList = popupdetDao.readPopUpDetail(popUp.getPopupID());
             for (PopUpDetail popUpDetail : detailList) {
@@ -47,18 +53,22 @@ public class ShowPopUpController extends HttpServlet {
                 productList.add(p);
             }
         }
+        for (Product product : productList) {
+            image = readImageByProductId(product.getProductID());
+            imageList.add(image);
+        }
 
 //        PrintWriter out = response.getWriter();
+//        for(Image p1: imageList)
+//            out.println(p1);
 //        for(Product p1: productList)
 //            out.println(p1);
+
+
         request.setAttribute("list", popupList);
         request.setAttribute("productList", productList);
+        request.setAttribute("imageList", imageList);
         RequestDispatcher rd = request.getRequestDispatcher("index/ShowPopUp.jsp");
-        try {
-            Thread.sleep(2000); // delay 
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         rd.include(request, response);
     }
 
@@ -68,6 +78,17 @@ public class ShowPopUpController extends HttpServlet {
         for (Product product : productList) {
             if (product.getProductID().equals(id)) {
                 return product;
+            }
+        }
+        return null;
+    }
+    
+    private Image readImageByProductId(String id) {
+        ImageDAO imageDao = new ImageDAO();
+        ArrayList<Image> imageList = imageDao.searchImageByProductID(id);
+        for (Image image : imageList) {
+            if (image.getProductID().equals(id)) {
+                return image;
             }
         }
         return null;

@@ -40,15 +40,26 @@
 //                                        + "<h2 class=\"text-center text-light\">" + p.getDescription() + "</h2>");
 //                            }
 //                        }
-                    %>
+%>
 
-                    <c:forEach var="pop" items="${list}">
-                        <img src="${pop.theme}" class="img-responsive" alt="deal"/>
-                        <c:forEach var="pro" items="${productList}">
-                            <h3>${pro.productname}</h3>
+                    <div class="row abiut_images_main rounded">
+                        <c:forEach var="pop" items="${list}">
+                            <img src="${pop.theme}" class="img-responsive p-0 m-0" alt="deal"/>
+                            <!--<div class="col-md-6 p-0 m-0"><img src="https://images2.imgbox.com/4e/a9/s08fsXhS_o.jpg"></div>-->
+                            <!--<div class="col-md-6 p-0 m-0"><img src="https://images2.imgbox.com/f1/68/LYzuXjKo_o.jpg"></div>-->
+                            <c:forEach var="img" items="${imageList}">
+                                <div class="col-md-6 p-0 m-0">
+                                    <img src="${img.url}"/>
+                                </div>
+                            </c:forEach>
+                            <c:forEach var="pro" items="${productList}">
+                                <div class="col-md-6 p-0 m-0">
+                                    <h4>${pro.productname}</h4>
+                                </div>
+                            </c:forEach>
+                            <h2 class="text-center">${pop.description}</h2>
                         </c:forEach>
-                        <h2 class="text-center">${pop.description}</h2>
-                    </c:forEach>
+                    </div>
                 </div>
             </div>
         </div>
