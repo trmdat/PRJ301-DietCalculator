@@ -41,12 +41,13 @@
                                             >Sale Off ID
                                         </label>
                                         <input
+                                            id="saleoffID"
                                             name="saleoffID"
                                             type="text"
                                             class="form-control validate"
                                             readonly
                                             required
-                                            value = "${saleoff.getsaleID()}"
+                                            value = "${saleoff.getSaleoffID()}"
                                             />
                                     </div>
                                     <div class="form-group mb-3">
@@ -55,6 +56,7 @@
                                             >Description
                                         </label>
                                         <input
+                                            id="description"
                                             name="description"
                                             type="text"
                                             class="form-control validate"
@@ -69,6 +71,7 @@
                                             >Target
                                         </label>
                                         <input
+                                            id="target"
                                             name="target"
                                             type="text"
                                             class="form-control validate"
@@ -85,6 +88,7 @@
                                                 >Start Date
                                             </label>
                                             <input
+                                                id="startdate"
                                                 name="startdate"
                                                 type="date"
                                                 class="form-control validate"
@@ -98,6 +102,7 @@
                                                 >End Date
                                             </label>
                                             <input
+                                                id="enddate"
                                                 name="enddate"
                                                 type="text"
                                                 class="form-control validate"

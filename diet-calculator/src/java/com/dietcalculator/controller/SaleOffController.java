@@ -36,64 +36,67 @@ public class SaleOffController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String action = request.getParameter("action");
         SaleOffDAO dao = new SaleOffDAO();
-        
-        if(action == null || action.equals("read")){
+
+        if (action == null || action.equals("read")) {
             ArrayList<SaleOff> saleoffList = dao.readSaleOff();
+
             request.setAttribute("saleoffList", saleoffList);
             RequestDispatcher rd = request.getRequestDispatcher("./Administrator/ViewDeleteSaleOff.jsp");
-            
+
             rd.forward(request, response);
-        }else if(action.equals("create")){
-            if(!request.getParameter("saleoffID").isEmpty()){
-                try{
+
+        } else if (action.equals("create")) {
+            if (!request.getParameter("saleoffID").isEmpty()) {
+                try {
                     String saleoffID = request.getParameter("saleoffID");
                     String description = request.getParameter("description");
                     Date startdate = Utils.convertStringToSqlDate(request.getParameter("startdate"));
                     Date enddate = Utils.convertStringToSqlDate(request.getParameter("enddate"));
                     int target = Integer.parseInt(request.getParameter("target"));
-                   dao.createSaleOff(saleoffID, description, startdate, enddate, target);
-                    
+                    dao.createSaleOff(saleoffID, description, startdate, enddate, target);
+
                 }catch (Exception e){
                     System.out.println(e);
                 }
                 response.sendRedirect("SaleOffController");
             }else{
-                response.sendRedirect("SaleOffController");
-                
+               response.sendRedirect("SaleOffController");
             }
-        }else if (action.equals("update")){
+            
+        } else if (action.equals("update")){
             if(request.getParameter("description") == null){
                 SaleOff saleoff = saleoffByID(request.getParameter("saleoffID"));
                 request.setAttribute("saleoff", saleoff);
                 RequestDispatcher rd = request.getRequestDispatcher("Administrator/EditSaleOff.jsp");
                 rd.forward(request, response);
-            }else if(!request.getParameter("description").isEmpty()){
-                try{
+            } else if (!request.getParameter("description").isEmpty()) {
+                try {
                     String saleoffID = request.getParameter("saleoffID");
                     String description = request.getParameter("description");
                     Date startdate = Utils.convertStringToSqlDate(request.getParameter("startdate"));
                     Date enddate = Utils.convertStringToSqlDate(request.getParameter("enddate"));
                     int target = Integer.parseInt(request.getParameter("target"));
                     dao.updateSaleOff(saleoffID, description, startdate, enddate, target);
-                }catch (Exception e){
+                } catch (Exception e) {
                     System.out.println(e);
                 }
                 response.sendRedirect("SaleOffController");
             }
-        }else if (action.equals("delete")){
-            String []ids = request.getParameterValues("saleoffID");
-            if(ids !=null){
-                for(String id : ids){
+        } else if(action.equals("delete")){
+            String [] ids = request.getParameterValues("saleoffID");
+            if(ids != null){
+                for (String id : ids){
                     dao.deleteSaleOff(id);
                 }
             }
+            
+            
+            response.sendRedirect("SaleOffController");
         }
-        
-        response.sendRedirect("SaleOffController");
-       
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -135,13 +138,11 @@ public class SaleOffController extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    
-    
-    private SaleOff saleoffByID(String saleoffID){
+    private SaleOff saleoffByID(String saleoffID) {
         SaleOffDAO dao = new SaleOffDAO();
         ArrayList<SaleOff> list = dao.readSaleOff();
-        for(SaleOff saleoff : list){
-            if(saleoff.getSaleoffID().equals(saleoffID)){
+        for (SaleOff saleoff : list) {
+            if (saleoff.getSaleoffID().equals(saleoffID)) {
                 return saleoff;
             }
         }

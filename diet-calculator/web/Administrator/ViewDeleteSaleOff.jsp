@@ -71,6 +71,7 @@
                                         <c:forEach items="${saleoffList}" var="x">
                                             <tr>
                                                 <th scope="row"><input type="checkbox" name="saleoffID" value="${x.getSaleoffID()}"/></th>
+                                                <td>${x.getSaleoffID()}</td>
                                                 <td>${x.getDescription()}</td>
                                                 <td>${x.getStartdate()}</td>
                                                 <td>${x.getEnddate()}</td>
