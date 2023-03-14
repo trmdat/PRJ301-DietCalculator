@@ -54,7 +54,7 @@ public class LoginController extends HttpServlet {
             if (user != null && user.getUserID()!=null) {
                 HttpSession session = request.getSession(true);
                 session.setAttribute("usersession", user);
-                response.sendRedirect("index/index.html");
+                response.sendRedirect("HomeController");
             } else {
                 request.setAttribute("error", "Wrong username or password");
                 RequestDispatcher rd = request.getRequestDispatcher("Register_Login/login.jsp");

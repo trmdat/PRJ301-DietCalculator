@@ -77,8 +77,8 @@ public class UserController extends HttpServlet {
             response.sendRedirect("UserController");
         }else if(action.equalsIgnoreCase("update")){
             if(request.getParameter("username") == null){ //Request for update page
-                String userID = request.getParameter("username");
-                User user = userDAO.searchUser(request.getParameter("userID"));
+                String userID = request.getParameter("userID");
+                User user = userDAO.searchUser(userID);
                 request.setAttribute("user", user);
                 RequestDispatcher rd = request.getRequestDispatcher("Administrator/EditUser.jsp");
                 rd.forward(request, response);
