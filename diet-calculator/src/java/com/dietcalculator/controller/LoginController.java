@@ -53,10 +53,13 @@ public class LoginController extends HttpServlet {
             user = dao.login(username, password);
             if (user != null && user.getUserID()!=null) {
                 HttpSession session = request.getSession(true);
+
                 
                 //user session is USER
                 session.setAttribute("user", user);
-                response.sendRedirect("index/index.html");
+                session.setAttribute("usersession", user);
+                response.sendRedirect("HomeController");
+
             } else {
                 request.setAttribute("error", "Wrong username or password");
                 RequestDispatcher rd = request.getRequestDispatcher("Register_Login/login.jsp");

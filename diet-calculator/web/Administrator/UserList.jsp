@@ -139,8 +139,8 @@
                                                             <td class="text-center align-middle">${x.getRank()}</td>
                                                             <td class="text-center align-middle"><span>${x.getCreatedate()}</span></td>
                                                             <td class="text-center align-middle">
-                                                                <a href='UserController?action=update&userID=${x.getUserID()}'><button class="btn btn-sm btn-outline-secondary badge" type="button"
-                                                                                                                                       data-toggle="modal" data-target="#user-form-modal">Edit</button>
+                                                                <a href="UserController?action=update&userID=${x.getUserID()}"><button class="btn btn-sm btn-outline-secondary badge" type="button"
+                                                                                                    data-toggle="modal" data-target="#user-form-modal">Edit</button></a>
                                                             </td>
                                                         </tr>
                                                     </c:forEach>
@@ -160,7 +160,7 @@
                                         </div>
                                     </div>
                                     <a
-                                        href="AddUser.jsp"
+                                        href="Administrator/AddUser.jsp"
                                         class="btn btn-primary btn-block text-uppercase mb-3 bg-success">Add new User</a>
                                     <button class="btn btn-primary btn-block text-uppercase bg-success">
                                         Delete selected User
