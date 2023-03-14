@@ -262,11 +262,11 @@ a:hover {
         //FORMAT FOR PARAMETERS
             //meal = side+main; day = 7
             //ArrayList<ArrayList<ArrayList<FoodDetail>>>   MEALS-DAYS-FOODDETAILS
-            //ArrayList<ArrayList<ArrayList<Image>>>   MEALS-DAYS-FOODDETAILS
+            //ArrayList<ArrayList<ArrayList<String>>>   MEALS-DAYS-FOODDETAILS
             //ArrayList<ArrayList<Meal>>                MEALS-DAYS
             //ArrayList<Day>
 
-        public final String menuCode(ArrayList<ArrayList<ArrayList<FoodDetail>>> foodDetailsByWeek, ArrayList<ArrayList<ArrayList<Image>>> imagesByWeek, ArrayList<ArrayList<Meal>> meals, ArrayList<Day> days, ArrayList<Food> foodDataset){
+        public final String menuCode(ArrayList<ArrayList<ArrayList<FoodDetail>>> foodDetailsByWeek, ArrayList<ArrayList<ArrayList<String>>> imagesByWeek, ArrayList<ArrayList<Meal>> meals, ArrayList<Day> days, ArrayList<Food> foodDataset){
             String html = "";
             int numOfMeals = meals.size();  //= number of rows
             for(int index = 0; index < numOfMeals; index++){
@@ -276,7 +276,7 @@ a:hover {
             return html;
         }
 
-        public final String printMealByRow(int mealIndex, ArrayList<Meal> meals, ArrayList<ArrayList<FoodDetail>> foodDetailsByRow, ArrayList<ArrayList<Image>> imagesByRow, ArrayList<Food> foodDataset){
+        public final String printMealByRow(int mealIndex, ArrayList<Meal> meals, ArrayList<ArrayList<FoodDetail>> foodDetailsByRow, ArrayList<ArrayList<String>> imagesByRow, ArrayList<Food> foodDataset){
         //GEETING GENERAL INFORMATION
             String color = MEAL_COLOR_INDEX[mealIndex - 1];
             int numOfFoodDetail = foodDetailsByRow.get(0).size();
@@ -306,7 +306,7 @@ a:hover {
             return html;
         }
 
-        public final String displayImage(int mealIndex, ArrayList<Image> imagesByWeek){
+        public final String displayImage(int mealIndex, ArrayList<String> imagesByWeek){
             //GETTING BASIC INFORMATION
             final int size = 25;
             int numOfFoodDetail = 0;
@@ -317,7 +317,7 @@ a:hover {
                     if(i%2 == 1)
                         html += "<div class = \"row\">";
                     
-                    html += "<div class=\"col-md-6 col-sm-6\" style='padding-bottom:20px;'><img src=\"" + imagesByWeek.get(i-1).getUrl() + "\" width=" + size + " height=" + size + " ></div>\n";
+                    html += "<div class=\"col-md-6 col-sm-6\" style='padding-bottom:20px;'><img src=\"" + imagesByWeek.get(i-1) + "\" width=" + size + " height=" + size + " ></div>\n";
                     
                     if(i%2 == 0)
                         html += "</div>\n";
@@ -328,7 +328,7 @@ a:hover {
                     if(i%2 == 1)
                         html += "<div class = \"row\">";
                     
-                    html += "<div class=\"col-md-6 col-sm-6\"><img src=\"" + imagesByWeek.get(i-1).getUrl() + "\" width=" + size + " height=" + size + " ></div>\n";
+                    html += "<div class=\"col-md-6 col-sm-6\"><img src=\"" + imagesByWeek.get(i-1) + "\" width=" + size + " height=" + size + " ></div>\n";
                     
                     if(i%2 == 0)
                         html += "</div>\n";
@@ -337,7 +337,7 @@ a:hover {
             }else{
                 numOfFoodDetail = Constants.SIDE_MEAL_CATEGORIES.length;
                 html += "<div class = \"row\">";
-                    html += "<div class=\"col-md-12 col-sm-12\" style='padding: 30px'><img src=\"" + imagesByWeek.get(0).getUrl() + "\" width=" + size + " height=" + size + " ></div>\n";
+                    html += "<div class=\"col-md-12 col-sm-12\" style='padding: 30px'><img src=\"" + imagesByWeek.get(0) + "\" width=" + size + " height=" + size + " ></div>\n";
                 html += "</div>\n";
             }
             return html;
@@ -371,7 +371,7 @@ a:hover {
     
     <%
         ArrayList<ArrayList<ArrayList<FoodDetail>>> foodDetailsByWeek = (ArrayList<ArrayList<ArrayList<FoodDetail>>>) request.getAttribute("foodDetails");
-        ArrayList<ArrayList<ArrayList<Image>>> imagesByWeek = (ArrayList<ArrayList<ArrayList<Image>>>) request.getAttribute("images");
+        ArrayList<ArrayList<ArrayList<String>>> imagesByWeek = (ArrayList<ArrayList<ArrayList<String>>>) request.getAttribute("imageUrls");
         ArrayList<ArrayList<Meal>>  meals = (ArrayList<ArrayList<Meal>> ) request.getAttribute("meals");
         ArrayList<Day>  days = (ArrayList<Day>) request.getAttribute("days");
         ArrayList<Food> foodDataset = (ArrayList<Food>) request.getAttribute("foodDataset");

@@ -10,13 +10,17 @@ public class Exercise {
     private double lowerweight;
     private double upperweight;
     private int calorexp;
+    private String icon;
+    private String description;
 
-    public Exercise(String exerciseID, String exname, double lowerweight, double upperweight, int calorexp) {
+    public Exercise(String exerciseID, String exname, double lowerweight, double upperweight, int calorexp, String icon, String description) {
         this.exerciseID = exerciseID;
         this.exname = exname;
         this.lowerweight = lowerweight;
         this.upperweight = upperweight;
         this.calorexp = calorexp;
+        this.icon = icon;
+        this.description = description;
     }
 
     public Exercise() {
@@ -62,6 +66,23 @@ public class Exercise {
         this.calorexp = calorexp;
     }
 
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    
     @Override
     public String toString() {
         return "Exercise{" + "exerciseID=" + exerciseID + ", exname=" + exname + ", lowerweight=" + lowerweight + ", upperweight=" + upperweight + ", calorexp=" + calorexp + '}';

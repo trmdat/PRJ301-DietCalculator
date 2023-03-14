@@ -69,6 +69,7 @@ public class FoodDetailController extends HttpServlet {
         //Calculating ratio based category
         double ratio = 0;
         double calories = 0;
+        String icon = foodDataset.get(idx).getIcon();
         if(category.equalsIgnoreCase("fruit/nuts/legumes/dairies&dessert")){
             //the amount of break fast is based on Calories 
             calories = Utils.roundDouble(meal.getCarbohydratestd());   //NO NEED FOR RELATIVE_ESTIMATE
@@ -113,6 +114,8 @@ public class FoodDetailController extends HttpServlet {
         detail.setProtein(Utils.roundDouble(ratio*foodDataset.get(idx).getProtein()));
         detail.setFat(Utils.roundDouble(ratio*foodDataset.get(idx).getFat()));
         detail.setWater(Utils.roundDouble(ratio*foodDataset.get(idx).getWater()));
+        detail.setIcon(icon);
+        detail.setCategory(category.toLowerCase());
         
         return detail;
     }

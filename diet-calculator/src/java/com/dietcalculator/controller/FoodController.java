@@ -77,7 +77,9 @@ public class FoodController extends HttpServlet {
                     Double protein = Double.parseDouble(request.getParameter("protein"));
                     Double fat = Double.parseDouble(request.getParameter("fat"));
                     Double water = Double.parseDouble(request.getParameter("water"));
-                    dao.createFood(foodID, foodname, category, size, caloricintake, carbohydrate, fiber, protein, fat, water);
+                    String icon = request.getParameter("icon");
+                    String description = request.getParameter("description");
+                    dao.createFood(foodID, foodname, category, size, caloricintake, carbohydrate, fiber, protein, fat, water,icon,description);
                 } catch (Exception e) {
                 }
 
@@ -104,7 +106,9 @@ public class FoodController extends HttpServlet {
                     Double protein = Double.parseDouble(request.getParameter("protein"));
                     Double fat = Double.parseDouble(request.getParameter("fat"));
                     Double water = Double.parseDouble(request.getParameter("water"));
-                    dao.updateFood(foodID, foodname, category, size, caloricintake, carbohydrate, fiber, protein, fat, water);
+                    String icon = request.getParameter("icon");
+                    String description = request.getParameter("description");
+                    dao.updateFood(foodID, foodname, category, size, caloricintake, carbohydrate, fiber, protein, fat, water,icon,description);
                 } catch (Exception e) {
                 }
                 response.sendRedirect("FoodController");

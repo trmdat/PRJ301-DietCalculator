@@ -90,14 +90,14 @@ public class MenuController extends HttpServlet {
             
             //GENERATING IMAGES, format: ArrayList<Image>[meals], ArrayList: all days in a program
             ImageController ic = new ImageController();
-            ArrayList<ArrayList<ArrayList<Image>>> images = ic.generateImage(foodDetails, meals);
+            ArrayList<ArrayList<ArrayList<String>>> imageUrls = ic.generateImage(foodDetails, meals);
             
             //SETTING THESE ATTRIBUTES TO THE CURRENT SESSION
             currentSession.setAttribute("foodDataset",foodDataset);
             currentSession.setAttribute("days", days);
             currentSession.setAttribute("meals", meals);
             currentSession.setAttribute("foodDetails", foodDetails);
-            currentSession.setAttribute("images", images);
+            currentSession.setAttribute("imageUrls", imageUrls);
             
             RequestDispatcher rd = request.getRequestDispatcher("/MenuController?action=show");
             rd.forward(request, response);
@@ -123,7 +123,7 @@ public class MenuController extends HttpServlet {
                 ArrayList<Day> days = (ArrayList<Day>) currentSession.getAttribute("days");
                 ArrayList<ArrayList<Meal>> meals = (ArrayList<ArrayList<Meal>>)currentSession.getAttribute("meals");
                 ArrayList<ArrayList<ArrayList<FoodDetail>>> foodDetails = (ArrayList<ArrayList<ArrayList<FoodDetail>>>)currentSession.getAttribute("foodDetails");
-                ArrayList<ArrayList<ArrayList<Image>>> images = (ArrayList<ArrayList<ArrayList<Image>>>)currentSession.getAttribute("images");
+                ArrayList<ArrayList<ArrayList<String>>> imageUrls = (ArrayList<ArrayList<ArrayList<String>>>)currentSession.getAttribute("imageUrls");
 //            }else{
                 
 //            }
@@ -136,7 +136,7 @@ public class MenuController extends HttpServlet {
             request.setAttribute("days", days);
             request.setAttribute("meals", meals);
             request.setAttribute("foodDetails", foodDetails);
-            request.setAttribute("images", images);
+            request.setAttribute("imageUrls", imageUrls);
             request.setAttribute("foodDataset", foodDataset);
             RequestDispatcher rd = request.getRequestDispatcher("/Menu/Menu.jsp");
             rd.forward(request, response);

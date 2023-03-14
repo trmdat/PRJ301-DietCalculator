@@ -42,7 +42,7 @@ public class ExSessionDAO {
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new ExSession(rs.getString("sessionID"), rs.getString("exerciseID"), rs.getString("userID"), rs.getString("dayID")));
+                list.add(new ExSession(rs.getString("sessionID"), rs.getString("exerciseID"), rs.getString("userID"), rs.getString("dayID"), rs.getString("icon")));
             }
             rs.close();
             ps.close();
@@ -53,8 +53,8 @@ public class ExSessionDAO {
         return list;
     }
 
-    public boolean createExSession(String sessionID, String exerciseID, String userID, String dayID) {
-        String sql = "INSERT INTO ExSession VALUES(?,?,?,?)";
+    public boolean createExSession(String sessionID, String exerciseID, String userID, String dayID, String icon) {
+        String sql = "INSERT INTO ExSession VALUES(?,?,?,?,?)";
         int row = 0;
         try {
             Connection conn = DBUtils.getConnection();
@@ -63,6 +63,7 @@ public class ExSessionDAO {
             ps.setString(2, exerciseID);
             ps.setString(3, userID);
             ps.setString(4, dayID);
+            ps.setString(5, icon);
             row = ps.executeUpdate();
             ps.close();
             conn.close();
@@ -72,8 +73,8 @@ public class ExSessionDAO {
         return row > 0;
     }
 
-    public boolean updateExSession(String sessionID, String exerciseID, String userID, String dayID) {
-        String sql = "UPDATE ExSession SET exerciseID = ?, userID = ?, dayID = ? WHERE sessionID = ?";
+    public boolean updateExSession(String sessionID, String exerciseID, String userID, String dayID, String icon) {
+        String sql = "UPDATE ExSession SET exerciseID = ?, userID = ?, dayID = ?, icon = ? WHERE sessionID = ?";
         int row = 0;
         try {
             Connection conn = DBUtils.getConnection();
@@ -81,7 +82,8 @@ public class ExSessionDAO {
             ps.setString(1, exerciseID);
             ps.setString(2, userID);
             ps.setString(3, dayID);
-            ps.setString(4, sessionID);
+            ps.setString(4, icon);
+            ps.setString(5, sessionID);
             row = ps.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex);
