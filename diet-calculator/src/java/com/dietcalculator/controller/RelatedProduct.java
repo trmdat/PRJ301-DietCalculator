@@ -43,7 +43,7 @@ public class RelatedProduct extends HttpServlet {
             request.setAttribute("relateList", relateList);
             RequestDispatcher rd = request.getRequestDispatcher("Product List/RelatedProduct.jsp");
             try {
-                Thread.sleep(2000); // delay 
+                Thread.sleep(1000); // delay 
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

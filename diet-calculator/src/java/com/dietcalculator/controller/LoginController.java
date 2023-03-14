@@ -42,7 +42,7 @@ public class LoginController extends HttpServlet {
         if (action != null && action.equals("logout")) {
             HttpSession session = request.getSession(false);
             if (session != null) {
-                session.invalidate();
+                session.invalidate();             
             }
         } else if (action == null || request.getParameter("username") == null || request.getParameter("password") == null) {
             response.sendRedirect("Register_Login/login.jsp");
@@ -53,7 +53,9 @@ public class LoginController extends HttpServlet {
             user = dao.login(username, password);
             if (user != null && user.getUserID()!=null) {
                 HttpSession session = request.getSession(true);
-                session.setAttribute("usersession", user);
+                
+                //user session is USER
+                session.setAttribute("user", user);
                 response.sendRedirect("index/index.html");
             } else {
                 request.setAttribute("error", "Wrong username or password");
