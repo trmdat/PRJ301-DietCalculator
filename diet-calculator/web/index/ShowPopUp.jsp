@@ -19,6 +19,15 @@
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
         <title></title>
+        <style>
+            .bg-img {
+                position: absolute;
+                z-index: -1;
+            }
+            .has-bg-img {
+                width: 100%;
+            }
+        </style>
     </head>
     <body>
         <!-- Button trigger modal -->
@@ -31,22 +40,12 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content bg-transparent border-0">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    <%
-//                        PopUpDAO popupDao = new PopUpDAO();
-//                        ArrayList<PopUp> list = popupDao.readAvailablePopUp(1);
-//                        if (list != null) {
-//                            for (PopUp p : list) {
-//                                out.print("<img src=" + p.getTheme() + " class=\"img-responsive\" />"
-//                                        + "<h2 class=\"text-center text-light\">" + p.getDescription() + "</h2>");
-//                            }
-//                        }
-%>
-
-                    <div class="row abiut_images_main rounded">
+                    <div class="row has-bg-img">
                         <c:forEach var="pop" items="${list}">
-                            <img src="${pop.theme}" class="img-responsive p-0 m-0" alt="deal"/>
+                            <img src="${pop.theme}" class="img-responsive p-0 m-0 bg-img" alt="deal"/>
                             <!--<div class="col-md-6 p-0 m-0"><img src="https://images2.imgbox.com/4e/a9/s08fsXhS_o.jpg"></div>-->
                             <!--<div class="col-md-6 p-0 m-0"><img src="https://images2.imgbox.com/f1/68/LYzuXjKo_o.jpg"></div>-->
+
                             <c:forEach var="img" items="${imageList}">
                                 <div class="col-md-6 p-0 m-0">
                                     <img src="${img.url}"/>
