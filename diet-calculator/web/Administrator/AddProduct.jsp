@@ -5,241 +5,380 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Add New Food</title>
-        <jsp:include page="../index/AdminHeader.jsp" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700" />
-        <link rel="stylesheet" href="css/fontawesome.min.css" />
-        <link rel="stylesheet" href="css/bootstrap.min.css" />
-        <link rel="stylesheet" href="css/templatemo-style.css">
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
+
+        <!-- Popper JS -->
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+        <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+        <style>
+            /*navbar*/
+            .navbar{
+                background-color: green;
+            }
+
+            .navbar-brand ,.navbar-nav li a{
+                color:white;
+                font-weight: 500;
+            }
+
+            .navbar-logo img{
+                border-radius:50%;
+                height: 50px;
+                width:50px;
+                margin-right: 30px;
+            }
+            .navbar-toggler{
+                border-color: white;
+                border-width: 1px;
+            }
+            .navbar-toggler-icon i{
+                color:#fff; font-size:28px;
+            }
+            .navbar-nav li{
+                margin-top: 10px;
+            }
+
+            .user-item a {
+                color:white;
+                margin-left: 900px;
+
+            }
+            
+            .page-footer{
+                margin-top:100px;
+                background-color: black;
+                text-align: center;
+            }
+            
+            .grid-ic a{
+                color: white;
+            }
+
+        </style>
+
     </head>
     <body>
+        <nav class="navbar navbar-expand-lg">
+            <a class="navbar-logo" href="#">
+                <img src="https://thumbs2.imgbox.com/08/79/vGFMh0Gr_t.jpg" alt="imgbox"/>   
+            </a>
+            <a class="navbar-brand" href="#"> Diet Calculator</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"> <i class="fas fa-bars" ></i></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="../index/index.jsp">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./UserController">User</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./ProductController">Product</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./FoodController">Food</a>
+                    </li>
+                    <li class="nav-item"> 
+                        <a class="nav-link" href="./PopUpController">Pop Up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./SaleOffController">Sale Off</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./ImageController">Image</a>
+                    </li>
+                    <li class="user-item">
+                        <a class="nav-link" href=""><i class="fas fa-user fa-2x"></i></a>
+                    </li>
 
-    <nav>
-    <div class="container tm-mt-big tm-mb-big">
-        <div class="row">
-            <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
-                <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
-                    <div class="row">
-                        <div class="col-10">
-                            <h2 class="tm-block-title d-inline-block">Add Product</h2>
-                        </div>
-                        <div class="col-2">
-                            <form action="/diet-calculator/ProductController">
-                                <button type="submit" class="btn btn-primary btn-block text-uppercase bg-success"> << Return</button>                            
-                            </form>
-                        </div>
-                    </div>
-                    
-                    <div class="row tm-edit-product-row">
-                        <div class="col-xl-12 col-lg-12 col-md-12">
-                            <form action="/diet-calculator/ProductController" class="tm-edit-product-form" method="get">
-                                <input type="hidden" name="action" value="create"/>
-                                <div class="form-group mb-3">
-                                    <label
-                                        for="productID"
-                                        >Product ID
-                                    </label>
-                                    <input
-                                        id="productname"
-                                        name="productID"
-                                        type="text"
-                                        class="form-control validate"
-                                        required
-                                        />
+
+                </ul>
+
+            </div>
+        </nav>
+        <br>
+        <nav>
+            <div class="container tm-mt-big tm-mb-big">
+                <div class="row">
+                    <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
+                        <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+                            <div class="row">
+                                <div class="col-10">
+                                    <h2 class="tm-block-title d-inline-block">Add Product</h2>
                                 </div>
-                                <div class="form-group mb-3">
-                                    <label
-                                        for="productname"
-                                        >Product Name
-                                    </label>
-                                    <input
-                                        id ="productname"
-                                        name="productname"
-                                        type="text"
-                                        class="form-control validate"
-                                        required
-                                        />
+                                <div class="col-2">
+                                    <form action="/diet-calculator/ProductController">
+                                        <button type="submit" class="btn btn-primary btn-block text-uppercase bg-success"> << Return</button>                            
+                                    </form>
                                 </div>
-
-                                <div class="form-group mb-3">
-                                    <label
-                                        for="type"
-                                        >Type</label
-                                    >
-                                    <select
-                                        class="custom-select tm-select-accounts"
-                                        name="type"
-                                        >
-                                        <option selected value="vitamin">Vitamin</option>
-                                        <option value="protein">Protein</option>
-                                        <option value="carbohydrate">Carbohydrate</option>
-                                        <option value="fiber">Fiber</option>
-                                        <option value="eaa">EAA</option>
-                                        <option value="bcaa">BCAA</option>
-                                    </select>
-                                </div>
-
-
-
-                                <div class="row">
-
-                                    <div class="form-group mb-3 col-xs-12 col-sm-6">
-                                        <label
-                                            for="price"
-                                            >Price
-                                        </label>
-                                        <input
-                                            id ="price"
-                                            name="price"
-                                            type="text"
-                                            class="form-control validate"
-                                            required
-                                            />
-                                    </div>
-
-                                    <div class="form-group mb-3 col-xs-12 col-sm-6">
-                                        <label
-                                            for="quantity"
-                                            >Quantity
-                                        </label>
-                                        <input
-                                            id="quantity"
-                                            name="quantity"
-                                            type="text"
-                                            class="form-control validate"
-                                            required
-                                            />
-                                    </div>
-
-                                    <div class="form-group mb-3 col-xs-12 col-sm-6">
-                                        <label
-                                            for="brand"
-                                            >Brand
-                                        </label>
-                                        <input
-                                            id="brand"
-                                            name="brand"
-                                            type="text"
-                                            class="form-control validate"
-                                            required
-                                            />
-                                    </div>
-
-                                    <div class="form-group mb-3 col-xs-12 col-sm-6">
-                                        <label
-                                            for="origin"
-                                            >Origin
-                                        </label>
-                                        <input
-                                            id="brand"
-                                            name="origin"
-                                            type="text"
-                                            class="form-control validate"
-                                            required
-                                            />
-                                    </div>
-
-                                    <div class="form-group mb-3 col-xs-12 col-sm-6">
-                                        <label
-                                            for="volume"
-                                            >Volume
-                                        </label>
-                                        <input
-                                            id="volume"
-                                            name="volume"
-                                            type="text"
-                                            class="form-control validate"
-                                            required
-                                            />
-                                    </div>
-
-                                    <div class="form-group mb-3 col-xs-12 col-sm-6">
-                                        <label
-                                            for="rate"
-                                            >Rate
-                                        </label>
-                                        <input
-                                            id="rate"
-                                            name="rate"
-                                            type="text"
-                                            class="form-control validate"
-                                            required
-                                            />
-                                    </div>
-
-                                    <div class="form-group mb-3 col-xs-12 col-sm-6">
-                                        <label
-                                            for="purchase"
-                                            >Purchase
-                                        </label>
-                                        <input
-                                            id="purchase"
-                                            name="purchase"
-                                            type="text"
-                                            class="form-control validate"
-                                            required
-                                            />
-                                    </div>
-
-                                    
-
-                                </div>
-                                <div class="form-group mb-3">
-                                        <label
-                                            for="effect"
-                                            >Effect
-                                        </label>
-                                        <input
-                                            id ="effect"
-                                            name="effect"
-                                            type="textarea"
-                                            class="form-control validate"
-                                            required
-                                            />
-                                    </div>    
-                                <div class="col-12">
-                                    <button type="submit" class="btn btn-primary btn-block text-uppercase bg-success">Add Food</button>
-                                </div>
-                            </form>
-
-                        </div>
-                        <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
-                            <div class="tm-product-img-dummy mx-auto">
-                                <i
-                                    class="fas fa-cloud-upload-alt tm-upload-icon"
-                                    onclick="document.getElementById('fileInput').click();"
-                                    ></i>
                             </div>
-                            <!--                <div class="custom-file mt-3 mb-3">
-                                              <input id="fileInput" type="file" style="display:none;" />
-                                              <input
-                                                type="button"
-                                                class="btn btn-primary btn-block mx-auto bg-success"
-                                                value="UPLOAD PRODUCT IMAGE"
-                                                onclick="document.getElementById('fileInput').click();"
-                                              />
-                                            </div>-->
+
+                            <div class="row tm-edit-product-row">
+                                <div class="col-xl-12 col-lg-12 col-md-12">
+                                    <form action="/diet-calculator/ProductController" class="tm-edit-product-form" method="get">
+                                        <input type="hidden" name="action" value="create"/>
+                                        <div class="form-group mb-3">
+                                            <label
+                                                for="productID"
+                                                >Product ID
+                                            </label>
+                                            <input
+                                                id="productname"
+                                                name="productID"
+                                                type="text"
+                                                class="form-control validate"
+                                                required
+                                                />
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label
+                                                for="productname"
+                                                >Product Name
+                                            </label>
+                                            <input
+                                                id ="productname"
+                                                name="productname"
+                                                type="text"
+                                                class="form-control validate"
+                                                required
+                                                />
+                                        </div>
+
+                                        <div class="form-group mb-3">
+                                            <label
+                                                for="type"
+                                                >Type</label
+                                            >
+                                            <select
+                                                class="custom-select tm-select-accounts"
+                                                name="type"
+                                                >
+                                                <option selected value="vitamin">Vitamin</option>
+                                                <option value="protein">Protein</option>
+                                                <option value="carbohydrate">Carbohydrate</option>
+                                                <option value="fiber">Fiber</option>
+                                                <option value="eaa">EAA</option>
+                                                <option value="bcaa">BCAA</option>
+                                            </select>
+                                        </div>
+
+
+
+                                        <div class="row">
+
+                                            <div class="form-group mb-3 col-xs-12 col-sm-6">
+                                                <label
+                                                    for="price"
+                                                    >Price
+                                                </label>
+                                                <input
+                                                    id ="price"
+                                                    name="price"
+                                                    type="text"
+                                                    class="form-control validate"
+                                                    required
+                                                    />
+                                            </div>
+
+                                            <div class="form-group mb-3 col-xs-12 col-sm-6">
+                                                <label
+                                                    for="quantity"
+                                                    >Quantity
+                                                </label>
+                                                <input
+                                                    id="quantity"
+                                                    name="quantity"
+                                                    type="text"
+                                                    class="form-control validate"
+                                                    required
+                                                    />
+                                            </div>
+
+                                            <div class="form-group mb-3 col-xs-12 col-sm-6">
+                                                <label
+                                                    for="brand"
+                                                    >Brand
+                                                </label>
+                                                <input
+                                                    id="brand"
+                                                    name="brand"
+                                                    type="text"
+                                                    class="form-control validate"
+                                                    required
+                                                    />
+                                            </div>
+
+                                            <div class="form-group mb-3 col-xs-12 col-sm-6">
+                                                <label
+                                                    for="origin"
+                                                    >Origin
+                                                </label>
+                                                <input
+                                                    id="brand"
+                                                    name="origin"
+                                                    type="text"
+                                                    class="form-control validate"
+                                                    required
+                                                    />
+                                            </div>
+
+                                            <div class="form-group mb-3 col-xs-12 col-sm-6">
+                                                <label
+                                                    for="volume"
+                                                    >Volume
+                                                </label>
+                                                <input
+                                                    id="volume"
+                                                    name="volume"
+                                                    type="text"
+                                                    class="form-control validate"
+                                                    required
+                                                    />
+                                            </div>
+
+                                            <div class="form-group mb-3 col-xs-12 col-sm-6">
+                                                <label
+                                                    for="rate"
+                                                    >Rate
+                                                </label>
+                                                <input
+                                                    id="rate"
+                                                    name="rate"
+                                                    type="text"
+                                                    class="form-control validate"
+                                                    required
+                                                    />
+                                            </div>
+
+                                            <div class="form-group mb-3 col-xs-12 col-sm-6">
+                                                <label
+                                                    for="purchase"
+                                                    >Purchase
+                                                </label>
+                                                <input
+                                                    id="purchase"
+                                                    name="purchase"
+                                                    type="text"
+                                                    class="form-control validate"
+                                                    required
+                                                    />
+                                            </div>
+
+
+
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label
+                                                for="effect"
+                                                >Effect
+                                            </label>
+                                            <input
+                                                id ="effect"
+                                                name="effect"
+                                                type="textarea"
+                                                class="form-control validate"
+                                                required
+                                                />
+                                        </div>    
+                                        <div class="col-12">
+                                            <button type="submit" class="btn btn-primary btn-block text-uppercase bg-success">Add Food</button>
+                                        </div>
+                                    </form>
+
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
+                                    <div class="tm-product-img-dummy mx-auto">
+                                        <i
+                                            class=" tm-upload-icon"
+                                            onclick="document.getElementById('fileInput').click();"
+                                            ></i>
+                                    </div>
+                                    <!--                <div class="custom-file mt-3 mb-3">
+                                                      <input id="fileInput" type="file" style="display:none;" />
+                                                      <input
+                                                        type="button"
+                                                        class="btn btn-primary btn-block mx-auto bg-success"
+                                                        value="UPLOAD PRODUCT IMAGE"
+                                                        onclick="document.getElementById('fileInput').click();"
+                                                      />
+                                                    </div>-->
+                                </div>
+
+
+                            </div>
                         </div>
-
-
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    </nav
-    <br>
-    <jsp:include page="../index/AdminFooter.jsp" />
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <!-- https://jquery.com/download/ -->
-    <script src="js/bootstrap.min.js"></script>
-    <!-- https://getbootstrap.com/ -->
-    <script>
-                                        $(function () {
-                                            $("#expire_date").datepicker();
-                                        });
-    </script>
-</body>
+        </nav
+
+        <!-- Footer -->
+        
+        
+        
+        
+        <footer class="page-footer font-small cyan darken-3">
+
+            <!-- Footer Elements -->
+            <div class="container">
+
+                <!-- Grid row-->
+                <div class="row">
+
+                    <!-- Grid column -->
+                    <div class="col-md-12 py-5">
+                        <div class="grid-ic mb-5 flex-center">
+
+                            <!-- Facebook -->
+                            <a class="fb-ic">
+                                <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                            </a>
+                            <!-- Twitter -->
+                            <a class="tw-ic">
+                                <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                            </a>
+                            <!-- Google +-->
+                            <a class="gplus-ic">
+                                <i class="fab fa-google-plus-g fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                            </a>
+                            <!--Linkedin -->
+                            <a class="li-ic">
+                                <i class="fab fa-linkedin-in fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                            </a>
+                            <!--Instagram-->
+                            <a class="ins-ic">
+                                <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                            </a>
+                            <!--Pinterest-->
+                            <a class="pin-ic">
+                                <i class="fab fa-pinterest fa-lg white-text fa-2x"> </i>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Grid column -->
+
+                </div>
+                <!-- Grid row-->
+
+            </div>
+            <!-- Footer Elements -->
+
+   
+
+        </footer>
+        <!-- Footer -->
+
+
+
+    </body>
 </html>

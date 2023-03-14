@@ -80,6 +80,36 @@
                                         </c:forEach>
                                     </tbody>
                                 </table>
+                                <section class="panel">
+                                    <div class="panel-body">
+                                        <div class="pull-right">
+                                            <ul class="pagination pagination-sm pro-page-list text-light">
+                                                <li class="page-item ${page == 1 ? 'disabled' : ''}">
+                                                    <a class="page-link" href="ProductController?page=${page>1?page - 1:1}" aria-label="Previous">
+                                                        <span aria-hidden="true">&laquo;</span>
+                                                        <span class="sr-only">Previous</span>
+                                                    </a>
+                                                </li>
+
+                                                <c:forEach var="i" begin="1" end="${totalPages}">
+                                                    <li class="page-item ${i == page ? 'active' : ''}">
+                                                        <a class="page-link" href="ProductController?page=${i}">${i}</a>
+                                                    </li>
+                                                </c:forEach>
+                                                <li class="page-item ${page == totalPages ? 'disabled' : ''}">
+                                                    <a class="page-link" href="ProductController?page=${page<totalPages?page + 1:totalPages}" aria-label="Next">
+                                                        <span aria-hidden="true">&raquo;</span>
+                                                        <span class="sr-only">Next</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </section>
+
+
+
+
                             </div>
                             <section class="panel">
                                 <div class="panel-body">
@@ -114,9 +144,9 @@
                         </form>
 
                     </div>
-                </div>
             </div>
         </div>
+                </div>
         <br>
         <jsp:include page="../index/AdminFooter.jsp" />
         <script src="js/jquery-3.3.1.min.js"></script>
