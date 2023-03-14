@@ -2,6 +2,7 @@ package com.dietcalculator.controller;
 
 import com.dietcalculator.dao.ExerciseDAO;
 import com.dietcalculator.dto.Exercise;
+import com.dietcalculator.dto.User;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -9,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -30,6 +32,21 @@ public class ExerciseController extends HttpServlet {
             throws ServletException, IOException {
 
         String action = request.getParameter("action");
+
+        // Check security
+        HttpSession session = request.getSession(false);
+        User currentUser = null;
+
+        if (session != null) {
+            currentUser = (User) session.getAttribute("usersession");
+        }
+
+        log("Debug: " + currentUser);
+        if (currentUser == null) {
+            log("Debug: Redirect to login page" + currentUser);
+            response.sendRedirect(request.getContextPath() + "/login");
+            return;
+        }
 
         ExerciseDAO exerciseDAO = new ExerciseDAO();
 

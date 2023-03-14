@@ -56,6 +56,29 @@ public class ProductDetailDAO {
         return list;
     }
     
+    public ProductDetail readProductDetailByID(String detailID){
+        ProductDetail pd = null;
+        String sql ="SELECT detailID, productID, userID, billID, quantity from ProductDetail where detailID=  ? ";
+    
+        try{
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, detailID);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                pd = new ProductDetail(rs.getString("detailID"), rs.getString("productID"),rs.getString("userID"),rs.getString("billID"), rs.getInt("quantity"));
+                        
+            }
+            rs.close();
+            ps.close();
+
+            
+        }catch (Exception e){
+        System.out.println(e);
+        }
+        return pd;
+    }
+    
     public boolean createProductDetail(String detailID, String productID,String userID,String billID,int quantity){
         int row = 0;
         String sql ="insert into ProductDetail values(?,?,?,?,?)";

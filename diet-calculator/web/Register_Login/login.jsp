@@ -30,7 +30,7 @@
                                 
                                <div class="text-danger">${error}</div>
                                
-                                <form action="/diet-calculator/login" method="POST" class="needs-validation" novalidate="" autocomplete="off">
+                                <form action="/diet-calculator/LoginController" method="POST" class="needs-validation" novalidate="" autocomplete="off">
                                     <input type="hidden" name="action" value="login">
                                     <div class="mb-3">
                                         <label class="mb-2 text-muted" for="username">Username</label>
@@ -66,7 +66,7 @@
                             </div>
                             <div class="card-footer py-3 border-0">
                                 <div class="text-center">
-                                    Don't have an account? <a href="Register_Login/register.jsp" class="text-dark">Create One</a>
+                                    Don't have an account? <a href="register.jsp" class="text-dark">Create One</a>
                                 </div>
                             </div>
                         </div>
