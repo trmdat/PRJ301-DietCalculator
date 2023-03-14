@@ -12,6 +12,7 @@ import com.dietcalculator.util.Utils;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -40,8 +41,26 @@ public class FoodController extends HttpServlet {
         FoodDAO dao = new FoodDAO();
 
         if (action == null || action.equals("read")) {
-            ArrayList<Food> foodList = dao.readFood();
-            request.setAttribute("foodList", foodList);
+            ArrayList<Food> fullList = dao.readFood();
+
+            int pageSize = 12;
+            int totalPages = (int) Math.ceil(fullList.size() / pageSize);
+            Integer page = null;
+            try {
+                page = Integer.parseInt(request.getParameter("page"));
+            } catch (Exception e) {
+            }
+            if (page == null) {
+                page = 1;
+            } else if (page > totalPages) {
+                page = totalPages;
+            }
+            List<Food> list = paginFood(page, pageSize, fullList);
+
+            request.setAttribute("page", (int) page);
+            request.setAttribute("totalPages", totalPages);
+
+            request.setAttribute("foodList", list);
             RequestDispatcher rd = request.getRequestDispatcher("Food/View&DeleteFood.jsp");
 
             rd.forward(request, response);
@@ -66,8 +85,7 @@ public class FoodController extends HttpServlet {
             } else {
                 response.sendRedirect("FoodController");
             }
-            
-            
+
         } else if (action.equals("update")) {
             if (request.getParameter("foodname") == null) {
                 Food food = foodByID(request.getParameter("foodID"));
@@ -165,6 +183,13 @@ public class FoodController extends HttpServlet {
             }
         }
         return null;
+    }
+
+    public List<Food> paginFood(int pageNum, int pageSize, List<Food> food) {
+        int startIndex = (pageNum - 1) * pageSize;
+        int endIndex = Math.min(startIndex + pageSize, food.size());
+        List<Food> list = food.subList(startIndex, endIndex);
+        return list;
     }
 
 }

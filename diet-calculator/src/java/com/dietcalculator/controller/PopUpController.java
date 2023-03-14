@@ -4,6 +4,7 @@ import com.dietcalculator.dao.PopUpDAO;
 import com.dietcalculator.dto.PopUp;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -35,12 +36,27 @@ public class PopUpController extends HttpServlet {
         String description = "";
         int status = 0;
         String theme = "";
-        
 
         if (action == null || action.equals("list")) {
             ArrayList<PopUp> fullList = popupDao.readPopUp();
 
-            request.setAttribute("list", fullList);
+            int pageSize = 12;
+            int totalPages = (int) Math.ceil(fullList.size() / pageSize);
+            Integer page = null;
+            try {
+                page = Integer.parseInt(request.getParameter("page"));
+            } catch (Exception e) {
+            }
+            if (page == null) {
+                page = 1;
+            } else if (page > totalPages) {
+                page = totalPages;
+            }
+            List<PopUp> list = paginPopUp(page, pageSize, fullList);
+
+            request.setAttribute("page", (int) page);
+            request.setAttribute("totalPages", totalPages);
+            request.setAttribute("list", list);
             RequestDispatcher rd = request.getRequestDispatcher("Administrator/PopUp.jsp");
             rd.forward(request, response);
 
@@ -102,6 +118,13 @@ public class PopUpController extends HttpServlet {
             }
         }
         return null;
+    }
+
+    public List<PopUp> paginPopUp(int pageNum, int pageSize, List<PopUp> popup) {
+        int startIndex = (pageNum - 1) * pageSize;
+        int endIndex = Math.min(startIndex + pageSize, popup.size());
+        List<PopUp> list = popup.subList(startIndex, endIndex);
+        return list;
     }
 
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

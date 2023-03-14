@@ -61,19 +61,6 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <!--                                     <tr>
-                                                                                 <th scope="row"><input type="checkbox" name="id" value="1"/></th>
-                                                                                 <td class="tm-product-name">Lorem Ipsum Product 1</td>
-                                                                                 <td>1,450</td>
-                                                                                 <td>550</td>
-                                                                                 <td>28 March 2019</td>
-                                                                                 <td>
-                                                                                     <a href="#" class="tm-product-delete-link">
-                                                                                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                                                                                     </a>
-                                                                                 </td>
-                                                                             </tr> -->
-
                                         <c:forEach items="${productList}" var="x">
                                             <tr>
                                                 <th scope="row"><input type="checkbox" name="productID" value="${x.getProductID()}"/></th>
@@ -88,12 +75,38 @@
                                                 <td>${x.getEffect()}</td>
                                                 <td>${x.getRate()}</td>
                                                 <td>${x.getPurchase()}</td>
-                                                <td><a href="ProductController?action=update&productID=${x.getProductID()}">Update</a></td>
+                                                <td><a href="ProductController?action=update&productID=${x.getProductID()}" class="btn btn-primary btn-block bg-success">Update</a></td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
+                            <section class="panel">
+                                <div class="panel-body">
+                                    <div class="pull-right">
+                                        <ul class="pagination pagination-sm pro-page-list text-light">
+                                            <li class="page-item ${page == 1 ? 'disabled' : ''}">
+                                                <a class="page-link" href="ProductController?page=${page>1?page - 1:1}" aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                            </li>
+
+                                            <c:forEach var="i" begin="1" end="${totalPages}">
+                                                <li class="page-item ${i == page ? 'active' : ''}">
+                                                    <a class="page-link" href="ProductController?page=${i}">${i}</a>
+                                                </li>
+                                            </c:forEach>
+                                            <li class="page-item ${page == totalPages ? 'disabled' : ''}">
+                                                <a class="page-link" href="ProductController?page=${page<totalPages?page + 1:totalPages}" aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                    <span class="sr-only">Next</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </section>
                             <!-- table container -->
                             <button type="submit" class="btn btn-primary btn-block text-uppercase bg-success">
                                 Delete selected products

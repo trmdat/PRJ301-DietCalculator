@@ -26,19 +26,20 @@
     </head>
 
     <body id="reportsPage">
-        <nav class="navbar navbar-expand-xl">
-            <div class="container h-100">
-                <a class="navbar-brand" href="">
-                    <h1 class="tm-site-title mb-0 text-success">Exercise Admin</h1>
-                </a>
-            </div>
-        </nav>
-
-
         <div class="container mt-5">
             <div class="row tm-content-row">
                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 tm-block-col">
                     <div class="tm-bg-primary-dark tm-block tm-block-products">
+                        <div class="row">
+                            <div class="col-10">
+                                <h2 class="tm-block-title d-inline-block">Exercise Admin</h2>
+                            </div>
+                            <div class="col-2">
+                                <form action="/diet-calculator/FoodController">
+                                    <button type="submit" class="btn btn-primary btn-block text-uppercase bg-success"> << Return</button>                            
+                                </form>
+                            </div>
+                        </div>
                         <a href="Administrator/AddExercise.jsp" class="btn btn-primary btn-block text-uppercase mb-3 bg-success">Add new Exercise</a>
                         <div class="tm-product-table-container">
                             <form action="ExerciseController" method="get">
