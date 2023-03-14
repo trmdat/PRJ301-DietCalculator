@@ -59,19 +59,6 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <!--                                     <tr>
-                                                                                 <th scope="row"><input type="checkbox" name="id" value="1"/></th>
-                                                                                 <td class="tm-product-name">Lorem Ipsum Product 1</td>
-                                                                                 <td>1,450</td>
-                                                                                 <td>550</td>
-                                                                                 <td>28 March 2019</td>
-                                                                                 <td>
-                                                                                     <a href="#" class="tm-product-delete-link">
-                                                                                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                                                                                     </a>
-                                                                                 </td>
-                                                                             </tr> -->
-
                                         <c:forEach items="${foodList}" var="x">
                                             <tr>
                                                 <th scope="row"><input type="checkbox" name="foodID" value="${x.getFoodID()}"/></th>
@@ -85,12 +72,38 @@
                                                 <td>${x.getProtein()}</td>
                                                 <td>${x.getFat()}</td>
                                                 <td>${x.getWater()}</td>
-                                                <td><a href="FoodController?action=update&foodID=${x.getFoodID()}">Update</a></td>
+                                                <td><a href="FoodController?action=update&foodID=${x.getFoodID()}" class="btn btn-primary btn-block bg-success">Update</a></td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
+                            <section class="panel">
+                                <div class="panel-body">
+                                    <div class="pull-right">
+                                        <ul class="pagination pagination-sm pro-page-list text-light">
+                                            <li class="page-item ${page == 1 ? 'disabled' : ''}">
+                                                <a class="page-link" href="FoodController?page=${page>1?page - 1:1}" aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                            </li>
+
+                                            <c:forEach var="i" begin="1" end="${totalPages}">
+                                                <li class="page-item ${i == page ? 'active' : ''}">
+                                                    <a class="page-link" href="FoodController?page=${i}">${i}</a>
+                                                </li>
+                                            </c:forEach>
+                                            <li class="page-item ${page == totalPages ? 'disabled' : ''}">
+                                                <a class="page-link" href="FoodController?page=${page<totalPages?page + 1:totalPages}" aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                    <span class="sr-only">Next</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </section>
                             <!-- table container -->
                             <button type="submit" class="btn btn-primary btn-block text-uppercase bg-success">
                                 Delete selected products
@@ -103,17 +116,17 @@
         </div>
         <br>
         <jsp:include page="../index/AdminFooter.jsp" />
-                <script src="js/jquery-3.3.1.min.js"></script>
-                <!-- https://jquery.com/download/ -->
-                <script src="js/bootstrap.min.js"></script>
-                <!-- https://getbootstrap.com/ -->
-                <script>
-                    $(function () {
-                        $(".tm-product-name").on("click", function () {
-                            window.location.href = "EditProduct.html";
-                        });
-                    });
-                </script>
-                </body>
+        <script src="js/jquery-3.3.1.min.js"></script>
+        <!-- https://jquery.com/download/ -->
+        <script src="js/bootstrap.min.js"></script>
+        <!-- https://getbootstrap.com/ -->
+        <script>
+            $(function () {
+                $(".tm-product-name").on("click", function () {
+                    window.location.href = "EditProduct.html";
+                });
+            });
+        </script>
+    </body>
 
-                </html>
+</html>

@@ -129,8 +129,8 @@ public class ExerciseController extends HttpServlet {
     public List<Exercise> paginExercise(int pageNum, int pageSize, List<Exercise> exercises) {
         int startIndex = (pageNum - 1) * pageSize;
         int endIndex = Math.min(startIndex + pageSize, exercises.size());
-        List<Exercise> exerciseList = exercises.subList(startIndex, endIndex);
-        return exerciseList;
+        List<Exercise> list = exercises.subList(startIndex, endIndex);
+        return list;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
