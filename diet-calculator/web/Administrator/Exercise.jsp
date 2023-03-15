@@ -35,7 +35,7 @@
                                 <h2 class="tm-block-title d-inline-block">Exercise Admin</h2>
                             </div>
                             <div class="col-2">
-                                <form action="/diet-calculator/FoodController">
+                                <form action="/diet-calculator/ExerciseController">
                                     <button type="submit" class="btn btn-primary btn-block text-uppercase bg-success"> << Return</button>                            
                                 </form>
                             </div>
@@ -53,6 +53,8 @@
                                             <th scope="col">LOWERWEIGHT</th>
                                             <th scope="col">UPPERWEIGHT</th>
                                             <th scope="col">CALOREXP</th>
+                                            <th scope="col">ICON</th>
+                                            <th scope="col">DESCRIPTION</th>
                                             <th scope="col">&nbsp;</th>
                                         </tr>
                                     </thead>
@@ -65,6 +67,8 @@
                                                 <td> ${e.lowerweight} </td>
                                                 <td> ${e.upperweight} </td>
                                                 <td> ${e.calorexp} </td>
+                                                <td> ${e.icon} </td>
+                                                <td> ${e.description} </td>
                                                 <td><a href="./ExerciseController?action=edit&exerciseID=${e.exerciseID}&jump=true" 
                                                        class="btn btn-primary btn-block bg-success">Edit</a></td>
                                             </tr>

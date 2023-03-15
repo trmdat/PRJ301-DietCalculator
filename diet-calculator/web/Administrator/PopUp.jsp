@@ -35,7 +35,7 @@
                                 <h2 class="tm-block-title d-inline-block">PopUp Admin</h2>
                             </div>
                             <div class="col-2">
-                                <form action="/diet-calculator/FoodController">
+                                <form action="/diet-calculator/PopUpController">
                                     <button type="submit" class="btn btn-primary btn-block text-uppercase bg-success"> << Return</button>                            
                                 </form>
                             </div>

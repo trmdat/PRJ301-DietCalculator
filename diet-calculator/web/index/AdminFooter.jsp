@@ -18,22 +18,22 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <!-- bootstrap css -->
-        <link rel="stylesheet" type="text/css" href="./index/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/index/css/bootstrap.min.css">
         <!-- style css -->
-        <link rel="stylesheet" type="text/css" href="./index/css/style.css">
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/index/css/style.css">
         <!-- Responsive-->
-        <link rel="stylesheet" href="./index/css/responsive.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/index/css/responsive.css">
         <!-- fevicon -->
-        <link rel="icon" href="./index/images/logo.jpg" type="image/gif" />
+        <link rel="icon" href="${pageContext.request.contextPath}/index/images/logo.jpg" type="image/gif" />
         <!-- Scrollbar Custom CSS -->
-        <link rel="stylesheet" href="./index/css/jquery.mCustomScrollbar.min.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/index/css/jquery.mCustomScrollbar.min.css">
         <!-- Tweaks for older IEs-->
         <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
         <!-- fonts -->
         <link href="https://fonts.googleapis.com/css?family=Poppins:400,700|Raleway:400,700&display=swap" rel="stylesheet">
         <!-- owl stylesheets --> 
-        <link rel="stylesheet" href="./index/css/owl.carousel.min.css">
-        <link rel="stylesheet" href="./index/css/owl.theme.default.min.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/index/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/index/css/owl.theme.default.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
     </head>
     <body>

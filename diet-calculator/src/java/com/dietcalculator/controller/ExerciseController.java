@@ -33,20 +33,20 @@ public class ExerciseController extends HttpServlet {
 
         String action = request.getParameter("action");
 
-        // Check security
-        HttpSession session = request.getSession(false);
-        User currentUser = null;
-
-        if (session != null) {
-            currentUser = (User) session.getAttribute("usersession");
-        }
-
-        log("Debug: " + currentUser);
-        if (currentUser == null) {
-            log("Debug: Redirect to login page" + currentUser);
-            response.sendRedirect(request.getContextPath() + "/login");
-            return;
-        }
+//        // Check security
+//        HttpSession session = request.getSession(false);
+//        User currentUser = null;
+//
+//        if (session != null) {
+//            currentUser = (User) session.getAttribute("user");
+//        }
+//
+//        log("Debug: " + currentUser);
+//        if (currentUser == null) {
+//            log("Debug: Redirect to login page" + currentUser);
+//            response.sendRedirect(request.getContextPath() + "/LoginController");
+//            return;
+//        }
 
         ExerciseDAO exerciseDAO = new ExerciseDAO();
 
