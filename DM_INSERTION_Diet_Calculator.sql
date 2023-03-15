@@ -522,19 +522,19 @@ INSERT INTO PopUp (popupID, [description], [status], theme) VALUES ('POP001', N'
 INSERT INTO PopUpDetail(popupID, productID, [description]) VALUES ('POP001', 'PRO0001', N'Dành cho người dùng mới')
 
 --INSERT ImageProduct
-INSERT INTO Image (imageID, productID, foodID, commentID, url) VALUES ('IMG000207', 'PRO0001',null , NULL, 'https://thumbs2.imgbox.com/9f/2d/f26fX97L_t.jpg');
-INSERT INTO Image (imageID, productID, foodID, commentID, url) VALUES ('IMG000208', 'PRO0006',null , NULL, 'https://thumbs2.imgbox.com/ae/32/LpHFYjf8_t.jpg');
-INSERT INTO Image (imageID, productID, foodID, commentID, url) VALUES ('IMG000209', 'PRO0007',null , NULL, 'https://thumbs2.imgbox.com/e6/60/ta0eXMyh_t.jpg');
-INSERT INTO Image (imageID, productID, foodID, commentID, url) VALUES ('IMG000210', 'PRO0008',null , NULL, 'https://thumbs2.imgbox.com/3a/23/Sh8tWZdG_t.jpg');
-INSERT INTO Image (imageID, productID, foodID, commentID, url) VALUES ('IMG000211', 'PRO0009',null , NULL, 'https://thumbs2.imgbox.com/0f/bf/hj1Pkidr_t.jpg');
-INSERT INTO Image (imageID, productID, foodID, commentID, url) VALUES ('IMG000212', 'PRO0010',null , NULL, 'https://thumbs2.imgbox.com/f1/68/LYzuXjKo_t.jpg');
-INSERT INTO Image (imageID, productID, foodID, commentID, url) VALUES ('IMG000213', 'PRO0011',null , NULL, 'https://thumbs2.imgbox.com/1f/86/I6Eh6gsu_t.jpg');
-INSERT INTO Image (imageID, productID, foodID, commentID, url) VALUES ('IMG000214', 'PRO0012',null , NULL, 'https://thumbs2.imgbox.com/52/6b/HCiZsSzI_t.jpg');
-INSERT INTO Image (imageID, productID, foodID, commentID, url) VALUES ('IMG000215', 'PRO0013',null , NULL, 'https://thumbs2.imgbox.com/f4/9d/xvBrZH4v_t.jpg');
-INSERT INTO Image (imageID, productID, foodID, commentID, url) VALUES ('IMG000216', 'PRO0014',null , NULL, 'https://thumbs2.imgbox.com/d3/72/q23C9z8R_t.jpg');
-INSERT INTO Image (imageID, productID, foodID, commentID, url) VALUES ('IMG000217', 'PRO0015',null , NULL, 'https://thumbs2.imgbox.com/9e/6a/PrwYmncw_t.jpg');
-INSERT INTO Image (imageID, productID, foodID, commentID, url) VALUES ('IMG000218', 'PRO0016',null , NULL, 'https://thumbs2.imgbox.com/33/02/tSuW4Hst_t.jpg');
-INSERT INTO Image (imageID, productID, foodID, commentID, url) VALUES ('IMG000219', 'PRO0017',null , NULL, 'https://thumbs2.imgbox.com/7a/20/MJczSJTk_t.jpg');
-INSERT INTO Image (imageID, productID, foodID, commentID, url) VALUES ('IMG000222', 'PRO0018',null , NULL, 'https://thumbs2.imgbox.com/e2/5e/l0UTogpu_t.jpg');
-INSERT INTO Image (imageID, productID, foodID, commentID, url) VALUES ('IMG000221', 'PRO0019',null , NULL, 'https://thumbs2.imgbox.com/2f/10/AQ3xgaIb_t.jpg');
-INSERT INTO Image (imageID, productID, foodID, commentID, url) VALUES ('IMG000222', 'PRO0020',null , NULL, 'https://thumbs2.imgbox.com/69/80/Nq5Xyp2V_t.jpg');
+INSERT INTO Image (imageID, productID, foodID, commentID, url) VALUES ('IMG000207', 'PRO0001',null , NULL, 'https://images2.imgbox.com/9f/2d/f26fX97L_o.jpg');
+INSERT INTO Image (imageID, productID, foodID, commentID, url) VALUES ('IMG000208', 'PRO0006',null , NULL, 'https://images2.imgbox.com/ae/32/LpHFYjf8_o.jpg');
+INSERT INTO Image (imageID, productID, foodID, commentID, url) VALUES ('IMG000209', 'PRO0007',null , NULL, 'https://images2.imgbox.com/c1/ed/qhJXFbGJ_o.jpg');
+INSERT INTO Image (imageID, productID, foodID, commentID, url) VALUES ('IMG000210', 'PRO0008',null , NULL, 'https://images2.imgbox.com/3a/23/Sh8tWZdG_o.jpg');
+INSERT INTO Image (imageID, productID, foodID, commentID, url) VALUES ('IMG000211', 'PRO0009',null , NULL, 'https://images2.imgbox.com/0f/bf/hj1Pkidr_o.jpg');
+INSERT INTO Image (imageID, productID, foodID, commentID, url) VALUES ('IMG000212', 'PRO0010',null , NULL, 'https://images2.imgbox.com/02/b2/6arKOB4L_o.jpg');
+INSERT INTO Image (imageID, productID, foodID, commentID, url) VALUES ('IMG000213', 'PRO0011',null , NULL, 'https://images2.imgbox.com/1f/86/I6Eh6gsu_o.jpg');
+INSERT INTO Image (imageID, productID, foodID, commentID, url) VALUES ('IMG000214', 'PRO0012',null , NULL, 'https://images2.imgbox.com/52/6b/HCiZsSzI_o.jpg');
+INSERT INTO Image (imageID, productID, foodID, commentID, url) VALUES ('IMG000215', 'PRO0013',null , NULL, 'https://images2.imgbox.com/f4/9d/xvBrZH4v_o.jpg');
+INSERT INTO Image (imageID, productID, foodID, commentID, url) VALUES ('IMG000216', 'PRO0014',null , NULL, 'https://images2.imgbox.com/d3/72/q23C9z8R_o.jpg');
+INSERT INTO Image (imageID, productID, foodID, commentID, url) VALUES ('IMG000217', 'PRO0015',null , NULL, 'https://images2.imgbox.com/9e/6a/PrwYmncw_o.jpg');
+INSERT INTO Image (imageID, productID, foodID, commentID, url) VALUES ('IMG000218', 'PRO0016',null , NULL, 'https://images2.imgbox.com/33/02/tSuW4Hst_o.jpg');
+INSERT INTO Image (imageID, productID, foodID, commentID, url) VALUES ('IMG000219', 'PRO0017',null , NULL, 'https://images2.imgbox.com/7a/20/MJczSJTk_o.jpg');
+INSERT INTO Image (imageID, productID, foodID, commentID, url) VALUES ('IMG000222', 'PRO0018',null , NULL, 'https://images2.imgbox.com/e2/5e/l0UTogpu_o.jpg');
+INSERT INTO Image (imageID, productID, foodID, commentID, url) VALUES ('IMG000221', 'PRO0019',null , NULL, 'https://images2.imgbox.com/2f/10/AQ3xgaIb_o.jpg');
+INSERT INTO Image (imageID, productID, foodID, commentID, url) VALUES ('IMG000222', 'PRO0020',null , NULL, 'https://images2.imgbox.com/69/80/Nq5Xyp2V_o.jpg');
