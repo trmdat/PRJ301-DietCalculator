@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -108,15 +109,6 @@ public class MenuController extends HttpServlet {
         
             //GETTING PAGE NUMBER
             final int PAGE_SIZE = 7;       //7 days in a week
-            Integer page = null;
-            try{
-                page = Integer.parseInt(request.getParameter("page"));
-            }catch(Exception e){
-                System.out.println(e.getMessage());
-            }
-
-            if(page == null)
-                page = 0;
             
 //            if(currentSession.getAttribute("userID") == null){   //Not a signed user
                 ArrayList<Food> foodDataset = (ArrayList<Food>) currentSession.getAttribute("foodDataset");
@@ -127,47 +119,89 @@ public class MenuController extends HttpServlet {
 //            }else{
                 
 //            }
+            int totalPages = (int) Math.ceil(days.size()/PAGE_SIZE);
+            Integer page = null;
+            try {
+                page = Integer.parseInt(request.getParameter("page"));
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
             
-            //SETTING PARAMETERS FOR VIEW
-//            for(int i = page; i < page + PAGE_SIZE; i++){
-//                
-//            }
+            if (page == null) {
+                page = 1;
+            } else if (page > totalPages) {
+                page = totalPages;
+            }
             
-            request.setAttribute("days", days);
-            request.setAttribute("meals", meals);
-            request.setAttribute("foodDetails", foodDetails);
-            request.setAttribute("imageUrls", imageUrls);
+            //GETTING PAGED PARAMETERS
+            List<Day> subDays = pagingDays(page,PAGE_SIZE,days);
+            ArrayList<List<Meal>> subMeals = pagingMeals(page,PAGE_SIZE,meals);
+            ArrayList<List<ArrayList<FoodDetail>>> subFoodDetails = pagingFoodDetails(page,PAGE_SIZE,foodDetails);
+            ArrayList<List<ArrayList<String>>> subImageUrls = pagingImageUrls(page,PAGE_SIZE,imageUrls);
+            
+            request.setAttribute("totalPages", totalPages);
+            request.setAttribute("days", subDays);
+            request.setAttribute("meals", subMeals);
+            request.setAttribute("foodDetails", subFoodDetails);
+            request.setAttribute("imageUrls", subImageUrls);
             request.setAttribute("foodDataset", foodDataset);
+            
             RequestDispatcher rd = request.getRequestDispatcher("/Menu/Menu.jsp");
             rd.forward(request, response);
+            
         }else if(action.equals("details")){
             //GETTING SESSION
             HttpSession currentSession = request.getSession(false);
-            
-            ArrayList<Day> days = (ArrayList<Day>)currentSession.getAttribute("days");
-            ArrayList<ArrayList<Meal>> meals = (ArrayList<ArrayList<Meal>>)currentSession.getAttribute("meals");
-            ArrayList<ArrayList<ArrayList<FoodDetail>>> foodDetails = (ArrayList<ArrayList<ArrayList<FoodDetail>>>)currentSession.getAttribute("foodDetails");
-            ArrayList<Food> foodDataset = (ArrayList<Food>) currentSession.getAttribute("foodDataset");
+            if(currentSession == null){
+                response.sendRedirect("/HomeController");
+            }else{
+                ArrayList<Day> days = (ArrayList<Day>)currentSession.getAttribute("days");
+                ArrayList<ArrayList<Meal>> meals = (ArrayList<ArrayList<Meal>>)currentSession.getAttribute("meals");
+                ArrayList<ArrayList<ArrayList<FoodDetail>>> foodDetails = (ArrayList<ArrayList<ArrayList<FoodDetail>>>)currentSession.getAttribute("foodDetails");
+                ArrayList<Food> foodDataset = (ArrayList<Food>) currentSession.getAttribute("foodDataset");
 
-            String mealID = request.getParameter("mealID");
-            
-            Day day = null;
-            Meal meal = null;
-            ArrayList<FoodDetail> foodDetail = new ArrayList();
-            
-            if(mealID != null)
-                meal = findMealByMealID(meals, mealID);
-            
-            if(meal != null && days != null && foodDataset != null){
-                day = findDayByMealID(days,meal);
-                foodDetail = findFoodDetailByMealID(foodDetails,meal);
+                String mealID = request.getParameter("mealID");
+
+                Day day = null;
+                Meal meal = null;
+                ArrayList<FoodDetail> foodDetail = new ArrayList();
+
+                if(mealID != null)
+                    meal = findMealByMealID(meals, mealID);
+
+                if(meal != null && days != null && foodDataset != null){
+                    day = findDayByMealID(days,meal);
+                    foodDetail = findFoodDetailByMealID(foodDetails,meal);
+                }
+                //GETTING FOODNAME
+                ArrayList<Food> foodInMeal = new ArrayList();
+                for(FoodDetail x: foodDetail)
+                    foodInMeal.add(findFoodByFoodID(x.getFoodID(),foodDataset));
+                
+                ArrayList<ArrayList<FoodDetail>> substitutes = new ArrayList();
+                FoodDetailController fdc = new FoodDetailController();
+                for(FoodDetail x: foodDetail)
+                    substitutes.add(fdc.generateFoodDetailSubstituteByCategory(meal, foodDataset, x.getCategory()));
+                
+                //GETTING FOODNAME FOR SUBSTITUTES
+                ArrayList<ArrayList<Food>> foodSubstitute = new ArrayList();
+                
+                for(ArrayList<FoodDetail> x: substitutes){
+                    ArrayList<Food> tmp = new ArrayList();
+                    for(FoodDetail y: x)
+                        tmp.add(findFoodByFoodID(y.getFoodID(),foodDataset));
+                    foodSubstitute.add(tmp);
+                }
+                    
+                request.setAttribute("day", day);
+                request.setAttribute("meal", meal);
+                request.setAttribute("foodDetail", foodDetail);
+                request.setAttribute("substitutes", substitutes);
+                request.setAttribute("foodInMeal", foodInMeal);
+                request.setAttribute("foodSubstitute", foodSubstitute);
+                RequestDispatcher rd = request.getRequestDispatcher("/Meal/Meal.jsp");
+                rd.forward(request, response);
             }
-            request.setAttribute("day", day);
-            request.setAttribute("meal", meal);
-            request.setAttribute("foodDetail", foodDetail);
-            request.setAttribute("foodDataset", foodDataset);
-            RequestDispatcher rd = request.getRequestDispatcher("/Meal/Meal.jsp");
-            rd.forward(request, response);
         }
     }
     
@@ -193,6 +227,56 @@ public class MenuController extends HttpServlet {
                     return y;
         return null;
             
+    }
+    
+    public Food findFoodByFoodID(String foodID, ArrayList<Food> allApplicableFood){
+        for(Food x: allApplicableFood)
+            if(x.getFoodID().equals(foodID))
+                return x;
+        return null;
+    }
+    
+    public ArrayList<List<ArrayList<FoodDetail>>> pagingFoodDetails(int pageNum, int pageSize, ArrayList<ArrayList<ArrayList<FoodDetail>>> foodDetails) {
+        int startIndex = (pageNum - 1) * pageSize;
+        int endIndex = Math.min(startIndex + pageSize, foodDetails.get(0).size());
+        ArrayList<List<ArrayList<FoodDetail>>> subList = new ArrayList();
+        
+        for(ArrayList<ArrayList<FoodDetail>> fdByMeal: foodDetails){
+            List<ArrayList<FoodDetail>> fdByMealAndDay = (List<ArrayList<FoodDetail>>) fdByMeal.subList(startIndex, endIndex);
+            subList.add(fdByMealAndDay);
+        }
+        return subList;
+    }
+    
+    public ArrayList<List<ArrayList<String>>> pagingImageUrls(int pageNum, int pageSize, ArrayList<ArrayList<ArrayList<String>>> imageUrls) {
+        int startIndex = (pageNum - 1) * pageSize;
+        int endIndex = Math.min(startIndex + pageSize, imageUrls.get(0).size());
+        ArrayList<List<ArrayList<String>>> subList = new ArrayList();
+        
+        for(ArrayList<ArrayList<String>> urlByMeal: imageUrls){
+            List<ArrayList<String>> urlByMealAndDay = (List<ArrayList<String>>) urlByMeal.subList(startIndex, endIndex);
+            subList.add(urlByMealAndDay);
+        }
+        return subList;
+    }
+    
+    public ArrayList<List<Meal>> pagingMeals(int pageNum, int pageSize, ArrayList<ArrayList<Meal>> meals) {
+        int startIndex = (pageNum - 1) * pageSize;
+        int endIndex = Math.min(startIndex + pageSize, meals.get(0).size());
+        ArrayList<List<Meal>> subList = new ArrayList();
+        
+        for(ArrayList<Meal> mealsByMeal: meals){
+            List<Meal> mealsByMealAndDay = (List<Meal>) mealsByMeal.subList(startIndex, endIndex);
+            subList.add(mealsByMealAndDay);
+        }
+        return subList;
+    }
+    
+    public List<Day> pagingDays(int pageNum, int pageSize, ArrayList<Day> days) {
+        int startIndex = (pageNum - 1) * pageSize;
+        int endIndex = Math.min(startIndex + pageSize, days.size());
+        List<Day> subList = (List<Day>) days.subList(startIndex, endIndex);
+        return subList;
     }
 //
 //    public static void main(String[] args) {

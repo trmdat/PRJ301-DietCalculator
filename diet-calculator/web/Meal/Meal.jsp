@@ -13,8 +13,7 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Meal Detail</title>
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-      integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous" />
+   <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
    <!-- Latest compiled and minified JavaScript -->
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -23,20 +22,12 @@
       crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
-
    <style>
-      body {
-         margin-top: 20px;
-      }
-
-      /* .toggleDisplay {
-         display: none;
-      }
-
-      .toggleDisplay.in {
-         display: table-cell;
-      } */
-   </style>
+        body {
+          margin-top: 20px;
+       }
+      
+    </style>
 </head>
 
 <body>
@@ -51,73 +42,77 @@
                      <tr>
                         <th>Index</th>
                         <th>Name</th>
-                        <th>Amount</th>
-                        <th>Calories</th>
-                        <th>Carbohydrate</th>
-                        <th>Fiber</th>
-                        <th>Protein</th>
-                        <th>Fat</th>
-                        <th>Water</th>
+                        <th>Amount (g)</th>
+                        <th>Calories (KCal)</th>
+                        <th>Carbohydrate (g)</th>
+                        <th>Fiber (g)</th>
+                        <th>Protein (g)</th>
+                        <th>Fat (g)</th>
+                        <th>Water (g)</th>
                         <th>Substitute</th>
                      </tr>
                   </thead>
                   <tbody>
-                      <c:set var="i" value="1" scope="page"></c:set>
-                      <c:forEach items="${foodDetail}" var="x">
-                     <tr>
-                        <th scope="row">${i}</th>
-                        <td></td>
-                        <td>${x.getAmount()}</td>
-                        <td>${x.getTotalCal()}</td>
-                        <td>${x.getCarbohydrate()}</td>
-                        <td>${x.getFiber()}</td>
-                        <td>${x.getProtein()}</td>
-                        <td>${x.getFat()}</td>
-                        <td>${x.getWater()}</td>
-                        <td>
-                            <div style="width: 100px;">
-                                <select id="select-state${i}" placeholder="Pick a state...">
-                                    <option value="">Select a state...</option>
-                                    <option value="AL">Alabama</option>
-                                    <option value="AK">Alaska</option>
-                                    <option value="AZ">Arizona</option>
-                                    <option value="AR">Arkansas</option>
-                                    <option value="CA">California</option>
-                                    <option value="CO">Colorado</option>
-                                    <option value="CT">Connecticut</option>
-                                    <option value="DE">Delaware</option>
-                                    <option value="DC">District of Columbia</option>
-                                    <option value="FL">Florida</option>
-                                    <option value="GA">Georgia</option>
-                                    <option value="HI">Hawaii</option>
-                                    <option value="ID">Idaho</option>
-                                    <option value="IL">Illinois</option>
-                                    <option value="IN">Indiana</option>
-                                </select>
-                            </div>
-                        </td>
-                        <c:set var="i" value="${i+1}"></c:set>
-                     </tr>
+                      <c:forEach begin="0" end="${foodDetail.size()-1}" step="1" var="i">
+                        <tr>
+                            <th scope="row">${i + 1}</th>
+                            <td>${foodInMeal.get(i).getFoodname()}</td>
+                            <td>${foodDetail.get(i).getAmount()}</td>
+                            <td>${foodDetail.get(i).getTotalCal()}</td>
+                            <td>${foodDetail.get(i).getCarbohydrate()}</td>
+                            <td>${foodDetail.get(i).getFiber()}</td>
+                            <td>${foodDetail.get(i).getProtein()}</td>
+                            <td>${foodDetail.get(i).getFat()}</td>
+                            <td>${foodDetail.get(i).getWater()}</td>
+                            <td style="width:300px;height:50px">
+                                <div style="width: 100%;">
+                                    <select id="substitute${i}" placeholder="Pick one...">
+                                        <option value="0" selected>Select a Substitute</option>
+                                        <c:forEach begin="0" end="${substitutes.get(i).size()-1}" step="1" var="j">
+                                            <option value="${substitutes.get(i).get(j).getFoodID()}"> ${foodSubstitute.get(i).get(j).getFoodname()} &emsp;${substitutes.get(i).get(j).getAmount()}g</option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                            </td>
+                        </tr>
                      </c:forEach>
                   </tbody>
                </table>
             </div>
-            <div class="description">
-               <h2>Description</h2>
-               Beef: ...... <br>
-               Egg: ......
+            <c:set var="style" value="" scope="page"></c:set>
+            <c:choose>
+                <c:when test="${foodInMeal.size()==7}"><c:set var="style" value="display: grid;grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;grid-gap: 3px"></c:set></c:when>
+                <c:when test="${foodInMeal.size()==4}"><c:set var="style" value="display: grid;grid-template-columns: 1fr 1fr 1fr 1fr;grid-gap: 160px"></c:set></c:when>
+                <c:when test="${foodInMeal.size()==1}"><c:set var="style" value="display: grid;grid-template-columns: 1fr;grid-gap: 150px;padding-left:550px"></c:set></c:when>
+                <c:otherwise></c:otherwise>
+            </c:choose>
+            <div style="${style}">
+                <c:forEach items="${foodInMeal}" var="x">
+                    <div class=''>
+                        <div style="width:195px;height:420px;background: green;border-radius: 15px">
+                            <div style='width:100%;height:22%;padding-top:6px'>
+                                <img src='${x.getIcon()}' style='display: block;margin-left: auto;margin-right: auto;width: 80px;height: 80px;border-radius: 50%;border:3px #004d00 solid;'>
+                            </div>
+                            <div style='width:60%;height:8%;background:#003300;margin-left: auto;margin-right:auto;border: 3px #008000 solid;border-radius:5px;text-align: center'>
+                                <p5 style='color:yellow;'>${x.getFoodname()}</p5>
+                            </div>
+                            <div style='width:95%;height:66%;background: #bbff99;margin-left: auto;margin-right:auto;margin-top:8px;border: 3px #008000 solid;border-radius:10px;text-align: center;padding:8px'>
+                                <strong style='font-size: 10px;font-style: italic;font-family: IBM Plex Serif,sans-serif;'>${x.getDescription()}</strong>
+                            </div>
+                        </div>
+                    </div>
+                </c:forEach>
             </div>
-
          </div>
       </div>
    </div>
 
 </body>
 <script>
-    <c:set var="i" value="1"></c:set>
+    <c:set var="i" value="0"></c:set>
     <c:forEach items="${foodDetail}" var="y">
         $(document).ready(function () {
-            $('#select-state${i}').selectize({
+            $('#substitute${i}').selectize({
                 sortField: 'text'
             });
           });
