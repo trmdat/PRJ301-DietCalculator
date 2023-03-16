@@ -107,7 +107,7 @@
                                     </div>
 
                                     <div class="col-12">
-                                        <button type="submit" class="btn btn-primary btn-block text-uppercase bg-success">Update</button>
+                                        <button type="submit" class="btn btn-primary btn-block text-uppercase bg-success">Update Product</button>
                                     </div>
                                 </form>
                             </div>

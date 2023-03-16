@@ -17,7 +17,7 @@
     </head>
 
     <body>
-        <div class="container tm-mt-big tm-mb-big">
+        <div class="container tm-mt-big tm-mb-big mt-5 mb-5">
             <div class="row">
                 <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
                     <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
@@ -117,7 +117,7 @@
 
 
                                     <div class="col-12">
-                                        <button type="submit" class="btn btn-primary btn-block text-uppercase bg-success">Update</button>
+                                        <button type="submit" class="btn btn-primary btn-block text-uppercase bg-success">Update Sale Off</button>
                                     </div>
                                 </form>
                             </div>
@@ -127,7 +127,7 @@
             </div>
         </div>
         <br>
-        <jsp:include page="../index/AdminFooter.jsp" />
+        <jsp:include page="../index/UserFooter.jsp" />
         <script src="js/jquery-3.3.1.min.js"></script>
         <!-- https://jquery.com/download/ -->
         <script src="jquery-ui-datepicker/jquery-ui.min.js"></script>

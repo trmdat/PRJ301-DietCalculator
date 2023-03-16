@@ -15,7 +15,7 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     </head>
     <body>
-        <div class="container tm-mt-big tm-mb-big">
+        <div class="container tm-mt-big tm-mb-big mt-5 mb-5">
             <div class="row">
                 <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
                     <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
@@ -194,7 +194,7 @@
             </div>
         </div>
         <br>
-        <jsp:include page="../index/AdminFooter.jsp" />
+        <jsp:include page="../index/UserFooter.jsp" />
         <script src="js/jquery-3.3.1.min.js"></script>
         <!-- https://jquery.com/download/ -->
         <script src="js/bootstrap.min.js"></script>

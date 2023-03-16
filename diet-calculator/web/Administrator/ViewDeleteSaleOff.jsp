@@ -23,7 +23,7 @@
 
     <body id="reportsPage">
 
-        <div class="container mt-5">
+        <div class="container mt-5 mb-5">
             <div class="row tm-content-row">
                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 tm-block-col">
                     <div class="tm-bg-primary-dark tm-block tm-block-products">
@@ -64,7 +64,7 @@
                                                 <td>${x.getEnddate()}</td>
                                                 <td>${x.getTarget()}</td>
 
-                                                <td><a href="SaleOffController?action=update&saleoffID=${x.getSaleoffID()}">Update</a></td>
+                                                <td><a href="SaleOffController?action=update&saleoffID=${x.getSaleoffID()}" class="btn btn-primary btn-block bg-success">Update</a></td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>
@@ -107,7 +107,7 @@
             </div>
         </div>
         <br>
-        <jsp:include page="../index/AdminFooter.jsp" />
+        <jsp:include page="../index/UserFooter.jsp" />
         <script src="js/jquery-3.3.1.min.js"></script>
         <!-- https://jquery.com/download/ -->
         <script src="js/bootstrap.min.js"></script>
