@@ -8,23 +8,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-<<<<<<< HEAD
-       <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-
-        <!-- jQuery library -->
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
-
-        <!-- Popper JS -->
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-
-        <!-- Latest compiled JavaScript -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-
-        <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
-        
-        <link href="${pageContext.request.contextPath}/index/css/style1.css" type="text/css" rel="stylesheet">
-=======
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <!-- mobile metas -->
@@ -52,59 +35,33 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/index/css/owl.carousel.min.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/index/css/owl.theme.default.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
->>>>>>> 8afe27ada5ac40f65c54c9326b76c0b6eda9a3ef
     </head>
     <body>
-       
-           <footer class="page-footer font-small cyan darken-3">
-
-            <!-- Footer Elements -->
+        <div class="footer_section">
             <div class="container">
-
-                <!-- Grid row-->
-                <div class="row">
-
-                    <!-- Grid column -->
-                    <div class="col-md-12 py-5">
-                        <div class="grid-ic mb-5 flex-center">
-
-                            <!-- Facebook -->
-                            <a class="fb-ic">
-                                <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
-                            </a>
-                            <!-- Twitter -->
-                            <a class="tw-ic">
-                                <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
-                            </a>
-                            <!-- Google +-->
-                            <a class="gplus-ic">
-                                <i class="fab fa-google-plus-g fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
-                            </a>
-                            <!--Linkedin -->
-                            <a class="li-ic">
-                                <i class="fab fa-linkedin-in fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
-                            </a>
-                            <!--Instagram-->
-                            <a class="ins-ic">
-                                <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
-                            </a>
-                            <!--Pinterest-->
-                            <a class="pin-ic">
-                                <i class="fab fa-pinterest fa-lg white-text fa-2x"> </i>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- Grid column -->
-
+                <div class="social_icon">
+                    <a class="padding_10" href=""><img src="https://images2.imgbox.com/1c/a1/EVyPgIpz_o.png"></a>
+                    <a class="padding_10" href=""><img src="https://images2.imgbox.com/8c/70/Pjdvvvzw_o.png"></a>
+                    <a class="padding_10" href=""><img src="https://images2.imgbox.com/fe/64/T5Cqsw5o_o.png"></a>
+                    <a class="padding_10" href=""><img src="https://images2.imgbox.com/6c/3e/dbHgJce8_o.png"></a>
                 </div>
-                <!-- Grid row-->
-
+                <div class="location_main">
+                    <div class="location_text"><img src="https://images2.imgbox.com/b5/97/D9TiiOjt_o.png"><span class="padding10"><a href="">E2a-7,D1 street, Long Thanh My Ward, Thu Duc city, Ho Chi Minh city, Vietnam</a></span></div>
+                    <div class="location_text center"><img width="33" height="33" src="https://images2.imgbox.com/23/48/MVPBkkgr_o.png"><span class="padding10"><a href="https://github.com/dunghuynh-teaching/prj301-se1753-08">Diet Calculator</a></span></div>
+                    <div class="location_text right"><img src="https://images2.imgbox.com/31/b0/DrVSFxQs_o.png"><span class="padding10"><a href="">Call : (+01) 123456789012</a></span></div>
+                </div>
+                <hr>
+                <div class = "overview center">
+                    <h3 class="text-align-content-center text-light">About us</h3>
+                    <p class="align-content-center text-light">This website is created by team <a class="text-light" href = "https://github.com/dunghuynh-teaching/prj301-se1753-08">Pray God No Bug(PGNB)</a> - students studying at FPT University.<br>
+                        <i>Hope you enjoy his website</i>.
+                    </p>
+                </div>
+                <!--                <div class="Enter_mail_main">
+                                    <input type="text" class="Enter_text" placeholder="Enter Your Name" name="Enter Your Name">
+                                    <div class="subscribe_bt"><a href="#">Subscribe</a></div>
+                                </div>-->
             </div>
-            <!-- Footer Elements -->
-
-   
-
-        </footer>
-        <!-- Footer -->
+        </div>
     </body>
 </html>

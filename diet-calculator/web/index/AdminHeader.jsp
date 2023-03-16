@@ -11,25 +11,6 @@
         <!-- basic -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<<<<<<< HEAD
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Add New Food</title>
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-
-        <!-- jQuery library -->
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
-
-        <!-- Popper JS -->
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-
-        <!-- Latest compiled JavaScript -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-
-        <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
-
-        <link href="${pageContext.request.contextPath}/index/css/style1.css" type="text/css" rel="stylesheet">
-=======
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- mobile metas -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -57,7 +38,6 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/index/css/owl.carousel.min.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/index/css/owl.theme.default.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
->>>>>>> 8afe27ada5ac40f65c54c9326b76c0b6eda9a3ef
     </head>
     <body>
         <nav class="navbar navbar-expand-lg">

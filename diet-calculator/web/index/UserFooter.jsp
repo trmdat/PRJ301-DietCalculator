@@ -16,24 +16,16 @@
         <meta name="viewport" content="initial-scale=1, maximum-scale=1">
         <!-- site metas -->
         <title>Footer</title>
-<<<<<<< HEAD
-       
-=======
         <meta name="keywords" content="">
         <meta name="description" content="">
         <meta name="author" content="">
         <!-- bootstrap css -->
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/index/css/bootstrap.min.css">
         <!-- style css -->
->>>>>>> 8afe27ada5ac40f65c54c9326b76c0b6eda9a3ef
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/index/css/style.css">
         <!-- Responsive-->
         <link rel="stylesheet" href="${pageContext.request.contextPath}/index/css/responsive.css">
         <!-- fevicon -->
-<<<<<<< HEAD
-        <link rel="icon" href="./index/images/logo.jpg" type="image/gif" />
-       
-=======
         <link rel="icon" href="${pageContext.request.contextPath}/index/images/logo.jpg" type="image/gif" />
         <!-- Scrollbar Custom CSS -->
         <link rel="stylesheet" href="${pageContext.request.contextPath}/index/css/jquery.mCustomScrollbar.min.css">
@@ -45,7 +37,6 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/index/css/owl.carousel.min.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/index/css/owl.theme.default.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
->>>>>>> 8afe27ada5ac40f65c54c9326b76c0b6eda9a3ef
     </head>
     <body>
         <div class="footer_section">
