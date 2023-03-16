@@ -42,7 +42,7 @@ public class ExerciseDAO {
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new Exercise(rs.getString("exerciseID"), rs.getString("exname"), rs.getDouble("lowerweight"), rs.getDouble("upperweight"), rs.getInt("calorexp")));
+                list.add(new Exercise(rs.getString("exerciseID"), rs.getString("exname"), rs.getDouble("lowerweight"), rs.getDouble("upperweight"), rs.getInt("calorexp"), rs.getString("icon"), rs.getString("description")));
             }
             rs.close();
             ps.close();
@@ -74,8 +74,8 @@ public class ExerciseDAO {
 //        return exercise;
 //    }
 
-    public boolean createExercise(String exerciseID, String exname, double lowerweight, double upperweight, int calorexp) {
-        String sql = "INSERT INTO Exercise VALUES(?,?,?,?,?)";
+    public boolean createExercise(String exerciseID, String exname, double lowerweight, double upperweight, int calorexp, String icon, String description) {
+        String sql = "INSERT INTO Exercise VALUES(?,?,?,?,?,?,?)";
         int row = 0;
         try {
             Connection conn = DBUtils.getConnection();
@@ -85,6 +85,8 @@ public class ExerciseDAO {
             ps.setDouble(3, upperweight);
             ps.setDouble(4, lowerweight);
             ps.setInt(5, calorexp);
+            ps.setString(6, icon);
+            ps.setString(7, description);
             row = ps.executeUpdate();
             ps.close();
             conn.close();
@@ -94,8 +96,8 @@ public class ExerciseDAO {
         return row > 0;
     }
 
-    public boolean updateExercise(String exerciseID, String exname, double lowerweight, double upperweight, int calorexp) {
-        String sql = "UPDATE Exercise SET exname = ?, lowerweight = ?, upperweight = ?, calorexp = ? WHERE exerciseID = ?";
+    public boolean updateExercise(String exerciseID, String exname, double lowerweight, double upperweight, int calorexp, String icon, String description) {
+        String sql = "UPDATE Exercise SET exname = ?, lowerweight = ?, upperweight = ?, calorexp = ?, icon = ?, description = ? WHERE exerciseID = ?";
         int row = 0;
         try {
             Connection conn = DBUtils.getConnection();
@@ -104,7 +106,9 @@ public class ExerciseDAO {
             ps.setDouble(2, lowerweight);
             ps.setDouble(3, upperweight);
             ps.setInt(4, calorexp);
-            ps.setString(5, exerciseID);
+            ps.setString(5, icon);
+            ps.setString(6, description);
+            ps.setString(7, exerciseID);
             row = ps.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex);

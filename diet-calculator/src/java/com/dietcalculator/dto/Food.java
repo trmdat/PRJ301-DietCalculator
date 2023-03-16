@@ -15,11 +15,13 @@ public class Food {
     private double protein;
     private double fat;
     private double water;
+    private String icon;
+    private String description;
 
     public Food() {
     }
 
-    public Food(String foodID, String foodname, String category, int size, int caloricintake, double carbohydrate, double fiber, double protein, double fat, double water) {
+    public Food(String foodID, String foodname, String category, int size, int caloricintake, double carbohydrate, double fiber, double protein, double fat, double water, String icon, String description) {
         this.foodID = foodID;
         this.foodname = foodname;
         this.category = category;
@@ -30,6 +32,8 @@ public class Food {
         this.protein = protein;
         this.fat = fat;
         this.water = water;
+        this.icon = icon;
+        this.description = description;
     }
 
     public double getWater() {
@@ -110,6 +114,22 @@ public class Food {
 
     public void setFat(double fat) {
         this.fat = fat;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override

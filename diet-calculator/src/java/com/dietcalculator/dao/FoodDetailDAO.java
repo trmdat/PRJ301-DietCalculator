@@ -16,7 +16,7 @@ public class FoodDetailDAO {
 
     public ArrayList<FoodDetail> readFoodDetail(String foodID, String mealID) {
         ArrayList<FoodDetail> list = new ArrayList<>();
-        String sql = "SELECT foodID, mealID, amount,totalCal,carbohydrate,fiber,protein,fat,water FROM FoodDetail WHERE foodID = ? AND mealID = ? ";
+        String sql = "SELECT * FROM FoodDetail WHERE foodID = ? AND mealID = ? ";
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -25,7 +25,7 @@ public class FoodDetailDAO {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 list.add(new FoodDetail(rs.getString("foodID"), rs.getString("mealID"), rs.getDouble("amount"),
-                        rs.getDouble("totalCal"), rs.getDouble("carbohydrate"), rs.getDouble("fiber"), rs.getDouble("protein"), rs.getDouble("fat"), rs.getDouble("fat")));
+                        rs.getDouble("totalCal"), rs.getDouble("carbohydrate"), rs.getDouble("fiber"), rs.getDouble("protein"), rs.getDouble("fat"), rs.getDouble("water"), rs.getString("icon"), rs.getString("category")));
             }
             rs.close();
             ps.close();
@@ -38,7 +38,7 @@ public class FoodDetailDAO {
 
     public ArrayList<FoodDetail> readFoodDetailByFoodID(String foodID) {
         ArrayList<FoodDetail> list = new ArrayList<>();
-        String sql = "SELECT foodID, mealID, amount FROM FoodDetail WHERE foodID = ? ORDER BY foodID ASC";
+        String sql = "SELECT * FROM FoodDetail WHERE foodID = ? ORDER BY foodID ASC";
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -46,7 +46,7 @@ public class FoodDetailDAO {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 list.add(new FoodDetail(rs.getString("foodID"), rs.getString("mealID"), rs.getDouble("amount"),
-                        rs.getDouble("totalCal"), rs.getDouble("carbohydrate"), rs.getDouble("fiber"), rs.getDouble("protein"), rs.getDouble("fat"), rs.getDouble("fat")));
+                        rs.getDouble("totalCal"), rs.getDouble("carbohydrate"), rs.getDouble("fiber"), rs.getDouble("protein"), rs.getDouble("fat"),  rs.getDouble("water"), rs.getString("icon"), rs.getString("category")));
             }
             rs.close();
             ps.close();
@@ -59,7 +59,7 @@ public class FoodDetailDAO {
 
     public ArrayList<FoodDetail> readFoodDetailByMealID(String mealID) {
         ArrayList<FoodDetail> list = new ArrayList<>();
-        String sql = "SELECT mealID, foodID, amount FROM FoodDetail WHERE mealID = ? ORDER BY mealID ASC";
+        String sql = "SELECT * FROM FoodDetail WHERE mealID = ? ORDER BY mealID ASC";
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -67,7 +67,7 @@ public class FoodDetailDAO {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 list.add(new FoodDetail(rs.getString("foodID"), rs.getString("mealID"), rs.getDouble("amount"),
-                        rs.getDouble("totalCal"), rs.getDouble("carbohydrate"), rs.getDouble("fiber"), rs.getDouble("protein"), rs.getDouble("fat"), rs.getDouble("fat")));
+                        rs.getDouble("totalCal"), rs.getDouble("carbohydrate"), rs.getDouble("fiber"), rs.getDouble("protein"), rs.getDouble("fat"), rs.getDouble("water"), rs.getString("icon"), rs.getString("category")));
             }
             rs.close();
             ps.close();
@@ -78,10 +78,10 @@ public class FoodDetailDAO {
         return list;
     }
 
-    public boolean createFoodDetail(String foodID, String mealID, double amount, double totalCal, double carbohydrate, double fiber, double protein, double fat, double water) {
+    public boolean createFoodDetail(String foodID, String mealID, double amount, double totalCal, double carbohydrate, double fiber, double protein, double fat, double water, String icon, String category) {
         int row = 0;
-        String sql = "INSERT INTO FoodDetail(foodID,mealID,amount,totalCal,carbohydrate,fiber,protein,fat,water)"
-                + " VALUES (?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO FoodDetail(foodID,mealID,amount,totalCal,carbohydrate,fiber,protein,fat,water,icon, category)"
+                + " VALUES (?,?,?,?,?,?,?,?,?,?,?)";
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -94,6 +94,8 @@ public class FoodDetailDAO {
             ps.setDouble(7, protein);
             ps.setDouble(8, fat);
             ps.setDouble(9, water);
+            ps.setString(10, icon);
+            ps.setString(11, category);
 
             row = ps.executeUpdate();
             ps.close();
@@ -104,10 +106,10 @@ public class FoodDetailDAO {
         return row > 0;
     }
 
-    public boolean UpdateFoodDetail(String foodID, String mealID, double amount, double totalCal, double carbohydrate, double fiber, double protein, double fat, double water) {
+    public boolean UpdateFoodDetail(String foodID, String mealID, double amount, double totalCal, double carbohydrate, double fiber, double protein, double fat, double water, String icon, String category) {
         int row = 0;
         String sql = "UPDATE FoodDetail SET amount = ? ,totalCal=?, carbohydrate=?, fiber=?,"
-                + "protein=?, fat=? ,water=? WHERE foodID = ? AND mealID = ?";
+                + "protein=?, fat=? ,water=?, icon=?, category=? WHERE foodID = ? AND mealID = ?";
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -118,8 +120,10 @@ public class FoodDetailDAO {
             ps.setDouble(5, protein);
             ps.setDouble(6, fat);
             ps.setDouble(7, water);
-            ps.setString(8, foodID);
-            ps.setString(9, mealID);
+            ps.setString(8, icon);
+            ps.setString(9, category);
+            ps.setString(10, foodID);
+            ps.setString(11, mealID);
 
             row = ps.executeUpdate();
             ps.close();
@@ -156,14 +160,14 @@ public class FoodDetailDAO {
         }
 
         System.out.println("Create");
-        dao.createFoodDetail("FD00001", "MEAL000000", 123,0,0,0,0,0,0);
+        dao.createFoodDetail("FD00001", "MEAL000000", 123,0,0,0,0,0,0,"","");
         ArrayList<FoodDetail> list = dao.readFoodDetail("FD00001", "MEAL000000");
         for (FoodDetail food : list) {
             System.out.println(food.toString());
         }
 
         System.out.println("Update");
-        dao.UpdateFoodDetail("FD00001", "MEAL000000", 999,0,0,0,0,0,0);
+        dao.UpdateFoodDetail("FD00001", "MEAL000000", 999,0,0,0,0,0,0,"","");
         list = dao.readFoodDetail("FD00001", "MEAL000000");
         for (FoodDetail food : list) {
             System.out.println(food.toString());

@@ -48,7 +48,7 @@
 
                             <c:forEach var="img" items="${imageList}">
                                 <div class="col-md-6 p-0 m-0">
-                                    <img src="${img.url}"/>
+                                    <img class="w-100 h-100" src="${img.url}"/>
                                 </div>
                             </c:forEach>
                             <c:forEach var="pro" items="${productList}">

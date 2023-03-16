@@ -22,6 +22,7 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     </head>
     <body>
+<<<<<<< HEAD
         <nav class="navbar navbar-expand-xl">
             <div class="container h-100">
                 <div class="navbar-brand" href="">
@@ -62,12 +63,20 @@
             </div>
         </nav>
         <div class="container tm-mt-big tm-mb-big mt-5 mb-5">
+=======
+        <div class="container tm-mt-big tm-mb-big">
+>>>>>>> 8afe27ada5ac40f65c54c9326b76c0b6eda9a3ef
             <div class="row">
                 <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
                     <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col-10">
                                 <h2 class="tm-block-title d-inline-block">Add PopUp</h2>
+                            </div>
+                            <div class="col-2">
+                                <form action="/diet-calculator/PopUpController">
+                                    <button type="submit" class="btn btn-primary btn-block text-uppercase bg-success"> << Return</button>                            
+                                </form>
                             </div>
                         </div>
                         <div class="row tm-edit-product-row">

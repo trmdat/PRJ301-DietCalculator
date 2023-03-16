@@ -20,22 +20,22 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <!-- bootstrap css -->
-        <link rel="stylesheet" type="text/css" href="./index/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/index/css/bootstrap.min.css">
         <!-- style css -->
-        <link rel="stylesheet" type="text/css" href="./index/css/style.css">
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/index/css/style.css">
         <!-- Responsive-->
-        <link rel="stylesheet" href="./index/css/responsive.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/index/css/responsive.css">
         <!-- fevicon -->
-        <link rel="icon" href="./index/images/logo.jpg" type="image/gif" />
+        <link rel="icon" href="${pageContext.request.contextPath}/index/images/logo.jpg" type="image/gif" />
         <!-- Scrollbar Custom CSS -->
-        <link rel="stylesheet" href="./index/css/jquery.mCustomScrollbar.min.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/index/css/jquery.mCustomScrollbar.min.css">
         <!-- Tweaks for older IEs-->
         <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
         <!-- fonts -->
         <link href="https://fonts.googleapis.com/css?family=Poppins:400,700|Raleway:400,700&display=swap" rel="stylesheet">
         <!-- owl stylesheets --> 
-        <link rel="stylesheet" href="./index/css/owl.carousel.min.css">
-        <link rel="stylesheet" href="./index/css/owl.theme.default.min.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/index/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/index/css/owl.theme.default.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
     </head>
     <body>
@@ -50,16 +50,16 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href="">Home</a>
+                                <a class="nav-link text-light" href="">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="">Menu Cart</a>
+                                <a class="nav-link text-light" href="">Menu Cart</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="">Shopping Cart</a>
+                                <a class="nav-link text-light" href="">Shopping Cart</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="">Contact Us</a>
+                                <a class="nav-link text-light" href="">Contact Us</a>
                             </li>               
                         </ul>
                         <div class="user-logo"><a href="../LoginController"><img src="https://images2.imgbox.com/71/a7/2NJ2EeTY_o.jpg" alt="user_logo"></a></div>
@@ -78,7 +78,7 @@
                                             <h1 class="banner_taital">Diet Calculator</h1>
                                             <p class="banner_text">Hello! We are team PGNB</p>
                                             <div class="btn_main">
-                                                <div class="contact_bt"><a href="../calculator/DietForm.jsp">Calculate diet</a></div>
+                                                <div class="contact_bt"><a href="./calculator/DietForm.jsp">Calculate diet</a></div>
                                                 <div class="readmore_bt active"><a href="#">Read More</a></div>
                                             </div>
                                         </div>

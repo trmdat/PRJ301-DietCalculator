@@ -11,8 +11,13 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
         <title>Add New PopUp</title>
        
+=======
+        <title>Add New PopUpDetail</title>
+        <jsp:include page="../index/AdminHeader.jsp" />
+>>>>>>> 8afe27ada5ac40f65c54c9326b76c0b6eda9a3ef
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700" />
         <link rel="stylesheet" href="css/fontawesome.min.css" />
         <link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -22,6 +27,7 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     </head>
     <body>
+<<<<<<< HEAD
         
         <jsp:include page="../index/AdminHeader.jsp" />
         <nav class="navbar navbar-expand-xl">
@@ -110,12 +116,20 @@
             </div>
         </nav>
         <div class="container tm-mt-big tm-mb-big mt-5 mb-5">
+=======
+        <div class="container tm-mt-big tm-mb-big">
+>>>>>>> 8afe27ada5ac40f65c54c9326b76c0b6eda9a3ef
             <div class="row">
                 <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
                     <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
                         <div class="row">
-                            <div class="col-12">
-                                <h2 class="tm-block-title d-inline-block">Add new detais for PopUp ${pID}</h2>
+                            <div class="col-10">
+                                <h2 class="tm-block-title d-inline-block">Add new Details for PopUp ${pID}</h2>
+                            </div>
+                            <div class="col-2">
+                                <form action="/diet-calculator/PopUpDetailController">
+                                    <button type="submit" class="btn btn-primary btn-block text-uppercase bg-success"> << Return</button>                            
+                                </form>
                             </div>
                         </div>
                         <div class="row tm-edit-product-row">
@@ -146,15 +160,8 @@
             </div>
         </div>
     </div>
-    <!-- <footer class="tm-footer row tm-mt-small">
-        <div class="col-12 font-weight-light">
-          <p class="text-center text-white mb-0 px-4 small">
-            Copyright &copy; <b>2018</b> All rights reserved. 
-            
-            Design: <a rel="nofollow noopener" href="https://templatemo.com" class="tm-footer-link">Template Mo</a>
-        </p>
-        </div>
-    </footer>  -->
+    <br>
+    <jsp:include page="../index/AdminFooter.jsp" />
 
     <script src="js/jquery-3.3.1.min.js"></script>
     <!-- https://jquery.com/download/ -->

@@ -25,6 +25,7 @@
     </head>
 
     <body>
+<<<<<<< HEAD
         <nav class="navbar navbar-expand-xl">
             <div class="container h-100">
                 <div class="navbar-brand">
@@ -60,12 +61,20 @@
             </div>
         </nav>
         <div class="container tm-mt-big tm-mb-big mt-5 mb-5">
+=======
+        <div class="container tm-mt-big tm-mb-big">
+>>>>>>> 8afe27ada5ac40f65c54c9326b76c0b6eda9a3ef
             <div class="row">
                 <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
                     <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
                         <div class="row">
-                            <div class="col-12">
-                                <h2 class="tm-block-title d-inline-block">Add new Exercise</h2>
+                            <div class="col-10">
+                                <h2 class="tm-block-title d-inline-block">Add Exercise</h2>
+                            </div>
+                            <div class="col-2">
+                                <form action="/diet-calculator/ExerciseController">
+                                    <button type="submit" class="btn btn-primary btn-block text-uppercase bg-success"> << Return</button>                            
+                                </form>
                             </div>
                         </div>
                         <div class="row tm-edit-product-row">
@@ -88,6 +97,14 @@
                                         <div class="form-group mb-3 col-xs-12 col-sm-4">
                                             <label for="calorexp">Calorexp</label>
                                             <input type="text" name="calorexp" class="form-control validate" required/>
+                                        </div>
+                                        <div class="form-group mb-3 col-xs-12 col-sm-4">
+                                            <label for="calorexp">Icon</label>
+                                            <input type="text" name="icon" class="form-control validate" required/>
+                                        </div>
+                                        <div class="form-group mb-3 col-xs-12 col-sm-4">
+                                            <label for="calorexp">Description</label>
+                                            <input type="text" name="description" class="form-control validate" required/>
                                         </div>
                                         <div class="col-12">
                                             <input type="submit" value="Add Exercise" class="btn btn-primary btn-block text-uppercase bg-success">

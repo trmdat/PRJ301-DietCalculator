@@ -14,6 +14,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>PopUpDetail List</title>
+        <jsp:include page="../index/AdminHeader.jsp" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700" />
         <link rel="stylesheet" href="css/fontawesome.min.css" />
         <link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -24,6 +25,7 @@
     </head>
 
     <body id="reportsPage">
+<<<<<<< HEAD
         <jsp:include page="../index/AdminHeader.jsp" />
         <nav class="navbar navbar-expand-xl">
             <div class="container h-100">
@@ -67,12 +69,66 @@
                 </div>
             </div>
         </nav>
+=======
+        <!--        <nav class="navbar navbar-expand-xl">
+                    <div class="container h-100">
+                        <a class="navbar-brand" href="">
+                            <h1 class="tm-site-title mb-0 text-success">Details for PopUp ${popup}</h1>
+                        </a>
+                        <button
+                            class="navbar-toggler ml-auto mr-0"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation"
+                            >
+                            <i class="fas fa-bars tm-nav-icon"></i>
+                        </button>
+        
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav mx-auto h-100">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="">
+                                        <i class="fas fa-tachometer-alt"></i> Dashboard
+                                        <span class="sr-only">(current)</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="">
+                                        <i class="fas fa-shopping-cart"></i> Products
+                                    </a>
+                                </li>
+        
+                                <li class="nav-item">
+                                    <a class="nav-link" href="">
+                                        <i class="far fa-user"></i> Accounts
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>-->
+>>>>>>> 8afe27ada5ac40f65c54c9326b76c0b6eda9a3ef
 
 
         <div class="container mt-5 mb-5">
             <div class="row tm-content-row">
                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 tm-block-col">
                     <div class="tm-bg-primary-dark tm-block tm-block-products">
+                        <div class="row">
+                            <div class="col-10">
+                                <h2 class="tm-block-title d-inline-block">Details for PopUp ${popup}</h2>
+                            </div>
+                            <div class="col-2">
+                                <form action="/diet-calculator/PopUpDetailController">
+                                    <button type="submit" class="btn btn-primary btn-block text-uppercase bg-success"> << Return</button>                            
+                                </form>
+                            </div>
+                        </div>
                         <a href="PopUpDetailController?action=create&popupID=${popup}" class="btn btn-primary btn-block text-uppercase mb-3 bg-success">Add new details for PopUp</a>
                         <div class="tm-product-table-container">
                            
@@ -214,15 +270,8 @@
                 </div> -->
             </div>
         </div>
-        <!-- <footer class="tm-footer row tm-mt-small">
-          <div class="col-12 font-weight-light">
-            <p class="text-center text-white mb-0 px-4 small">
-              Copyright &copy; <b>2018</b> All rights reserved. 
-              
-              Design: <a rel="nofollow noopener" href="https://templatemo.com" class="tm-footer-link">Template Mo</a>
-            </p>
-          </div>
-        </footer> -->
+        <br>
+        <jsp:include page="../index/AdminFooter.jsp" />
 
         <script src="js/jquery-3.3.1.min.js"></script>
         <!-- https://jquery.com/download/ -->

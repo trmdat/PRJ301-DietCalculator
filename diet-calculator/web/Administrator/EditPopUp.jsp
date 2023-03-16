@@ -25,6 +25,7 @@
     </head>
 
     <body>
+<<<<<<< HEAD
         <nav class="navbar navbar-expand-xl">
             <div class="container h-100">
                 <div class="navbar-brand">
@@ -91,12 +92,25 @@
             </div>
         </nav>
         <div class="container tm-mt-big tm-mb-big mt-5 mb-5">
+=======
+        <div class="container tm-mt-big tm-mb-big">
+>>>>>>> 8afe27ada5ac40f65c54c9326b76c0b6eda9a3ef
             <div class="row">
                 <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
                     <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
                         <div class="row">
+<<<<<<< HEAD
                             <div class="col-12">
                                 <h2 class="tm-block-title d-inline-block">Edit PopUp </h2>
+=======
+                            <div class="col-10">
+                                <h2 class="tm-block-title d-inline-block">Edit PopUp <strong>${popup.popupID}</strong></h2>
+>>>>>>> 8afe27ada5ac40f65c54c9326b76c0b6eda9a3ef
+                            </div>
+                            <div class="col-2">
+                                <form action="/diet-calculator/PopUpController">
+                                    <button type="submit" class="btn btn-primary btn-block text-uppercase bg-success"> << Return</button>                            
+                                </form>
                             </div>
                         </div>
                         <div class="row tm-edit-product-row">
@@ -117,12 +131,12 @@
                                     <div class="row">
                                         <div class="form-group mb-3 col-xs-12 col-sm-2">
                                             <label for="status">Status</label>
-<!--                                            <select name="status" class="form-control validate" required>
-                                                <option value="1" <c:if test="${popup.status == 1 ? 'selected' : ' '}">
-                                                        </c:if>>On</option>
-                                                <option value="0" <c:if test="${popup.status == 0 ? 'selected' : ' '}">
-                                                        </c:if>>Off</option>
-                                            </select>-->
+                                            <!--                                            <select name="status" class="form-control validate" required>
+                                                                                            <option value="1" <c:if test="${popup.status == 1 ? 'selected' : ' '}">
+                                            </c:if>>On</option>
+                                    <option value="0" <c:if test="${popup.status == 0 ? 'selected' : ' '}">
+                                            </c:if>>Off</option>
+                                </select>-->
                                             <input type="text" name="status" value="${popup.status}" class="form-control validate" required/>
                                         </div>
                                         <div class="form-group mb-3 col-xs-12 col-sm-10">

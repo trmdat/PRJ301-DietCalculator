@@ -14,11 +14,13 @@ public class FoodDetail {
     private double protein;
     private double fat;
     private double water;
+    private String icon;
+    private String category;
     
     public FoodDetail() {
     }
 
-    public FoodDetail(String foodID, String mealID, double amount, double totalCal, double carbohydrate, double fiber, double protein, double fat, double water) {
+    public FoodDetail(String foodID, String mealID, double amount, double totalCal, double carbohydrate, double fiber, double protein, double fat, double water, String icon, String category) {
         this.foodID = foodID;
         this.mealID = mealID;
         this.amount = amount;
@@ -28,6 +30,8 @@ public class FoodDetail {
         this.protein = protein;
         this.fat = fat;
         this.water = water;
+        this.icon = icon;
+        this.category = category;
     }
 
     public double getAmount() {
@@ -102,6 +106,22 @@ public class FoodDetail {
         this.water = water;
     }
 
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+    
     @Override
     public String toString() {
         return "FoodDetail{" + "foodID=" + foodID + ", mealID=" + mealID + ", amount=" + amount + ", totalCal=" + totalCal + ", carbohydrate=" + carbohydrate + ", fiber=" + fiber + ", protein=" + protein + ", fat=" + fat + ", water=" + water + '}';

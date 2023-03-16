@@ -46,7 +46,7 @@ public class FoodDAO {
 
     public ArrayList<Food> readFood() {
         ArrayList<Food> list = new ArrayList<>();
-        String sql = "select foodID,foodname,category,size,caloricintake,carbohydrate,fiber,protein,fat,water from Food";
+        String sql = "select * from Food";
 
         try {
             Connection conn = DBUtils.getConnection();
@@ -54,7 +54,7 @@ public class FoodDAO {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 list.add(new Food(rs.getString("foodID"), rs.getString("foodname"), rs.getString("category"), rs.getInt("size"), rs.getInt("caloricintake"),
-                        rs.getDouble("carbohydrate"), rs.getDouble("fiber"), rs.getDouble("protein"), rs.getDouble("fat"), rs.getDouble("water")));
+                        rs.getDouble("carbohydrate"), rs.getDouble("fiber"), rs.getDouble("protein"), rs.getDouble("fat"), rs.getDouble("water"), rs.getString("icon"), rs.getString("description")));
             }
             rs.close();
             ps.close();
@@ -65,9 +65,9 @@ public class FoodDAO {
         return list;
     }
 
-    public boolean createFood(String foodID, String foodname, String category, int size, int caloricintake, double carbohydrate, double fiber, double protein, double fat, double water) {
+    public boolean createFood(String foodID, String foodname, String category, int size, int caloricintake, double carbohydrate, double fiber, double protein, double fat, double water, String icon, String description) {
         int row = 0;
-        String sql = "insert into Food values (?,?,?,?,?,?,?,?,?,?)";
+        String sql = "insert into Food values (?,?,?,?,?,?,?,?,?,?,?,?)";
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -81,6 +81,8 @@ public class FoodDAO {
             ps.setDouble(8, protein);
             ps.setDouble(9, fat);
             ps.setDouble(10, water);
+            ps.setString(11, icon);
+            ps.setString(12, description);
             row = ps.executeUpdate();
             ps.close();
             conn.close();
@@ -90,8 +92,8 @@ public class FoodDAO {
         return row > 0;
     }
 
-    public boolean updateFood(String foodID, String foodname, String category, int size, int caloricintake, double carbohydrate, double fiber, double protein, double fat, double water) {
-        String sql = "UPDATE Food SET foodname = ?, category = ?, size = ?, caloricintake = ?, carbohydrate = ?, fiber = ?, protein = ?, fat = ?, water = ? WHERE foodID = ?";
+    public boolean updateFood(String foodID, String foodname, String category, int size, int caloricintake, double carbohydrate, double fiber, double protein, double fat, double water, String icon, String description) {
+        String sql = "UPDATE Food SET foodname = ?, category = ?, size = ?, caloricintake = ?, carbohydrate = ?, fiber = ?, protein = ?, fat = ?, water = ?, icon = ?, description = ? WHERE foodID = ?";
         int row = 0;
         try {
             Connection conn = DBUtils.getConnection();
@@ -105,7 +107,9 @@ public class FoodDAO {
             ps.setDouble(7, protein);
             ps.setDouble(8, fat);
             ps.setDouble(9, water);
-            ps.setString(10, foodID);
+            ps.setString(10, icon);
+            ps.setString(11, description);
+            ps.setString(12, foodID);
             row = ps.executeUpdate();
             ps.close();
             conn.close();
@@ -135,14 +139,14 @@ public class FoodDAO {
         FoodDAO dao = new FoodDAO();
         
         System.out.println("Create");
-        dao.createFood("FD00000", "test", "test", 0, 0, 0, 0, 0, 0, 0);
+        dao.createFood("FD00000", "test", "test", 0, 0, 0, 0, 0, 0, 0,"","");
         ArrayList<Food> list = dao.readFood();
         for (Food food : list) {
             System.out.println(food.toString());
         }
 
         System.out.println("Update");
-        dao.updateFood("FD00000", "test Update", "test", 0, 0, 0, 0, 0, 0, 0);
+        dao.updateFood("FD00000", "test Update", "test", 0, 0, 0, 0, 0, 0, 0,"","");
         list = dao.readFood();
         for (Food food : list) {
             System.out.println(food.toString());

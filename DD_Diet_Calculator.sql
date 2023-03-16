@@ -1,3 +1,4 @@
+
 CREATE DATABASE PRJ301_PGNB
 GO
 
@@ -34,6 +35,8 @@ CREATE TABLE Exercise(
 	lowerweight		FLOAT			NOT NULL,
 	upperweight		FLOAT			NOT NULL,
 	calorexp		INT				NOT NULL,
+	icon			NVARCHAR(100)	NOT NULL,
+	[description]	NVARCHAR(900)	NULL,
 
 	--exerciseID format: EX***
 	CHECK (exerciseID LIKE 'EX[0-9][0-9][0-9]')
@@ -50,6 +53,8 @@ CREATE TABLE Food(
 	protein			FLOAT			NOT NULL,
 	fat				FLOAT			NOT NULL,
 	water			FLOAT			NOT NULL,
+	icon			NVARCHAR(100)	NOT NULL,
+	[description]	NVARCHAR(900)	NULL,
 
 	--foodID format: FD*****
 	CHECK (foodID LIKE 'FD[0-9][0-9][0-9][0-9][0-9]')
@@ -102,6 +107,7 @@ CREATE TABLE [Day](
 	protein 		FLOAT			NOT NULL, --Real Protein Intake
 	fat				FLOAT			NOT NULL, --Real Fat Intake
 	water			FLOAT			NOT NULL, --Real Water Intake
+
 	-- dayID format: DAY*****
 	CHECK (dayID LIKE 'DAY[0-9][0-9][0-9][0-9][0-9]')
 )
@@ -111,6 +117,7 @@ CREATE TABLE ExSession(
 	exerciseID		NVARCHAR(5)		FOREIGN KEY REFERENCES Exercise(exerciseID),
 	userID			NVARCHAR(6)		FOREIGN KEY REFERENCES [User](userID),
 	dayID			NVARCHAR(8)		FOREIGN KEY REFERENCES [Day](dayID),
+	icon			NVARCHAR(100)	NOT NULL,
 
 	-- sessionID format: SES******
 	CHECK (sessionID LIKE 'SES[0-9][0-9][0-9][0-9][0-9][0-9]')
@@ -149,6 +156,9 @@ CREATE TABLE FoodDetail(
 	protein 		FLOAT			NOT NULL, --Real Protein Intake
 	fat				FLOAT			NOT NULL, --Real Fat Intake
 	water			FLOAT			NOT NULL, --Real Water Intake
+	icon			NVARCHAR(100)	NOT NULL,
+	category		NVARCHAR(100)	NOT NULL,
+
 	PRIMARY KEY(foodID, mealID)
 
 )

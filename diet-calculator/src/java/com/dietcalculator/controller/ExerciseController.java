@@ -2,6 +2,7 @@ package com.dietcalculator.controller;
 
 import com.dietcalculator.dao.ExerciseDAO;
 import com.dietcalculator.dto.Exercise;
+import com.dietcalculator.dto.User;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -9,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -31,6 +33,21 @@ public class ExerciseController extends HttpServlet {
 
         String action = request.getParameter("action");
 
+//        // Check security
+//        HttpSession session = request.getSession(false);
+//        User currentUser = null;
+//
+//        if (session != null) {
+//            currentUser = (User) session.getAttribute("user");
+//        }
+//
+//        log("Debug: " + currentUser);
+//        if (currentUser == null) {
+//            log("Debug: Redirect to login page" + currentUser);
+//            response.sendRedirect(request.getContextPath() + "/LoginController");
+//            return;
+//        }
+
         ExerciseDAO exerciseDAO = new ExerciseDAO();
 
         String id = "";
@@ -38,6 +55,8 @@ public class ExerciseController extends HttpServlet {
         double lowerweight = 0;
         double upperweight = 0;
         int calorexp = 0;
+        String icon = "";
+        String description = "";
 
         if (action == null || action.equals("list")) {
             List<Exercise> fullList = exerciseDAO.readExercise();
@@ -68,10 +87,12 @@ public class ExerciseController extends HttpServlet {
                 lowerweight = Double.parseDouble(request.getParameter("lowerweight"));
                 upperweight = Double.parseDouble(request.getParameter("upperweight"));
                 calorexp = Integer.parseInt(request.getParameter("calorexp"));
+                icon = request.getParameter("icon");
+                description = request.getParameter("description");
             } catch (Exception e) {
             }
             if (id != null) {
-                exerciseDAO.createExercise(id, exName, lowerweight, upperweight, calorexp);
+                exerciseDAO.createExercise(id, exName, lowerweight, upperweight, calorexp, icon, description);
             }
 
             response.sendRedirect("ExerciseController");
@@ -102,11 +123,13 @@ public class ExerciseController extends HttpServlet {
                     lowerweight = Double.parseDouble(request.getParameter("lowerweight"));
                     upperweight = Double.parseDouble(request.getParameter("upperweight"));
                     calorexp = Integer.parseInt(request.getParameter("calorexp"));
+                    icon = request.getParameter("icon");
+                    description = request.getParameter("description");
                 } catch (NumberFormatException ex) {
                 }
 
                 if (id != null) {
-                    exerciseDAO.updateExercise(id, exName, lowerweight, upperweight, calorexp);
+                    exerciseDAO.updateExercise(id, exName, lowerweight, upperweight, calorexp, icon, description);
                 }
 
                 response.sendRedirect("ExerciseController");

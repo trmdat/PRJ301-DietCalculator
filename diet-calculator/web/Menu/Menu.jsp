@@ -262,11 +262,11 @@ a:hover {
         //FORMAT FOR PARAMETERS
             //meal = side+main; day = 7
             //ArrayList<ArrayList<ArrayList<FoodDetail>>>   MEALS-DAYS-FOODDETAILS
-            //ArrayList<ArrayList<ArrayList<Image>>>   MEALS-DAYS-FOODDETAILS
+            //ArrayList<ArrayList<ArrayList<String>>>   MEALS-DAYS-FOODDETAILS
             //ArrayList<ArrayList<Meal>>                MEALS-DAYS
             //ArrayList<Day>
 
-        public final String menuCode(ArrayList<ArrayList<ArrayList<FoodDetail>>> foodDetailsByWeek, ArrayList<ArrayList<ArrayList<Image>>> imagesByWeek, ArrayList<ArrayList<Meal>> meals, ArrayList<Day> days, ArrayList<Food> foodDataset){
+        public final String menuCode(ArrayList<List<ArrayList<FoodDetail>>> foodDetailsByWeek, ArrayList<List<ArrayList<String>>> imagesByWeek, ArrayList<List<Meal>> meals, List<Day> days, ArrayList<Food> foodDataset){
             String html = "";
             int numOfMeals = meals.size();  //= number of rows
             for(int index = 0; index < numOfMeals; index++){
@@ -276,7 +276,7 @@ a:hover {
             return html;
         }
 
-        public final String printMealByRow(int mealIndex, ArrayList<Meal> meals, ArrayList<ArrayList<FoodDetail>> foodDetailsByRow, ArrayList<ArrayList<Image>> imagesByRow, ArrayList<Food> foodDataset){
+        public final String printMealByRow(int mealIndex, List<Meal> meals, List<ArrayList<FoodDetail>> foodDetailsByRow, List<ArrayList<String>> imagesByRow, ArrayList<Food> foodDataset){
         //GEETING GENERAL INFORMATION
             String color = MEAL_COLOR_INDEX[mealIndex - 1];
             int numOfFoodDetail = foodDetailsByRow.get(0).size();
@@ -306,7 +306,7 @@ a:hover {
             return html;
         }
 
-        public final String displayImage(int mealIndex, ArrayList<Image> imagesByWeek){
+        public final String displayImage(int mealIndex, ArrayList<String> imagesByWeek){
             //GETTING BASIC INFORMATION
             final int size = 25;
             int numOfFoodDetail = 0;
@@ -317,7 +317,7 @@ a:hover {
                     if(i%2 == 1)
                         html += "<div class = \"row\">";
                     
-                    html += "<div class=\"col-md-6 col-sm-6\" style='padding-bottom:20px;'><img src=\"" + imagesByWeek.get(i-1).getUrl() + "\" width=" + size + " height=" + size + " ></div>\n";
+                    html += "<div class=\"col-md-6 col-sm-6\" style='padding-bottom:20px;'><img src=\"" + imagesByWeek.get(i-1) + "\" width=" + size + " height=" + size + " ></div>\n";
                     
                     if(i%2 == 0)
                         html += "</div>\n";
@@ -328,7 +328,7 @@ a:hover {
                     if(i%2 == 1)
                         html += "<div class = \"row\">";
                     
-                    html += "<div class=\"col-md-6 col-sm-6\"><img src=\"" + imagesByWeek.get(i-1).getUrl() + "\" width=" + size + " height=" + size + " ></div>\n";
+                    html += "<div class=\"col-md-6 col-sm-6\"><img src=\"" + imagesByWeek.get(i-1) + "\" width=" + size + " height=" + size + " ></div>\n";
                     
                     if(i%2 == 0)
                         html += "</div>\n";
@@ -337,7 +337,7 @@ a:hover {
             }else{
                 numOfFoodDetail = Constants.SIDE_MEAL_CATEGORIES.length;
                 html += "<div class = \"row\">";
-                    html += "<div class=\"col-md-12 col-sm-12\" style='padding: 30px'><img src=\"" + imagesByWeek.get(0).getUrl() + "\" width=" + size + " height=" + size + " ></div>\n";
+                    html += "<div class=\"col-md-12 col-sm-12\" style='padding: 30px'><img src=\"" + imagesByWeek.get(0) + "\" width=" + size + " height=" + size + " ></div>\n";
                 html += "</div>\n";
             }
             return html;
@@ -349,7 +349,6 @@ a:hover {
                 html += "<div class = \"row\">"
                        +"<div class=\"column-tooltip column-50\">" + searchFoodNameByFoodID(x.getFoodID(),foodDataset) + "</div>"
                        +"<div class=\"column-tooltip column-25\">"+ x.getAmount() +" g</div>"
-                       //+"<div class=\"column-tooltip column-25\">" + x.getTotalCal() + " KCal</div>"
                        +"</div>";
             }
                 html += "<form action=\"MenuController\" method=\"get\">\n"
@@ -370,10 +369,10 @@ a:hover {
     %>
     
     <%
-        ArrayList<ArrayList<ArrayList<FoodDetail>>> foodDetailsByWeek = (ArrayList<ArrayList<ArrayList<FoodDetail>>>) request.getAttribute("foodDetails");
-        ArrayList<ArrayList<ArrayList<Image>>> imagesByWeek = (ArrayList<ArrayList<ArrayList<Image>>>) request.getAttribute("images");
-        ArrayList<ArrayList<Meal>>  meals = (ArrayList<ArrayList<Meal>> ) request.getAttribute("meals");
-        ArrayList<Day>  days = (ArrayList<Day>) request.getAttribute("days");
+        ArrayList<List<ArrayList<FoodDetail>>> foodDetailsByWeek = (ArrayList<List<ArrayList<FoodDetail>>>) request.getAttribute("foodDetails");
+        ArrayList<List<ArrayList<String>>> imagesByWeek = (ArrayList<List<ArrayList<String>>>) request.getAttribute("imageUrls");
+        ArrayList<List<Meal>>  meals = (ArrayList<List<Meal>> ) request.getAttribute("meals");
+        List<Day>  days = (List<Day>) request.getAttribute("days");
         ArrayList<Food> foodDataset = (ArrayList<Food>) request.getAttribute("foodDataset");
         out.print(menuCode(foodDetailsByWeek,imagesByWeek,meals,days,foodDataset));
     %>
@@ -382,8 +381,28 @@ a:hover {
       </div>
    </div>
    <div class="text-center">
-       <a href="#" class="previous round">&#8249;</a>
-       <a href="#" class="next round">&#8250;</a>
+       <ul class="pagination pagination-sm pro-page-list">
+            <li class="page-item ${page == 1 ? 'disabled' : ''}">
+                <a class="page-link" href="MenuController?page=${page>1?page - 1:1}&action=show" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+
+            <c:forEach var="i" begin="1" end="${totalPages}">
+
+
+                <li class="page-item ${i == page ? 'active' : ''}">
+                    <a class="page-link" href="MenuController?page=${i}&action=show">${i}</a>
+                </li>
+            </c:forEach>
+            <li class="page-item ${page == totalPages ? 'disabled' : ''}">
+                <a class="page-link" href="MenuController?page=${page<totalPages?page + 1:totalPages}&action=show" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>
+        </ul>
    </div>
    <div class="text-center">
       <a class="btn btn-success" target="__blank" href="MenuEditor.html">Edit</a>

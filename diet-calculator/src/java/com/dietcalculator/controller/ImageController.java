@@ -50,20 +50,20 @@ public class ImageController extends HttpServlet {
         }
     }
     
-    public final ArrayList<ArrayList<ArrayList<Image>>> generateImage(ArrayList<ArrayList<ArrayList<FoodDetail>>> foodDetails, ArrayList<ArrayList<Meal>> meals){
+    public final ArrayList<ArrayList<ArrayList<String>>> generateImage(ArrayList<ArrayList<ArrayList<FoodDetail>>> foodDetails, ArrayList<ArrayList<Meal>> meals){
         int numOfMeals = meals.size();
         int numOfDay = foodDetails.get(0).size();
-        ArrayList<ArrayList<ArrayList<Image>>> images = new ArrayList();
+        ArrayList<ArrayList<ArrayList<String>>> images = new ArrayList();
         
         //INITIALIZING THE ARRAYLIST
-        ArrayList<Image> listOfMeal = new ArrayList();
-        ArrayList<ArrayList<Image>> listOfDay = new ArrayList();
+        ArrayList<String> listOfMeal = new ArrayList();
+        ArrayList<ArrayList<String>> listOfDay = new ArrayList();
             
         ImageDAO imageDAO = new ImageDAO();
         for(int i = 0; i < numOfMeals; i++){
             for(int k = 0; k < numOfDay; k++){
                 for(int j = 0; j < Constants.FOOD_DETAIL_BY_MEAL.get(meals.get(i).get(0).getMealindex()).length; j++){
-                    listOfMeal.add(imageDAO.readImageByFoodID(foodDetails.get(i).get(k).get(j).getFoodID()).get(0));
+                    listOfMeal.add(foodDetails.get(i).get(k).get(j).getIcon());
                 }
                listOfDay.add(listOfMeal);
                
