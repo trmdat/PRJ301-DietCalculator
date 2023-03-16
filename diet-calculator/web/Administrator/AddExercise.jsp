@@ -21,14 +21,15 @@
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!--        <link href="./css/style1.css" type="text/css" rel="stylesheet">-->
     </head>
 
     <body>
         <nav class="navbar navbar-expand-xl">
             <div class="container h-100">
-                <a class="navbar-brand" href="">
-                    <h1 class="tm-site-title mb-0 text-success">Exercise Admin</h1>
-                </a>
+                <div class="navbar-brand">
+                    <h1 class="tm-site-title mb-0">Exercise Admin</h1>
+                </div>
                 <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                         aria-label="Toggle navigation">
@@ -58,7 +59,7 @@
                 </div>
             </div>
         </nav>
-        <div class="container tm-mt-big tm-mb-big">
+        <div class="container tm-mt-big tm-mb-big mt-5 mb-5">
             <div class="row">
                 <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
                     <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
@@ -89,7 +90,7 @@
                                             <input type="text" name="calorexp" class="form-control validate" required/>
                                         </div>
                                         <div class="col-12">
-                                            <input type="submit" value="Add Now" class="btn btn-primary btn-block text-uppercase bg-success">
+                                            <input type="submit" value="Add Exercise" class="btn btn-primary btn-block text-uppercase bg-success">
                                         </div>
                                     </div>
                                 </form>
@@ -104,6 +105,6 @@
         <!-- https://jquery.com/download/ -->
         <script src="js/bootstrap.min.js"></script>
         <!-- https://getbootstrap.com/ -->
-        <jsp:include page="../index/AdminFooter.jsp" />
+        <jsp:include page="../index/UserFooter.jsp" />
     </body>
 </html>

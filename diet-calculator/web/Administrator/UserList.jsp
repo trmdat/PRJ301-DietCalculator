@@ -13,9 +13,8 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <style>
             body {
-                margin-top: 20px;
+                margin-top: 10px;
                 background: #f8f8f8;
-                overflow: hidden;
             }
 
             thead th{
@@ -52,6 +51,10 @@
 
     <body scroll="no">
         <div class="container">
+            <div class="col-10">
+            <h2 class="tm-block-title d-inline-block text-success mt-5">User Management</h2>
+        </div>
+        <div class="container mt-5 mb-5">
             <div class="row flex-lg-nowrap">
                 <div class="col">
                     <div class="e-tabs mb-3 px-3">
@@ -147,7 +150,7 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <div class="d-flex justify-content-center">
+                                        <div class="d-flex justify-content-center mb-5">
                                             <ul class="pagination mt-3 mb-0">
                                                 <li class="disabled page-item"><a href="#" class="page-link">&#8249;</a></li>
                                                 <li class="active page-item"><a href="#" class="page-link">1</a></li>
@@ -173,11 +176,16 @@
             </div>
         </div>
         <br>
-        <jsp:include page="../index/AdminFooter.jsp" />
+        </div>
+
+
+        
+        
         <script src="js/jquery-3.3.1.min.js"></script>
         <!-- https://jquery.com/download/ -->
         <script src="js/bootstrap.min.js"></script>
         <!-- https://getbootstrap.com/ -->
+        <jsp:include page="../index/UserFooter.jsp" />
     </body>
 
 </html>

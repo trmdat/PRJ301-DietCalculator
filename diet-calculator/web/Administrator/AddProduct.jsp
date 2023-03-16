@@ -18,94 +18,11 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
         <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
-        <style>
-            /*navbar*/
-            .navbar{
-                background-color: green;
-            }
-
-            .navbar-brand ,.navbar-nav li a{
-                color:white;
-                font-weight: 500;
-            }
-
-            .navbar-logo img{
-                border-radius:50%;
-                height: 50px;
-                width:50px;
-                margin-right: 30px;
-            }
-            .navbar-toggler{
-                border-color: white;
-                border-width: 1px;
-            }
-            .navbar-toggler-icon i{
-                color:#fff; font-size:28px;
-            }
-            .navbar-nav li{
-                margin-top: 10px;
-            }
-
-            .user-item a {
-                color:white;
-                margin-left: 900px;
-
-            }
-            
-            .page-footer{
-                margin-top:100px;
-                background-color: black;
-                text-align: center;
-            }
-            
-            .grid-ic a{
-                color: white;
-            }
-
-        </style>
-
+       
+        <link href="../Administrator/css/style1.css" type="text/css" rel="stylesheet">
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg">
-            <a class="navbar-logo" href="#">
-                <img src="https://thumbs2.imgbox.com/08/79/vGFMh0Gr_t.jpg" alt="imgbox"/>   
-            </a>
-            <a class="navbar-brand" href="#"> Diet Calculator</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"> <i class="fas fa-bars" ></i></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="../index/index.jsp">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./UserController">User</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./ProductController">Product</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./FoodController">Food</a>
-                    </li>
-                    <li class="nav-item"> 
-                        <a class="nav-link" href="./PopUpController">Pop Up</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./SaleOffController">Sale Off</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./ImageController">Image</a>
-                    </li>
-                    <li class="user-item">
-                        <a class="nav-link" href=""><i class="fas fa-user fa-2x"></i></a>
-                    </li>
-
-
-                </ul>
-
-            </div>
-        </nav>
+        <jsp:include page="../index/AdminHeader.jsp" />
         <br>
         <nav>
             <div class="container tm-mt-big tm-mb-big">
@@ -114,7 +31,7 @@
                         <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
                             <div class="row">
                                 <div class="col-10">
-                                    <h2 class="tm-block-title d-inline-block">Add Product</h2>
+                                    <h2 class="tm-block-title d-inline-block">Product Admin</h2>
                                 </div>
                                 <div class="col-2">
                                     <form action="/diet-calculator/ProductController">
@@ -291,7 +208,7 @@
                                                 />
                                         </div>    
                                         <div class="col-12">
-                                            <button type="submit" class="btn btn-primary btn-block text-uppercase bg-success">Add Food</button>
+                                            <button type="submit" class="btn btn-primary btn-block text-uppercase bg-success">Add Product</button>
                                         </div>
                                     </form>
 
@@ -323,62 +240,62 @@
         </nav
 
         <!-- Footer -->
+        <jsp:include page="../index/AdminFooter.jsp" />
         
         
         
-        
-        <footer class="page-footer font-small cyan darken-3">
+<!--        <footer class="page-footer font-small cyan darken-3">
 
-            <!-- Footer Elements -->
+             Footer Elements 
             <div class="container">
 
-                <!-- Grid row-->
+                 Grid row
                 <div class="row">
 
-                    <!-- Grid column -->
+                     Grid column 
                     <div class="col-md-12 py-5">
                         <div class="grid-ic mb-5 flex-center">
 
-                            <!-- Facebook -->
+                             Facebook 
                             <a class="fb-ic">
                                 <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
                             </a>
-                            <!-- Twitter -->
+                             Twitter 
                             <a class="tw-ic">
                                 <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
                             </a>
-                            <!-- Google +-->
+                             Google +
                             <a class="gplus-ic">
                                 <i class="fab fa-google-plus-g fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
                             </a>
-                            <!--Linkedin -->
+                            Linkedin 
                             <a class="li-ic">
                                 <i class="fab fa-linkedin-in fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
                             </a>
-                            <!--Instagram-->
+                            Instagram
                             <a class="ins-ic">
                                 <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
                             </a>
-                            <!--Pinterest-->
+                            Pinterest
                             <a class="pin-ic">
                                 <i class="fab fa-pinterest fa-lg white-text fa-2x"> </i>
                             </a>
                         </div>
                     </div>
-                    <!-- Grid column -->
+                     Grid column 
 
                 </div>
-                <!-- Grid row-->
+                 Grid row
 
             </div>
-            <!-- Footer Elements -->
+             Footer Elements 
 
    
 
         </footer>
-        <!-- Footer -->
+         Footer 
 
-
+-->
 
     </body>
 </html>

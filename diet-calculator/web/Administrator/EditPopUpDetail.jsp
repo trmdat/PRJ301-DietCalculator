@@ -12,7 +12,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Edit Product</title>
+        <title>Edit PopUp Detail</title>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700" />
         <link rel="stylesheet" href="css/fontawesome.min.css" />
         <link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -23,11 +23,12 @@
     </head>
 
     <body>
+        <jsp:include page="../index/AdminHeader.jsp" />
         <nav class="navbar navbar-expand-xl">
             <div class="container h-100">
-                <a class="navbar-brand" href="">
-                    <h1 class="tm-site-title mb-0 text-success">PopUp Admin</h1>
-                </a>
+                <div class="navbar-brand" href="">
+                    <h1 class="tm-site-title mb-0 ">PopUp Admin</h1>
+                </div>
                 <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                         aria-label="Toggle navigation">
@@ -88,7 +89,7 @@
                 </div>
             </div>
         </nav>
-        <div class="container tm-mt-big tm-mb-big">
+        <div class="container tm-mt-big tm-mb-big mt-5 mb-5">
             <div class="row">
                 <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
                     <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
@@ -111,7 +112,7 @@
                                         <input type="text" name="description" value="${popup.description}" class="form-control validate" required/>
                                     </div>
                                     <div class="col-12">
-                                        <input type="submit" value="Update Detail Now" class="btn btn-primary btn-block text-uppercase bg-success">
+                                        <input type="submit" value="Update Detail" class="btn btn-primary btn-block text-uppercase bg-success">
                                     </div>
                                 </form>
                             </div>
@@ -142,6 +143,8 @@
                                 });
                             });
                         </script>-->
+            
+            <jsp:include page="../index/UserFooter.jsp" />
     </body>
 
 </html>

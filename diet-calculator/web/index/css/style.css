@@ -1,17 +1,17 @@
-/*--------------------------------------------------------------------- File Name: style.css ---------------------------------------------------------------------*/
+/*--------------------------------------------------------------------- File Name: style.css ---------------------------------------------------------------------
 
 
-/*--------------------------------------------------------------------- import Fonts ---------------------------------------------------------------------*/
+--------------------------------------------------------------------- import Fonts ---------------------------------------------------------------------
 
 @import url('https://fonts.googleapis.com/css?family=Rajdhani:300,400,500,600,700');
 @import url('https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i');
 
-/*****---------------------------------------- 1) font-family: 'Rajdhani', sans-serif;
+****---------------------------------------- 1) font-family: 'Rajdhani', sans-serif;
  2) font-family: 'Poppins', sans-serif;
- ----------------------------------------*****/
+ ----------------------------------------****
 
 
-/*--------------------------------------------------------------------- import Files ---------------------------------------------------------------------*/
+--------------------------------------------------------------------- import Files ---------------------------------------------------------------------
 
 @import url(animate.min.css);
 @import url(normalize.css);
@@ -25,7 +25,7 @@
 @import url(jquery-ui.css);
 @import url(nice-select.css);
 
-/*--------------------------------------------------------------------- skeleton ---------------------------------------------------------------------*/
+--------------------------------------------------------------------- skeleton ---------------------------------------------------------------------
 
 * {
     box-sizing: border-box !important;
@@ -385,7 +385,7 @@ body {
 }
 
 
-/*------------------------------ vertical bootstrap slider----------------------------*/
+------------------------------ vertical bootstrap slider----------------------------
 
 .carousel-inner>.carousel-item.carousel-item-next,
 .carousel-inner>.carousel-item.active.carousel-item-right {
@@ -420,7 +420,7 @@ body {
 }
 
 
-/*------------------------------- vertical carousel indicators ------------------------------*/
+------------------------------- vertical carousel indicators ------------------------------
 
 .carousel-indicators {
     position: absolute;
@@ -457,7 +457,7 @@ body {
 }
 
 
-/* about section start */
+ about section start 
 
 .about_section {
     width: 100%;
@@ -549,10 +549,10 @@ img.image_3 {
 }
 
 
-/* about section end */
+ about section end 
 
 
-/* vitamin section start */
+ vitamin section start 
 
 .vitamin_section {
     width: 100%;
@@ -643,10 +643,10 @@ img.image_3 {
 }
 
 
-/* vitamin section end */
+ vitamin section end 
 
 
-/* blog section start */
+ blog section start 
 
 .blog_section {
     width: 100%;
@@ -792,10 +792,10 @@ img.image_3 {
 }
 
 
-/* blog section end */
+ blog section end 
 
 
-/* contact srction start */
+ contact srction start 
 
 .contact_srction {
     width: 100%;
@@ -868,10 +868,10 @@ img.image_3 {
 }
 
 
-/* contact srction end */
+ contact srction end 
 
 
-/* news section start */
+ news section start 
 
 .news_section {
     width: 100%;
@@ -925,10 +925,12 @@ img.image_3 {
 }
 
 
-/* contact srction end */
+ contact srction end 
 
 
-/* footer section start */
+ footer section start 
+
+*/
 
 .footer_section {
     width: 100%;
@@ -1028,10 +1030,10 @@ input.Enter_text::placeholder {
 }
 
 
-/* footer section end */
+ footer section end 
 
 
-/* copyright section start */
+ copyright section start 
 
 .copyright_section {
     width: 100%;
@@ -1059,4 +1061,4 @@ input.Enter_text::placeholder {
 }
 
 
-/* copyright section end */
+ /*copyright section end*/ 

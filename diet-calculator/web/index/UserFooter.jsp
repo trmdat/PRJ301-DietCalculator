@@ -16,27 +16,13 @@
         <meta name="viewport" content="initial-scale=1, maximum-scale=1">
         <!-- site metas -->
         <title>Footer</title>
-        <meta name="keywords" content="">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <!-- bootstrap css -->
-        <link rel="stylesheet" type="text/css" href="./index/css/bootstrap.min.css">
-        <!-- style css -->
-        <link rel="stylesheet" type="text/css" href="./index/css/style.css">
+       
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/index/css/style.css">
         <!-- Responsive-->
         <link rel="stylesheet" href="./index/css/responsive.css">
         <!-- fevicon -->
         <link rel="icon" href="./index/images/logo.jpg" type="image/gif" />
-        <!-- Scrollbar Custom CSS -->
-        <link rel="stylesheet" href="./index/css/jquery.mCustomScrollbar.min.css">
-        <!-- Tweaks for older IEs-->
-        <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-        <!-- fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Poppins:400,700|Raleway:400,700&display=swap" rel="stylesheet">
-        <!-- owl stylesheets --> 
-        <link rel="stylesheet" href="./index/css/owl.carousel.min.css">
-        <link rel="stylesheet" href="./index/css/owl.theme.default.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+       
     </head>
     <body>
         <div class="footer_section">
@@ -48,7 +34,7 @@
                     <a class="padding_10" href=""><img src="https://images2.imgbox.com/6c/3e/dbHgJce8_o.png"></a>
                 </div>
                 <div class="location_main">
-                    <div class="location_text"><img src="https://images2.imgbox.com/b5/97/D9TiiOjt_o.png"><span class="padding10"><a href="">Lô E2a-7, Đường D1, Đ.D1, Long Thạnh Mỹ, TP.Thủ Đức, TP.Hồ Chí Minh</a></span></div>
+                    <div class="location_text"><img src="https://images2.imgbox.com/b5/97/D9TiiOjt_o.png"><span class="padding10"><a href="">E2a-7,D1 street, Long Thanh My Ward, Thu Duc city, Ho Chi Minh city, Vietnam</a></span></div>
                     <div class="location_text center"><img width="33" height="33" src="https://images2.imgbox.com/23/48/MVPBkkgr_o.png"><span class="padding10"><a href="https://github.com/dunghuynh-teaching/prj301-se1753-08">Diet Calculator</a></span></div>
                     <div class="location_text right"><img src="https://images2.imgbox.com/31/b0/DrVSFxQs_o.png"><span class="padding10"><a href="">Call : (+01) 123456789012</a></span></div>
                 </div>

@@ -24,9 +24,9 @@
     <body>
         <nav class="navbar navbar-expand-xl">
             <div class="container h-100">
-                <a class="navbar-brand" href="">
-                    <h1 class="tm-site-title mb-0 text-success">PopUp Admin</h1>
-                </a>
+                <div class="navbar-brand" href="">
+                    <h1 class="tm-site-title mb-0 ">PopUp Admin</h1>
+                </div>
                 <button
                     class="navbar-toggler ml-auto mr-0"
                     type="button"
@@ -61,7 +61,7 @@
                 </div>
             </div>
         </nav>
-        <div class="container tm-mt-big tm-mb-big">
+        <div class="container tm-mt-big tm-mb-big mt-5 mb-5">
             <div class="row">
                 <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
                     <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
@@ -97,7 +97,7 @@
                                         </div>
                                     </div>
                                     <div class="col-12">
-                                        <input type="submit" value="Add PopUp Now" class="btn btn-primary btn-block text-uppercase bg-success">
+                                        <input type="submit" value="Add PopUp" class="btn btn-primary btn-block text-uppercase bg-success">
                                     </div>
                                 </form>
                             </div>
@@ -107,7 +107,7 @@
             </div>
         </div>
         <br>
-        <jsp:include page="../index/AdminFooter.jsp" />
+        <jsp:include page="../index/UserFooter.jsp" />
         <script src="js/jquery-3.3.1.min.js"></script>
         <!-- https://jquery.com/download/ -->
         <script src="jquery-ui-datepicker/jquery-ui.min.js"></script>

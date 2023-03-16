@@ -24,11 +24,12 @@
     </head>
 
     <body id="reportsPage">
+        <jsp:include page="../index/AdminHeader.jsp" />
         <nav class="navbar navbar-expand-xl">
             <div class="container h-100">
-                <a class="navbar-brand" href="">
-                    <h1 class="tm-site-title mb-0 text-success">Details for PopUp ${popup}</h1>
-                </a>
+                <div class="navbar-brand" href="">
+                    <h1 class="tm-site-title mb-0">Details for PopUp ${popup}</h1>
+                </div>
                 <button
                     class="navbar-toggler ml-auto mr-0"
                     type="button"
@@ -68,14 +69,16 @@
         </nav>
 
 
-        <div class="container mt-5">
+        <div class="container mt-5 mb-5">
             <div class="row tm-content-row">
                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 tm-block-col">
                     <div class="tm-bg-primary-dark tm-block tm-block-products">
                         <a href="PopUpDetailController?action=create&popupID=${popup}" class="btn btn-primary btn-block text-uppercase mb-3 bg-success">Add new details for PopUp</a>
                         <div class="tm-product-table-container">
+                           
                             <form action="PopUpDetailController" method="post">
                                 <input type="hidden" name="action" value="delete">
+
                                 <table class="table table-hover tm-table-small tm-product-table">
                                     <thead>
                                         <tr>
@@ -89,14 +92,14 @@
                                     <tbody>
                                         <c:forEach var="p" items="${list}">
                                             <tr><th scope=row><input type="checkbox" name="checkProductId" value=${p.productID}></th>
-                                            <input type="hidden" name="popUpId" value=${p.popupID}>
-                                            <td> ${p.popupID} </td>
-                                            <td> ${p.productID} </td>
-                                            <td> ${p.description} </td>
-                                            <td><a href="./PopUpDetailController?action=edit&popupID=${p.popupID}&productID=${p.productID}" 
-                                                   class="btn btn-primary btn-block bg-success">Edit</a></td>
-                                            </tr>
-                                        </c:forEach>    
+                                        <input type="hidden" name="popUpId" value=${p.popupID}>
+                                        <td> ${p.popupID} </td>
+                                        <td> ${p.productID} </td>
+                                        <td> ${p.description} </td>
+                                        <td><a href="./PopUpDetailController?action=edit&popupID=${p.popupID}&productID=${p.productID}" 
+                                               class="btn btn-primary btn-block bg-success">Edit</a></td>
+                                        </tr>
+                                    </c:forEach>    
                                     </tbody>
                                 </table>
                                 <input type="submit" value="Delete selected PopUp Details" class="btn btn-primary btn-block text-uppercase bg-success">
@@ -231,7 +234,9 @@
                             window.location.href = "EditProduct.html";
                         });
                     });
-                </script>-->
+               
+        <jsp:include page="../index/UserFooter.jsp" />
+        </script>-->
     </body>
 
 </html>
