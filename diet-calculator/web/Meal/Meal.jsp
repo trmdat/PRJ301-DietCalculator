@@ -35,8 +35,14 @@
    <div class="container">
       <div class="row">
          <div class="col-md-12">
+             <form action="MenuController" method="post">
+                 <input type="text" name="page" value="${page}" hidden>
+                 <input type="text" name="action" value="show" hidden>
+                 <button type="submit" style="height:40px;margin-bottom: 10px;background:green;border-radius:10px;color:white">Back to Menu</button>
+             </form>
              <h1>Meal Details</h1>
             <div class="table-responsive">
+                <form action="MenuController" method="get">
                <table class="table table-bordered">
                   <thead>
                      <tr>
@@ -66,7 +72,7 @@
                             <td>${foodDetail.get(i).getWater()}</td>
                             <td style="width:300px;height:50px">
                                 <div style="width: 100%;">
-                                    <select id="substitute${i}" placeholder="Pick one...">
+                                    <select id="substitute${i}" name="${foodInMeal.get(i).getFoodID()}" placeholder="Pick one...">
                                         <option value="0" selected>Select a Substitute</option>
                                         <c:forEach begin="0" end="${substitutes.get(i).size()-1}" step="1" var="j">
                                             <option value="${substitutes.get(i).get(j).getFoodID()}"> ${foodSubstitute.get(i).get(j).getFoodname()} &emsp;${substitutes.get(i).get(j).getAmount()}g</option>
@@ -75,9 +81,63 @@
                                 </div>
                             </td>
                         </tr>
-                     </c:forEach>
+                      </c:forEach>
                   </tbody>
                </table>
+                    <input type="text" name="mealID" value="${meal.getMealID()}" hidden>
+                    <input type="text" name="action" value="update" hidden>
+                <div style="width:60%;margin-left:auto;margin-right:auto;margin-top:10px;margin-bottom:20px;background: green;border-radius: 20px">
+                    <input type="submit" value="Save" class="btn btn-primary btn-block text-uppercase bg-success">
+                </div>
+                </form>
+                
+                <div class="col-md-12">
+                    <h1>Nutrition Details</h1>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                   <tr>
+                                      <th>Parameter</th>
+                                      <th>Total Calories (KCal)</th>
+                                      <th>Carbohydrate (g)</th>
+                                      <th>Fiber (g)</th>
+                                      <th>Protein (g)</th>
+                                      <th>Fat (g)</th>
+                                      <th>Water (g)</th>
+                                   </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Your Meal</td>
+                                        <td>${meal.getTotalCal()}</td>
+                                        <td>${meal.getCarbohydrate()}</td>
+                                        <td>${meal.getFiber()}</td>
+                                        <td>${meal.getProtein()}</td>
+                                        <td>${meal.getFat()}</td>
+                                        <td>${meal.getWater()}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Standard</td>
+                                        <td>${Math.round(meal.getTotalCalstd())}</td>
+                                        <td>${Math.round(meal.getCarbohydratestd())}</td>
+                                        <td>${Math.round(meal.getFiberstd())}</td>
+                                        <td>${Math.round(meal.getProteinstd())}</td>
+                                        <td>${Math.round(meal.getFatstd())}</td>
+                                        <td>${Math.round(meal.getWaterstd())}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Coverage</td>
+                                        <td>${Math.round(1000*meal.getTotalCal()/meal.getTotalCalstd())/10}%</td>
+                                        <td>${Math.round(1000*meal.getCarbohydrate()/meal.getCarbohydratestd())/10}%</td>
+                                        <td>${Math.round(1000*meal.getFiber()/meal.getFiberstd())/10}%</td>
+                                        <td>${Math.round(1000*meal.getProtein()/meal.getProteinstd())/10}%</td>
+                                        <td>${Math.round(1000*meal.getFat()/meal.getFatstd())/10}%</td>
+                                        <td>${Math.round(1000*meal.getWater()/meal.getWaterstd())/10}%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                </div>
             </div>
             <c:set var="style" value="" scope="page"></c:set>
             <c:choose>
@@ -86,7 +146,8 @@
                 <c:when test="${foodInMeal.size()==1}"><c:set var="style" value="display: grid;grid-template-columns: 1fr;grid-gap: 150px;padding-left:550px"></c:set></c:when>
                 <c:otherwise></c:otherwise>
             </c:choose>
-            <div style="${style}">
+            <h1 style="margin-left: 5px;margin-bottom: 20px">Facts About Your Meal</h1>
+            <div style="${style}; margin-bottom:60px">
                 <c:forEach items="${foodInMeal}" var="x">
                     <div class=''>
                         <div style="width:195px;height:420px;background: green;border-radius: 15px">
@@ -106,7 +167,6 @@
          </div>
       </div>
    </div>
-
 </body>
 <script>
     <c:set var="i" value="0"></c:set>

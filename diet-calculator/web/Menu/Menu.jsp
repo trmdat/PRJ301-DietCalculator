@@ -240,7 +240,7 @@ a:hover {
          <img src="img/content/timetable.png" alt="" />
       </div>
       <div class="text-center">
-          <h1>Week 1</h1>
+          <h1>Week ${page}</h1>
       </div>     
       <div class="table-responsive" style="width: 1250px;padding-right: 150px;overflow-x: hidden;">
          <table class="table table-bordered text-center">
@@ -266,17 +266,17 @@ a:hover {
             //ArrayList<ArrayList<Meal>>                MEALS-DAYS
             //ArrayList<Day>
 
-        public final String menuCode(ArrayList<List<ArrayList<FoodDetail>>> foodDetailsByWeek, ArrayList<List<ArrayList<String>>> imagesByWeek, ArrayList<List<Meal>> meals, List<Day> days, ArrayList<Food> foodDataset){
+        public final String menuCode(ArrayList<List<ArrayList<FoodDetail>>> foodDetailsByWeek, ArrayList<List<ArrayList<String>>> imagesByWeek, ArrayList<List<Meal>> meals, List<Day> days, ArrayList<Food> foodDataset,int currentPage){
             String html = "";
             int numOfMeals = meals.size();  //= number of rows
             for(int index = 0; index < numOfMeals; index++){
                 int mealIndex = meals.get(index).get(0).getMealindex();
-                html += printMealByRow(mealIndex,meals.get(index),foodDetailsByWeek.get(index),imagesByWeek.get(index), foodDataset);
+                html += printMealByRow(mealIndex,meals.get(index),foodDetailsByWeek.get(index),imagesByWeek.get(index), foodDataset,currentPage);
             }
             return html;
         }
 
-        public final String printMealByRow(int mealIndex, List<Meal> meals, List<ArrayList<FoodDetail>> foodDetailsByRow, List<ArrayList<String>> imagesByRow, ArrayList<Food> foodDataset){
+        public final String printMealByRow(int mealIndex, List<Meal> meals, List<ArrayList<FoodDetail>> foodDetailsByRow, List<ArrayList<String>> imagesByRow, ArrayList<Food> foodDataset, int currentPage){
         //GEETING GENERAL INFORMATION
             String color = MEAL_COLOR_INDEX[mealIndex - 1];
             int numOfFoodDetail = foodDetailsByRow.get(0).size();
@@ -296,7 +296,7 @@ a:hover {
                     html +=  displayImage(mealIndex, imagesByRow.get(day));
 
                     //IMPORT DETAILS OF FOODDETAIL INTO TOOLTIPTEXT
-                    html +=  displayDetailsFoodDetail(foodDetailsByRow.get(day), foodDataset);
+                    html +=  displayDetailsFoodDetail(foodDetailsByRow.get(day), foodDataset, currentPage);
                     html += "</div>";
                     html += "</td>\n";
             }
@@ -343,7 +343,7 @@ a:hover {
             return html;
         }
 
-        public String displayDetailsFoodDetail(ArrayList<FoodDetail> fd, ArrayList<Food> foodDataset){
+        public String displayDetailsFoodDetail(ArrayList<FoodDetail> fd, ArrayList<Food> foodDataset, int currentPage){
             String html = "<span class = \"tooltiptext\" style = \"\">";
             for(FoodDetail x: fd){
                 html += "<div class = \"row\">"
@@ -354,7 +354,8 @@ a:hover {
                 html += "<form action=\"MenuController\" method=\"get\">\n"
                        + "<input type=text name=action value=details hidden/>"
                        + "<input type=text name=mealID value=" + fd.get(0).getMealID() +  " hidden/>"
-                       + "<input type=submit value=details>"
+                       + "<input type=text name=page value=" + currentPage + " hidden/>"
+                       + "<input type=submit value=Details>"
                        + "</form>";
                 html += "</span>";
             return html;
@@ -374,13 +375,14 @@ a:hover {
         ArrayList<List<Meal>>  meals = (ArrayList<List<Meal>> ) request.getAttribute("meals");
         List<Day>  days = (List<Day>) request.getAttribute("days");
         ArrayList<Food> foodDataset = (ArrayList<Food>) request.getAttribute("foodDataset");
-        out.print(menuCode(foodDetailsByWeek,imagesByWeek,meals,days,foodDataset));
+        int currentPage = (int)request.getAttribute("page");
+        out.print(menuCode(foodDetailsByWeek,imagesByWeek,meals,days,foodDataset,currentPage));
     %>
             </tbody>
          </table>
       </div>
    </div>
-   <div class="text-center">
+   <div class="text-center" style="margin-left:600px;">
        <ul class="pagination pagination-sm pro-page-list">
             <li class="page-item ${page == 1 ? 'disabled' : ''}">
                 <a class="page-link" href="MenuController?page=${page>1?page - 1:1}&action=show" aria-label="Previous">
@@ -404,9 +406,7 @@ a:hover {
             </li>
         </ul>
    </div>
-   <div class="text-center">
-      <a class="btn btn-success" target="__blank" href="MenuEditor.html">Edit</a>
-   </div>
+
     <div>
     
     </div>

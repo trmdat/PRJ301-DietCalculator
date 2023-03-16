@@ -100,8 +100,7 @@ public class MenuController extends HttpServlet {
             currentSession.setAttribute("foodDetails", foodDetails);
             currentSession.setAttribute("imageUrls", imageUrls);
             
-            RequestDispatcher rd = request.getRequestDispatcher("/MenuController?action=show");
-            rd.forward(request, response);
+            response.sendRedirect("MenuController?action=show");
             
         }else if(action.equals("show")){
             //GETTING SESSION
@@ -139,6 +138,7 @@ public class MenuController extends HttpServlet {
             ArrayList<List<ArrayList<FoodDetail>>> subFoodDetails = pagingFoodDetails(page,PAGE_SIZE,foodDetails);
             ArrayList<List<ArrayList<String>>> subImageUrls = pagingImageUrls(page,PAGE_SIZE,imageUrls);
             
+            request.setAttribute("page", page);
             request.setAttribute("totalPages", totalPages);
             request.setAttribute("days", subDays);
             request.setAttribute("meals", subMeals);
@@ -155,13 +155,21 @@ public class MenuController extends HttpServlet {
             if(currentSession == null){
                 response.sendRedirect("/HomeController");
             }else{
+                //GETTING SESSION ATTRIBUTES
                 ArrayList<Day> days = (ArrayList<Day>)currentSession.getAttribute("days");
                 ArrayList<ArrayList<Meal>> meals = (ArrayList<ArrayList<Meal>>)currentSession.getAttribute("meals");
                 ArrayList<ArrayList<ArrayList<FoodDetail>>> foodDetails = (ArrayList<ArrayList<ArrayList<FoodDetail>>>)currentSession.getAttribute("foodDetails");
                 ArrayList<Food> foodDataset = (ArrayList<Food>) currentSession.getAttribute("foodDataset");
 
+                //GETTING REQUEST PARAMETERS
                 String mealID = request.getParameter("mealID");
-
+                Integer page = 1;
+                try{
+                    page = Integer.parseInt(request.getParameter("page"));
+                }catch(Exception e){
+                    
+                }
+                    
                 Day day = null;
                 Meal meal = null;
                 ArrayList<FoodDetail> foodDetail = new ArrayList();
@@ -193,6 +201,7 @@ public class MenuController extends HttpServlet {
                     foodSubstitute.add(tmp);
                 }
                     
+                request.setAttribute("page", page);
                 request.setAttribute("day", day);
                 request.setAttribute("meal", meal);
                 request.setAttribute("foodDetail", foodDetail);
@@ -202,7 +211,140 @@ public class MenuController extends HttpServlet {
                 RequestDispatcher rd = request.getRequestDispatcher("/Meal/Meal.jsp");
                 rd.forward(request, response);
             }
+        }else if(action.equals("update")){
+            final String DEFAULT = "0";
+            //GETTING SESSION
+            HttpSession currentSession = request.getSession(false);
+            if(currentSession == null){
+                response.sendRedirect("/HomeController");
+            }else{
+                //GETTING SESSION ATTRIBUTES
+                ArrayList<Food> foodDataset = (ArrayList<Food>) currentSession.getAttribute("foodDataset");
+                ArrayList<Day> days = (ArrayList<Day>)currentSession.getAttribute("days");
+                ArrayList<ArrayList<Meal>> meals = (ArrayList<ArrayList<Meal>>)currentSession.getAttribute("meals");
+                ArrayList<ArrayList<ArrayList<FoodDetail>>> foodDetails = (ArrayList<ArrayList<ArrayList<FoodDetail>>>)currentSession.getAttribute("foodDetails");
+                ArrayList<ArrayList<ArrayList<String>>> imageUrls = (ArrayList<ArrayList<ArrayList<String>>>)currentSession.getAttribute("imageUrls");
+                
+                String mealID = request.getParameter("mealID");
+
+                Day day = null;
+                Meal meal = null;
+                ArrayList<FoodDetail> foodDetail = new ArrayList();
+
+                if(mealID != null)
+                    meal = findMealByMealID(meals, mealID);
+
+                if(meal != null && days != null && foodDataset != null){
+                    day = findDayByMealID(days,meal);
+                    foodDetail = findFoodDetailByMealID(foodDetails,meal);
+                }
+                
+                //GETTING LIST OF SUBSTITUTES
+                FoodDetailController fdc = new FoodDetailController();
+                //CREATING CLONES
+                Meal newMeal = new Meal(meal.getMealID(),meal.getUserID(),meal.getDayID(),meal.getMealindex(),meal.getTotalCalstd(), meal.getCarbohydratestd(), meal.getFiberstd(), meal.getProteinstd(), meal.getFatstd(),meal.getWaterstd(),meal.getTotalCal(), meal.getCarbohydrate(), meal.getFiber(), meal.getProtein(), meal.getFat(),meal.getWater());
+                Day newDay = new Day(day.getDayID(),day.getUserID(),day.getIndex(),day.getTotalCalstd(),day.getCarbohydratestd(),day.getFiberstd(),day.getProteinstd(),day.getFatstd(),day.getWaterstd(),day.getTotalCal(),day.getCarbohydrate(),day.getFiber(),day.getProtein(),day.getFat(),day.getWater());
+                ArrayList<FoodDetail> foodDetailClone = new ArrayList();
+                for(FoodDetail x: foodDetail)
+                    foodDetailClone.add(x);
+                
+                for(FoodDetail x: foodDetailClone){
+                    if(!request.getParameter(x.getFoodID()).equals(DEFAULT)){
+                        //GENERATE SUBSTITUTES FOR FOODDETAIL
+                        ArrayList<FoodDetail> substitute = fdc.generateFoodDetailSubstituteByCategory(meal, foodDataset, x.getCategory());
+                        for(FoodDetail y: substitute)
+                            if(request.getParameter(x.getFoodID()).equals(y.getFoodID())){
+                                newMeal = replaceFoodDetail(foodDetails,day.getIndex()-1,newMeal,foodDetail,x,y);
+                                replaceImageUrls(imageUrls,day.getIndex()-1,x.getIcon(),y.getIcon());
+                            }
+                    }
+                }
+                //UPDATE MEALS AND DAYS
+                newDay = replaceMeal(meals,day,meal,newMeal);
+                replaceDay(days,day,newDay);
+                
+                //UPDATE SESSION ATTRIBUTES
+                currentSession.setAttribute("days",days);
+                currentSession.setAttribute("meals",meals);
+                currentSession.setAttribute("foodDetails",foodDetails);
+                
+                //UPDATE AND REDIRECT BACK TO Meal.jsp
+//                request.setAttribute("mealID", newMeal.getMealID());
+                response.sendRedirect("MenuController?action=details&mealID=" + newMeal.getMealID());
+            }
         }
+    }
+    public void replaceImageUrls(ArrayList<ArrayList<ArrayList<String>>> imageUrls, int dayIndex, String before, String after){
+         for(int i = 0; i < imageUrls.size(); i++){
+             int size = imageUrls.get(i).get(dayIndex).size();
+             for(int j = 0; j < size; j++ ){
+                 if(imageUrls.get(i).get(dayIndex).get(j).equals(before)){
+                     imageUrls.get(i).get(dayIndex).remove(before);
+                     imageUrls.get(i).get(dayIndex).add(j,after);
+                     return;
+                }
+                j++;
+            }
+        }
+    }
+    
+    public Meal replaceFoodDetail(ArrayList<ArrayList<ArrayList<FoodDetail>>> foodDetails,int dayIndex, Meal meal, ArrayList<FoodDetail> fd, FoodDetail before, FoodDetail after){
+        Meal newMeal = new Meal(meal.getMealID(),meal.getUserID(),meal.getDayID(),meal.getMealindex(),meal.getTotalCalstd(), meal.getCarbohydratestd(), meal.getFiberstd(), meal.getProteinstd(), meal.getFatstd(),meal.getWaterstd(),0,0,0,0,0,0);
+        for(int i = 0; i < fd.size(); i++)
+            if(fd.get(i).getFoodID().equals(before.getFoodID())){
+                //UPDATE NEW FOODDETAIL'S MEALID
+                after.setMealID(before.getMealID());
+                
+                //RESET NEWMEAL PARAMETERS
+                newMeal.setTotalCal(meal.getTotalCal() - before.getTotalCal() + after.getTotalCal());
+                newMeal.setCarbohydrate(meal.getCarbohydrate()- before.getCarbohydrate() + after.getCarbohydrate());
+                newMeal.setFiber(meal.getFiber() - before.getFiber() + after.getFiber());
+                newMeal.setProtein(meal.getProtein() - before.getProtein() + after.getProtein());
+                newMeal.setFat(meal.getFat() - before.getFat() + after.getFat());
+                newMeal.setWater(meal.getWater() - before.getWater() + after.getWater());
+                
+                //REPLACE IN fd
+                fd.remove(i);
+                fd.add(i,after);
+                
+                //REPLACE IN foodDetails
+                for(int j = 0; j < foodDetails.size(); j++)
+                    if(foodDetails.get(j).get(dayIndex).get(0).getMealID().equals(meal.getMealID())){
+                        foodDetails.get(j).remove(dayIndex);
+                        foodDetails.get(j).add(dayIndex,fd);
+                                        return newMeal;
+
+                    }
+            }
+        return newMeal;
+    }
+    
+    public Day replaceMeal(ArrayList<ArrayList<Meal>> meals, Day day, Meal before, Meal after){
+        Day newDay = new Day(day.getDayID(),day.getUserID(),day.getIndex(),day.getTotalCalstd(),day.getCarbohydratestd(),day.getFiberstd(),day.getProteinstd(),day.getFatstd(),day.getWaterstd(),0,0,0,0,0,0);
+        for(int i = 0; i < meals.size(); i++)
+            if(meals.get(i).get(day.getIndex() - 1).getMealID().equals(before.getMealID())){
+                //RESET NEWDAY PARAMETERS
+                newDay.setTotalCal(day.getTotalCal() - before.getTotalCal() + after.getTotalCal());
+                newDay.setCarbohydrate(day.getCarbohydrate()- before.getCarbohydrate() + after.getCarbohydrate());
+                newDay.setFiber(day.getFiber() - before.getFiber() + after.getFiber());
+                newDay.setProtein(day.getProtein() - before.getProtein() + after.getProtein());
+                newDay.setFat(day.getFat() - before.getFat() + after.getFat());
+                newDay.setWater(day.getWater() - before.getWater() + after.getWater());
+                
+                //REPLACE IN meals
+                meals.get(i).remove(day.getIndex() - 1);
+                meals.get(i).add(day.getIndex() - 1,after);
+                return newDay;
+            }
+        return newDay;   
+    }
+    
+    public void replaceDay(ArrayList<Day> days, Day before, Day after){
+        for(int i = 0; i < days.size(); i++)
+            if(days.get(i).getDayID().equals(before.getDayID())){
+                days.remove(i);
+                days.add(i,after);
+            }
     }
     
     public Meal findMealByMealID(ArrayList<ArrayList<Meal>> meals, String mealID){
