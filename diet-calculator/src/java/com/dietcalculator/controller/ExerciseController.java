@@ -59,7 +59,11 @@ public class ExerciseController extends HttpServlet {
         String description = "";
 
         if (action == null || action.equals("list")) {
-            List<Exercise> fullList = exerciseDAO.readExercise();
+            try {
+                exName = request.getParameter("exname");
+            } catch (Exception e) {
+            }
+            List<Exercise> fullList = exerciseDAO.readExercise(exName);
 
             int pageSize = 12;
             int totalPages = (int) Math.ceil(fullList.size() / pageSize);
@@ -75,6 +79,35 @@ public class ExerciseController extends HttpServlet {
             }
             List<Exercise> list = paginExercise(page, pageSize, fullList);
 
+            request.setAttribute("page", (int) page);
+            request.setAttribute("totalPages", totalPages);
+            request.setAttribute("list", list);
+            RequestDispatcher rd = request.getRequestDispatcher("./Administrator/Exercise.jsp");
+            rd.forward(request, response);
+        } else if(action.equals("sort")) {
+            String exname = request.getParameter("exname");
+            String calore = request.getParameter("calorexp");
+            
+            List<Exercise> fullList = null;
+            if(exname != null || calore != null) {
+                fullList = exerciseDAO.sortExercise(exname, calore);
+            }
+            
+            int pageSize = 12;
+            int totalPages = (int) Math.ceil(fullList.size() / pageSize);
+            Integer page = null;
+            try {
+                page = Integer.parseInt(request.getParameter("page"));
+            } catch (Exception e) {
+            }
+            if (page == null) {
+                page = 1;
+            } else if (page > totalPages) {
+                page = totalPages;
+            }
+            
+            List<Exercise> list = paginExercise(page, pageSize, fullList);
+            
             request.setAttribute("page", (int) page);
             request.setAttribute("totalPages", totalPages);
             request.setAttribute("list", list);
@@ -111,7 +144,7 @@ public class ExerciseController extends HttpServlet {
                     id = request.getParameter("exerciseID");
                 } catch (NumberFormatException ex) {
                 }
-                Exercise ex = readexerciseByID(id);
+                Exercise ex = readexerciseByID(id, exName);
 
                 request.setAttribute("exercise", ex);
                 RequestDispatcher rd = request.getRequestDispatcher("./Administrator/EditExercise.jsp");
@@ -138,9 +171,9 @@ public class ExerciseController extends HttpServlet {
         }
     }
 
-    protected Exercise readexerciseByID(String exID) {
+    private Exercise readexerciseByID(String exID, String exname) {
         ExerciseDAO dao = new ExerciseDAO();
-        List<Exercise> list = dao.readExercise();
+        List<Exercise> list = dao.readExercise(exname);
         for (Exercise ex : list) {
             if (ex.getExerciseID().equals(exID)) {
                 return ex;
@@ -148,6 +181,16 @@ public class ExerciseController extends HttpServlet {
         }
         return null;
     }
+//    private Exercise searchxerciseByName(String exname) {
+//        ExerciseDAO dao = new ExerciseDAO();
+//        List<Exercise> list = dao.readExercise();
+//        for (Exercise ex : list) {
+//            if (ex.getExname().contains(exname)) {
+//                return ex;
+//            }
+//        }
+//        return null;
+//    }
 
     public List<Exercise> paginExercise(int pageNum, int pageSize, List<Exercise> exercises) {
         int startIndex = (pageNum - 1) * pageSize;

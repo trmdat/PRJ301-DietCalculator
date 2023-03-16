@@ -39,6 +39,19 @@
                                     <button type="submit" class="btn btn-primary btn-block text-uppercase bg-success"> << Return</button>                            
                                 </form>
                             </div>
+                            <div class="col-md-12">
+                                <form action="ExerciseController" method="post">
+                                    <input type="text" name="exname" placeholder="Search by Name"/>
+                                </form>
+                            </div>
+                            <div class="col-md-12">
+                                <form action="ExerciseController" method="post">
+                                    <input type="hidden" name="action" value="sort" />
+                                    Name <input type="checkbox" name="exname" />
+                                    Calorexp <input type="checkbox" name="calorexp" />
+                                    <input type="submit" value="Sort" />
+                                </form>
+                            </div>
                         </div>
                         <a href="Administrator/AddExercise.jsp" class="btn btn-primary btn-block text-uppercase mb-3 bg-success">Add new Exercise</a>
                         <div class="tm-product-table-container">

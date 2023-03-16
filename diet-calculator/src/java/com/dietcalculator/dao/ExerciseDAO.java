@@ -34,9 +34,57 @@ public class ExerciseDAO {
         return index;
     }
 
-    public List<Exercise> readExercise() {
+    public List<Exercise> readExercise(String exname) {
         List<Exercise> list = new ArrayList();
         String sql = "SELECT * FROM Exercise";
+        String where = "";
+        String whereJoinWord = " WHERE ";
+
+        if (exname != null && !exname.trim().isEmpty()) {
+            where += whereJoinWord;
+            where += " exname  LIKE ?";
+            whereJoinWord = " AND ";
+        }
+        sql += where;
+        try {
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            int index = 1;
+            if (exname != null && !exname.trim().isEmpty()) {
+                ps.setString(index, '%' + exname + '%');
+                index++;
+            }
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Exercise(rs.getString("exerciseID"), rs.getString("exname"), rs.getDouble("lowerweight"), rs.getDouble("upperweight"), rs.getInt("calorexp"), rs.getString("icon"), rs.getString("description")));
+            }
+            rs.close();
+            ps.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return list;
+    }
+    
+    public List<Exercise> sortExercise(String exname, String calorexp) {
+        List<Exercise> list = new ArrayList();
+        String sql = "SELECT * FROM Exercise";
+        String order = "";
+        String orderJoinWord = " ORDER BY ";
+
+        if (exname != null && !exname.trim().isEmpty()) {
+            order += orderJoinWord;
+            order += " exname ASC ";
+            orderJoinWord = " AND ";
+        }
+        
+        if (calorexp != null && !calorexp.trim().isEmpty()) {
+            order += orderJoinWord;
+            order += " calorexp ASC ";
+            orderJoinWord = " AND ";
+        }
+        sql += order;
         try {
             Connection conn = DBUtils.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -73,7 +121,6 @@ public class ExerciseDAO {
 //        }
 //        return exercise;
 //    }
-
     public boolean createExercise(String exerciseID, String exname, double lowerweight, double upperweight, int calorexp, String icon, String description) {
         String sql = "INSERT INTO Exercise VALUES(?,?,?,?,?,?,?)";
         int row = 0;
