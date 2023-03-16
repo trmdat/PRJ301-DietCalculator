@@ -62,7 +62,72 @@ public class FoodDetailController extends HttpServlet {
         }
     }
     
-    //Side meal Calculator with standard SIDE_MEAL_SIZE from sources of fruit, nuts, legumes, dairies&dessert
+    public final ArrayList<FoodDetail> generateFoodDetailSubstituteByCategory(Meal meal, ArrayList<Food> allApplicableFood, String category){
+        ArrayList<FoodDetail> fdByCategory = new ArrayList();
+        FoodController fc = new FoodController();
+        ArrayList<Food> foodOfCategory = fc.listFoodByCategory(allApplicableFood, category);
+        double ratio = 0;
+        double calories = 0;
+   
+        
+        for(int idx = 0; idx < foodOfCategory.size(); idx++){
+            FoodDetail detail = new FoodDetail();
+            Food currentFood = foodOfCategory.get(idx);
+            
+            if(category.equalsIgnoreCase("fruit/nuts/legumes/dairies&dessert")){
+                //the amount of break fast is based on Calories 
+                calories = Utils.roundDouble(meal.getCarbohydratestd());   //NO NEED FOR RELATIVE_ESTIMATE
+                ratio = Utils.roundDouble(calories/currentFood.getCaloricintake());
+            }else if(category.equalsIgnoreCase("vegetables")){
+                //the amount of vegetables is based on Fiber 
+                calories = Utils.roundDouble(RELATIVE_ESTIMATE*meal.getFiberstd()*VEGETABLES_FIBER_SOURCE);
+                ratio = Utils.roundDouble(calories/(currentFood.getFiber()*CARBOHYDRATE_TO_KCAL));
+            }else if(category.equalsIgnoreCase("fruit")){
+                //the amount of fruit is based on Fiber 
+                calories = Utils.roundDouble(RELATIVE_ESTIMATE*meal.getFiberstd()*FRUIT_FIBER_SOURCE);
+                ratio = Utils.roundDouble(calories/(currentFood.getFiber()*CARBOHYDRATE_TO_KCAL));
+            }else if(category.equalsIgnoreCase("meat/poultry")){
+                //the amount of meat is based on Protein 
+                calories =Utils.roundDouble(RELATIVE_ESTIMATE*meal.getProteinstd()*FIRST_PROTEIN_SOURCE);
+                ratio = Utils.roundDouble(calories/(currentFood.getProtein()*PROTEIN_TO_KCAL));
+            }else if(category.equalsIgnoreCase("fish/seafood/egg")){
+                //the amount of fish/seafood/egg is based on Protein 
+                calories = Utils.roundDouble(RELATIVE_ESTIMATE*meal.getProteinstd()*SECOND_PROTEIN_SOURCE);
+                ratio = Utils.roundDouble(calories/(currentFood.getProtein()*PROTEIN_TO_KCAL));
+            }else if(category.equalsIgnoreCase("starch")){
+                //the amount of starch is based on Carbohydrate 
+                calories = Utils.roundDouble(RELATIVE_ESTIMATE*meal.getCarbohydratestd());
+                ratio = Utils.roundDouble(calories/(currentFood.getCarbohydrate()*CARBOHYDRATE_TO_KCAL));}
+            else if(category.equalsIgnoreCase("dairies&dessert")){
+                //the amount of dairies and dessert is based on Fat 
+                calories = Utils.roundDouble(FAT_FROM_DAIRIES_AND_DESSERT*meal.getFatstd());   //FAT ALSO COMES FROM MEAT AND OTHER FOOD
+                ratio = Utils.roundDouble(calories/(currentFood.getCarbohydrate()*FAT_TO_KCAL));}
+            else if(category.equalsIgnoreCase("drinks")){
+                //the amount of drink is based on Water 
+                calories = Utils.roundDouble(meal.getWaterstd());  //NO NEED FOR RELATIVE_ESTIMATE
+                ratio = Utils.roundDouble(calories/(currentFood.getWater()));
+            }
+            
+                //Setting parameters
+            detail.setFoodID(foodOfCategory.get(idx).getFoodID());
+            detail.setMealID("");
+            detail.setAmount(Utils.roundDouble(ratio*currentFood.getSize()));
+            detail.setTotalCal(Utils.roundDouble(ratio*currentFood.getCaloricintake()));
+            detail.setCarbohydrate(Utils.roundDouble(ratio*currentFood.getCarbohydrate()));
+            detail.setFiber(Utils.roundDouble(ratio*currentFood.getFiber()));
+            detail.setProtein(Utils.roundDouble(ratio*currentFood.getProtein()));
+            detail.setFat(Utils.roundDouble(ratio*currentFood.getFat()));
+            detail.setWater(Utils.roundDouble(ratio*currentFood.getWater()));
+            detail.setIcon(currentFood.getIcon());
+            detail.setCategory(category.toLowerCase());
+            
+            //Add to the list
+            fdByCategory.add(detail);
+        }
+        
+        return fdByCategory;
+    }
+    
     public final FoodDetail generateFoodDetail(Meal meal, ArrayList<Food> foodDataset, String category){
         FoodDetail detail = new FoodDetail();
         int idx = Utils.randomInt(0, foodDataset.size() - 1);
