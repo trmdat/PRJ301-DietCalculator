@@ -24,7 +24,9 @@
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/index/css/bootstrap.min.css">
         <!-- style css -->
 
+
         <link href="${pageContext.request.contextPath}/index/css/style.css" type="text/css" rel="stylesheet">
+
 
 
     </head>
