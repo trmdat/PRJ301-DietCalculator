@@ -272,6 +272,43 @@ public class MenuController extends HttpServlet {
 //                request.setAttribute("mealID", newMeal.getMealID());
                 response.sendRedirect("MenuController?action=details&mealID=" + newMeal.getMealID());
             }
+        }else if(action.equals("buyFood")){
+            //GETTING SESSION
+            HttpSession currentSession = request.getSession(false);
+            if(currentSession == null){
+                response.sendRedirect("/HomeController");
+            }else{
+                //GETTING SESSION ATTRIBUTES
+                ArrayList<ArrayList<ArrayList<FoodDetail>>> foodDetails = (ArrayList<ArrayList<ArrayList<FoodDetail>>>)currentSession.getAttribute("foodDetails");
+                
+                //GETTING REQUEST PARAMETERS
+                final int PAGE_SIZE = 7;
+                Integer page = 1;
+                try{
+                    page = Integer.parseInt(request.getParameter("page"));
+                }catch(Exception e){
+                    
+                }
+                //GETTING SUBARRAY
+                ArrayList<List<ArrayList<FoodDetail>>> subFoodDetails = pagingFoodDetails(page,PAGE_SIZE,foodDetails);
+                HashMap<String, Double> list = new HashMap();
+                for(List<ArrayList<FoodDetail>> x: subFoodDetails)
+                    for(ArrayList<FoodDetail> y: x)
+                        for(FoodDetail z: y)
+                            if(list.size() == 0)
+                                list.put(z.getFoodID(), z.getAmount());
+                            else 
+                                for(String t: list.keySet())
+                                    if(t.equals(z.getFoodID()))
+                                        list.put(z.getFoodID(), list.get(t) + z.getAmount());
+                                    else
+                                        list.put(z.getFoodID(), z.getAmount());
+                           
+                
+                request.setAttribute("list", list);
+                RequestDispatcher rd = request.getRequestDispatcher("/Menu/BuyFood.jsp");
+                rd.forward(request, response);
+            }
         }
     }
     public void replaceImageUrls(ArrayList<ArrayList<ArrayList<String>>> imageUrls, int dayIndex, String before, String after){
@@ -420,6 +457,7 @@ public class MenuController extends HttpServlet {
         List<Day> subList = (List<Day>) days.subList(startIndex, endIndex);
         return subList;
     }
+    
 //
 //    public static void main(String[] args) {
 //        //SAMPLE DATA
