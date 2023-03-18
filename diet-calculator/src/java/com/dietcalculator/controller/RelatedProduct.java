@@ -1,6 +1,8 @@
 package com.dietcalculator.controller;
 
+import com.dietcalculator.dao.ImageDAO;
 import com.dietcalculator.dao.ProductDAO;
+import com.dietcalculator.dto.Image;
 import com.dietcalculator.dto.Product;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -40,7 +42,16 @@ public class RelatedProduct extends HttpServlet {
                     relateList.add(product);
                 }
             }
+            ArrayList<Image> imagelist = new ArrayList<>();
+            for (Product product : relateList) {
+                if (readImageByProductId(product.getProductID()) != null) {
+                    imagelist.add(readImageByProductId(product.getProductID()));
+                } else {
+                    imagelist.add(new Image("", "", "", "", "https://www.bootdey.com/image/250x220/FFB6C1/000000"));
+                }
+            }
             request.setAttribute("relateList", relateList);
+            request.setAttribute("imageList", imagelist);
             RequestDispatcher rd = request.getRequestDispatcher("Product List/RelatedProduct.jsp");
             try {
                 Thread.sleep(1000); // delay 
@@ -52,6 +63,41 @@ public class RelatedProduct extends HttpServlet {
         }
 
     }
+
+    private static Image readImageByProductId(String id) {
+        ImageDAO imageDao = new ImageDAO();
+        ArrayList<Image> imageList = imageDao.searchImageByProductID(id);
+        for (Image image : imageList) {
+            if (image.getProductID().equals(id)) {
+                return image;
+            }
+        }
+        return null;
+    }
+//    public static void main(String[] args) {
+//                ProductDAO dao = new ProductDAO();
+//
+//        String type = "Vitamin";
+//    
+// 
+//            ArrayList<Product> productList = dao.readProduct();
+//            ArrayList<Product> relateList = new ArrayList<>();
+//            for (Product product : productList) {
+//                if (product.getType().equals(type)) {
+//                    relateList.add(product);
+//                }
+//            ArrayList<Image> imagelist = new ArrayList<>();
+//            for (Product pr : relateList) {
+//                if (readImageByProductId(pr.getProductID()) != null) {
+//                    imagelist.add(readImageByProductId(pr.getProductID()));
+//                } else {
+//                    imagelist.add(new Image("", "", "", "", "https://www.bootdey.com/image/250x220/FFB6C1/000000"));
+//                }
+//            }
+//                for (Image image : imagelist) {
+//                    System.out.println(image.getUrl());
+//                }
+//            }}
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

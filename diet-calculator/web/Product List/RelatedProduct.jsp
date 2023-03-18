@@ -260,22 +260,26 @@
                                             </ul>
                                         </div>
                                     </div>-->
-                                    <c:forEach items="${relateList}" var="x">
+
+                                    <c:forEach var="x" begin="0" end="${relateList.size()-1}" step="1">
+
                                         <div class="owl-item">
                                             <div class="bbb_viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">
-                                                <div class="bbb_viewed_image"><img src="https://via.placeholder.com/200x200.png?text=Product+1" alt=""></div>
-                                                <div class="bbb_viewed_content text-center">
-                                                    <div class="bbb_viewed_price">${x.getPrice()}</div>
-                                                    <div class="bbb_viewed_name"><a href="#">${x.getProductname()}</a></div>
-                                                </div>
-                                                <ul class="item_marks">
-                                                    <li class="item_mark item_discount">-25%</li>
-                                                    <li class="item_mark item_new">new</li>
-                                                </ul>
+                                                <a href="ProductInfoController?productID=${relateList.get(x).getProductID()}">
+                                                    <div class="bbb_viewed_image"><img class="img-responsive" src="${imageList.get(x).getUrl()}" alt="product image"></div>
+                                                    <div class="bbb_viewed_content text-center">
+                                                        <div class="bbb_viewed_price">${relateList.get(x).getPrice()}</div>
+                                                        <div class="bbb_viewed_name"><a href="#">${relateList.get(x).getProductname()}</a></div>
+                                                    </div>
+                                                    <ul class="item_marks">
+
+                                                        <li class="item_mark item_new">new!</li>
+                                                    </ul>
+                                                </a>
                                             </div>
                                         </div>
-                                    </c:forEach>
 
+                                    </c:forEach>
 
                                 </div>
                             </div> 
@@ -338,7 +342,7 @@
                 myLink.addEventListener('click', function (e) {
                     e.preventDefault();
                 });</script>
-        <br>
-        <jsp:include page="../index/UserFooter.jsp" />
-    </body>
-</html>
+            <br>
+            <jsp:include page="../index/UserFooter.jsp" />
+            </body>
+            </html>

@@ -109,7 +109,7 @@ public class ImageDAO {
         }
         return list;
     }
-        public ArrayList<Image> searchImageByProductID(String id) {
+    public ArrayList<Image> searchImageByProductID(String id) {
         ArrayList<Image> list = new ArrayList<>();
         String sql = "SELECT * FROM Image WHERE productID = ?";
         try {
@@ -128,6 +128,7 @@ public class ImageDAO {
         }
         return list;
     }
+
 
     public ArrayList<Image> readImageByFoodID(String foodID) {
         ArrayList<Image> list = new ArrayList();
@@ -168,28 +169,28 @@ public class ImageDAO {
         return list;
     }
 
-    public static void main(String[] args) {
-        ImageDAO dao = new ImageDAO();
-
-        System.out.println("Create");
-        dao.createImage("IMG000000", "PRO0001", null, null, "abc");
-        ArrayList<Image> list = dao.readImageByProductID();
-        for (Image image : list) {
-            System.out.println(image);
-        }
-
-        System.out.println("Update");
-        System.out.println(dao.updateImage("IMG000000", "PRO0002", null, null, "bed"));
-        list = dao.readImageByProductID();
-        for (Image image : list) {
-            System.out.println(image);
-        }
-
-        System.out.println("Delete");
-        System.out.println(dao.deleteImage("IMG000000"));
-                dao.createImage("IMG000000", "PRO0001", null, null, "https://www.bootdey.com/image/250x220/FFB6C1/000000");
-                
-                
-        
-    }
+//    public static void main(String[] args) {
+//        ImageDAO dao = new ImageDAO();
+//
+//        System.out.println("Create");
+//        dao.createImage("IMG000000", "PRO0001", null, null, "abc");
+//        ArrayList<Image> list = dao.readImageByProductID();
+//        for (Image image : list) {
+//            System.out.println(image);
+//        }
+//
+//        System.out.println("Update");
+//        System.out.println(dao.updateImage("IMG000000", "PRO0002", null, null, "bed"));
+//        list = dao.readImageByProductID();
+//        for (Image image : list) {
+//            System.out.println(image);
+//        }
+//
+//        System.out.println("Delete");
+//        System.out.println(dao.deleteImage("IMG000000"));
+//                dao.createImage("IMG000000", "PRO0001", null, null, "https://www.bootdey.com/image/250x220/FFB6C1/000000");
+//                
+//                
+//        
+//    }
 }

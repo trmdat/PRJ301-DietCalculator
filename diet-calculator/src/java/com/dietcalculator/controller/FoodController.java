@@ -42,7 +42,7 @@ public class FoodController extends HttpServlet {
 
         if (action == null || action.equals("read")) {
             ArrayList<Food> fullList = dao.readFood();
-
+            
             int pageSize = 12;
             int totalPages = (int) Math.ceil(fullList.size() / pageSize);
             Integer page = null;

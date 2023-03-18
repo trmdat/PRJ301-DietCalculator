@@ -11,13 +11,12 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
         <title>Add New PopUp</title>
        
-=======
+
         <title>Add New PopUpDetail</title>
         <jsp:include page="../index/AdminHeader.jsp" />
->>>>>>> 8afe27ada5ac40f65c54c9326b76c0b6eda9a3ef
+
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700" />
         <link rel="stylesheet" href="css/fontawesome.min.css" />
         <link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -27,7 +26,7 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     </head>
     <body>
-<<<<<<< HEAD
+
         
         <jsp:include page="../index/AdminHeader.jsp" />
         <nav class="navbar navbar-expand-xl">
@@ -116,9 +115,9 @@
             </div>
         </nav>
         <div class="container tm-mt-big tm-mb-big mt-5 mb-5">
-=======
+
         <div class="container tm-mt-big tm-mb-big">
->>>>>>> 8afe27ada5ac40f65c54c9326b76c0b6eda9a3ef
+
             <div class="row">
                 <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
                     <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
