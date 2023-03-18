@@ -36,7 +36,19 @@ public class ProductListController extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             ProductDAO pdao = new ProductDAO();
-            ArrayList<Product> fullProductList = pdao.readProduct();
+            String keyword = null;
+            String type = null;
+            String price = null;
+            String quantity = null;
+
+            try {
+                keyword = request.getParameter("keyword");
+                type = request.getParameter("type");
+                price = request.getParameter("price");
+                quantity = request.getParameter("quantity");
+            } catch (Exception e) {
+            }
+            ArrayList<Product> fullProductList = pdao.readProduct(keyword, type, price, quantity);
             ImageDAO idao = new ImageDAO();
             ArrayList<Image> imagelist = new ArrayList<>();
 
@@ -54,8 +66,11 @@ public class ProductListController extends HttpServlet {
             }
             List<Product> productList = paginProducts(page, pageSize, fullProductList);
             for (Product product : productList) {
-//                imagelist.add(idao.searchImageByProductID(product.getProductID()).get(0));
-                imagelist.add(new Image("IMG000000", "", "", "", "https://www.bootdey.com/image/250x220/FFB6C1/000000"));
+                if (readImageByProductId(product.getProductID()) != null) {
+                    imagelist.add(readImageByProductId(product.getProductID()));
+                } else {
+                    imagelist.add(new Image("", "", "", "", "https://www.bootdey.com/image/250x220/FFB6C1/000000"));
+                }
             }
 
             request.setAttribute("page", (int) page);
@@ -65,6 +80,17 @@ public class ProductListController extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("Product List/ProductList.jsp");
             rd.forward(request, response);
         }
+    }
+
+    private Image readImageByProductId(String id) {
+        ImageDAO imageDao = new ImageDAO();
+        ArrayList<Image> imageList = imageDao.searchImageByProductID(id);
+        for (Image image : imageList) {
+            if (image.getProductID().equals(id)) {
+                return image;
+            }
+        }
+        return null;
     }
 
     public List<Product> paginProducts(int pageNum, int pageSize, List<Product> products) {
