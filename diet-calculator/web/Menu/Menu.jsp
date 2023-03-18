@@ -25,49 +25,50 @@
    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
    <link rel="stylesheet" href="Menu.css" />
+   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/index/css/style.css">
    <style>
        body{
    margin-top:20px;
 }
-.bg-light-gray {
+.bg-light-gray1 {
    background-color: #f7f7f7;
 }
-.table-bordered thead td, .table-bordered thead th {
+.table-bordered1 thead td, .table-bordered1 thead th {
    border-bottom-width: 2px;
 }
-.table thead th {
+.table1 thead th {
    vertical-align: bottom;
    border-bottom: 2px solid #dee2e6;
 }
-.table-bordered td, .table-bordered th {
+.table-bordered1 td, .table-bordered1 th {
    border: 1px solid #dee2e6;
 }
 
-.bg-sky.box-shadow {
+.bg-sky.box-shadow1 {
    box-shadow: 0px 5px 0px 0px #00a2a7
 }
 
-.bg-orange.box-shadow {
+.bg-orange.box-shadow1 {
    box-shadow: 0px 5px 0px 0px #af4305
 }
 
-.bg-green.box-shadow {
+.bg-green.box-shadow1 {
    box-shadow: 0px 5px 0px 0px #4ca520
 }
 
-.bg-yellow.box-shadow {
+.bg-yellow.box-shadow1 {
    box-shadow: 0px 5px 0px 0px #dcbf02
 }
 
-.bg-pink.box-shadow {
+.bg-pink.box-shadow1 {
    box-shadow: 0px 5px 0px 0px #e82d8b
 }
 
-.bg-purple.box-shadow {
+.bg-purple.box-shadow1 {
    box-shadow: 0px 5px 0px 0px #8343e8
 }
 
-.bg-lightred.box-shadow {
+.bg-lightred.box-shadow1 {
    box-shadow: 0px 5px 0px 0px #d84213
 }
 
@@ -133,7 +134,7 @@
    font-size: 1px;
 }
 
-.table-bordered td, .table-bordered th {
+.table-bordered1 td, .table-bordered1 th {
    border: 1px solid #dee2e6;
 }
 .table td, .table th {
@@ -180,7 +181,7 @@ a:hover {
   text-align: left;
 }
 
-.column-tooltip{
+.column-tooltip1{
   font-family:Cambria;
   font-size: 11px;
   margin-top: 2px; 
@@ -196,12 +197,12 @@ a:hover {
  width: 25%;
 }
 
-.tooltips{
+.tooltips1{
   position: relative;
   display: inline-block;
 }
 
-.tooltiptext{
+.tooltiptext1{
   visibility: hidden;
   width: 9.2em;
   height: 11.3em;
@@ -219,7 +220,7 @@ a:hover {
   transition: opacity 1s;
 }
 
-.tooltips:hover .tooltiptext {
+.tooltips1:hover .tooltiptext1 {
   visibility: visible;
   opacity: 1;
 }
@@ -235,6 +236,34 @@ a:hover {
 </head>
 
 <body>
+     <!--header section start -->
+        <div class="header_section1">
+            <div class="header-nav">
+                <nav class="navbar navbar-expand-lg navbar-dark main_navbar">
+                    <div class="logo"><a href="index.jsp"><img class="logo" src="./index/images/logo.jpg" alt="logo"><h1 class="title">Diet Calculator</h1></a></div>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./calculator/DietForm.jsp">Diet</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="ProductListController">Product</a>
+                            </li> 
+                            <li class="nav-item">
+                                <a class="nav-link" href="">Contact Us</a>
+                            </li>      
+                        </ul>
+                        <div class="user-logo"><a href="../LoginController"><img src="./index/images/user-logo.jpg" alt="user_logo"></a></div>
+                    </div>
+                </nav>
+            </div>
+    
    <div class="container">
       <div class="timetable-img text-center">
          <img src="img/content/timetable.png" alt="" />
@@ -245,7 +274,7 @@ a:hover {
       <div class="table-responsive" style="width: 1250px;padding-right: 150px;overflow-x: hidden;">
          <table class="table table-bordered text-center">
             <thead>
-               <tr class="bg-light-gray">
+               <tr class="bg-light-gray1">
                   <th class="text-uppercase">Time</th>
                   <th class="text-uppercase">Monday</th>
                   <th class="text-uppercase">Tuesday</th>
@@ -288,7 +317,7 @@ a:hover {
                             +"<td class=\"align-middle\">" + time + "</td>\n";
             for(int day = 0; day < 7; day++){
                     html += "<td>\n"
-                            +"<div class=\"tooltips\" style=\"border: none;width: 8em;height: 10em;padding-left: 0px\">"
+                            +"<div class=\"tooltips1\" style=\"border: none;width: 8em;height: 10em;padding-left: 0px\">"
                             +" <span "
                             +"   class=\"" + color + " padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13\">" + mealIndexStr + "</span>\n"
                             +"<div class=\"font-size13 text-light-gray\" style = \"margin-top: 5px\">" + meals.get(day).getTotalCal() + " KCal</div>";
@@ -344,11 +373,11 @@ a:hover {
         }
 
         public String displayDetailsFoodDetail(ArrayList<FoodDetail> fd, ArrayList<Food> foodDataset, int currentPage){
-            String html = "<span class = \"tooltiptext\" style = \"\">";
+            String html = "<span class = \"tooltiptext1\" style = \"\">";
             for(FoodDetail x: fd){
                 html += "<div class = \"row\">"
-                       +"<div class=\"column-tooltip column-50\">" + searchFoodNameByFoodID(x.getFoodID(),foodDataset) + "</div>"
-                       +"<div class=\"column-tooltip column-25\">"+ x.getAmount() +" g</div>"
+                       +"<div class=\"column-tooltip1 column-50\">" + searchFoodNameByFoodID(x.getFoodID(),foodDataset) + "</div>"
+                       +"<div class=\"column-tooltip1 column-25\">"+ x.getAmount() +" g</div>"
                        +"</div>";
             }
                 html += "<form action=\"MenuController\" method=\"get\">\n"
@@ -410,7 +439,7 @@ a:hover {
     <div>
     
     </div>
-
+                 
 </body>
 
 </html>

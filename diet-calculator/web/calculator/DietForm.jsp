@@ -13,10 +13,39 @@
    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/index/css/style.css">
 </head>
 
 <body>
-   <div class="container tm-mt-big tm-mb-big">
+    <!--header section start -->
+        <div class="header_section1">
+            <div class="header-nav">
+                <nav class="navbar navbar-expand-lg navbar-dark main_navbar">
+                    <div class="logo"><a href="../HomeController"><img class="logo" src="../index/images/logo.jpg" alt="logo"><h1 class="title">Diet Calculator</h1></a></div>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./calculator/DietForm.jsp">Diet</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="ProductListController">Product</a>
+                            </li> 
+                            <li class="nav-item">
+                                <a class="nav-link" href="">Contact Us</a>
+                            </li>      
+                        </ul>
+                        <div class="user-logo"><a href="../LoginController"><img src="../index/images/user-logo.jpg" alt="user_logo"></a></div>
+                    </div>
+                </nav>
+            </div>
+    
+   <div class="container tm-mt-big tm-mb-big mt-5 mb-5">
       <div class="row">
          <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
             <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
@@ -171,6 +200,8 @@
          });
       });
    </script>
+   
+   <jsp:include page="../index/UserFooter.jsp" />
 </body>
 
 </html>

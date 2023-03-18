@@ -40,7 +40,7 @@
         <div class="header_section">
             <div class="header-nav">
                 <nav class="navbar navbar-expand-lg navbar-dark main_navbar">
-                    <div class="logo"><a href="index.jsp"><img class="logo" src="./images/logo.jpg" alt="logo"><h1 class="title">Diet Calculator</h1></a></div>
+                    <div class="logo"><a href="index.jsp"><img class="logo" src="./index/images/logo.jpg" alt="logo"><h1 class="title">Diet Calculator</h1></a></div>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -50,13 +50,16 @@
                                 <a class="nav-link" href="">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="">Menu Cart</a>
+                                <a class="nav-link" href="./calculator/DietForm.jsp">Diet</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link" href="ProductListController">Product</a>
+                            </li> 
+                            <li class="nav-item">
                                 <a class="nav-link" href="">Contact Us</a>
-                            </li>               
+                            </li>      
                         </ul>
-                        <div class="user-logo"><a href="../LoginController"><img src="images/user-logo.jpg" alt="user_logo"></a></div>
+                        <div class="user-logo"><a href="../LoginController"><img src="./index/images/user-logo.jpg" alt="user_logo"></a></div>
                     </div>
                 </nav>
             </div>
@@ -72,7 +75,7 @@
                                             <h1 class="banner_taital">Diet Calculator</h1>
                                             <p class="banner_text">Hello! We are team PGNB</p>
                                             <div class="btn_main">
-                                                <div class="contact_bt"><a href="#">Calculate diet</a></div>
+                                                <div class="contact_bt"><a href="./calculator/DietForm.jsp">Calculate diet</a></div>
                                                 <div class="readmore_bt active"><a href="#">Read More</a></div>
                                             </div>
                                         </div>
@@ -94,7 +97,7 @@
                     <div class="col-lg-6 padding_0">
                         <div class="abiut_images_main rounded">
 
-                            <div><img src="images/img-2.jpg" class="image_2"></div>
+                            <div><img src="./index/images/img-2.jpg" class="image_2"></div>
 
                         </div>
                     </div>
@@ -157,7 +160,7 @@
                     </div>
 
                     <div class="col-lg-6 padding_left_30">
-                        <div class="vitamin_img"><img src="images/product_vitamin.png"></div>
+                        <div class="vitamin_img"><img src="./index/images/product_vitamin.png"></div>
                     </div>
                 </div>
             </div>
@@ -184,7 +187,7 @@
                 </div>
             </div>
         </div>
-       
+
 
 
         <jsp:include page="../index/UserFooter.jsp" />
