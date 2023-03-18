@@ -19,13 +19,13 @@
 
         <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
        
-        <link href="../Administrator/css/style1.css" type="text/css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/index/css/style1.css" type="text/css" rel="stylesheet">
     </head>
     <body>
         <jsp:include page="../index/AdminHeader.jsp" />
         <br>
         <nav>
-            <div class="container tm-mt-big tm-mb-big">
+            <div class="container tm-mt-big tm-mb-big mb-5 mt-5">
                 <div class="row">
                     <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
                         <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
@@ -42,7 +42,7 @@
 
                             <div class="row tm-edit-product-row">
                                 <div class="col-xl-12 col-lg-12 col-md-12">
-                                    <form action="/diet-calculator/ProductController" class="tm-edit-product-form" method="get">
+                                    <form action="/diet-calculator/ProductController" class="tm-edit-product-form" method="post">
                                         <input type="hidden" name="action" value="create"/>
                                         <div class="form-group mb-3">
                                             <label
@@ -240,62 +240,14 @@
         </nav
 
         <!-- Footer -->
-        <jsp:include page="../index/AdminFooter.jsp" />
+        <jsp:include page="../index/UserFooter.jsp" />
         
         
         
-<!--        <footer class="page-footer font-small cyan darken-3">
 
-             Footer Elements 
-            <div class="container">
-
-                 Grid row
-                <div class="row">
-
-                     Grid column 
-                    <div class="col-md-12 py-5">
-                        <div class="grid-ic mb-5 flex-center">
-
-                             Facebook 
-                            <a class="fb-ic">
-                                <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
-                            </a>
-                             Twitter 
-                            <a class="tw-ic">
-                                <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
-                            </a>
-                             Google +
-                            <a class="gplus-ic">
-                                <i class="fab fa-google-plus-g fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
-                            </a>
-                            Linkedin 
-                            <a class="li-ic">
-                                <i class="fab fa-linkedin-in fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
-                            </a>
-                            Instagram
-                            <a class="ins-ic">
-                                <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
-                            </a>
-                            Pinterest
-                            <a class="pin-ic">
-                                <i class="fab fa-pinterest fa-lg white-text fa-2x"> </i>
-                            </a>
-                        </div>
-                    </div>
-                     Grid column 
-
-                </div>
-                 Grid row
-
-            </div>
-             Footer Elements 
-
-   
-
-        </footer>
-         Footer 
-
--->
 
     </body>
 </html>
+
+
+  

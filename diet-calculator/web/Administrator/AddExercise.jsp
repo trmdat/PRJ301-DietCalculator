@@ -10,118 +10,93 @@
 
     <head>
         <title>Edit Exercise</title>
-        <jsp:include page="../index/AdminHeader.jsp" />
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700" />
-        <link rel="stylesheet" href="css/fontawesome.min.css" />
-        <link rel="stylesheet" href="css/bootstrap.min.css" />
-        <link rel="stylesheet" href="css/templatemo-style.css">
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!--        <link href="./css/style1.css" type="text/css" rel="stylesheet">-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
+
+        <!-- Popper JS -->
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+        <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+
+        <link href="${pageContext.request.contextPath}/index/css/style1.css" type="text/css" rel="stylesheet">
     </head>
 
-    <body>
-<<<<<<< HEAD
-        <nav class="navbar navbar-expand-xl">
-            <div class="container h-100">
-                <div class="navbar-brand">
-                    <h1 class="tm-site-title mb-0">Exercise Admin</h1>
-                </div>
-                <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse"
-                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                        aria-label="Toggle navigation">
-                    <i class="fas fa-bars tm-nav-icon"></i>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mx-auto h-100">
-                        <li class="nav-item">
-                            <a class="nav-link" href="">
-                                <i class="fas fa-tachometer-alt"></i> Dashboard
-                                <span class="sr-only">(current)</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="products.html">
-                                <i class="fas fa-shopping-cart"></i> Products
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="">
-                                <i class="far fa-user"></i> Accounts
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <div class="container tm-mt-big tm-mb-big mt-5 mb-5">
-=======
-        <div class="container tm-mt-big tm-mb-big">
->>>>>>> 8afe27ada5ac40f65c54c9326b76c0b6eda9a3ef
-            <div class="row">
-                <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
-                    <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
-                        <div class="row">
-                            <div class="col-10">
-                                <h2 class="tm-block-title d-inline-block">Add Exercise</h2>
+        <body>
+            <jsp:include page="../index/AdminHeader.jsp" />
+        <br>
+        <nav>
+            <div class="container tm-mt-big tm-mb-big mb-5 mt-5">
+                <div class="row">
+                    <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
+                        <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+                            <div class="row">
+                                <div class="col-10">
+                                    <h2 class="tm-block-title d-inline-block">Exercise Admin</h2>
+                                </div>
+                                <div class="col-2">
+                                    <form action="/diet-calculator/ExerciseController">
+                                        <button type="submit" class="btn btn-primary btn-block text-uppercase bg-success"> << Return</button>                            
+                                    </form>
+                                </div>
                             </div>
-                            <div class="col-2">
-                                <form action="/diet-calculator/ExerciseController">
-                                    <button type="submit" class="btn btn-primary btn-block text-uppercase bg-success"> << Return</button>                            
-                                </form>
-                            </div>
-                        </div>
-                        <div class="row tm-edit-product-row">
-                            <div class="col-xl-12 col-lg-12 col-md-12">
-                                <form action="ExerciseController" method="post" class="tm-edit-product-form">
-                                    <input type=hidden name="action" value="create">
-                                    <div class="form-group mb-3">
-                                        <label for="name">Exercise Name</label>
-                                        <input type="text" name="exname" class="form-control validate" required/>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group mb-3 col-xs-12 col-sm-4">
-                                            <label for="lowerweight">Lower Weight</label>
-                                            <input type="text" name="lowerweight" class="form-control validate" required/>
+
+                            <d <div class="row tm-edit-product-row">
+                                <div class="col-xl-12 col-lg-12 col-md-12">
+                                    <form action="ExerciseController" method="post" class="tm-edit-product-form">
+                                        <input type=hidden name="action" value="create">
+                                        <div class="form-group mb-3">
+                                            <label for="name">Exercise Name</label>
+                                            <input type="text" name="exname" class="form-control validate" required/>
                                         </div>
-                                        <div class="form-group mb-3 col-xs-12 col-sm-4">
-                                            <label for="upperweight">Upper Weight</label>
-                                            <input type="text" name="upperweight" class="form-control validate" required/>
+                                        <div class="row">
+                                            <div class="form-group mb-3 col-xs-12 col-sm-4">
+                                                <label for="lowerweight">Lower Weight</label>
+                                                <input type="text" name="lowerweight" class="form-control validate" required/>
+                                            </div>
+                                            <div class="form-group mb-3 col-xs-12 col-sm-4">
+                                                <label for="upperweight">Upper Weight</label>
+                                                <input type="text" name="upperweight" class="form-control validate" required/>
+                                            </div>
+                                            <div class="form-group mb-3 col-xs-12 col-sm-4">
+                                                <label for="calorexp">Calorexp</label>
+                                                <input type="text" name="calorexp" class="form-control validate" required/>
+                                            </div>
+                                            <div class="form-group mb-3 col-xs-12 col-sm-4">
+                                                <label for="calorexp">Icon</label>
+                                                <input type="text" name="icon" class="form-control validate" required/>
+                                            </div>
+                                            <div class="form-group mb-3 col-xs-12 col-sm-4">
+                                                <label for="calorexp">Description</label>
+                                                <input type="text" name="description" class="form-control validate" required/>
+                                            </div>
+                                            <div class="col-12">
+                                                <input type="submit" value="Add Exercise" class="btn btn-primary btn-block text-uppercase bg-success">
+                                            </div>
                                         </div>
-                                        <div class="form-group mb-3 col-xs-12 col-sm-4">
-                                            <label for="calorexp">Calorexp</label>
-                                            <input type="text" name="calorexp" class="form-control validate" required/>
-                                        </div>
-                                        <div class="form-group mb-3 col-xs-12 col-sm-4">
-                                            <label for="calorexp">Icon</label>
-                                            <input type="text" name="icon" class="form-control validate" required/>
-                                        </div>
-                                        <div class="form-group mb-3 col-xs-12 col-sm-4">
-                                            <label for="calorexp">Description</label>
-                                            <input type="text" name="description" class="form-control validate" required/>
-                                        </div>
-                                        <div class="col-12">
-                                            <input type="submit" value="Add Exercise" class="btn btn-primary btn-block text-uppercase bg-success">
-                                        </div>
-                                    </div>
-                                </form>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <br>
-        <script src="js/jquery-3.3.1.min.js"></script>
-        <!-- https://jquery.com/download/ -->
-        <script src="js/bootstrap.min.js"></script>
-        <!-- https://getbootstrap.com/ -->
+        </nav
+
+        <!-- Footer -->
         <jsp:include page="../index/UserFooter.jsp" />
+        
+        
+        
+
+
     </body>
 </html>
+            

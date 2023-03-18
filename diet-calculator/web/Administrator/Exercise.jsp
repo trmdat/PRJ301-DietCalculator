@@ -23,7 +23,10 @@
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        
     </head>
+    
+    
 
     <body id="reportsPage">
         <div class="container mt-5 mb-5">
@@ -32,7 +35,7 @@
                     <div class="tm-bg-primary-dark tm-block tm-block-products">
                         <div class="row">
                             <div class="col-10">
-                                <h2 class="tm-block-title d-inline-block">Exercise Admin</h2>
+                                <h2 class="tm-block-title d-inline-block mb-4">Exercise Admin</h2>
                             </div>
                             <div class="col-2">
                                 <form action="/diet-calculator/ExerciseController">
@@ -53,11 +56,11 @@
                                 </form>
                             </div>
                         </div>
-                        <a href="Administrator/AddExercise.jsp" class="btn btn-primary btn-block text-uppercase mb-3 bg-success">Add new Exercise</a>
+                        <a href="Administrator/AddExercise.jsp" class="btn btn-primary btn-block text-uppercase mb-3 bg-success mt-3">Add new Exercise</a>
                         <div class="tm-product-table-container">
                             <form action="ExerciseController" method="get">
                                 <input type="hidden" name="action" value="delete">
-                                <table class="table table-hover tm-table-small tm-product-table">
+                                <table class="table table-lg table-hover ">
                                     <thead>
                                         <tr>
                                             <th scope="col">&nbsp;</th>
@@ -74,7 +77,7 @@
                                     <tbody>
                                         <c:forEach var="e" items="${list}">
                                             <tr>
-                                                <th scope=row><input type="checkbox" name="checkId" value=${e.exerciseID}></th>
+                                                <th scope="row"><input type="checkbox" name="checkId" value=${e.exerciseID}></th>
                                                 <td> ${e.exerciseID} </td>
                                                 <td> ${e.exname} </td>
                                                 <td> ${e.lowerweight} </td>
@@ -82,6 +85,7 @@
                                                 <td> ${e.calorexp} </td>
                                                 <td> ${e.icon} </td>
                                                 <td> ${e.description} </td>
+                                                
                                                 <td><a href="./ExerciseController?action=edit&exerciseID=${e.exerciseID}&jump=true" 
                                                        class="btn btn-primary btn-block bg-success">Edit</a></td>
                                             </tr>

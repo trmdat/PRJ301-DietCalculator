@@ -16,27 +16,19 @@
         <meta name="viewport" content="initial-scale=1, maximum-scale=1">
         <!-- site metas -->
         <title>Footer</title>
+
         <meta name="keywords" content="">
         <meta name="description" content="">
         <meta name="author" content="">
         <!-- bootstrap css -->
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/index/css/bootstrap.min.css">
         <!-- style css -->
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/index/css/style.css">
-        <!-- Responsive-->
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/index/css/responsive.css">
-        <!-- fevicon -->
-        <link rel="icon" href="${pageContext.request.contextPath}/index/images/logo.jpg" type="image/gif" />
-        <!-- Scrollbar Custom CSS -->
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/index/css/jquery.mCustomScrollbar.min.css">
-        <!-- Tweaks for older IEs-->
-        <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-        <!-- fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Poppins:400,700|Raleway:400,700&display=swap" rel="stylesheet">
-        <!-- owl stylesheets --> 
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/index/css/owl.carousel.min.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/index/css/owl.theme.default.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+
+
+        <link href="${pageContext.request.contextPath}/index/css/style.css" type="text/css" rel="stylesheet">
+
+
+
     </head>
     <body>
         <div class="footer_section">
@@ -56,13 +48,10 @@
                 <div class = "overview center">
                     <h3 class="text-align-content-center text-light">About us</h3>
                     <p class="align-content-center text-light">This website is created by team <a class="text-light" href = "https://github.com/dunghuynh-teaching/prj301-se1753-08">Pray God No Bug(PGNB)</a> - students studying at FPT University.<br>
-                        <i>Hope you enjoy his website</i>.
+                        <i>Hope you enjoy our website</i>.
                     </p>
                 </div>
-                <!--                <div class="Enter_mail_main">
-                                    <input type="text" class="Enter_text" placeholder="Enter Your Name" name="Enter Your Name">
-                                    <div class="subscribe_bt"><a href="#">Subscribe</a></div>
-                                </div>-->
+          
             </div>
         </div>
     </body>

@@ -14,7 +14,7 @@
 
 
 
-        
+
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
@@ -81,7 +81,32 @@
                                         </c:forEach>
                                     </tbody>
                                 </table>
-                            
+                                <section class="panel mt-3 mb-4">
+                                    <div class="panel-body">
+                                        <div class="pull-right">
+                                            <ul class="pagination pagination-sm pro-page-list text-light">
+                                                <li class="page-item ${page == 1 ? 'disabled' : ''}">
+                                                    <a class="page-link" href="ProductController?page=${page>1?page - 1:1}" aria-label="Previous">
+                                                        <span aria-hidden="true">&laquo;</span>
+                                                        <span class="sr-only">Previous</span>
+                                                    </a>
+                                                </li>
+
+                                                <c:forEach var="i" begin="1" end="${totalPages}">
+                                                    <li class="page-item ${i == page ? 'active' : ''}">
+                                                        <a class="page-link" href="ProductController?page=${i}">${i}</a>
+                                                    </li>
+                                                </c:forEach>
+                                                <li class="page-item ${page == totalPages ? 'disabled' : ''}">
+                                                    <a class="page-link" href="ProductController?page=${page<totalPages?page + 1:totalPages}" aria-label="Next">
+                                                        <span aria-hidden="true">&raquo;</span>
+                                                        <span class="sr-only">Next</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </section>
 
                             </div>
                             <!-- table container -->
