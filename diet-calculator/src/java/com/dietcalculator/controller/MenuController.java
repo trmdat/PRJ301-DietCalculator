@@ -19,6 +19,7 @@ import com.dietcalculator.util.Constants;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -280,7 +281,7 @@ public class MenuController extends HttpServlet {
             }else{
                 //GETTING SESSION ATTRIBUTES
                 ArrayList<ArrayList<ArrayList<FoodDetail>>> foodDetails = (ArrayList<ArrayList<ArrayList<FoodDetail>>>)currentSession.getAttribute("foodDetails");
-                
+                ArrayList<Food> foodDataset = (ArrayList<Food>) currentSession.getAttribute("foodDataset");
                 //GETTING REQUEST PARAMETERS
                 final int PAGE_SIZE = 7;
                 Integer page = 1;
@@ -291,20 +292,24 @@ public class MenuController extends HttpServlet {
                 }
                 //GETTING SUBARRAY
                 ArrayList<List<ArrayList<FoodDetail>>> subFoodDetails = pagingFoodDetails(page,PAGE_SIZE,foodDetails);
-                HashMap<String, Double> list = new HashMap();
+                ArrayList<FoodDetail> fd = new ArrayList();
+                HashMap<Food, Double> list = new HashMap();
                 for(List<ArrayList<FoodDetail>> x: subFoodDetails)
                     for(ArrayList<FoodDetail> y: x)
                         for(FoodDetail z: y)
-                            if(list.size() == 0)
-                                list.put(z.getFoodID(), z.getAmount());
-                            else 
-                                for(String t: list.keySet())
-                                    if(t.equals(z.getFoodID()))
-                                        list.put(z.getFoodID(), list.get(t) + z.getAmount());
-                                    else
-                                        list.put(z.getFoodID(), z.getAmount());
-                           
+                            fd.add(z);
+                //SORT THE FOODDETAILS
+                Collections.sort(fd);
                 
+                for(int i = 0;i < fd.size() - 1;){
+                    String currentFoodID = fd.get(i).getFoodID();
+                    double currentAmount = fd.get(i).getAmount();
+                    
+                    while((i < fd.size() -1) && fd.get(++i).getFoodID().equals(currentFoodID))
+                        currentAmount += fd.get(i).getAmount();
+                    list.put(findFoodByFoodID(currentFoodID,foodDataset), currentAmount);
+                }
+                request.setAttribute("page", page);
                 request.setAttribute("list", list);
                 RequestDispatcher rd = request.getRequestDispatcher("/Menu/BuyFood.jsp");
                 rd.forward(request, response);
