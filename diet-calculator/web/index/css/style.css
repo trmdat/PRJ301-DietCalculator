@@ -285,12 +285,12 @@ button {
     font-weight: 500;
 }
 
-.navbar-logo img{
+/*.navbar-logo img{
     border-radius:50%;
     height: 50px;
     width:50px;
     margin-right: 30px;
-}
+}*/
 .navbar-toggler{
     border-color: white;
     border-width: 1px;

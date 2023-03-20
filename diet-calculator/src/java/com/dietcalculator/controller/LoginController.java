@@ -57,7 +57,11 @@ public class LoginController extends HttpServlet {
                 
                 //user session is USER
                 session.setAttribute("user", user);
-                response.sendRedirect("HomeController");
+                String url = "HomeController";
+                if(user.getRank()>0){
+                     url="UserController";
+                }
+                response.sendRedirect(url);
 
             } else {
                 request.setAttribute("error", "Wrong username or password");
