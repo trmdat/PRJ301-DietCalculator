@@ -148,7 +148,9 @@ public class MenuController extends HttpServlet {
             request.setAttribute("foodDataset", foodDataset);
             
             RequestDispatcher rd = request.getRequestDispatcher("/Menu/Menu.jsp");
-            rd.forward(request, response);
+            rd.include(request, response);
+            rd = request.getRequestDispatcher("DietGrading");
+            rd.include(request, response);
             
         }else if(action.equals("details")){
             //GETTING SESSION

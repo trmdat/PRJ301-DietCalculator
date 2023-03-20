@@ -46,7 +46,8 @@ public final class Constants {
     public static final int CALORIES_PER_KG = 7716;
     public static final double SIDE_MEAL_PROPORTION = 0.08;
     //Relative parameter
-    public static final double RELATIVE_ESTIMATE = 0.7;
+    public static final double RELATIVE_ESTIMATE = 0.6;
+    public static final int CUT_OFF = 90;//%
     
     //Plate Portion By Preference
     //No Preference (0)

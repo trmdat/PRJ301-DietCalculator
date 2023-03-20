@@ -38,7 +38,7 @@ public class RelatedProduct extends HttpServlet {
             ArrayList<Product> productList = dao.readProduct();
             ArrayList<Product> relateList = new ArrayList<>();
             for (Product product : productList) {
-                if (product.getType().equals(type)) {
+                if (product.getType().equalsIgnoreCase(type)) {
                     relateList.add(product);
                 }
             }
