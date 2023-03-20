@@ -16,7 +16,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Details</title>
-   
+
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
               integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -243,7 +243,7 @@
 //            product = (Product) request.getAttribute("product");
 //            Image image = new Image();
 //            image = (Image) request.getAttribute("image");
-%>
+        %>
         <div class="container">
             <!-- product -->
             <div class="product-content product-wrap clearfix product-deatil">
@@ -413,7 +413,8 @@
                         <hr />
                         <div class="row">
                             <div class="col-sm-12 col-md-6 col-lg-6">
-                                <a href="javascript:void(0);" class="btn btn-success btn-lg">Add to cart</a>
+                                <a href="ProductDetailController?action=add&productID=${requestScope.product.productID}"
+                                   class="btn btn-success btn-lg">Add to cart</a>
                             </div>
                             <div class="col-sm-12 col-md-6 col-lg-6">
                                 <div class="btn-group pull-right">
@@ -426,7 +427,7 @@
             </div>
             <!-- end product -->
         </div>
-        
+
 
     </body>
 

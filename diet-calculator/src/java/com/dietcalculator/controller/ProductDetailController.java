@@ -6,7 +6,6 @@ import com.dietcalculator.dto.Product;
 import com.dietcalculator.dto.ProductDetail;
 import com.dietcalculator.dto.User;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -33,98 +32,115 @@ public class ProductDetailController extends HttpServlet {
             throws ServletException, IOException {
         //Check if user is login
         User user = (User) request.getSession().getAttribute("user");
-        user = new User("U00000", "", null, "", "", "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null);
-//        if (user == null) {
-//            RequestDispatcher rd = request.getRequestDispatcher("login");
-//            rd.forward(request, response);
-//        }
-        String action = request.getParameter("action");
-        ProductDetailDAO pddao = new ProductDetailDAO();
-        if (action == null || action.equals("read")) {
-            ArrayList<ProductDetail> pdl = new ArrayList<>();
-            ArrayList<ProductDetail> detailList = new ArrayList<>();
-            pdl = pddao.readProductDetail();
-            ProductDAO pdao = new ProductDAO();
-            ArrayList<Product> pl = pdao.readProduct();
-            ArrayList<Product> productList = new ArrayList<>();
-            Double total = 0.0;
-            for (Product product : pl) {
-                for (ProductDetail detail : pdl) {
-                    if (product.getProductID().equals(detail.getProductID())) {
-                        productList.add(product);
-                        detailList.add(detail);
-                        total += product.getPrice() * detail.getQuantity();
-                    }
-                }
-            }
-            request.setAttribute("productList", productList);
-            request.setAttribute("detailList", detailList);
-            request.setAttribute("total", total);
-            RequestDispatcher rd = request.getRequestDispatcher("Shopping Cart/ShoppingCart.jsp");
+//        user = new User("U00000", "", null, "", "", "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null);
+        if (user == null) {
+            RequestDispatcher rd = request.getRequestDispatcher("LoginController");
             rd.forward(request, response);
-        } else if (action.equals("add")) {
-            String productID = "";
-            String detailID = "";
-            //default amount is 1
-            int amount = 1;
-            try {
-                productID = request.getParameter("productID");
-                amount = Integer.parseInt(request.getParameter("amount"));
-            } catch (Exception e) {
-            }
-            ArrayList<ProductDetail> pdl = new ArrayList<>();
-            pdl = pddao.readProductDetail();
-            boolean isInCart = false;
-            //Add product in cart already
-            if (pdl != null) {
-                for (ProductDetail productDetail : pdl) {
-                    if (productID.equals(productDetail.getProductID()) && productDetail.getBillID() == null && user.getUserID().equals(productDetail.getUserID())) {
-                        int quantity = productDetail.getQuantity() + amount;
-                        pddao.updateProductDetail(productDetail.getDetailID(), productID, productDetail.getUserID(), null, quantity);
-                        isInCart = true;
+        } else {
+            String action = request.getParameter("action");
+            ProductDetailDAO pddao = new ProductDetailDAO();
+            ProductDAO pdao = new ProductDAO();
+            if (action == null || action.equals("read")) {
+                ArrayList<ProductDetail> pdl = new ArrayList<>();
+                ArrayList<ProductDetail> detailList = new ArrayList<>();
+                pdl = pddao.readProductDetail();
+
+                ArrayList<Product> pl = pdao.readProduct();
+                ArrayList<Product> productList = new ArrayList<>();
+                Double total = 0.0;
+                for (Product product : pl) {
+                    for (ProductDetail detail : pdl) {
+                        if (product.getProductID().equals(detail.getProductID())&&user.getUserID().equals(detail.getUserID())) {
+                            productList.add(product);
+                            detailList.add(detail);
+                            total += product.getPrice() * detail.getQuantity();
+                        }
                     }
                 }
-            }
-            //Add an non-in cart product
-            if (!productID.isEmpty() && isInCart == false) {
-                String tmp = String.valueOf(Integer.parseInt(pddao.lastIDIndex().substring(2)) + 1);
-                detailID = "PD";
-                for (int i = 0; i < (8 - tmp.length()); i++) {
-                    detailID += "0";
+                request.setAttribute("productList", productList);
+                request.setAttribute("detailList", detailList);
+                request.setAttribute("total", total);
+                RequestDispatcher rd = request.getRequestDispatcher("Shopping Cart/ShoppingCart.jsp");
+                rd.forward(request, response);
+            } else if (action.equals("add")) {
+                String productID = "";
+                String detailID = "";
+                //default amount is 1
+                int amount = 1;
+                try {
+                    productID = request.getParameter("productID");
+                    amount = Integer.parseInt(request.getParameter("amount"));
+                } catch (Exception e) {
                 }
-                detailID += tmp;
-                pddao.createProductDetail(detailID, productID, user.getUserID(), null, amount);
-            }
-            response.sendRedirect("ProductDetailController");
-        } else if (action.equals("update")) {
-            String productID = "";
-            String detailID = "";
-            int amount = 0;
-            try {
-                detailID = request.getParameter("detailID");
-                productID = request.getParameter("productID");
-                amount = Integer.parseInt(request.getParameter("amount"));
-            } catch (Exception e) {
-            }
-            ProductDetail pd = pddao.readProductDetailByID(detailID);
-            if (pd.getBillID() == null) {
-                if (amount <= 0) {
-                    pddao.deleteProductDetail(detailID);
-                } else {
-                    pddao.updateProductDetail(detailID, productID, user.getUserID(), null, amount);
+                ArrayList<ProductDetail> pdl = new ArrayList<>();
+                pdl = pddao.readProductDetail();
+                boolean isInCart = false;
+                //Add product in cart already
+                if (pdl != null) {
+                    for (ProductDetail productDetail : pdl) {
+                        if (productID.equals(productDetail.getProductID()) && productDetail.getBillID() == null && user.getUserID().equals(productDetail.getUserID())) {
+                            int quantity = productDetail.getQuantity() + amount;
+                            pddao.updateProductDetail(productDetail.getDetailID(), productID, productDetail.getUserID(), null, quantity);
+                            isInCart = true;
+                        }
+                    }
                 }
-            }
-            response.sendRedirect("ProductDetailController");
-        } else if (action.equals("delete")) {
-            String detailID = "";
-            try {
-                detailID = request.getParameter("detailID");
-            } catch (Exception e) {
-            }
-            pddao.deleteProductDetail(detailID);
-            response.sendRedirect("ProductDetailController");
-        }
+                //Add an non-in cart product
+                if (!productID.isEmpty() && isInCart == false) {
+                    amount = 1;
+                    String tmp = String.valueOf(Integer.parseInt(pddao.lastIDIndex().substring(2)) + 1);
+                    detailID = "PD";
+                    for (int i = 0; i < (8 - tmp.length()); i++) {
+                        detailID += "0";
+                    }
+                    detailID += tmp;
 
+                    pddao.createProductDetail(detailID, productID, user.getUserID(), null, amount);
+                }
+                response.sendRedirect("ProductDetailController");
+            } else if (action.equals("update")) {
+                String productID = "";
+                String detailID = "";
+                int amount = 0;
+                try {
+                    detailID = request.getParameter("detailID");
+                    productID = request.getParameter("productID");
+                    amount = Integer.parseInt(request.getParameter("amount"));
+                    ArrayList<Product> ArrayList;
+                    Product product = new Product();
+                    ArrayList<Product> products = pdao.readProduct();
+                    int productQuantity = 0;
+                    for (Product p : products) {
+                        if (p.getProductID().equals(pddao.readProductDetailByID(detailID).getProductID())) {
+                            productQuantity = p.getQuantity();
+                        }
+                    }
+                    int detailQuantity = 0;
+                    detailQuantity = pddao.readProductDetailByID(detailID).getQuantity();
+                    if (amount > (productQuantity - detailQuantity)) {
+                        amount = productQuantity;
+                    }
+                } catch (Exception e) {
+                }
+                ProductDetail pd = pddao.readProductDetailByID(detailID);
+                if (pd.getBillID() == null) {
+                    if (amount <= 0) {
+                        pddao.deleteProductDetail(detailID);
+                    } else {
+                        pddao.updateProductDetail(detailID, productID, user.getUserID(), null, amount);
+                    }
+                }
+                response.sendRedirect("ProductDetailController");
+            } else if (action.equals("delete")) {
+                String detailID = "";
+                try {
+                    detailID = request.getParameter("detailID");
+                } catch (Exception e) {
+                }
+                pddao.deleteProductDetail(detailID);
+                response.sendRedirect("ProductDetailController");
+            }
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -56,90 +56,102 @@
                 </div>
             </div></div>
 
-            <div class="container bootdey">
-                <form action="ProductListController">
-                    <div class="col-md-3">
-                        <h3 style="back-ground:white">
-                            Keyword: <input type="text" name="keyword" value="${keyword}" /><br>
-                            Type: <input type="text" name="type" value="${type}" /><br>
-                            Price: <input type="radio" name="price" value="ASC" check=${price.equals(ASC)?"checked":""}/>ASC
-                            <input type="radio" name="price" value="DESC"check=${price.equals(DESC)?"checked":""} />DESC<br>
-                            Quantity: <input type="radio" name="quantity" value="ASC" check=${quantity.equals(ASC)?"checked":""}/>ASC
-                            <input type="radio" name="quantity" value="DESC" check=${quantity.equals(DESC)?"checked":""}/>DESC<br>
-                            <input type="submit" value="Filter" />
-                        </h3>
+        <div class="container bootdey">
+            <form action="ProductListController">
+                <div class="col-md-3">
+                    <h3 style="back-ground:white">
+                        Keyword: <input type="text" name="keyword" value="${keyword}" /><br>
+                        Type: <input type="text" name="type" value="${type}" /><br>
+                        Price: <input type="radio" name="price" value="ASC" check=${price.equals(ASC)?"checked":""}/>ASC
+                        <input type="radio" name="price" value="DESC"check=${price.equals(DESC)?"checked":""} />DESC<br>
+                        Quantity: <input type="radio" name="quantity" value="ASC" check=${quantity.equals(ASC)?"checked":""}/>ASC
+                        <input type="radio" name="quantity" value="DESC" check=${quantity.equals(DESC)?"checked":""}/>DESC<br>
+                        <input type="submit" value="Filter" />
+                    </h3>
 
-                    </div>
-                    <div class="col-md-9">
-                        <section class="panel">
-                            <div class="panel-body">
-                                <div class="pull-right">
-                                    <ul class="pagination pagination-sm pro-page-list">
+                </div>
+                <div class="col-md-9">
+                    <section class="panel">
+                        <div class="panel-body">
+                            <div class="pull-right">
+                                <ul class="pagination pagination-sm pro-page-list">
 
-                                        <li class="page-item ${page == 1 ? 'disabled' : ''}">
-                                            <a class="page-link" href="ProductListController?page=${page>1?page - 1:1}" aria-label="Previous">
-                                                <span aria-hidden="true">&laquo;</span>
-                                                <span class="sr-only">Previous</span>
-                                            </a>
+                                    <li class="page-item ${page == 1 ? 'disabled' : ''}">
+                                        <a class="page-link" href="ProductListController?page=${page>1?page - 1:1}" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                    </li>
+
+                                    <c:forEach var="i" begin="1" end="${totalPages}">
+
+
+                                        <li class="page-item ${i == page ? 'active' : ''}">
+                                            <a class="page-link" href="ProductListController?page=${i}">${i}</a>
                                         </li>
-
-                                        <c:forEach var="i" begin="1" end="${totalPages}">
-
-
-                                            <li class="page-item ${i == page ? 'active' : ''}">
-                                                <a class="page-link" href="ProductListController?page=${i}">${i}</a>
-                                            </li>
-                                        </c:forEach>
-                                        <li class="page-item ${page == totalPages ? 'disabled' : ''}">
-                                            <a class="page-link" href="ProductListController?page=${page<totalPages?page + 1:totalPages}" aria-label="Next">
-                                                <span aria-hidden="true">&raquo;</span>
-                                                <span class="sr-only">Next</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
+                                    </c:forEach>
+                                    <li class="page-item ${page == totalPages ? 'disabled' : ''}">
+                                        <a class="page-link" href="ProductListController?page=${page<totalPages?page + 1:totalPages}" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
-                        </section>
-                        <div class="row product-list">
+                        </div>
+                    </section>
+                    <div class="row product-list">
 
-                            <%!
-                                public String product(Product p, Image i) {
+                        <%!
+                            public String product(Product p, Image i) {
 
-                                    String html = "<div class=\"col-md-4\"> "
-                                            + "<section class=\"panel\"> <div class=\"pro-img-box\"> "
-                                            + "<a href=\"ProductInfoController?productID=" + p.getProductID() + "\" class=\"pro-title\">"
-                                            + "<img class=\"img-responsive\" src=\"" + i.getUrl() + "\" alt=\"Image not found\" />" + "</a>"
-                                            + "                     <a href=\"ProductDetailController?productID=" + p.getProductID() + "&action=add"
-                                            + "\" class=\"adtocart\">"
-                                            + "                     <i class=\"fa fa-shopping-cart\"></i>"
-                                            + " </a>"
-                                            + "    </div>"
-                                            + "       <div class=\"panel-body text-center\">"
-                                            + "           <h4>"
-                                            + "                      <a href=\"ProductInfoController?productID=" + p.getProductID()
-                                            + "\" class=\"pro-title\">" + p.getProductname() + "</a>"
-                                            + "                </h4>"
-                                            + "       <p class=\"price\">" + p.getPrice() + " VND</p>"
-                                            + "          </div>"
-                                            + "         </section>"
-                                            + "   </div>";
-                                    return html;
-                                }
-                            %>
-                            <%
-                                List<Product> productlist = (List<Product>) request.getAttribute("productlist");
-                                ArrayList<Image> imagelist = (ArrayList<Image>) request.getAttribute("imagelist");
-                                //                        out.print(imagelist.get(0).getUrl());
+                                String html = "<div class=\"col-md-4\"> "
+                                        + "<section class=\"panel\"> <div class=\"pro-img-box\"> "
+                                        + "<a href=\"ProductInfoController?productID=" + p.getProductID() + "\" class=\"pro-title\">"
+                                        + "<img class=\"img-responsive\" src=\"" + i.getUrl() + "\" alt=\"Image not found\" />" + "</a>"
+                                        + "                     <a href=\"ProductDetailController?productID=" + p.getProductID() + "&action=add"
+                                        + "\" class=\"adtocart\">"
+                                        + "                     <i class=\"fa fa-shopping-cart\"></i>"
+                                        + " </a>"
+                                        + "    </div>"
+                                        + "       <div class=\"panel-body text-center\">"
+                                        + "           <h4>"
+                                        + "                      <a href=\"ProductInfoController?productID=" + p.getProductID()
+                                        + "\" class=\"pro-title\">" + p.getProductname() + "</a>"
+                                        + "                </h4>"
+                                        + "       <p class=\"price\">" + p.getPrice() + " VND</p>"
+                                        + "          </div>"
+                                        + "         </section>"
+                                        + "   </div>";
+                                return html;
+                            }
+                        %>
+                        <%
+                            List<Product> productlist = (List<Product>) request.getAttribute("productlist");
+                            ArrayList<Image> imagelist = (ArrayList<Image>) request.getAttribute("imagelist");
+                            //                        out.print(imagelist.get(0).getUrl());
+                            if(productlist==null||productlist.isEmpty()){
+                                out.print("<h1>There's no product matches</h1>");
+                            }
+                            else if (productlist.size() < 12) {
+                                int i = 0;
+                                for (Product p : productlist) {
+                                        out.print(product(p,imagelist.get(i)));
+                                        i++;
+                                    }
+                            } else if (productlist.size() >= 12) {
                                 for (int i = 0; i < 12; i++) {
                                     out.print(product(productlist.get(i), imagelist.get(i)));
                                 }
-                            %>
+                            }
 
-                        </div>
+                        %>
+
                     </div>
-                </form>
-            </div>
-            <br>
-            <jsp:include page="../index/UserFooter.jsp" />
-            </body>
-            </html>
+                </div>
+            </form>
+        </div>
+        <br>
+        <jsp:include page="../index/UserFooter.jsp" />
+    </body>
+</html>

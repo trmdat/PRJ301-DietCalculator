@@ -44,6 +44,7 @@ public class LoginController extends HttpServlet {
             if (session != null) {
                 session.invalidate();             
             }
+            response.sendRedirect("/diet-calculator/LoginController");
         } else if (action == null || request.getParameter("username") == null || request.getParameter("password") == null) {
             response.sendRedirect("Register_Login/login.jsp");
         } else if (action.equals("login")) {
