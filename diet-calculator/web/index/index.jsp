@@ -16,8 +16,6 @@
         <meta name="viewport" content="initial-scale=1, maximum-scale=1">
         <!-- site metas -->
         <title>Diet Calculator</title>
-        <jsp:include page="ShowPopUp.jsp" />
-
         <!-- style css -->
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/index/css/style.css">
         <!-- Responsive-->
