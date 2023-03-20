@@ -28,11 +28,12 @@ public class HomeController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         RequestDispatcher rd;
         
+        rd = request.getRequestDispatcher("ShowPopUpController");
+        rd.include(request, response);
+        
         rd = request.getRequestDispatcher("index/index.jsp");
         rd.include(request, response);
         
-        rd = request.getRequestDispatcher("ShowPopUpController");
-        rd.include(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

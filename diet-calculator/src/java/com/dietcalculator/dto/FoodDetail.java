@@ -4,7 +4,7 @@ package com.dietcalculator.dto;
  *
  * @author ADMIN
  */
-public class FoodDetail {
+public class FoodDetail implements Comparable{
     private String foodID;
     private String mealID;
     private double amount;
@@ -127,5 +127,9 @@ public class FoodDetail {
         return "FoodDetail{" + "foodID=" + foodID + ", mealID=" + mealID + ", amount=" + amount + ", totalCal=" + totalCal + ", carbohydrate=" + carbohydrate + ", fiber=" + fiber + ", protein=" + protein + ", fat=" + fat + ", water=" + water + '}';
     }
     
-    
+    @Override
+    public int compareTo(Object x){
+        FoodDetail other = (FoodDetail) x;
+        return this.getFoodID().compareTo(other.getFoodID());
+    }
 }

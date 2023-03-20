@@ -62,7 +62,7 @@
                         <a class="nav-link" href="./SaleOffController">Sale Off</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./ImageController">Image</a>
+                        <a class="nav-link" href="./ExerciseController">Exercise</a>
                     </li>
                     <li class="user-item">
                         <a class="nav-link" href=""><i class="fas fa-user fa-2x"></i></a>
