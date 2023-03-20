@@ -243,10 +243,10 @@ public class FoodDetailController extends HttpServlet {
             for(int i = 0; i < numOfDay; i++){
                 for(int k = 0; k < Constants.FOOD_DETAIL_BY_MEAL.get(meals.get(j).get(0).getMealindex()).length; k++){                 
                     totalCaloriesMeal += foodDetails.get(j).get(i).get(k).getTotalCal();
-                    totalCarbohydrateMeal += foodDetails.get(j).get(i).get(k).getCarbohydrate();
-                    totalFiberMeal += foodDetails.get(j).get(i).get(k).getFiber(); 
-                    totalProteinMeal += foodDetails.get(j).get(i).get(k).getProtein();
-                    totalFatMeal += foodDetails.get(j).get(i).get(k).getFat();
+                    totalCarbohydrateMeal += foodDetails.get(j).get(i).get(k).getCarbohydrate()*CARBOHYDRATE_TO_KCAL;
+                    totalFiberMeal += foodDetails.get(j).get(i).get(k).getFiber()*CARBOHYDRATE_TO_KCAL; 
+                    totalProteinMeal += foodDetails.get(j).get(i).get(k).getProtein()*PROTEIN_TO_KCAL;
+                    totalFatMeal += foodDetails.get(j).get(i).get(k).getFat()*FAT_TO_KCAL;
                     totalWaterMeal += foodDetails.get(j).get(i).get(k).getWater();
                 }
                 //Updating meals

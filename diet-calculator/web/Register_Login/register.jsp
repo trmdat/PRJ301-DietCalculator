@@ -27,7 +27,7 @@
 					<div class="card shadow-lg">
 						<div class="card-body p-5">
 							<h1 class="fs-4 card-title fw-bold mb-4">Register</h1>
-							<form action="/diet-calculator/login" method="GET" class="needs-validation" novalidate="" autocomplete="off">
+							<form action="/diet-calculator/LoginController" method="GET" class="needs-validation" novalidate="" autocomplete="off">
                                                             <input type="hidden" name="action" value="register">
 								<div class="mb-3">
 									<label class="mb-2 text-muted" for="username">Username</label>
@@ -90,7 +90,7 @@
 						</div>
 						<div class="card-footer py-3 border-0">
 							<div class="text-center">
-								Already have an account? <a href="login.jsp" class="text-dark">Login</a>
+								Already have an account? <a href="/diet-calculator/Register_Login/login.jsp" class="text-dark">Login</a>
 							</div>
 						</div>
 					</div>

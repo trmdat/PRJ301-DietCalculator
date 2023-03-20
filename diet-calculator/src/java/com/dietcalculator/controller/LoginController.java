@@ -79,7 +79,7 @@ public class LoginController extends HttpServlet {
                 System.out.println(e);
             }
 
-            response.sendRedirect("login");
+            response.sendRedirect("/diet-calculator/Register_Login/login.jsp");
         }
     }
 

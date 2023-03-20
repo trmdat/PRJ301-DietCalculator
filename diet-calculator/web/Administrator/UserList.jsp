@@ -84,7 +84,6 @@
                                                         </th>
                                                         <th style="min-width: 75px;width: 75px" class ="sortable align-middle col-id fixed-header">UserID</th>
                                                         <th style="min-width: 225px;width: 225px" class="max-width align-middle col-name fixed-header">Name</th>
-                                                        <th>Photo</th>
                                                         <th class="sortable max-width">Date of Birth</th>
                                                         <th class="max-width">Phone No</th>
                                                         <th class="max-width">Address</th>
@@ -109,20 +108,9 @@
                                                 <tbody>
                                                     <c:forEach items="${userList}" var="x">
                                                         <tr>
-                                                            <td class="align-middle col-check">
-                                                                <div class="custom-control custom-control-inline custom-checkbox custom-control-nameless m-0 align-top">
-                                                                    <input type="checkbox" class="custom-control-input" id="item-1" name='checkbox' value='${x.getUserID()}'>
-                                                                    <label class="custom-control-label" for="item-1"></label>
-                                                                </div>
-                                                            </td>
+                                                            <th scope="row"><input type="checkbox" name="userID" value="${x.getUserID()}"/></th>
                                                             <td class="text-center align-middle col-id">${x.getUserID()}</td>
                                                             <td class="text-nowrap align-middle col-name">${x.getUsername()}</td>
-                                                            <td class="align-middle text-center">
-                                                                <div
-                                                                    class="bg-light d-inline-flex justify-content-center align-items-center align-top"
-                                                                    style="width: 35px; height: 35px; border-radius: 3px;"><i
-                                                                        class="fa fa-fw fa-photo" style="opacity: 0.8;"></i></div>
-                                                            </td>
                                                             <td class="text-nowrap align-middle"><span>${x.getDob()}</span></td>
                                                             <td class="text-center align-middle">${x.getPhone()}</td>
                                                             <td class="text-center align-middle"><span>${x.getAddress()}</span></td>

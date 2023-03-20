@@ -59,7 +59,7 @@
                                 <a class="nav-link" href="#">Contact Us</a>
                             </li>      
                         </ul>
-                        <div class="user-logo"><a href="../LoginController"><img src="./index/images/user-logo.jpg" alt="user_logo"></a></div>
+                        <div class="user-logo"><a href="/diet-calculator/Register_Login/login.jsp"><img src="./index/images/user-logo.jpg" alt="user_logo"></a></div>
                     </div>
                 </nav>
             </div>
