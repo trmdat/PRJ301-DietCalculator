@@ -9,7 +9,8 @@
 <html lang="en">
 
     <head>
-        <title>Edit Exercise</title>
+        <title>Add Exercise</title>
+        <jsp:include page="../index/AdminHeader.jsp" />
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,8 +30,7 @@
         <link href="${pageContext.request.contextPath}/index/css/style1.css" type="text/css" rel="stylesheet">
     </head>
 
-        <body>
-            <jsp:include page="../index/AdminHeader.jsp" />
+    <body>
         <br>
         <nav>
             <div class="container tm-mt-big tm-mb-big mb-5 mt-5">
@@ -49,41 +49,41 @@
                             </div>
 
                             <d <div class="row tm-edit-product-row">
-                                <div class="col-xl-12 col-lg-12 col-md-12">
-                                    <form action="ExerciseController" method="post" class="tm-edit-product-form">
-                                        <input type=hidden name="action" value="create">
-                                        <div class="form-group mb-3">
-                                            <label for="name">Exercise Name</label>
-                                            <input type="text" name="exname" class="form-control validate" required/>
-                                        </div>
-                                        <div class="row">
-                                            <div class="form-group mb-3 col-xs-12 col-sm-4">
-                                                <label for="lowerweight">Lower Weight</label>
-                                                <input type="text" name="lowerweight" class="form-control validate" required/>
+                                    <div class="col-xl-12 col-lg-12 col-md-12">
+                                        <form action="ExerciseController" method="post" class="tm-edit-product-form">
+                                            <input type=hidden name="action" value="create">
+                                            <div class="form-group mb-3">
+                                                <label for="name">Exercise Name</label>
+                                                <input type="text" name="exname" class="form-control validate" required/>
                                             </div>
-                                            <div class="form-group mb-3 col-xs-12 col-sm-4">
-                                                <label for="upperweight">Upper Weight</label>
-                                                <input type="text" name="upperweight" class="form-control validate" required/>
+                                            <div class="row">
+                                                <div class="form-group mb-3 col-xs-12 col-sm-4">
+                                                    <label for="lowerweight">Lower Weight</label>
+                                                    <input type="text" name="lowerweight" class="form-control validate" required/>
+                                                </div>
+                                                <div class="form-group mb-3 col-xs-12 col-sm-4">
+                                                    <label for="upperweight">Upper Weight</label>
+                                                    <input type="text" name="upperweight" class="form-control validate" required/>
+                                                </div>
+                                                <div class="form-group mb-3 col-xs-12 col-sm-4">
+                                                    <label for="calorexp">Calorexp</label>
+                                                    <input type="text" name="calorexp" class="form-control validate" required/>
+                                                </div>
+                                                <div class="form-group mb-3 col-xs-12 col-sm-4">
+                                                    <label for="calorexp">Icon</label>
+                                                    <input type="text" name="icon" class="form-control validate" required/>
+                                                </div>
+                                                <div class="form-group mb-3 col-xs-12 col-sm-4">
+                                                    <label for="calorexp">Description</label>
+                                                    <input type="text" name="description" class="form-control validate" required/>
+                                                </div>
+                                                <div class="col-12">
+                                                    <input type="submit" value="Add Exercise" class="btn btn-primary btn-block text-uppercase bg-success">
+                                                </div>
                                             </div>
-                                            <div class="form-group mb-3 col-xs-12 col-sm-4">
-                                                <label for="calorexp">Calorexp</label>
-                                                <input type="text" name="calorexp" class="form-control validate" required/>
-                                            </div>
-                                            <div class="form-group mb-3 col-xs-12 col-sm-4">
-                                                <label for="calorexp">Icon</label>
-                                                <input type="text" name="icon" class="form-control validate" required/>
-                                            </div>
-                                            <div class="form-group mb-3 col-xs-12 col-sm-4">
-                                                <label for="calorexp">Description</label>
-                                                <input type="text" name="description" class="form-control validate" required/>
-                                            </div>
-                                            <div class="col-12">
-                                                <input type="submit" value="Add Exercise" class="btn btn-primary btn-block text-uppercase bg-success">
-                                            </div>
-                                        </div>
-                                    </form>
+                                        </form>
+                                    </div>
                                 </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -92,11 +92,11 @@
 
         <!-- Footer -->
         <jsp:include page="../index/UserFooter.jsp" />
-        
-        
-        
+
+
+
 
 
     </body>
 </html>
-            
+

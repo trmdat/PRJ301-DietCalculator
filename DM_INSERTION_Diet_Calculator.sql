@@ -516,10 +516,11 @@ INSERT INTO Image (imageID, productID, foodID, commentID, url) VALUES ('IMG00020
 INSERT INTO Image (imageID, productID, foodID, commentID, url) VALUES ('IMG000206', NULL, 'FD00206', NULL, 'https://images2.imgbox.com/b4/29/nqxV8f52_o.jpg');
 
 --INSERT POPUP
-INSERT INTO PopUp (popupID, [description], [status], theme) VALUES ('POP001', N'Dành cho người dùng mới', 1, '')
+INSERT INTO PopUp (popupID, [description], [status], theme) VALUES ('POP001', N'For new User', 1, '')
 
 --INSERT POPUPDETAIL
-INSERT INTO PopUpDetail(popupID, productID, [description]) VALUES ('POP001', 'PRO0001', N'Dành cho người dùng mới')
+INSERT INTO PopUpDetail(popupID, productID, [description]) VALUES ('POP001', 'PRO0001', N'For new User')
+INSERT INTO PopUpDetail(popupID, productID, [description]) VALUES ('POP001', 'PRO0006', N'Super Sale')
 
 --INSERT ImageProduct
 INSERT INTO Image (imageID, productID, foodID, commentID, url) VALUES ('IMG000207', 'PRO0001',null , NULL, 'https://images2.imgbox.com/9f/2d/f26fX97L_o.jpg');

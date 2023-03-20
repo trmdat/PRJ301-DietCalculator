@@ -74,13 +74,13 @@
                          
                          <div class="row">
                          <div class="form-group mb-3 col-xs-12 col-md-6">
-                           <label for="weight">Weight
+                           <label for="weight">Weight(kg)
                            </label>
                              <input id="weight" name="weight" type=number step=0.1 min="0" required
                               class="form-control validate" />
                         </div>
                          <div class="form-group mb-3 col-xs-12 col-md-6">
-                           <label for="height">Height
+                           <label for="height">Height(cm)
                            </label>
                            <input id="height" name="height" type=number step=0.1 min="0" required
                               class="form-control validate" />

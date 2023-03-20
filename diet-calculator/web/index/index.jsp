@@ -16,8 +16,6 @@
         <meta name="viewport" content="initial-scale=1, maximum-scale=1">
         <!-- site metas -->
         <title>Diet Calculator</title>
-        <jsp:include page="ShowPopUp.jsp" />
-
         <!-- style css -->
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/index/css/style.css">
         <!-- Responsive-->
@@ -40,7 +38,7 @@
         <div class="header_section">
             <div class="header-nav">
                 <nav class="navbar navbar-expand-lg navbar-dark main_navbar">
-                    <div class="logo"><a href="index.jsp"><img class="logo" src="./index/images/logo.jpg" alt="logo"><h1 class="title">Diet Calculator</h1></a></div>
+                    <div class="logo"><a href="HomeController"><img class="logo" src="./index/images/logo.jpg" alt="logo"><h1 class="title">Diet Calculator</h1></a></div>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -53,10 +51,10 @@
                                 <a class="nav-link" href="./calculator/DietForm.jsp">Diet</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="ProductListController">Product</a>
+                                <a class="nav-link" href="./ProductListController">Product</a>
                             </li> 
                             <li class="nav-item">
-                                <a class="nav-link" href="">Contact Us</a>
+                                <a class="nav-link" href="#">Contact Us</a>
                             </li>      
                         </ul>
                         <div class="user-logo"><a href="/diet-calculator/Register_Login/login.jsp"><img src="./index/images/user-logo.jpg" alt="user_logo"></a></div>
@@ -106,7 +104,7 @@
                             <h1 class="about_taital">Diet Calculator</h1>
                             <p class="about_text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is tha</p>
                             <br>
-                            <div class="read_bt"><a href="MenuController">Get your diet now</a></div>
+                            <div class="read_bt"><a href="./calculator/DietForm.jsp">Get your diet now</a></div>
                         </div>
                     </div>
                 </div>

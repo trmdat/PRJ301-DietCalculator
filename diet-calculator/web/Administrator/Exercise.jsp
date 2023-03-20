@@ -39,7 +39,7 @@
                             </div>
                             <div class="col-2">
                                 <form action="/diet-calculator/ExerciseController">
-                                    <button type="submit" class="btn btn-primary btn-block text-uppercase bg-success"> << Return</button>                            
+                                    <button type="submit" class="btn btn-primary btn-block text-uppercase bg-success mb-2"> << Return</button>                            
                                 </form>
                             </div>
                             <div class="col-md-12">
