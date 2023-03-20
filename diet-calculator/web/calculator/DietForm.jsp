@@ -34,7 +34,7 @@
                                 <a class="nav-link" href="./calculator/DietForm.jsp">Diet</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="ProductListController">Product</a>
+                                <a class="nav-link" href="../ProductListController">Product</a>
                             </li> 
                             <li class="nav-item">
                                 <a class="nav-link" href="">Contact Us</a>

@@ -66,7 +66,7 @@
                             </div>
                             <div class="card-footer py-3 border-0">
                                 <div class="text-center">
-                                    Don't have an account? <a href="register.jsp" class="text-dark">Create One</a>
+                                    Don't have an account? <a href="/diet-calculator/Register_Login/register.jsp" class="text-dark">Create One</a>
                                 </div>
                             </div>
                         </div>
