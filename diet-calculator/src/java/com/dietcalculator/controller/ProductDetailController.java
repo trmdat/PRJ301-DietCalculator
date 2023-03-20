@@ -32,6 +32,7 @@ public class ProductDetailController extends HttpServlet {
             throws ServletException, IOException {
         //Check if user is login
         User user = (User) request.getSession().getAttribute("user");
+
 //        user = new User("U00000", "", null, "", "", "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null);
         if (user == null) {
             RequestDispatcher rd = request.getRequestDispatcher("LoginController");
@@ -50,7 +51,7 @@ public class ProductDetailController extends HttpServlet {
                 Double total = 0.0;
                 for (Product product : pl) {
                     for (ProductDetail detail : pdl) {
-                        if (product.getProductID().equals(detail.getProductID())&&user.getUserID().equals(detail.getUserID())) {
+                        if (product.getProductID().equals(detail.getProductID()) && user.getUserID().equals(detail.getUserID())) {
                             productList.add(product);
                             detailList.add(detail);
                             total += product.getPrice() * detail.getQuantity();
@@ -69,7 +70,6 @@ public class ProductDetailController extends HttpServlet {
                 int amount = 1;
                 try {
                     productID = request.getParameter("productID");
-                    amount = Integer.parseInt(request.getParameter("amount"));
                 } catch (Exception e) {
                 }
                 ArrayList<ProductDetail> pdl = new ArrayList<>();
@@ -79,8 +79,6 @@ public class ProductDetailController extends HttpServlet {
                 if (pdl != null) {
                     for (ProductDetail productDetail : pdl) {
                         if (productID.equals(productDetail.getProductID()) && productDetail.getBillID() == null && user.getUserID().equals(productDetail.getUserID())) {
-                            int quantity = productDetail.getQuantity() + amount;
-                            pddao.updateProductDetail(productDetail.getDetailID(), productID, productDetail.getUserID(), null, quantity);
                             isInCart = true;
                         }
                     }
@@ -97,7 +95,11 @@ public class ProductDetailController extends HttpServlet {
 
                     pddao.createProductDetail(detailID, productID, user.getUserID(), null, amount);
                 }
-                response.sendRedirect("ProductDetailController");
+                if (isInCart) {
+                     response.sendRedirect("ProductDetailController?action=update&detailID="+detailID+"&productID="+productID);
+                } else {
+                    response.sendRedirect("ProductDetailController");
+                }
             } else if (action.equals("update")) {
                 String productID = "";
                 String detailID = "";
@@ -106,22 +108,10 @@ public class ProductDetailController extends HttpServlet {
                     detailID = request.getParameter("detailID");
                     productID = request.getParameter("productID");
                     amount = Integer.parseInt(request.getParameter("amount"));
-                    ArrayList<Product> ArrayList;
-                    Product product = new Product();
-                    ArrayList<Product> products = pdao.readProduct();
-                    int productQuantity = 0;
-                    for (Product p : products) {
-                        if (p.getProductID().equals(pddao.readProductDetailByID(detailID).getProductID())) {
-                            productQuantity = p.getQuantity();
-                        }
-                    }
-                    int detailQuantity = 0;
-                    detailQuantity = pddao.readProductDetailByID(detailID).getQuantity();
-                    if (amount > (productQuantity - detailQuantity)) {
-                        amount = productQuantity;
-                    }
                 } catch (Exception e) {
                 }
+                //verify amount < quantity
+                amount = getAmount(amount, detailID);
                 ProductDetail pd = pddao.readProductDetailByID(detailID);
                 if (pd.getBillID() == null) {
                     if (amount <= 0) {
@@ -141,6 +131,26 @@ public class ProductDetailController extends HttpServlet {
                 response.sendRedirect("ProductDetailController");
             }
         }
+    }
+
+    //verify amount <= quantity
+    public int getAmount(int amount, String detailID) {
+        ProductDAO pdao = new ProductDAO();
+        ProductDetailDAO pddao = new ProductDetailDAO();
+        Product product = new Product();
+        ArrayList<Product> products = pdao.readProduct();
+        int productQuantity = 0;
+        for (Product p : products) {
+            if (p.getProductID().equals(pddao.readProductDetailByID(detailID).getProductID())) {
+                productQuantity = p.getQuantity();
+            }
+        }
+        int detailQuantity = 0;
+        detailQuantity = pddao.readProductDetailByID(detailID).getQuantity();
+        if (amount > (productQuantity - detailQuantity)) {
+            amount = productQuantity;
+        }
+        return amount;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
