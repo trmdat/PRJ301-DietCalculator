@@ -12,6 +12,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.dietcalculator.util.Constants"%>
 <%@page import="com.dietcalculator.dto.Meal"%>
+<%@page import="com.dietcalculator.util.Utils"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -415,7 +416,7 @@ a:hover {
          </table>
       </div>
    </div>
-   <div class="text-center" style="margin-left:600px;">
+   <div class="text-center" style="margin-left:670px;">
        <ul class="pagination pagination-sm pro-page-list">
             <li class="page-item ${page == 1 ? 'disabled' : ''}">
                 <a class="page-link" href="MenuController?page=${page>1?page - 1:1}&action=show" aria-label="Previous">
@@ -440,10 +441,40 @@ a:hover {
         </ul>
    </div>
 
-    <div>
-    
-    </div>
-                 
+    <div class="Grading">
+        <div class="col-md-12" style="margin-left:650px;margin-bottom: 50px;margin-top:50px"><h1><strong>Weekly Diet Assessment</strong></h1></div>
+        <div class="table-responsive" style="width: 1150px;margin-left: 200px;overflow-x: hidden;">
+            <table class="table table-bordered text-center">
+               <thead>
+                  <tr class="" style="color:white;background: green">
+                      <th class=""><div>Day</div><div class="font-size13"></div></th>
+                     <th class=""><div>Total Calories</div><div class="font-size13">${days.get(0).getTotalCalstd()} KCal</div></th>
+                     <th class=""><div>Carbohydrates</div><div class="font-size13">${days.get(0).getCarbohydratestd()} KCal</div></th>
+                     <th class=""><div>Fiber</div><div class="font-size13">${days.get(0).getFiberstd()} KCal</div></th>
+                     <th class=""><div>Protein</div><div class="font-size13">${days.get(0).getProteinstd()} KCal</div></th>
+                     <th class=""><div>Fat</div><div class="font-size13">${days.get(0).getFatstd()} KCal</div></th>
+                     <th class=""><div>Water</div><div class="font-size13">${days.get(0).getWaterstd()}</div></th>
+                     <th class=""><div>Coverage</div><div class="font-size13"></div></th>
+                  </tr>
+               </thead>
+               <tbody>
+                   <%! String[] dayName = {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"}; %>
+                   <c:forEach items="${days}" var="x">
+                       <tr>
+                           <th>${dayName[0]}</th>
+                           <th><div style="font-size:17px;">${x.getTotalCal()} KCal</div><div style="color:${Math.abs(x.getTotalCal()/x.getTotalCalstd() - 1)<0.1?'green':'red'};font-size:15px">${Math.round(x.getTotalCal()*1000/x.getTotalCalstd())/10}%</div></th>
+                           <th><div style="font-size:17px;">${x.getCarbohydrate()} KCal</div><div style="color:${Math.abs(x.getCarbohydrate()/x.getCarbohydratestd() - 1)<0.1?'green':'red'};font-size:15px">${Math.round(x.getCarbohydrate()*1000/x.getCarbohydratestd())/10}%</div></th>
+                           <th><div style="font-size:17px;">${x.getFiber()} KCal</div><div style="color:${Math.abs(x.getFiber()/x.getFiberstd() - 1)<0.1?'green':'red'};font-size:15px">${Math.round(x.getFiber()*1000/x.getFiberstd())/10}%</div></th>
+                           <th><div style="font-size:17px;">${x.getProtein()} KCal</div><div style="color:${Math.abs(x.getProtein()/x.getProteinstd() - 1)<0.1?'green':'red'};font-size:15px">${Math.round(x.getProtein()*1000/x.getProteinstd())/10}%</div></th>
+                           <th><div style="font-size:17px;">${x.getFat()} KCal</div><div style="color:${Math.abs(x.getFat()/x.getFatstd() - 1)<0.1?'green':'red'};font-size:15px">${Math.round(x.getFat()*1000/x.getFatstd())/10}%</div></th>
+                           <th><div style="font-size:17px;">${x.getWater()}</div><div style="color:${Math.abs(x.getWater()/x.getWaterstd() - 1)<0.1?'green':'red'};font-size:15px">${Math.round(x.getWater()*1000/x.getWaterstd())/10}%</div></th>
+                           <th></th>
+                       </tr>
+                   </c:forEach>
+               </tbody>
+            </table>
+        </div>
+    </div>           
 </body>
 
 </html>

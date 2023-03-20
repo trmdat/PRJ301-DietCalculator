@@ -314,6 +314,15 @@ public class MenuController extends HttpServlet {
                 RequestDispatcher rd = request.getRequestDispatcher("/Menu/BuyFood.jsp");
                 rd.forward(request, response);
             }
+        }else if(action.equals("save")){
+            HttpSession currentSession = request.getSession(false);
+            if(currentSession == null){
+                response.sendRedirect("/HomeController");
+            }else{
+                ArrayList<Day> days = (ArrayList<Day>) currentSession.getAttribute("days");
+                ArrayList<ArrayList<Meal>> meals = (ArrayList<ArrayList<Meal>>)currentSession.getAttribute("meals");
+                ArrayList<ArrayList<ArrayList<FoodDetail>>> foodDetails = (ArrayList<ArrayList<ArrayList<FoodDetail>>>)currentSession.getAttribute("foodDetails");
+            }
         }
     }
     public void replaceImageUrls(ArrayList<ArrayList<ArrayList<String>>> imageUrls, int dayIndex, String before, String after){
