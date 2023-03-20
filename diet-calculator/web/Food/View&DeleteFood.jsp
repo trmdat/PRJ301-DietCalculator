@@ -20,7 +20,11 @@
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     </head>
-
+    <style>
+        .break {
+            word-break: break-all;
+        }
+    </style>
     <body id="reportsPage">
 
         <div class="container mt-5 mb-5">
@@ -41,8 +45,8 @@
                         <form action="/diet-calculator/FoodController" method="get" class="tm-edit-product-form">
                             <div class="tm-product-table-container">
 
-                                <table class="table table-hover tm-table-small tm-product-table">
-                                    <input type="hidden" name="action" value="delete"/>
+                                <input type="hidden" name="action" value="delete"/>
+                                <table class="table table-hover table-sm">
                                     <thead>
                                         <tr>
                                             <th scope="col">&nbsp;</th>
@@ -56,12 +60,14 @@
                                             <th scope="col">protein</th>
                                             <th scope="col">fat</th>
                                             <th scope="col">water</th>
+                                            <th scope="col">icon</th>
+                                            <th scope="col">description</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <c:forEach items="${foodList}" var="x">
                                             <tr>
-                                                <th scope="row"><input type="checkbox" name="foodID" value="${x.getFoodID()}"/></th>
+                                                <th scope="row">&nbsp;<input type="checkbox" name="foodID" value="${x.getFoodID()}"/></th>
                                                 <td>${x.getFoodID()}</td>
                                                 <td>${x.getFoodname()}</td>
                                                 <td>${x.getCategory()}</td>
@@ -72,6 +78,8 @@
                                                 <td>${x.getProtein()}</td>
                                                 <td>${x.getFat()}</td>
                                                 <td>${x.getWater()}</td>
+                                                <td class="break">${x.getIcon()}</td>
+                                                <td>${x.getDescription()}</td>
                                                 <td><a href="FoodController?action=update&foodID=${x.getFoodID()}" class="btn btn-primary btn-block bg-success">Update</a></td>
                                             </tr>
                                         </c:forEach>

@@ -179,6 +179,32 @@
                                                 value = "${food.getWater()}"
                                                 />
                                         </div>                      
+                                        <div class="form-group mb-3 col-xs-12 col-sm-6">
+                                            <label
+                                                for="icon"
+                                                >icon
+                                            </label>
+                                            <input
+                                                name="icon"
+                                                type="text"
+                                                class="form-control validate"
+                                                required
+                                                value = "${food.getIcon()}"
+                                                />
+                                        </div>                      
+                                        <div class="form-group mb-3 col-xs-12 col-sm-6">
+                                            <label
+                                                for="description"
+                                                >description
+                                            </label>
+                                            <input
+                                                name="description"
+                                                type="text"
+                                                class="form-control validate"
+                                                required
+                                                value = "${food.getDescription()}"
+                                                />
+                                        </div>                      
                                     </div>
 
                             </div>

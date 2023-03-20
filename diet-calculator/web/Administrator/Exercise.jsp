@@ -23,10 +23,14 @@
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        
+
     </head>
-    
-    
+
+    <style>
+        .break {
+            word-break: break-all;
+        }
+    </style>
 
     <body id="reportsPage">
         <div class="container mt-5 mb-5">
@@ -71,7 +75,6 @@
                                             <th scope="col">CALOREXP</th>
                                             <th scope="col">ICON</th>
                                             <th scope="col">DESCRIPTION</th>
-                                            <th scope="col">&nbsp;</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -83,9 +86,9 @@
                                                 <td> ${e.lowerweight} </td>
                                                 <td> ${e.upperweight} </td>
                                                 <td> ${e.calorexp} </td>
-                                                <td> ${e.icon} </td>
+                                                <td class="break"> ${e.icon} </td>
                                                 <td> ${e.description} </td>
-                                                
+
                                                 <td><a href="./ExerciseController?action=edit&exerciseID=${e.exerciseID}&jump=true" 
                                                        class="btn btn-primary btn-block bg-success">Edit</a></td>
                                             </tr>
