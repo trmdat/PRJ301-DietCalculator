@@ -60,11 +60,11 @@ public class DayController extends HttpServlet {
         for (int i = 0; i < week*7; i++){
             String dayID = String.format(DAY_ID_FORMAT_STRING, ++lastIndex);
             double totalCalstd = totalCalories;
-            double carbohydratestd = totalCalories*mealValues.getCarbohydrate();
-            double fiberstd =  totalCalories*mealValues.getFiber();
-            double proteinstd =  totalCalories*mealValues.getProtein();
-            double fatstd =  totalCalories*mealValues.getFat();
-            double waterstd =  mealValues.getWater();
+            double carbohydratestd = Utils.roundDouble(totalCalories*mealValues.getCarbohydrate());
+            double fiberstd =  Utils.roundDouble(totalCalories*mealValues.getFiber());
+            double proteinstd =  Utils.roundDouble(totalCalories*mealValues.getProtein());
+            double fatstd =  Utils.roundDouble(totalCalories*mealValues.getFat());
+            double waterstd =  Utils.roundDouble(mealValues.getWater());
             
             //Create a new day instance
             days.add(new Day(dayID,userID,i+1,totalCalstd,carbohydratestd,fiberstd,proteinstd,fatstd,waterstd));
