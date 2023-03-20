@@ -23,7 +23,6 @@
    <title>Diet Menu</title>
    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
    <link rel="stylesheet" href="Menu.css" />
    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/index/css/style.css">
    <style>
@@ -190,11 +189,11 @@ a:hover {
 }
 
 .column-50 {
-  width: 40%;
+  width: 50%;
   padding-left: 1.5em;
 }
 .column-25{
- width: 25%;
+ width: 40%;
 }
 
 .tooltips1{
@@ -205,15 +204,15 @@ a:hover {
 .tooltiptext1{
   visibility: hidden;
   width: 9.2em;
-  height: 11.3em;
+  height: 12em;
   background-color: white;
   color: #000;
   text-align: center;
   border-radius: 6px;
-  padding: 5px 0;
+  padding: 2px 0;
   position: absolute;
   z-index: 1;
-  bottom: -6%;
+  bottom: -12%;
   left: 50%;
   margin-left: -4.7em;
   opacity: 0;
@@ -268,6 +267,11 @@ a:hover {
       <div class="timetable-img text-center">
          <img src="img/content/timetable.png" alt="" />
       </div>
+       <div style="margin-left: 880px;margin-bottom:20px;font-size: 13px;">
+       <a href="MenuController?page=${page}&action=buyFood" class="btn btn-info btn-lg" style="background:green">
+          Food List For This Week
+        </a>
+        </div>
       <div class="text-center">
           <h1>Week ${page}</h1>
       </div>     
@@ -441,6 +445,7 @@ a:hover {
     </div>
                  
 </body>
+
 
 </html>
 

@@ -19,6 +19,7 @@ import com.dietcalculator.util.Constants;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -272,6 +273,47 @@ public class MenuController extends HttpServlet {
 //                request.setAttribute("mealID", newMeal.getMealID());
                 response.sendRedirect("MenuController?action=details&mealID=" + newMeal.getMealID());
             }
+        }else if(action.equals("buyFood")){
+            //GETTING SESSION
+            HttpSession currentSession = request.getSession(false);
+            if(currentSession == null){
+                response.sendRedirect("/HomeController");
+            }else{
+                //GETTING SESSION ATTRIBUTES
+                ArrayList<ArrayList<ArrayList<FoodDetail>>> foodDetails = (ArrayList<ArrayList<ArrayList<FoodDetail>>>)currentSession.getAttribute("foodDetails");
+                ArrayList<Food> foodDataset = (ArrayList<Food>) currentSession.getAttribute("foodDataset");
+                //GETTING REQUEST PARAMETERS
+                final int PAGE_SIZE = 7;
+                Integer page = 1;
+                try{
+                    page = Integer.parseInt(request.getParameter("page"));
+                }catch(Exception e){
+                    
+                }
+                //GETTING SUBARRAY
+                ArrayList<List<ArrayList<FoodDetail>>> subFoodDetails = pagingFoodDetails(page,PAGE_SIZE,foodDetails);
+                ArrayList<FoodDetail> fd = new ArrayList();
+                HashMap<Food, Double> list = new HashMap();
+                for(List<ArrayList<FoodDetail>> x: subFoodDetails)
+                    for(ArrayList<FoodDetail> y: x)
+                        for(FoodDetail z: y)
+                            fd.add(z);
+                //SORT THE FOODDETAILS
+                Collections.sort(fd);
+                
+                for(int i = 0;i < fd.size() - 1;){
+                    String currentFoodID = fd.get(i).getFoodID();
+                    double currentAmount = fd.get(i).getAmount();
+                    
+                    while((i < fd.size() -1) && fd.get(++i).getFoodID().equals(currentFoodID))
+                        currentAmount += fd.get(i).getAmount();
+                    list.put(findFoodByFoodID(currentFoodID,foodDataset), currentAmount);
+                }
+                request.setAttribute("page", page);
+                request.setAttribute("list", list);
+                RequestDispatcher rd = request.getRequestDispatcher("/Menu/BuyFood.jsp");
+                rd.forward(request, response);
+            }
         }
     }
     public void replaceImageUrls(ArrayList<ArrayList<ArrayList<String>>> imageUrls, int dayIndex, String before, String after){
@@ -420,6 +462,7 @@ public class MenuController extends HttpServlet {
         List<Day> subList = (List<Day>) days.subList(startIndex, endIndex);
         return subList;
     }
+    
 //
 //    public static void main(String[] args) {
 //        //SAMPLE DATA

@@ -43,9 +43,6 @@
                     <div class="row has-bg-img">
                         <c:forEach var="pop" items="${list}">
                             <img src="${pop.theme}" class="img-responsive p-0 m-0 bg-img" alt="deal"/>
-                            <!--<div class="col-md-6 p-0 m-0"><img src="https://images2.imgbox.com/4e/a9/s08fsXhS_o.jpg"></div>-->
-                            <!--<div class="col-md-6 p-0 m-0"><img src="https://images2.imgbox.com/f1/68/LYzuXjKo_o.jpg"></div>-->
-
                             <c:forEach var="img" items="${imageList}">
                                 <div class="col-md-6 p-0 m-0">
                                     <img class="w-100 h-100" src="${img.url}"/>
