@@ -7,9 +7,11 @@ package com.dietcalculator.controller;
 
 import com.dietcalculator.dao.ProductDAO;
 import com.dietcalculator.dto.Product;
+import com.dietcalculator.dto.User;
 import com.dietcalculator.util.Constants;
 import com.dietcalculator.util.Utils;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -36,96 +38,102 @@ public class ProductController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        User user = (User) request.getSession().getAttribute("user");
 
-        String action = request.getParameter("action");
-        ProductDAO dao = new ProductDAO();
-
-        if (action == null || action.equals("read")) {
-            ArrayList<Product> fullList = dao.readProduct();
-
-            int pageSize = 12;
-            int totalPages = (int) Math.ceil(fullList.size() / pageSize);
-            Integer page = null;
-            try {
-                page = Integer.parseInt(request.getParameter("page"));
-            } catch (Exception e) {
+        if (user == null || user.getRank() < 0) {
+            try (PrintWriter out = response.getWriter()) {
+                out.print("<h1>You don't have permission</h1");
             }
-            if (page == null) {
-                page = 1;
-            } else if (page > totalPages) {
-                page = totalPages;
-            }
-            List<Product> list = paginProduct(page, pageSize, fullList);
+        } else {
+            String action = request.getParameter("action");
+            ProductDAO dao = new ProductDAO();
 
-            request.setAttribute("page", (int) page);
-            request.setAttribute("totalPages", totalPages);
-            request.setAttribute("productList", list);
-            RequestDispatcher rd = request.getRequestDispatcher("./Administrator/ViewDeleteProduct.jsp");
+            if (action == null || action.equals("read")) {
+                ArrayList<Product> fullList = dao.readProduct();
 
-            rd.forward(request, response);
-
-        } else if (action.equals("create")) {
-            if (!request.getParameter("productID").isEmpty()) {
+                int pageSize = 12;
+                int totalPages = (int) Math.ceil(fullList.size() / pageSize);
+                Integer page = null;
                 try {
-                    String productID = request.getParameter("productID");
-                    String productname = request.getParameter("productname");
-                    String type = request.getParameter("type");
-                    double price = Double.parseDouble(request.getParameter("price"));
-                    int quantity = Integer.parseInt(request.getParameter("quantity"));
-                    String brand = request.getParameter("brand");
-                    String origin = request.getParameter("origin");
-                    double volume = Double.parseDouble(request.getParameter("volume"));
-                    String effect = request.getParameter("effect");
-                    double rate = Double.parseDouble(request.getParameter("rate"));
-                    int purchase = Integer.parseInt(request.getParameter("purchase"));
-                    dao.createProduct(productID, productname, type, price, quantity, brand, origin, volume, effect, rate, purchase);
-
+                    page = Integer.parseInt(request.getParameter("page"));
                 } catch (Exception e) {
-                    System.out.println(e);
                 }
-                response.sendRedirect("ProductController");
-            } else {
-                response.sendRedirect("ProductController");
-            }
+                if (page == null) {
+                    page = 1;
+                } else if (page > totalPages) {
+                    page = totalPages;
+                }
+                List<Product> list = paginProduct(page, pageSize, fullList);
 
-        } else if (action.equals("update")) {
-            if (request.getParameter("productname") == null) {
-                Product product = productByID(request.getParameter("productID"));
-                request.setAttribute("product", product);
-                RequestDispatcher rd = request.getRequestDispatcher("Administrator/EditProduct.jsp");
+                request.setAttribute("page", (int) page);
+                request.setAttribute("totalPages", totalPages);
+                request.setAttribute("productList", list);
+                RequestDispatcher rd = request.getRequestDispatcher("./Administrator/ViewDeleteProduct.jsp");
+
                 rd.forward(request, response);
-            } else if (!request.getParameter("productname").isEmpty()) {
-                try {
-                    String productID = request.getParameter("productID");
-                    String productname = request.getParameter("productname");
-                    String type = request.getParameter("type");
-                    double price = Double.parseDouble(request.getParameter("price"));
-                    int quantity = Integer.parseInt(request.getParameter("quantity"));
-                    String brand = request.getParameter("brand");
-                    String origin = request.getParameter("origin");
-                    double volume = Double.parseDouble(request.getParameter("volume"));
-                    String effect = request.getParameter("effect");
-                    double rate = Double.parseDouble(request.getParameter("rate"));
-                    double purchase = Double.parseDouble(request.getParameter("purchase"));
-                    dao.updateProduct(productID, productname, type, price, quantity, brand, origin, volume, effect, rate, purchase);
-                } catch (Exception e) {
 
+            } else if (action.equals("create")) {
+                if (!request.getParameter("productID").isEmpty()) {
+                    try {
+                        String productID = request.getParameter("productID");
+                        String productname = request.getParameter("productname");
+                        String type = request.getParameter("type");
+                        double price = Double.parseDouble(request.getParameter("price"));
+                        int quantity = Integer.parseInt(request.getParameter("quantity"));
+                        String brand = request.getParameter("brand");
+                        String origin = request.getParameter("origin");
+                        double volume = Double.parseDouble(request.getParameter("volume"));
+                        String effect = request.getParameter("effect");
+                        double rate = Double.parseDouble(request.getParameter("rate"));
+                        int purchase = Integer.parseInt(request.getParameter("purchase"));
+                        dao.createProduct(productID, productname, type, price, quantity, brand, origin, volume, effect, rate, purchase);
+
+                    } catch (Exception e) {
+                        System.out.println(e);
+                    }
+                    response.sendRedirect("ProductController");
+                } else {
+                    response.sendRedirect("ProductController");
+                }
+
+            } else if (action.equals("update")) {
+                if (request.getParameter("productname") == null) {
+                    Product product = productByID(request.getParameter("productID"));
+                    request.setAttribute("product", product);
+                    RequestDispatcher rd = request.getRequestDispatcher("Administrator/EditProduct.jsp");
+                    rd.forward(request, response);
+                } else if (!request.getParameter("productname").isEmpty()) {
+                    try {
+                        String productID = request.getParameter("productID");
+                        String productname = request.getParameter("productname");
+                        String type = request.getParameter("type");
+                        double price = Double.parseDouble(request.getParameter("price"));
+                        int quantity = Integer.parseInt(request.getParameter("quantity"));
+                        String brand = request.getParameter("brand");
+                        String origin = request.getParameter("origin");
+                        double volume = Double.parseDouble(request.getParameter("volume"));
+                        String effect = request.getParameter("effect");
+                        double rate = Double.parseDouble(request.getParameter("rate"));
+                        double purchase = Double.parseDouble(request.getParameter("purchase"));
+                        dao.updateProduct(productID, productname, type, price, quantity, brand, origin, volume, effect, rate, purchase);
+                    } catch (Exception e) {
+
+                    }
+
+                    response.sendRedirect("ProductController");
+                }
+
+            } else if (action.equals("delete")) {
+                String[] ids = request.getParameterValues("productID");
+                if (ids != null) {
+                    for (String id : ids) {
+                        dao.deleteProduct(id);
+                    }
                 }
 
                 response.sendRedirect("ProductController");
             }
-
-        } else if (action.equals("delete")) {
-            String[] ids = request.getParameterValues("productID");
-            if (ids != null) {
-                for (String id : ids) {
-                    dao.deleteProduct(id);
-                }
-            }
-
-            response.sendRedirect("ProductController");
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

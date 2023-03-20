@@ -25,19 +25,16 @@
     </head>
 
     <body id="reportsPage">
-
-
-
         <div class="container mt-5 mb-5">
             <div class="row tm-content-row">
                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 tm-block-col">
                     <div class="tm-bg-primary-dark tm-block tm-block-products">
                         <div class="row">
                             <div class="col-10">
-                                <h2 class="tm-block-title d-inline-block">Details for PopUp ${popup}</h2>
+                                <h2 class="tm-block-title d-inline-block">Details for PopUp <strong>${popup}</strong></h2>
                             </div>
                             <div class="col-2">
-                                <form action="/diet-calculator/PopUpDetailController">
+                                <form action="/diet-calculator/PopUpController">
                                     <button type="submit" class="btn btn-primary btn-block text-uppercase bg-success"> << Return</button>                            
                                 </form>
                             </div>

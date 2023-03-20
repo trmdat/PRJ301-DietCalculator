@@ -43,31 +43,32 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="./HomeController">Home <span class="sr-only">(current)</span></a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/diet-calculator/UserController">User</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./UserController">User</a>
+                        <a class="nav-link" href="/diet-calculator/ProductController">Product</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./ProductController">Product</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./FoodController">Food</a>
+                        <a class="nav-link" href="/diet-calculator/FoodController">Food</a>
                     </li>
                     <li class="nav-item"> 
-                        <a class="nav-link" href="./PopUpController">Pop Up</a>
+                        <a class="nav-link" href="/diet-calculator/PopUpController">Pop Up</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./SaleOffController">Sale Off</a>
+                        <a class="nav-link" href="/diet-calculator/SaleOffController">Sale Off</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./ExerciseController">Exercise</a>
+                        <a class="nav-link" href="/diet-calculator/ExerciseController">Exercise</a>
                     </li>
-                    <li class="user-item">
+<!--                    <li class="user-item">
                         <a class="nav-link" href=""><i class="fas fa-user fa-2x"></i></a>
-                    </li>
-
+                    </li>-->
+                    <c:if test = "${sessionScope.user.getUsername()!=null}"><div style="color:white">Welcome back: ${sessionScope.user.getUsername()}</div></c:if>
+                    <c:if test = "${sessionScope.user.getUserID()!=null}"><a href="/diet-calculator/LoginController?action=logout"><div class="nav-link" style="color:white">Log out</div></a> </c:if>
+                    <c:if test = "${sessionScope.user.getUserID()==null}"> <a href="/diet-calculator/Register_Login/login.jsp"><div class="nav-link" style="color:white">Log in</div></a></c:if>
+                    <div class="user-logo"><a href="ProfileController"><img src="/diet-calculator/index/images/user-logo.jpg" alt="user_logo"></a>
+                    </div>
 
                 </ul>
 

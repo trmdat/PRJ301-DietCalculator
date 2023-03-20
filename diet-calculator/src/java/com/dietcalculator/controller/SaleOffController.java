@@ -7,6 +7,7 @@ package com.dietcalculator.controller;
 
 import com.dietcalculator.dao.SaleOffDAO;
 import com.dietcalculator.dto.SaleOff;
+import com.dietcalculator.dto.User;
 import com.dietcalculator.util.Utils;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -37,83 +38,89 @@ public class SaleOffController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        User user = (User) request.getSession().getAttribute("user");
 
-        String action = request.getParameter("action");
-        SaleOffDAO dao = new SaleOffDAO();
-
-        if (action == null || action.equals("read")) {
-            ArrayList<SaleOff> fullList = dao.readSaleOff();
-
-            int pageSize = 12;
-            int totalPages = (int) Math.ceil(fullList.size() / pageSize);
-            Integer page = null;
-            try {
-                page = Integer.parseInt(request.getParameter("page"));
-            } catch (Exception e) {
+        if (user == null || user.getRank() < 0) {
+            try (PrintWriter out = response.getWriter()) {
+                out.print("<h1>You don't have permission</h1");
             }
-            if (page == null) {
-                page = 1;
-            } else if (page > totalPages) {
-                page = totalPages;
-            }
-            List<SaleOff> list = paginSaleOff(page, pageSize, fullList);
+        } else {
+            String action = request.getParameter("action");
+            SaleOffDAO dao = new SaleOffDAO();
 
-            request.setAttribute("page", (int) page);
-            request.setAttribute("totalPages", totalPages);
+            if (action == null || action.equals("read")) {
+                ArrayList<SaleOff> fullList = dao.readSaleOff();
 
-            request.setAttribute("saleoffList", list);
-            RequestDispatcher rd = request.getRequestDispatcher("./Administrator/ViewDeleteSaleOff.jsp");
-
-            rd.forward(request, response);
-
-        } else if (action.equals("create")) {
-            if (!request.getParameter("saleoffID").isEmpty()) {
+                int pageSize = 12;
+                int totalPages = (int) Math.ceil(fullList.size() / pageSize);
+                Integer page = null;
                 try {
-                    String saleoffID = request.getParameter("saleoffID");
-                    String description = request.getParameter("description");
-                    Date startdate = Utils.convertStringToSqlDate(request.getParameter("startdate"));
-                    Date enddate = Utils.convertStringToSqlDate(request.getParameter("enddate"));
-                    int target = Integer.parseInt(request.getParameter("target"));
-                    dao.createSaleOff(saleoffID, description, startdate, enddate, target);
-
+                    page = Integer.parseInt(request.getParameter("page"));
                 } catch (Exception e) {
-                    System.out.println(e);
                 }
-                response.sendRedirect("SaleOffController");
-            } else {
-                response.sendRedirect("SaleOffController");
-            }
+                if (page == null) {
+                    page = 1;
+                } else if (page > totalPages) {
+                    page = totalPages;
+                }
+                List<SaleOff> list = paginSaleOff(page, pageSize, fullList);
 
-        } else if (action.equals("update")) {
-            if (request.getParameter("description") == null) {
-                SaleOff saleoff = saleoffByID(request.getParameter("saleoffID"));
-                request.setAttribute("saleoff", saleoff);
-                RequestDispatcher rd = request.getRequestDispatcher("Administrator/EditSaleOff.jsp");
+                request.setAttribute("page", (int) page);
+                request.setAttribute("totalPages", totalPages);
+
+                request.setAttribute("saleoffList", list);
+                RequestDispatcher rd = request.getRequestDispatcher("./Administrator/ViewDeleteSaleOff.jsp");
+
                 rd.forward(request, response);
-            } else if (!request.getParameter("description").isEmpty()) {
-                try {
-                    String saleoffID = request.getParameter("saleoffID");
-                    String description = request.getParameter("description");
-                    Date startdate = Utils.convertStringToSqlDate(request.getParameter("startdate"));
-                    Date enddate = Utils.convertStringToSqlDate(request.getParameter("enddate"));
-                    int target = Integer.parseInt(request.getParameter("target"));
-                    dao.updateSaleOff(saleoffID, description, startdate, enddate, target);
-                } catch (Exception e) {
-                    System.out.println(e);
+
+            } else if (action.equals("create")) {
+                if (!request.getParameter("saleoffID").isEmpty()) {
+                    try {
+                        String saleoffID = request.getParameter("saleoffID");
+                        String description = request.getParameter("description");
+                        Date startdate = Utils.convertStringToSqlDate(request.getParameter("startdate"));
+                        Date enddate = Utils.convertStringToSqlDate(request.getParameter("enddate"));
+                        int target = Integer.parseInt(request.getParameter("target"));
+                        dao.createSaleOff(saleoffID, description, startdate, enddate, target);
+
+                    } catch (Exception e) {
+                        System.out.println(e);
+                    }
+                    response.sendRedirect("SaleOffController");
+                } else {
+                    response.sendRedirect("SaleOffController");
                 }
+
+            } else if (action.equals("update")) {
+                if (request.getParameter("description") == null) {
+                    SaleOff saleoff = saleoffByID(request.getParameter("saleoffID"));
+                    request.setAttribute("saleoff", saleoff);
+                    RequestDispatcher rd = request.getRequestDispatcher("Administrator/EditSaleOff.jsp");
+                    rd.forward(request, response);
+                } else if (!request.getParameter("description").isEmpty()) {
+                    try {
+                        String saleoffID = request.getParameter("saleoffID");
+                        String description = request.getParameter("description");
+                        Date startdate = Utils.convertStringToSqlDate(request.getParameter("startdate"));
+                        Date enddate = Utils.convertStringToSqlDate(request.getParameter("enddate"));
+                        int target = Integer.parseInt(request.getParameter("target"));
+                        dao.updateSaleOff(saleoffID, description, startdate, enddate, target);
+                    } catch (Exception e) {
+                        System.out.println(e);
+                    }
+                    response.sendRedirect("SaleOffController");
+                }
+            } else if (action.equals("delete")) {
+                String[] ids = request.getParameterValues("saleoffID");
+                if (ids != null) {
+                    for (String id : ids) {
+                        dao.deleteSaleOff(id);
+                    }
+                }
+
                 response.sendRedirect("SaleOffController");
             }
-        } else if (action.equals("delete")) {
-            String[] ids = request.getParameterValues("saleoffID");
-            if (ids != null) {
-                for (String id : ids) {
-                    dao.deleteSaleOff(id);
-                }
-            }
-
-            response.sendRedirect("SaleOffController");
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

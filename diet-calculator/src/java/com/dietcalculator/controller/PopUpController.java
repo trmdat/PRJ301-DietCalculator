@@ -2,7 +2,9 @@ package com.dietcalculator.controller;
 
 import com.dietcalculator.dao.PopUpDAO;
 import com.dietcalculator.dto.PopUp;
+import com.dietcalculator.dto.User;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -28,84 +30,92 @@ public class PopUpController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String action = request.getParameter("action");
+        User user = (User) request.getSession().getAttribute("user");
 
-        PopUpDAO popupDao = new PopUpDAO();
-
-        String popupId = "";
-        String description = "";
-        int status = 0;
-        String theme = "";
-
-        if (action == null || action.equals("list")) {
-            ArrayList<PopUp> fullList = popupDao.readPopUp();
-
-            int pageSize = 12;
-            int totalPages = (int) Math.ceil(fullList.size() / pageSize);
-            Integer page = null;
-            try {
-                page = Integer.parseInt(request.getParameter("page"));
-            } catch (Exception e) {
+        if (user == null || user.getRank() < 0) {
+            try (PrintWriter out = response.getWriter()) {
+                out.print("<h1>You don't have permission</h1");
             }
-            if (page == null) {
-                page = 1;
-            } else if (page > totalPages) {
-                page = totalPages;
-            }
-            List<PopUp> list = paginPopUp(page, pageSize, fullList);
+        } else {
+            String action = request.getParameter("action");
 
-            request.setAttribute("page", (int) page);
-            request.setAttribute("totalPages", totalPages);
-            request.setAttribute("list", list);
-            RequestDispatcher rd = request.getRequestDispatcher("Administrator/PopUp.jsp");
-            rd.forward(request, response);
+            PopUpDAO popupDao = new PopUpDAO();
 
-        } else if (action.equals("create")) {
-            try {
-                popupId = request.getParameter("popupID");
-                description = request.getParameter("description");
-                status = Integer.parseInt(request.getParameter("status"));
-                theme = request.getParameter("theme");
-            } catch (Exception e) {
-            }
-            if (popupId != null) {
-                popupDao.createPopUp(popupId, description, status, theme);
-            }
+            String popupId = "";
+            String description = "";
+            int status = 0;
+            String theme = "";
 
-            response.sendRedirect("PopUpController");
-        } else if (action.equals("delete")) {
-            String[] ids = request.getParameterValues("checkId");
-            if (ids != null) {
-                for (String checkedid : ids) {
-                    popupDao.deletePopUp(checkedid);
+            if (action == null || action.equals("list")) {
+                ArrayList<PopUp> fullList = popupDao.readPopUp();
+
+                int pageSize = 12;
+                int totalPages = (int) Math.ceil(fullList.size() / pageSize);
+                Integer page = null;
+                try {
+                    page = Integer.parseInt(request.getParameter("page"));
+                } catch (Exception e) {
                 }
-            }
+                if (page == null) {
+                    page = 1;
+                } else if (page > totalPages) {
+                    page = totalPages;
+                }
+                List<PopUp> list = paginPopUp(page, pageSize, fullList);
 
-            response.sendRedirect("PopUpController");
-        } else if (action.equals("edit")) {
-            try {
-                popupId = request.getParameter("popupID");
-            } catch (NumberFormatException ex) {
-            }
-            PopUp p = readPopUpByID(popupId);
+                request.setAttribute("page", (int) page);
+                request.setAttribute("totalPages", totalPages);
+                request.setAttribute("list", list);
+                RequestDispatcher rd = request.getRequestDispatcher("Administrator/PopUp.jsp");
+                rd.forward(request, response);
 
-            request.setAttribute("popup", p);
-            RequestDispatcher rd = request.getRequestDispatcher("Administrator/EditPopUp.jsp");
-            rd.forward(request, response);
-        } else if (action.equals("update")) {
-            try {
-                popupId = request.getParameter("popupID");
-                description = request.getParameter("description");
-                status = Integer.parseInt(request.getParameter("status"));
-                theme = request.getParameter("theme");
-            } catch (NumberFormatException ex) {
-            }
+            } else if (action.equals("create")) {
+                try {
+                    popupId = request.getParameter("popupID");
+                    description = request.getParameter("description");
+                    status = Integer.parseInt(request.getParameter("status"));
+                    theme = request.getParameter("theme");
+                } catch (Exception e) {
+                }
+                if (popupId != null) {
+                    popupDao.createPopUp(popupId, description, status, theme);
+                }
 
-            if (popupId != null) {
-                popupDao.updatePopUp(popupId, description, status, theme);
-            }
+                response.sendRedirect("PopUpController");
+            } else if (action.equals("delete")) {
+                String[] ids = request.getParameterValues("checkId");
+                if (ids != null) {
+                    for (String checkedid : ids) {
+                        popupDao.deletePopUp(checkedid);
+                    }
+                }
 
-            response.sendRedirect("PopUpController");
+                response.sendRedirect("PopUpController");
+            } else if (action.equals("edit")) {
+                try {
+                    popupId = request.getParameter("popupID");
+                } catch (NumberFormatException ex) {
+                }
+                PopUp p = readPopUpByID(popupId);
+
+                request.setAttribute("popup", p);
+                RequestDispatcher rd = request.getRequestDispatcher("Administrator/EditPopUp.jsp");
+                rd.forward(request, response);
+            } else if (action.equals("update")) {
+                try {
+                    popupId = request.getParameter("popupID");
+                    description = request.getParameter("description");
+                    status = Integer.parseInt(request.getParameter("status"));
+                    theme = request.getParameter("theme");
+                } catch (NumberFormatException ex) {
+                }
+
+                if (popupId != null) {
+                    popupDao.updatePopUp(popupId, description, status, theme);
+                }
+
+                response.sendRedirect("PopUpController");
+            }
         }
     }
 

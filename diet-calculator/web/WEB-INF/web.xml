@@ -80,6 +80,10 @@
         <servlet-name>DietGrading</servlet-name>
         <servlet-class>com.dietcalculator.controller.DietGrading</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProfileController</servlet-name>
+        <servlet-class>com.dietcalculator.controller.ProfileController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>DayController</servlet-name>
         <url-pattern>/DayController</url-pattern>
@@ -159,6 +163,10 @@
     <servlet-mapping>
         <servlet-name>DietGrading</servlet-name>
         <url-pattern>/DietGrading</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProfileController</servlet-name>
+        <url-pattern>/ProfileController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

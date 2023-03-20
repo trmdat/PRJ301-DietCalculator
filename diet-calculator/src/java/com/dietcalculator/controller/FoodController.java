@@ -7,6 +7,7 @@ package com.dietcalculator.controller;
 
 import com.dietcalculator.dao.FoodDAO;
 import com.dietcalculator.dto.Food;
+import com.dietcalculator.dto.User;
 import com.dietcalculator.util.Constants;
 import com.dietcalculator.util.Utils;
 import java.io.IOException;
@@ -36,95 +37,102 @@ public class FoodController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        User user = (User) request.getSession().getAttribute("user");
 
-        String action = request.getParameter("action");
-        FoodDAO dao = new FoodDAO();
-
-        if (action == null || action.equals("read")) {
-            ArrayList<Food> fullList = dao.readFood();
-            
-            int pageSize = 12;
-            int totalPages = (int) Math.ceil(fullList.size() / pageSize);
-            Integer page = null;
-            try {
-                page = Integer.parseInt(request.getParameter("page"));
-            } catch (Exception e) {
+        if (user == null || user.getRank() < 0) {
+            try (PrintWriter out = response.getWriter()) {
+                out.print("<h1>You don't have permission</h1");
             }
-            if (page == null) {
-                page = 1;
-            } else if (page > totalPages) {
-                page = totalPages;
-            }
-            List<Food> list = paginFood(page, pageSize, fullList);
+        } else {
+            String action = request.getParameter("action");
+            FoodDAO dao = new FoodDAO();
 
-            request.setAttribute("page", (int) page);
-            request.setAttribute("totalPages", totalPages);
+            if (action == null || action.equals("read")) {
+                ArrayList<Food> fullList = dao.readFood();
 
-            request.setAttribute("foodList", list);
-            RequestDispatcher rd = request.getRequestDispatcher("Food/View&DeleteFood.jsp");
-
-            rd.forward(request, response);
-        } else if (action.equals("create")) {
-            if (!request.getParameter("foodID").isEmpty()) {
+                int pageSize = 12;
+                int totalPages = (int) Math.ceil(fullList.size() / pageSize);
+                Integer page = null;
                 try {
-                    String foodID = request.getParameter("foodID");
-                    String foodname = request.getParameter("foodname");
-                    String category = request.getParameter("category");
-                    int size = Integer.parseInt(request.getParameter("size"));
-                    int caloricintake = Integer.parseInt(request.getParameter("caloricintake"));
-                    Double carbohydrate = Double.parseDouble(request.getParameter("carbohydrate"));
-                    Double fiber = Double.parseDouble(request.getParameter("fiber"));
-                    Double protein = Double.parseDouble(request.getParameter("protein"));
-                    Double fat = Double.parseDouble(request.getParameter("fat"));
-                    Double water = Double.parseDouble(request.getParameter("water"));
-                    String icon = request.getParameter("icon");
-                    String description = request.getParameter("description");
-                    dao.createFood(foodID, foodname, category, size, caloricintake, carbohydrate, fiber, protein, fat, water,icon,description);
+                    page = Integer.parseInt(request.getParameter("page"));
                 } catch (Exception e) {
                 }
+                if (page == null) {
+                    page = 1;
+                } else if (page > totalPages) {
+                    page = totalPages;
+                }
+                List<Food> list = paginFood(page, pageSize, fullList);
 
-                response.sendRedirect("FoodController");
-            } else {
-                response.sendRedirect("FoodController");
-            }
+                request.setAttribute("page", (int) page);
+                request.setAttribute("totalPages", totalPages);
 
-        } else if (action.equals("update")) {
-            if (request.getParameter("foodname") == null) {
-                Food food = foodByID(request.getParameter("foodID"));
-                request.setAttribute("food", food);
-                RequestDispatcher rd = request.getRequestDispatcher("Food/EditFood.jsp");
+                request.setAttribute("foodList", list);
+                RequestDispatcher rd = request.getRequestDispatcher("Food/View&DeleteFood.jsp");
+
                 rd.forward(request, response);
-            } else if (!request.getParameter("foodname").isEmpty()) {
-                try {
-                    String foodID = request.getParameter("foodID");
-                    String foodname = request.getParameter("foodname");
-                    String category = request.getParameter("category");
-                    int size = Integer.parseInt(request.getParameter("size"));
-                    int caloricintake = Integer.parseInt(request.getParameter("caloricintake"));
-                    Double carbohydrate = Double.parseDouble(request.getParameter("carbohydrate"));
-                    Double fiber = Double.parseDouble(request.getParameter("fiber"));
-                    Double protein = Double.parseDouble(request.getParameter("protein"));
-                    Double fat = Double.parseDouble(request.getParameter("fat"));
-                    Double water = Double.parseDouble(request.getParameter("water"));
-                    String icon = request.getParameter("icon");
-                    String description = request.getParameter("description");
-                    dao.updateFood(foodID, foodname, category, size, caloricintake, carbohydrate, fiber, protein, fat, water,icon,description);
-                } catch (Exception e) {
+            } else if (action.equals("create")) {
+                if (!request.getParameter("foodID").isEmpty()) {
+                    try {
+                        String foodID = request.getParameter("foodID");
+                        String foodname = request.getParameter("foodname");
+                        String category = request.getParameter("category");
+                        int size = Integer.parseInt(request.getParameter("size"));
+                        int caloricintake = Integer.parseInt(request.getParameter("caloricintake"));
+                        Double carbohydrate = Double.parseDouble(request.getParameter("carbohydrate"));
+                        Double fiber = Double.parseDouble(request.getParameter("fiber"));
+                        Double protein = Double.parseDouble(request.getParameter("protein"));
+                        Double fat = Double.parseDouble(request.getParameter("fat"));
+                        Double water = Double.parseDouble(request.getParameter("water"));
+                        String icon = request.getParameter("icon");
+                        String description = request.getParameter("description");
+                        dao.createFood(foodID, foodname, category, size, caloricintake, carbohydrate, fiber, protein, fat, water, icon, description);
+                    } catch (Exception e) {
+                    }
+
+                    response.sendRedirect("FoodController");
+                } else {
+                    response.sendRedirect("FoodController");
                 }
-                response.sendRedirect("FoodController");
-            }
-        } else if (action.equals("delete")) {
-            String[] ids = request.getParameterValues("foodID");
-            if (ids != null) {
-                for (String id : ids) {
-                    dao.deleteFood(id);
+
+            } else if (action.equals("update")) {
+                if (request.getParameter("foodname") == null) {
+                    Food food = foodByID(request.getParameter("foodID"));
+                    request.setAttribute("food", food);
+                    RequestDispatcher rd = request.getRequestDispatcher("Food/EditFood.jsp");
+                    rd.forward(request, response);
+                } else if (!request.getParameter("foodname").isEmpty()) {
+                    try {
+                        String foodID = request.getParameter("foodID");
+                        String foodname = request.getParameter("foodname");
+                        String category = request.getParameter("category");
+                        int size = Integer.parseInt(request.getParameter("size"));
+                        int caloricintake = Integer.parseInt(request.getParameter("caloricintake"));
+                        Double carbohydrate = Double.parseDouble(request.getParameter("carbohydrate"));
+                        Double fiber = Double.parseDouble(request.getParameter("fiber"));
+                        Double protein = Double.parseDouble(request.getParameter("protein"));
+                        Double fat = Double.parseDouble(request.getParameter("fat"));
+                        Double water = Double.parseDouble(request.getParameter("water"));
+                        String icon = request.getParameter("icon");
+                        String description = request.getParameter("description");
+                        dao.updateFood(foodID, foodname, category, size, caloricintake, carbohydrate, fiber, protein, fat, water, icon, description);
+                    } catch (Exception e) {
+                    }
+                    response.sendRedirect("FoodController");
                 }
-            }
+            } else if (action.equals("delete")) {
+                String[] ids = request.getParameterValues("foodID");
+                if (ids != null) {
+                    for (String id : ids) {
+                        dao.deleteFood(id);
+                    }
+                }
 
 //              RequestDispatcher rd = request.getRequestDispatcher("FoodController");   
 //              request.removeAttribute("action");
 //              rd.forward(request, response);
-            response.sendRedirect("FoodController");
+                response.sendRedirect("FoodController");
+            }
         }
     }
 

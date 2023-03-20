@@ -4,6 +4,7 @@ import com.dietcalculator.dao.ExerciseDAO;
 import com.dietcalculator.dto.Exercise;
 import com.dietcalculator.dto.User;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -30,126 +31,80 @@ public class ExerciseController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        User user = (User) request.getSession().getAttribute("user");
 
-        String action = request.getParameter("action");
+        if (user == null || user.getRank() < 0) {
+            try (PrintWriter out = response.getWriter()) {
+                out.print("<h1>You don't have permission</h1");
+            }
+        } else {
+            String action = request.getParameter("action");
+            ExerciseDAO exerciseDAO = new ExerciseDAO();
 
-//        // Check security
-//        HttpSession session = request.getSession(false);
-//        User currentUser = null;
-//
-//        if (session != null) {
-//            currentUser = (User) session.getAttribute("user");
-//        }
-//
-//        log("Debug: " + currentUser);
-//        if (currentUser == null) {
-//            log("Debug: Redirect to login page" + currentUser);
-//            response.sendRedirect(request.getContextPath() + "/LoginController");
-//            return;
-//        }
+            String id = "";
+            String exName = "";
+            double lowerweight = 0;
+            double upperweight = 0;
+            int calorexp = 0;
+            String icon = "";
+            String description = "";
 
-        ExerciseDAO exerciseDAO = new ExerciseDAO();
-
-        String id = "";
-        String exName = "";
-        double lowerweight = 0;
-        double upperweight = 0;
-        int calorexp = 0;
-        String icon = "";
-        String description = "";
-
-        if (action == null || action.equals("list")) {
-            try {
-                exName = request.getParameter("exname");
-            } catch (Exception e) {
-            }
-            List<Exercise> fullList = exerciseDAO.readExercise(exName);
-
-            int pageSize = 12;
-            int totalPages = (int) Math.ceil(fullList.size() / pageSize);
-            Integer page = null;
-            try {
-                page = Integer.parseInt(request.getParameter("page"));
-            } catch (Exception e) {
-            }
-            if (page == null) {
-                page = 1;
-            } else if (page > totalPages) {
-                page = totalPages;
-            }
-            List<Exercise> list = paginExercise(page, pageSize, fullList);
-
-            request.setAttribute("page", (int) page);
-            request.setAttribute("totalPages", totalPages);
-            request.setAttribute("list", list);
-            RequestDispatcher rd = request.getRequestDispatcher("./Administrator/Exercise.jsp");
-            rd.forward(request, response);
-        } else if(action.equals("sort")) {
-            String exname = request.getParameter("exname");
-            String calore = request.getParameter("calorexp");
-            
-            List<Exercise> fullList = null;
-            if(exname != null || calore != null) {
-                fullList = exerciseDAO.sortExercise(exname, calore);
-            }
-            
-            int pageSize = 12;
-            int totalPages = (int) Math.ceil(fullList.size() / pageSize);
-            Integer page = null;
-            try {
-                page = Integer.parseInt(request.getParameter("page"));
-            } catch (Exception e) {
-            }
-            if (page == null) {
-                page = 1;
-            } else if (page > totalPages) {
-                page = totalPages;
-            }
-            
-            List<Exercise> list = paginExercise(page, pageSize, fullList);
-            
-            request.setAttribute("page", (int) page);
-            request.setAttribute("totalPages", totalPages);
-            request.setAttribute("list", list);
-            RequestDispatcher rd = request.getRequestDispatcher("./Administrator/Exercise.jsp");
-            rd.forward(request, response);
-        } else if (action.equals("create")) {
-            try {
-                id = request.getParameter("exerciseID");
-                exName = request.getParameter("exname");
-                lowerweight = Double.parseDouble(request.getParameter("lowerweight"));
-                upperweight = Double.parseDouble(request.getParameter("upperweight"));
-                calorexp = Integer.parseInt(request.getParameter("calorexp"));
-                icon = request.getParameter("icon");
-                description = request.getParameter("description");
-            } catch (Exception e) {
-            }
-            if (id != null) {
-                exerciseDAO.createExercise(id, exName, lowerweight, upperweight, calorexp, icon, description);
-            }
-
-            response.sendRedirect("ExerciseController");
-        } else if (action.equals("delete")) {
-            String[] ids = request.getParameterValues("checkId");
-            if (ids != null) {
-                for (String checkedid : ids) {
-                    exerciseDAO.deleteExercise(checkedid);
-                }
-            }
-
-            response.sendRedirect("ExerciseController");
-        } else if (action.equals("edit")) {
-            if (request.getParameter("jump") != null) {
+            if (action == null || action.equals("list")) {
                 try {
-                    id = request.getParameter("exerciseID");
-                } catch (NumberFormatException ex) {
+                    exName = request.getParameter("exname");
+                } catch (Exception e) {
                 }
-                Exercise ex = readexerciseByID(id, exName);
+                List<Exercise> fullList = exerciseDAO.readExercise(exName);
 
-                request.setAttribute("exercise", ex);
-                RequestDispatcher rd = request.getRequestDispatcher("./Administrator/EditExercise.jsp");
+                int pageSize = 12;
+                int totalPages = (int) Math.ceil(fullList.size() / pageSize);
+                Integer page = null;
+                try {
+                    page = Integer.parseInt(request.getParameter("page"));
+                } catch (Exception e) {
+                }
+                if (page == null) {
+                    page = 1;
+                } else if (page > totalPages) {
+                    page = totalPages;
+                }
+                List<Exercise> list = paginExercise(page, pageSize, fullList);
+
+                request.setAttribute("page", (int) page);
+                request.setAttribute("totalPages", totalPages);
+                request.setAttribute("list", list);
+                RequestDispatcher rd = request.getRequestDispatcher("./Administrator/Exercise.jsp");
                 rd.forward(request, response);
-            } else {
+            } else if (action.equals("sort")) {
+                String exname = request.getParameter("exname");
+                String calore = request.getParameter("calorexp");
+
+                List<Exercise> fullList = null;
+                if (exname != null || calore != null) {
+                    fullList = exerciseDAO.sortExercise(exname, calore);
+                }
+
+                int pageSize = 12;
+                int totalPages = (int) Math.ceil(fullList.size() / pageSize);
+                Integer page = null;
+                try {
+                    page = Integer.parseInt(request.getParameter("page"));
+                } catch (Exception e) {
+                }
+                if (page == null) {
+                    page = 1;
+                } else if (page > totalPages) {
+                    page = totalPages;
+                }
+
+                List<Exercise> list = paginExercise(page, pageSize, fullList);
+
+                request.setAttribute("page", (int) page);
+                request.setAttribute("totalPages", totalPages);
+                request.setAttribute("list", list);
+                RequestDispatcher rd = request.getRequestDispatcher("./Administrator/Exercise.jsp");
+                rd.forward(request, response);
+            } else if (action.equals("create")) {
                 try {
                     id = request.getParameter("exerciseID");
                     exName = request.getParameter("exname");
@@ -158,16 +113,52 @@ public class ExerciseController extends HttpServlet {
                     calorexp = Integer.parseInt(request.getParameter("calorexp"));
                     icon = request.getParameter("icon");
                     description = request.getParameter("description");
-                } catch (NumberFormatException ex) {
+                } catch (Exception e) {
                 }
-
                 if (id != null) {
-                    exerciseDAO.updateExercise(id, exName, lowerweight, upperweight, calorexp, icon, description);
+                    exerciseDAO.createExercise(id, exName, lowerweight, upperweight, calorexp, icon, description);
                 }
 
                 response.sendRedirect("ExerciseController");
-            }
+            } else if (action.equals("delete")) {
+                String[] ids = request.getParameterValues("checkId");
+                if (ids != null) {
+                    for (String checkedid : ids) {
+                        exerciseDAO.deleteExercise(checkedid);
+                    }
+                }
 
+                response.sendRedirect("ExerciseController");
+            } else if (action.equals("edit")) {
+                if (request.getParameter("jump") != null) {
+                    try {
+                        id = request.getParameter("exerciseID");
+                    } catch (NumberFormatException ex) {
+                    }
+                    Exercise ex = readexerciseByID(id, exName);
+
+                    request.setAttribute("exercise", ex);
+                    RequestDispatcher rd = request.getRequestDispatcher("./Administrator/EditExercise.jsp");
+                    rd.forward(request, response);
+                } else {
+                    try {
+                        id = request.getParameter("exerciseID");
+                        exName = request.getParameter("exname");
+                        lowerweight = Double.parseDouble(request.getParameter("lowerweight"));
+                        upperweight = Double.parseDouble(request.getParameter("upperweight"));
+                        calorexp = Integer.parseInt(request.getParameter("calorexp"));
+                        icon = request.getParameter("icon");
+                        description = request.getParameter("description");
+                    } catch (NumberFormatException ex) {
+                    }
+
+                    if (id != null) {
+                        exerciseDAO.updateExercise(id, exName, lowerweight, upperweight, calorexp, icon, description);
+                    }
+
+                    response.sendRedirect("ExerciseController");
+                }
+            }
         }
     }
 
