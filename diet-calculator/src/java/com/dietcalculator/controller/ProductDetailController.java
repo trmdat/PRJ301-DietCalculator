@@ -80,6 +80,8 @@ public class ProductDetailController extends HttpServlet {
                     for (ProductDetail productDetail : pdl) {
                         if (productID.equals(productDetail.getProductID()) && productDetail.getBillID() == null && user.getUserID().equals(productDetail.getUserID())) {
                             isInCart = true;
+                            detailID=productDetail.getDetailID();
+                            amount=productDetail.getQuantity()+1;
                         }
                     }
                 }
@@ -96,7 +98,7 @@ public class ProductDetailController extends HttpServlet {
                     pddao.createProductDetail(detailID, productID, user.getUserID(), null, amount);
                 }
                 if (isInCart) {
-                     response.sendRedirect("ProductDetailController?action=update&detailID="+detailID+"&productID="+productID);
+                     response.sendRedirect("ProductDetailController?action=update&detailID="+detailID+"&productID="+productID+"&amount="+amount);
                 } else {
                     response.sendRedirect("ProductDetailController");
                 }
