@@ -27,34 +27,6 @@
         <link rel="stylesheet" href="ProductList.css">
     </head>
     <body>
-<<<<<<< HEAD
-        <div class="header_section1">
-            <div class="header-nav">
-                <nav class="navbar navbar-expand-lg navbar-dark main_navbar">
-                    <div class="logo"><a href="HomeController"><img class="logo" src="./index/images/logo.jpg" alt="logo"><h1 class="title">Diet Calculator</h1></a></div>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mr-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="HomeController">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="./calculator/DietForm.jsp">Diet</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="ProductListController">Product</a>
-                            </li> 
-                            <li class="nav-item">
-                                <a class="nav-link" href="">Contact Us</a>
-                            </li>      
-                        </ul>
-                        <div class="user-logo"><a href="../LoginController"><img src="./index/images/user-logo.jpg" alt="user_logo"></a></div>
-                    </div>
-                </nav>
-            </div>
-=======
         <div>
             <div class="header_section1">
                 <div class="header-nav">
@@ -78,12 +50,12 @@
                                     <a class="nav-link" href="">Contact Us</a>
                                 </li>      
                             </ul>
-                            <div class="user-logo"><a href="../LoginController"><img src="./index/images/user-logo.jpg" alt="user_logo"></a></div>
+                            <div class="user-logo"><a href="/diet-calculator/LoginController"><img src="./index/images/user-logo.jpg" alt="user_logo"></a></div>
                         </div>
                     </nav>
                 </div>
             </div></div>
->>>>>>> 1b72afbd3ea2155f0c07eb03d6b3ecb13a0b591c
+
             <div class="container bootdey">
                 <form action="ProductListController">
                     <div class="col-md-3">
