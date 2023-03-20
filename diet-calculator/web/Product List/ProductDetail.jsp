@@ -238,6 +238,7 @@
     </head>
 
     <body>
+          <%@ include file = "/index/UserHeader.jsp" %>
         <%
 //            Product product = new Product();
 //            product = (Product) request.getAttribute("product");

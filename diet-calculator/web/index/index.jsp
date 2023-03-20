@@ -36,36 +36,11 @@
     </head>
     <body>
         <!--header section start -->
+       
+
         <div class="header_section">
             <div class="header-nav">
-                <nav class="navbar navbar-expand-lg navbar-dark main_navbar">
-                    <div class="logo"><a href="HomeController"><img class="logo" src="./index/images/logo.jpg" alt="logo"><h1 class="title">Diet Calculator</h1></a></div>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mr-auto " >
-                            <li class="nav-item">
-                                <a class="nav-link" href="/diet-calculator/calculator/DietForm.jsp">Diet Calculator</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/diet-calculator/MenuController?action=show">Menu</a>
-                            </li>
-                            
-                            <li class="nav-item">
-                                <a class="nav-link" href="/diet-calculator/ProductListController">Shop</a>
-                            </li> 
-                            <li class="nav-item">
-                                <a class="nav-link" href="/diet-calculator/ProductDetailController">Cart</a>
-                            </li>      
-                        </ul>    
-                        </ul></div>
-                        <c:if test = "${sessionScope.user.getUsername()!=null}"><div style="color:white">Welcome back: ${sessionScope.user.getUsername()}</div></c:if>
-                        <c:if test = "${sessionScope.user.getUserID()!=null}"><a href="/diet-calculator/LoginController?action=logout"><div class="nav-link" style="color:white">Log out</div></a> </c:if>
-                         <c:if test = "${sessionScope.user.getUserID()==null}"> <a href="/diet-calculator/Register_Login/login.jsp"><div class="nav-link" style="color:white">Log in</div></a></c:if>
-                        <div class="user-logo"><img src="./index/images/user-logo.jpg" alt="user_logo">
-                    </div>
-                </nav>
+                <%@ include file = "/index/UserHeader.jsp" %>
             </div>
             <!--banner section start -->
             <div class="banner_section layout_padding">
