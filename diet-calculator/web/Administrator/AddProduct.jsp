@@ -86,6 +86,7 @@
                                                 <option value="fiber">Fiber</option>
                                                 <option value="eaa">EAA</option>
                                                 <option value="bcaa">BCAA</option>
+                                                <option value="water">Water</option>
                                             </select>
                                         </div>
 

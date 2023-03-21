@@ -56,8 +56,9 @@
                                             <option value="eaa">EAA</option>
                                             <option value="bcaa">BCAA</option>
                                             <option value="fiber">Fiber</option>
-                                            <option value="carbohydrate">carbohydrate</option>
-                                            <option value="mass">mass</option>
+                                            <option value="carbohydrate">Carbohydrate</option>
+                                            <option value="mass">Mass</option>
+                                            <option value="water">Water</option>
                                         </select>
                                     </div>
 
