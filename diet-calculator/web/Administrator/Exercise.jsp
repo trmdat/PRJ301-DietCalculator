@@ -11,18 +11,13 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Exercise List</title>
-        <jsp:include page="../index/AdminHeader.jsp" />
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700" />
-        <link rel="stylesheet" href="css/fontawesome.min.css" />
-        <link rel="stylesheet" href="css/bootstrap.min.css" />
-        <link rel="stylesheet" href="css/templatemo-style.css">
+        <title>Exercise List</title>
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
 
     </head>
 
@@ -32,8 +27,9 @@
         }
     </style>
 
-    <body id="reportsPage">
-        <div class="container mt-5 mb-5">
+    <body>
+        <jsp:include page="../index/AdminHeader.jsp" />
+        <div class="container mt-5">
             <div class="row tm-content-row">
                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 tm-block-col">
                     <div class="tm-bg-primary-dark tm-block tm-block-products">
@@ -46,23 +42,23 @@
                                     <button type="submit" class="btn btn-primary btn-block text-uppercase bg-success mb-2"> << Return</button>                            
                                 </form>
                             </div>
-                            <div class="col-md-12">
-                                <form action="ExerciseController" method="post">
-                                    <input type="text" name="exname" placeholder="Search by Name"/>
-                                </form>
-                            </div>
-                            <div class="col-md-12">
-                                <form action="ExerciseController" method="post">
-                                    <input type="hidden" name="action" value="sort" />
-                                    Name <input type="checkbox" name="exname" />
-                                    Calorexp <input type="checkbox" name="calorexp" />
-                                    <input type="submit" value="Sort" />
-                                </form>
-                            </div>
+                            <!--                            <div class="col-md-12">
+                                                            <form action="ExerciseController" method="post">
+                                                                <input type="text" name="exname" placeholder="Search by Name"/>
+                                                            </form>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <form action="ExerciseController" method="post">
+                                                                <input type="hidden" name="action" value="sort" />
+                                                                Name <input type="checkbox" name="exname" />
+                                                                Calorexp <input type="checkbox" name="calorexp" />
+                                                                <input type="submit" value="Sort" />
+                                                            </form>
+                                                        </div>-->
                         </div>
                         <a href="Administrator/AddExercise.jsp" class="btn btn-primary btn-block text-uppercase mb-3 bg-success mt-3">Add new Exercise</a>
-                        <div class="tm-product-table-container">
-                            <form action="ExerciseController" method="get">
+                        <form action="ExerciseController" method="get">
+                            <div class="tm-product-table-container">
                                 <input type="hidden" name="action" value="delete">
                                 <table class="table table-lg table-hover ">
                                     <thead>
@@ -122,8 +118,8 @@
                                     </div>
                                 </section>
                                 <input type="submit" value="Delete selected Exercises" class="btn btn-primary btn-block text-uppercase bg-success">
-                            </form>
-                        </div>
+                            </div>
+                        </form>
                         <!-- table container -->
 
                     </div>

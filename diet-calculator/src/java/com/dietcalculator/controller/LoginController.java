@@ -6,6 +6,7 @@ import com.dietcalculator.util.Utils;
 import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -42,7 +43,7 @@ public class LoginController extends HttpServlet {
         if (action != null && action.equals("logout")) {
             HttpSession session = request.getSession(false);
             if (session != null) {
-                session.invalidate();             
+                session.invalidate();
             }
             response.sendRedirect("/diet-calculator/LoginController");
         } else if (action == null || request.getParameter("username") == null || request.getParameter("password") == null) {
@@ -52,15 +53,14 @@ public class LoginController extends HttpServlet {
             String password = request.getParameter("password");
             User user = null;
             user = dao.login(username, password);
-            if (user != null && user.getUserID()!=null) {
+            if (user != null && user.getUserID() != null) {
                 HttpSession session = request.getSession(true);
 
-                
                 //user session is USER
                 session.setAttribute("user", user);
                 String url = "HomeController";
-                if(user.getRank()>0){
-                     url="UserController";
+                if (user.getRank() > 0) {
+                    url = "UserController";
                 }
                 response.sendRedirect(url);
 
@@ -70,6 +70,8 @@ public class LoginController extends HttpServlet {
                 rd.forward(request, response);
             }
         } else if (action.equals("register")) {
+            String err = "";
+            String url = "Register_Login/login.jsp";
             try {
                 String username = request.getParameter("username");
                 Date dob = Date.valueOf(request.getParameter("dob"));
@@ -78,13 +80,24 @@ public class LoginController extends HttpServlet {
                 String email = request.getParameter("email");
                 String password = request.getParameter("password");
                 LocalDate createDate = java.time.LocalDate.now();
-                dao.createUser(getUserID(), username, dob, phone, address, email, password, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                        Utils.convertJavaDateToSqlDate(createDate.getYear(), createDate.getMonthValue(), createDate.getDayOfMonth()));
+                ArrayList<User> l = dao.readUser();
+                if (l != null) {
+                    for (User user : l) {
+                        if (user.getUsername().equalsIgnoreCase(username)) {
+                            err = "Username is duplicated";
+                            url="Register_Login/register.jsp";
+                        }
+                    }
+                }
+                if (err.isEmpty()) {
+                    dao.createUser(getUserID(), username, dob, phone, address, email, password, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                            Utils.convertJavaDateToSqlDate(createDate.getYear(), createDate.getMonthValue(), createDate.getDayOfMonth()));
+                }
             } catch (Exception e) {
                 System.out.println(e);
             }
-
-            response.sendRedirect("/diet-calculator/Register_Login/login.jsp");
+            request.setAttribute("error", err);
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

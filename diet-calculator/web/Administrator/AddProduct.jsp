@@ -5,6 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Add New Food</title>
+        <jsp:include page="../index/AdminHeader.jsp" />
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 
@@ -22,7 +23,6 @@
         <link href="${pageContext.request.contextPath}/index/css/style1.css" type="text/css" rel="stylesheet">
     </head>
     <body>
-        <jsp:include page="../index/AdminHeader.jsp" />
         <br>
         <nav>
             <div class="container tm-mt-big tm-mb-big mb-5 mt-5">
