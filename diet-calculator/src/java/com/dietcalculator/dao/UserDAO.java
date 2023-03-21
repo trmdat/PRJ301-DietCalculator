@@ -16,8 +16,8 @@ import java.util.List;
  */
 public class UserDAO {
 
-    public User login (String username, String password){
-                
+    public User login(String username, String password) {
+
         String sql = "SELECT * FROM [User] where username = ? and password = ?";
         User user = new User();
         try {
@@ -38,13 +38,12 @@ public class UserDAO {
             ps.close();
             conn.close();
             return user;
-        }
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println("Query error!" + ex.getMessage());
         }
         return null;
     }
-    
+
     public String lastIDIndex() {
         String sql = "SELECT TOP 1 userID FROM [User] ORDER BY userID DESC";
         String index = "U00000";
@@ -172,7 +171,34 @@ public class UserDAO {
         return row > 0;
     }
 
-    public User searchUser(String userID){
+    public User load(String userID) {
+        String sql = "SELECT * FROM [User] where userID = ?";
+        try {
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, userID);
+            
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                return new User(rs.getString("userID"), rs.getString("username"), 
+                        rs.getDate("dob"), rs.getString("phone"), rs.getString("address"), 
+                        rs.getString("email"), rs.getString("password"), rs.getDouble("weight"), 
+                        rs.getDouble("height"), rs.getInt("gender"), rs.getInt("activity"), 
+                        rs.getInt("preference"), rs.getInt("goal"), rs.getDouble("amount"), 
+                        rs.getInt("duration"), rs.getInt("main"), rs.getInt("side"), 
+                        rs.getInt("session"), rs.getInt("rank"),rs.getDate("createDate"));
+            }
+            rs.close();
+            ps.close();
+            conn.close();
+            
+        }catch(Exception e){
+            
+        }
+        return null;
+    }
+
+    public User searchUser(String userID) {
         String sql = "SELECT userID, username, dob, phone, address, email, password, weight, height, gender, activity, preference, goal, amount, duration, main, side, session, rank, createdate FROM [User] WHERE userID = ?";
         User user = null;
         try {
@@ -180,13 +206,13 @@ public class UserDAO {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, userID);
             ResultSet rs = ps.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 user = new User(rs.getString("userID"), rs.getString("username"),
-                    rs.getDate("dob"), rs.getString("phone"), rs.getString("address"),
-                    rs.getString("email"), rs.getString("password"), rs.getDouble("weight"),
-                    rs.getDouble("height"), rs.getInt("gender"), rs.getInt("activity"), rs.getInt("preference"),
-                    rs.getInt("goal"), rs.getDouble("amount"), rs.getInt("duration"), rs.getInt("main"),
-                    rs.getInt("side"), rs.getInt("session"), rs.getInt("rank"), rs.getDate("createdate"));
+                        rs.getDate("dob"), rs.getString("phone"), rs.getString("address"),
+                        rs.getString("email"), rs.getString("password"), rs.getDouble("weight"),
+                        rs.getDouble("height"), rs.getInt("gender"), rs.getInt("activity"), rs.getInt("preference"),
+                        rs.getInt("goal"), rs.getDouble("amount"), rs.getInt("duration"), rs.getInt("main"),
+                        rs.getInt("side"), rs.getInt("session"), rs.getInt("rank"), rs.getDate("createdate"));
             }
             rs.close();
             ps.close();

@@ -23,7 +23,7 @@
         <!-- bootstrap css -->
         <link rel="stylesheet" type="text/css" href="/diet-calculator/index/css/bootstrap.min.css">
         <!-- style css -->
-        <link rel="stylesheet" type="text/css" href="/diet-calculator/index/css/style.css">
+        <link rel="stylesheet" type="${pageContext.request.contextPath}/index/css/style.css">
         <!-- Responsive-->
         <link rel="stylesheet" href="/diet-calculator/index/css/responsive.css">
         <!-- fevicon -->
@@ -53,7 +53,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/diet-calculator/MenuController">Menu</a>
                     </li>
-
                     <li class="nav-item">
                         <a class="nav-link" href="/diet-calculator/ProductListController">Shop</a>
                     </li> 
@@ -62,10 +61,11 @@
                     </li>      
                 </ul>    
                 </ul></div>
-            <c:if test = "${sessionScope.user.getUsername()!=null}"><div style="color:white">Welcome back: ${sessionScope.user.getUsername()}</div></c:if>
-            <c:if test = "${sessionScope.user.getUserID()!=null}"><a href="/diet-calculator/LoginController?action=logout"><div class="nav-link" style="color:white">Log out</div></a> </c:if>
+            
+            <c:if test = "${sessionScope.user.getUserID()!=null}"><a href="/diet-calculator/LoginController?action=logout"><div class="nav-link" style="color:white;">Log out</div></a> </c:if>
             <c:if test = "${sessionScope.user.getUserID()==null}"> <a href="/diet-calculator/Register_Login/login.jsp"><div class="nav-link" style="color:white">Log in</div></a></c:if>
-            <div class="user-logo"><a href="ProfileController"><img src="/diet-calculator/index/images/user-logo.jpg" alt="user_logo"></a>
+            <c:if test = "${sessionScope.user.getUsername()!=null}"><div style="color:white">Welcome back: ${sessionScope.user.getUsername()}</div></c:if>
+            <div class="user-logo" style="margin-left: 10px"><a href="ProfileController"><img src="/diet-calculator/index/images/user-logo.jpg" alt="user_logo"></a>
             </div>
         </nav>
     </body>

@@ -125,8 +125,25 @@ public class UserController extends HttpServlet {
                             userDAO.deleteUser(id);
                         }
                     }
+                    response.sendRedirect("UserController");
+                } else if (action.equals("view")) {
+                    String userID = null;
+                    try {
+                        userID = request.getParameter("userID");
+                    } catch (Exception e) {
+
+                    }
+
+                    user = null;
+                    if (userID != null) {
+                        user = userDAO.load(userID);
+                    }
+
+                    request.setAttribute("object", user);
+                    RequestDispatcher rd = request.getRequestDispatcher("UserProfile.jsp");
+                    rd.forward(request, response);
                 }
-                response.sendRedirect("UserController");
+
             }
         }
     }
