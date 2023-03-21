@@ -22,12 +22,13 @@
 			<div class="row justify-content-sm-center h-100">
 				<div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
 					<div class="text-center my-1">
-						<img src="logo.jpg" alt="logo" width="200">
+						<img src="/diet-calculator/Register_Login/logo.jpg" alt="logo" width="200">
 					</div>
 					<div class="card shadow-lg">
 						<div class="card-body p-5">
 							<h1 class="fs-4 card-title fw-bold mb-4">Register</h1>
 							<form action="/diet-calculator/LoginController" method="GET" class="needs-validation" novalidate="" autocomplete="off">
+                                                            <div class="text-danger">${error}</div>
                                                             <input type="hidden" name="action" value="register">
 								<div class="mb-3">
 									<label class="mb-2 text-muted" for="username">Username</label>
