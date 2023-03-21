@@ -126,7 +126,7 @@ public class UserController extends HttpServlet {
                         }
                     }
                     response.sendRedirect("UserController");
-                } else if (action.equals("view")) {
+                } else if (action.equalsIgnoreCase("view")) {
                     String userID = null;
                     try {
                         userID = request.getParameter("userID");

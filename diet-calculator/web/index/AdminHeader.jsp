@@ -14,7 +14,7 @@
 
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Addmin header</title>
+        <title>Admin header</title>
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 
@@ -37,33 +37,31 @@
             <a class="navbar-logo" href="#">
                 <img style="border-radius: 50%; margin-right: 20px;" src="https://thumbs2.imgbox.com/08/79/vGFMh0Gr_t.jpg" alt="imgbox"/>   
             </a>
-            <a class="navbar-brand" href="#"> Diet Calculator</a>
+            <a class="navbar-brand" href="#" style="margin-top: 10px;"> Diet Calculator</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"> <i class="fas fa-bars" ></i></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav" style="margin-top: 20px; font-size: 15px;" >
-                    <li class="nav-item">
-                        <a class="nav-link" href="/diet-calculator/UserController">User</a>
+                    <li class="nav-item" style="margin-left: 20px; ">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/UserController">User</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/diet-calculator/ProductController">Product</a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/ProductController">Product</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/diet-calculator/FoodController">Food</a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/FoodController">Food</a>
                     </li>
                     <li class="nav-item"> 
-                        <a class="nav-link" href="/diet-calculator/PopUpController">Pop Up</a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/PopUpController">Pop Up</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/diet-calculator/SaleOffController">Sale Off</a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/SaleOffController">Sale Off</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/diet-calculator/ExerciseController">Exercise</a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/ExerciseController">Exercise</a>
                     </li>
-<!--                    <li class="user-item">
-                        <a class="nav-link" href=""><i class="fas fa-user fa-2x"></i></a>
-                    </li>-->
+            
                     
                     <c:if test = "${sessionScope.user.getUserID()!=null}"><a href="/diet-calculator/LoginController?action=logout"><div class="nav-link" style="color:white; margin-top: 10px; margin-left: 700px">Log out</div></a> </c:if>
                     <c:if test = "${sessionScope.user.getUserID()==null}"> <a href="/diet-calculator/Register_Login/login.jsp"><div class="nav-link" style="color:white;margin-top: 10px">Log in</div></a></c:if>

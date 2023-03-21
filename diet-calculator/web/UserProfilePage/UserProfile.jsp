@@ -14,7 +14,7 @@
 
     <body>
         <jsp:include page="../index/UserHeader.jsp" />
-        <div class="container" style="margin-top: 150px; font-size: 20px; margin-bottom: 100px">
+        <div class="container" style="margin-top: 150px; margin-bottom: 100px">
             <div class="main-body">
 
                 <!-- Breadcrumb -->
@@ -32,10 +32,10 @@
                             <div class="card-body">
                                 <div class="d-flex flex-column align-items-center text-center">
                                     <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
-                                    <div class="mt-3"style="margin-bottom: 20px">
-                                        <h4>John Doe</h4>
+                                    <div class="mt-3">
+                                        <h4>Admin</h4>
                                         <p class="text-secondary mb-1">Full Stack Developer</p>
-                                        <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
+                                        <p class="text-muted font-size-sm">Ho Chi Minh, VietNam</p>
                                         <button class="btn btn-success">Follow</button>
                                         <button class="btn btn-outline-success">Message</button>
                                     </div>
@@ -52,7 +52,7 @@
                                         <h6 class="mb-0">Full Name</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        Kenneth Valdez
+                                        Admin
                                     </div>
                                 </div>
                                 <hr>
@@ -61,7 +61,7 @@
                                         <h6 class="mb-0">Email</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        fip@jukmuh.al
+                                        admin@gmail.com
                                     </div>
                                 </div>
                                 <hr>
@@ -70,25 +70,109 @@
                                         <h6 class="mb-0">Phone</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        (239) 816-9029
+                                        (+84) 12345678
                                     </div>
                                 </div>
                                 <hr>
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <h6 class="mb-0">Mobile</h6>
+                                        <h6 class="mb-0"> Address </h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        (320) 380-4539
+                                        District 9, Ho Chi Minh city, VietNam
                                     </div>
                                 </div>
                                 <hr>
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <h6 class="mb-0">Address</h6>
+                                        <h6 class="mb-0"> Weight(kg) </h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        Bay Area, San Francisco, CA
+                                        60 
+                                    </div>
+                                </div>
+                                <hr>
+                          
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0"> Height(cm) </h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        160 
+                                    </div>
+                                </div>
+                                <hr>
+
+            
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0"> Gender </h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        Male 
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0"> Activity </h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        3 
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0"> Preference </h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        Null 
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0"> Goal </h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        Gain Weight 
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0"> Amount </h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        30 
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0"> Duration </h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        8 weeks 
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0"> Session </h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        3 
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0"> Create Date </h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        22/08/2023 
                                     </div>
                                 </div>
                                 <hr>
@@ -100,7 +184,9 @@
                             </div>
                         </div>
 
-                       
+
+
+
 
                     </div>
                 </div>
