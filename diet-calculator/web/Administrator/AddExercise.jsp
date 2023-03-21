@@ -9,30 +9,20 @@
 <html lang="en">
 
     <head>
-        <title>Add Exercise</title>
-        <jsp:include page="../index/AdminHeader.jsp" />
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-
-        <!-- jQuery library -->
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
-
-        <!-- Popper JS -->
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-
-        <!-- Latest compiled JavaScript -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-
+        <title>Add Exercise</title>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
 
         <link href="${pageContext.request.contextPath}/index/css/style1.css" type="text/css" rel="stylesheet">
     </head>
 
     <body>
+        <jsp:include page="../index/AdminHeader.jsp" />
         <br>
-        <nav>
             <div class="container tm-mt-big tm-mb-big mb-5 mt-5">
                 <div class="row">
                     <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
@@ -88,11 +78,9 @@
                     </div>
                 </div>
             </div>
-        </nav
 
         <!-- Footer -->
         <jsp:include page="../index/UserFooter.jsp" />
-
 
 
 
