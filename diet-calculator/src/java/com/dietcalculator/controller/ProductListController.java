@@ -59,7 +59,7 @@ public class ProductListController extends HttpServlet {
                 page = Integer.parseInt(request.getParameter("page"));
             } catch (Exception e) {
             }
-            if (page == null) {
+            if (page == null || page == 0) {
                 page = 1;
             } else if (page > totalPages) {
                 page = totalPages;

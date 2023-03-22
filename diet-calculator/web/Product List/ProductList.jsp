@@ -32,13 +32,13 @@
         <div class="container bootdey">
             <form action="ProductListController">
                 <div class="col-md-3">
-                    <h3 style="back-ground:white">
+                    <h3 style="back-ground:white; margin-top: 10    0px">
                         Keyword: <input type="text" name="keyword" value="${keyword}" /><br>
-                        Type: <input type="text" name="type" value="${type}" /><br>
+                        Type: <input type="text" name="type" value="${type}" /><br><br>
                         Price: <input type="radio" name="price" value="ASC" check=${price.equals(ASC)?"checked":""}/>ASC
-                        <input type="radio" name="price" value="DESC"check=${price.equals(DESC)?"checked":""} />DESC<br>
+                        <input type="radio" name="price" value="DESC"check=${price.equals(DESC)?"checked":""} />DESC<br><br>
                         Quantity: <input type="radio" name="quantity" value="ASC" check=${quantity.equals(ASC)?"checked":""}/>ASC
-                        <input type="radio" name="quantity" value="DESC" check=${quantity.equals(DESC)?"checked":""}/>DESC<br>
+                        <input type="radio" name="quantity" value="DESC" check=${quantity.equals(DESC)?"checked":""}/>DESC<br><br>
                         <input type="submit" value="Filter" />
                     </h3>
 

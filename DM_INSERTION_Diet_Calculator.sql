@@ -573,3 +573,5 @@ INSERT INTO Image (imageID, productID, foodID, commentID, url) VALUES ('IMG00024
 --INSERT USER
 INSERT INTO [USER] VALUES('U00001',N'admin','2023-01-01','0123456789','FPT University','PRJ301.PGNB@gmail.com','admin123','60','170','1','1','1','1','2','8','3','2','2','3','2023-03-03')
 INSERT INTO [USER] VALUES('U00002',N'Nam','2001-01-18','012345678','Vung Tau','namngutn1@gmail.com','nam123','64','168','1','1','1','1','2','8','3','2','2','1','2023-03-03')
+
+

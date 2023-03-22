@@ -303,7 +303,7 @@
                                                                                  <li class=""><a href="#reviews" data-toggle="tab">Reviews</a></li>
                                                         </ul>-->
                             <div id="myTabContent" class="tab-content">
-                                <div class="tab-pane fade active in" id="more-information">
+                                <div id="more-information">
                                     <br />
                                     <h3><strong>Description Title</strong></h3>
                                     <p>
@@ -414,7 +414,7 @@
                         <hr />
                         <div class="row">
                             <div class="col-sm-12 col-md-6 col-lg-6">
-                                <a href="ProductDetailController?action=add&productID=${requestScope.product.productID}"
+                                <a href="CartController?action=add&productID=${requestScope.product.productID}"
                                    class="btn btn-success btn-lg">Add to cart</a>
                             </div>
                             <div class="col-sm-12 col-md-6 col-lg-6">

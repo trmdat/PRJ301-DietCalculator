@@ -11,6 +11,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Shopping Cart</title>
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <link rel="canonical" href="https://getbootstrap.com/docs/4.0/components/dropdowns/">
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -34,7 +35,9 @@
                                     <th scope="row">Index</th>
                                     <th scope="col">Product Name</th>
                                     <th scope="col" class="text-center">Quantity</th>
-                                    <th scope="col">Operation</th>
+
+                                    <th></th>
+                                    <th scope="col">Available</th>
                                     <th scope="col" class="text-right">Unit Price</th>
                                     <th scope="col" class ="text-center">Cost</th>
                                     <th> </th>
@@ -55,8 +58,12 @@
                                             <input class="form-control" type="number" min="0" max="${productList.get(i).getQuantity()}" name="amount" value="${x.getQuantity()}">
                                             ${message}
                                         </td>
+                                        <c:if test="${x.getQuantity()>productList.get(i).getQuantity()}">
+                                            <td><span onmouseover="Alert()" style="color:red">&#9888;</span>
+                                            </td>
+                                        </c:if>
                                         <td>
-                                            <button class="btn btn-sm btn-danger" type="submit">Submit</button>
+                                            /${productList.get(i).getQuantity()}
                                         </td>
                                         <td class="text-right"> ${productList.get(i).getPrice()}</td>
                                         <td class="text-center">${x.getQuantity()*productList.get(i).getPrice()}</td>
@@ -66,16 +73,16 @@
                                     </tr>
                                 </form>
                                 <c:set var="i" value="${i+1}"></c:set>
-                                </c:forEach>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td><strong>Total</strong></td>
-                                    <td class="text-right">${total}</td>
-                                </tr>
+                            </c:forEach>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><strong>Total</strong></td>
+                                <td class="text-right">${total}</td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
@@ -94,17 +101,24 @@
         </div>
     </body>
     <script>
-        $('#select-all').click(function(event) {   
-    if(this.checked) {
-        // Iterate each checkbox
-        $(':checkbox').each(function() {
-            this.checked = true;                        
+        $('#select-all').click(function (event) {
+            if (this.checked) {
+                // Iterate each checkbox
+                $(':checkbox').each(function () {
+                    this.checked = true;
+                });
+            } else {
+                $(':checkbox').each(function () {
+                    this.checked = false;
+                });
+            }
         });
-    } else {
-        $(':checkbox').each(function() {
-            this.checked = false;                       
-        });
-    }
-}); 
+
+        function Alert() {
+            alert("The quantity must be <= avaible");
+        }
+        ;
+
+
     </script>
 </html>
