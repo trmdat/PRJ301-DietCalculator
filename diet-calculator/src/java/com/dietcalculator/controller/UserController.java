@@ -84,50 +84,87 @@ public class UserController extends HttpServlet {
                         System.out.println(e.getMessage());
                     }
                     response.sendRedirect("UserController");
-                } else if (action.equalsIgnoreCase("update")) {
-                    if (request.getParameter("username") == null) { //Request for update page
-                        String userID = request.getParameter("userID");
-                        user = userDAO.searchUser(userID);
-                        request.setAttribute("user", user);
-                        RequestDispatcher rd = request.getRequestDispatcher("Administrator/EditUser.jsp");
-                        rd.forward(request, response);
-                    } else if (!request.getParameter("username").isEmpty()) {
-                        try {
-                            String username = request.getParameter("username");
-                            Date dob = Utils.convertStringToSqlDate(request.getParameter("dob"));
-                            String phone = request.getParameter("phone");
-                            String address = request.getParameter("address");
-                            String email = request.getParameter("email");
-                            String password = request.getParameter("password");
-                            double weight = Double.parseDouble(request.getParameter("weight"));
-                            double height = Double.parseDouble(request.getParameter("height"));
-                            int gender = Integer.parseInt(request.getParameter("gender"));
-                            int activity = Integer.parseInt(request.getParameter("activity"));
-                            int preference = Integer.parseInt(request.getParameter("preference"));
-                            int goal = Integer.parseInt(request.getParameter("goal"));
-                            double amount = Double.parseDouble(request.getParameter("amount"));
-                            int duration = Integer.parseInt(request.getParameter("duration"));
-                            int main = Integer.parseInt(request.getParameter("main"));
-                            int side = Integer.parseInt(request.getParameter("side"));
-                            int session = Integer.parseInt(request.getParameter("session"));
-                            int rank = Integer.parseInt(request.getParameter("rank"));
-                            Date createdate = Utils.convertStringToSqlDate(request.getParameter("createdate"));
-                        } catch (Exception e) {
-                            System.out.println(e.getMessage());
-                        }
-                    } else {
-                        response.sendRedirect("UserController");
+                }
+            } else if (action.equalsIgnoreCase("update")) {
+                if (request.getParameter("username") == null) { //Request for update page
+                    String userID = request.getParameter("userID");
+                    user = userDAO.searchUser(userID);
+                    request.setAttribute("user", user);
+                    RequestDispatcher rd = request.getRequestDispatcher("Administrator/EditUser.jsp");
+                    rd.forward(request, response);
+                } else if (!request.getParameter("username").isEmpty()) {
+                    try {
+                        String username = request.getParameter("username");
+                        Date dob = Utils.convertStringToSqlDate(request.getParameter("dob"));
+                        String phone = request.getParameter("phone");
+                        String address = request.getParameter("address");
+                        String email = request.getParameter("email");
+                        String password = request.getParameter("password");
+                        double weight = Double.parseDouble(request.getParameter("weight"));
+                        double height = Double.parseDouble(request.getParameter("height"));
+                        int gender = Integer.parseInt(request.getParameter("gender"));
+                        int activity = Integer.parseInt(request.getParameter("activity"));
+                        int preference = Integer.parseInt(request.getParameter("preference"));
+                        int goal = Integer.parseInt(request.getParameter("goal"));
+                        double amount = Double.parseDouble(request.getParameter("amount"));
+                        int duration = Integer.parseInt(request.getParameter("duration"));
+                        int main = Integer.parseInt(request.getParameter("main"));
+                        int side = Integer.parseInt(request.getParameter("side"));
+                        int session = Integer.parseInt(request.getParameter("session"));
+                        int rank = Integer.parseInt(request.getParameter("rank"));
+                        Date createdate = Utils.convertStringToSqlDate(request.getParameter("createdate"));
+                        userDAO.updateUser(username, username, dob, phone, address, email, password, weight, height, gender, activity, preference, goal, amount, duration, main, side, session, rank, createdate);
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
                     }
-                } else if (action.equalsIgnoreCase("delete")) {
-                    String[] itemsToDelete = request.getParameterValues("checkbox");
-                    if (itemsToDelete != null) {
-                        for (String id : itemsToDelete) {
-                            userDAO.deleteUser(id);
-                        }
+                } else {
+                    response.sendRedirect("UserController");
+                }
+            } else if (action.equalsIgnoreCase("delete")) {
+                String[] itemsToDelete = request.getParameterValues("checkbox");
+                if (itemsToDelete != null) {
+                    for (String id : itemsToDelete) {
+                        userDAO.deleteUser(id);
                     }
                 }
                 response.sendRedirect("UserController");
+            } else if (action.equalsIgnoreCase("view")) {
+                String userID = null;
+                try {
+                    userID = request.getParameter("userID");
+                } catch (Exception e) {
+
+                }
+
+                user = null;
+                if (userID != null) {
+                    user = userDAO.searchUser(userID);
+                }
+
+                request.setAttribute("object", user);
+                RequestDispatcher rd = request.getRequestDispatcher("UserProfilePage/UserProfile.jsp");
+                rd.forward(request, response);
+            } else if (action.equalsIgnoreCase("edit")) {
+                if (request.getParameter("username") == null) { //Request for update page
+                    String userID = request.getParameter("userID");
+                    user = userDAO.searchUser(userID);
+                    request.setAttribute("user", user);
+                    RequestDispatcher rd = request.getRequestDispatcher("UserProfilePage/UserProfileEditor.jsp");
+                    rd.forward(request, response);
+                } else if (!request.getParameter("username").isEmpty()) {
+                    try {
+                        String username = request.getParameter("username");
+                        String phone = request.getParameter("phone");
+                        String address = request.getParameter("address");
+                        String email = request.getParameter("email");
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+                } else {
+                    response.sendRedirect("UserController");
+                }
             }
+
         }
     }
 
