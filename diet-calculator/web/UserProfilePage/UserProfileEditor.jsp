@@ -13,6 +13,7 @@
     </head>
     <body>
         <jsp:include page="../index/UserHeader.jsp" />
+        <br>
         <div class="container">
             <div class="main-body">
                 <div class="row">
@@ -35,7 +36,22 @@
                     </div>
 
                     <div class="col-lg-8">
-                        <form>
+                        <form action="UserController" method="POST">
+                            <input type="hidden" name="password" value="${user.password}" />
+                            <input type="hidden" name="weight" value="${user.weight}" />
+                            <input type="hidden" name="height" value="${user.height}" />
+                            <input type="hidden" name="gender" value="${user.gender}" />
+                            <input type="hidden" name="activity" value="${user.activity}" />
+                            <input type="hidden" name="preference" value="${user.preference}" />
+                            <input type="hidden" name="goal" value="${user.goal}" />
+                            <input type="hidden" name="amount" value="${user.amount}" />
+                            <input type="hidden" name="duration" value="${user.duration}" />
+                            <input type="hidden" name="main" value="${user.main}" />
+                            <input type="hidden" name="side" value="${user.side}" />
+                            <input type="hidden" name="session" value="${user.session}" />
+                            <input type="hidden" name="rank" value="${user.rank}" />
+                            <input type="hidden" name="createdate" value="${user.createdate}" />
+                            <input type="hidden" name="userID" value="${user.userID}" />
                             <div class="card">
                                 <div class="card-body">
                                     <div class="row mb-3">
@@ -44,6 +60,14 @@
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <input type="text" class="form-control" value="${user.username}">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Date of Birth</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            <input type="text" class="form-control" value="${user.dob}">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -83,6 +107,7 @@
                 </div>
             </div>
         </div>
+        <br>
         <jsp:include page="../index/UserFooter.jsp" />
     </body>
 </html>

@@ -43,7 +43,7 @@ public class UserController extends HttpServlet {
 
         if (user == null || user.getRank() < 0) {
             try (PrintWriter out = response.getWriter()) {
-                out.print("<h1>You don't have permission</h1");
+                out.print("<h1>You don't have permission</h1>");
             }
         } else {
             //Catching the action
@@ -54,7 +54,8 @@ public class UserController extends HttpServlet {
                 request.setAttribute("userList", userDAO.readUser());
                 RequestDispatcher rd = request.getRequestDispatcher("/Administrator/UserList.jsp");
                 rd.forward(request, response);
-            } else if (action.equalsIgnoreCase("create")) {            //CREATE A NEW USER
+            } else if (action.equalsIgnoreCase("create")) {   
+                //CREATE A NEW USER
                 if (!request.getParameter("userID").isEmpty()) {
                     try {
                         String lastUserIndex = userDAO.lastIDIndex();
@@ -154,9 +155,25 @@ public class UserController extends HttpServlet {
                 } else if (!request.getParameter("username").isEmpty()) {
                     try {
                         String username = request.getParameter("username");
+                        Date dob = Utils.convertStringToSqlDate(request.getParameter("dob"));
                         String phone = request.getParameter("phone");
                         String address = request.getParameter("address");
                         String email = request.getParameter("email");
+                        String password = request.getParameter("password");
+                        double weight = Double.parseDouble(request.getParameter("weight"));
+                        double height = Double.parseDouble(request.getParameter("height"));
+                        int gender = Integer.parseInt(request.getParameter("gender"));
+                        int activity = Integer.parseInt(request.getParameter("activity"));
+                        int preference = Integer.parseInt(request.getParameter("preference"));
+                        int goal = Integer.parseInt(request.getParameter("goal"));
+                        double amount = Double.parseDouble(request.getParameter("amount"));
+                        int duration = Integer.parseInt(request.getParameter("duration"));
+                        int main = Integer.parseInt(request.getParameter("main"));
+                        int side = Integer.parseInt(request.getParameter("side"));
+                        int session = Integer.parseInt(request.getParameter("session"));
+                        int rank = Integer.parseInt(request.getParameter("rank"));
+                        Date createdate = Utils.convertStringToSqlDate(request.getParameter("createdate"));
+                        userDAO.updateUser(username, username, dob, phone, address, email, password, weight, height, gender, activity, preference, goal, amount, duration, main, side, session, rank, createdate);
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
