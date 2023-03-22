@@ -34,10 +34,10 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg ">
-            <a class="navbar-logo" href="#">
+            <a class="navbar-logo" href="HomeController">
                 <img src="https://thumbs2.imgbox.com/08/79/vGFMh0Gr_t.jpg" alt="imgbox"/>   
             </a>
-            <a class="navbar-brand" href="#"> Diet Calculator</a>
+            <a class="navbar-brand" href="HomeController"> Diet Calculator</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"> <i class="fas fa-bars" ></i></span>
             </button>

@@ -50,10 +50,10 @@
                             </c:forEach>
                             <c:forEach var="pro" items="${productList}">
                                 <div class="col-md-6 p-0 m-0">
-                                    <h4>${pro.productname}</h4>
+                                    <h2><a href="ProductInfoController?productID=${pro.productID}">${pro.productname}</a></h2>
                                 </div>
                             </c:forEach>
-                            <h2 class="text-center">${pop.description}</h2>
+                            <h1 class="text-center">${pop.description}</h1>
                         </c:forEach>
                     </div>
                 </div>
