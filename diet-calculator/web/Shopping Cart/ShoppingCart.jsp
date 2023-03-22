@@ -57,9 +57,12 @@
                                         <td>
                                             <input class="form-control" type="number" min="0" max="${productList.get(i).getQuantity()}" name="amount" value="${x.getQuantity()}">
                                             ${message}
-                                        </td>
-                                        <c:if test="${x.getQuantity()>productList.get(i).getQuantity()}">
-                                            <td><span onmouseover="Alert()" style="color:red">&#9888;</span>
+
+                                            <%!boolean check = true;%>
+                                            <c:if test="${x.getQuantity()>productList.get(i).getQuantity()}">
+                                                <span onmouseover="Alert()" style="color:red">&#9888;</span>
+                                            </td
+                                            <%check = false;%>
                                             </td>
                                         </c:if>
                                         <td>
@@ -90,10 +93,23 @@
                 <div class="col mb-2">
                     <div class="row">
                         <div class="col-sm-12  col-md-6">
+
                             <button class="btn btn-block btn-light"> <a class="nav-link" href="/diet-calculator/ProductListController">Continue Shopping</a></button>
+
                         </div>
                         <div class="col-sm-12 col-md-6 text-right">
-                            <button class="btn btn-lg btn-block btn-success text-uppercase"><a class="nav-link" href="/diet-calculator/CartController?action=checkout">Checkout</a></button>
+                            <%  if (check == true) {
+                                    out.print("<button class=\"btn btn-lg btn-block btn-success text-uppercase\"><a class=\"nav-link\" href=\"/diet-calculator/CartController?action=checkout\">Checkout</a></button>");
+                                } else {
+                                    out.print("<button onmouseover=\"Alert()\" class=\"btn btn-lg btn-block btn-success text-uppercase\"><a class=\"nav-link\">Unable to Checkout</a></button>");
+                                }
+                            %>
+
+
+
+
+
+
                         </div>
                     </div>
                 </div>
