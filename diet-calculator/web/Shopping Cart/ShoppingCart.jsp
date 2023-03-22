@@ -58,13 +58,14 @@
                                             <input class="form-control" type="number" min="0" max="${productList.get(i).getQuantity()}" name="amount" value="${x.getQuantity()}">
                                             ${message}
 
-                                            <%!boolean check = true;%>
+                                            <%!boolean check = false;%>
                                             <c:if test="${x.getQuantity()>productList.get(i).getQuantity()}">
                                                 <span onmouseover="Alert()" style="color:red">&#9888;</span>
-                                            </td
-                                            <%check = false;%>
-                                            </td>
-                                        </c:if>
+                                                <%check = true;%>
+                                            </c:if>
+                                            <c:if test="${x.getQuantity()<productList.get(i).getQuantity()}">
+                                                <%check = false;%>
+                                            </c:if>
                                         <td>
                                             /${productList.get(i).getQuantity()}
                                         </td>
