@@ -22,8 +22,8 @@ and open the template in the editor.
 
 .navbar-logo img{
     border-radius:50%;
-    height: 50px;
-    width:50px;
+    height: 80px;
+    width:80px;
     margin-right: 30px;
 }
 .navbar-toggler{
@@ -42,6 +42,11 @@ and open the template in the editor.
     margin-left: 900px;
 
 }
+.user-logo a img{
+    border-radius: 50%;
+    height: 80px;
+    width:80px;
+}
 
 .page-footer{
     margin-top:100px;
@@ -62,4 +67,9 @@ and open the template in the editor.
 
 .grid-ic a{
     color: white;
+}
+
+.profile{
+    margin-top: 20px;
+    margin-left: 20px;
 }

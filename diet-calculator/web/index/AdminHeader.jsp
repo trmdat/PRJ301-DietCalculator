@@ -29,11 +29,11 @@
 
         <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
 
-        <link href="${pageContext.request.contextPath}/Administrator/css/style1.css" type="text/css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/index/css/style1.css" type="text/css" rel="stylesheet">
 
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg ">
+        <nav class="navbar navbar-expand-lg">
             <a class="navbar-logo" href="HomeController">
                 <img src="https://thumbs2.imgbox.com/08/79/vGFMh0Gr_t.jpg" alt="imgbox"/>   
             </a>
@@ -42,7 +42,7 @@
                 <span class="navbar-toggler-icon"> <i class="fas fa-bars" ></i></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+                <ul class="nav navbar-nav" >
                     <li class="nav-item">
                         <a class="nav-link" href="/diet-calculator/UserController">User</a>
                     </li>
@@ -58,15 +58,15 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/diet-calculator/SaleOffController">Sale Off</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" >
                         <a class="nav-link" href="/diet-calculator/ExerciseController">Exercise</a>
                     </li>
 <!--                    <li class="user-item">
                         <a class="nav-link" href=""><i class="fas fa-user fa-2x"></i></a>
                     </li>-->
-                    <c:if test = "${sessionScope.user.getUsername()!=null}"><div style="color:white">Welcome back: ${sessionScope.user.getUsername()}</div></c:if>
-                    <c:if test = "${sessionScope.user.getUserID()!=null}"><a href="/diet-calculator/LoginController?action=logout"><div class="nav-link" style="color:white">Log out</div></a> </c:if>
-                    <c:if test = "${sessionScope.user.getUserID()==null}"> <a href="/diet-calculator/Register_Login/login.jsp"><div class="nav-link" style="color:white">Log in</div></a></c:if>
+                    <c:if test = "${sessionScope.user.getUsername()!=null}"><div class="nav-link profile" style="color:white">Welcome back: ${sessionScope.user.getUsername()}</div></c:if>
+                    <c:if test = "${sessionScope.user.getUserID()!=null}"><a href="/diet-calculator/LoginController?action=logout"><div class="nav-link profile" style="color:white">Log out</div></a> </c:if>
+                    <c:if test = "${sessionScope.user.getUserID()==null}"> <a href="/diet-calculator/Register_Login/login.jsp"><div class="nav-link profile" style="color:white">Log in</div></a></c:if>
                     <div class="user-logo"><a href="UserController?action=view&userID=${sessionScope.user.getUserID()}"><img src="/diet-calculator/index/images/user-logo.jpg" alt="user_logo"></a>
                     </div>
 
