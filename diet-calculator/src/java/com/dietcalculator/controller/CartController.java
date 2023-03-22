@@ -180,6 +180,13 @@ public class CartController extends HttpServlet {
                     response.sendRedirect("LoginController");
                 }
             }else if(action.equals("pay")){
+                String url="MailController?action=newOrderNoti";
+                 for(ProductDetail x: cart){
+                    Product product = pdao.searchProductByProductID(x.getProductID());
+                     if (x.getQuantity()>product.getQuantity()) {
+                         url="CartController";
+                     }
+                }
                 //DEDUCT ITMES
                 for(ProductDetail x: cart){
                     Product product = pdao.searchProductByProductID(x.getProductID());
@@ -190,7 +197,7 @@ public class CartController extends HttpServlet {
                 request.setAttribute("cart", tmpCart);
                 //PAYMENT WILL UPDATE THE BILLID IN THE CART AND CLEAR THE CART
                 payProcess(cart, user.getUserID());
-                RequestDispatcher rd = request.getRequestDispatcher("MailController?action=newOrderNoti");
+                RequestDispatcher rd = request.getRequestDispatcher(url);
                 rd.forward(request, response);
             }
         }

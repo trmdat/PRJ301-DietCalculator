@@ -58,7 +58,8 @@
                                             <input class="form-control" type="number" min="0" max="${productList.get(i).getQuantity()}" name="amount" value="${x.getQuantity()}">
                                             ${message}
 
-                                            <%!boolean check = false;%>
+                                            <%!boolean check;%>
+                                            <%check = false;%>
                                             <c:if test="${x.getQuantity()>productList.get(i).getQuantity()}">
                                                 <span onmouseover="Alert()" style="color:red">&#9888;</span>
                                                 <%check = true;%>
