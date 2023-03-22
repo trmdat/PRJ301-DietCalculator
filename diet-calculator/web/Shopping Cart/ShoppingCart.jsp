@@ -66,6 +66,7 @@
                                             <c:if test="${x.getQuantity()<productList.get(i).getQuantity()}">
                                                 <%check = false;%>
                                             </c:if>
+                                                
                                         <td>
                                             /${productList.get(i).getQuantity()}
                                         </td>
@@ -99,7 +100,7 @@
 
                         </div>
                         <div class="col-sm-12 col-md-6 text-right">
-                            <%  if (check == true) {
+                            <%  if (check == false) {
                                     out.print("<button class=\"btn btn-lg btn-block btn-success text-uppercase\"><a class=\"nav-link\" href=\"/diet-calculator/CartController?action=checkout\">Checkout</a></button>");
                                 } else {
                                     out.print("<button onmouseover=\"Alert()\" class=\"btn btn-lg btn-block btn-success text-uppercase\"><a class=\"nav-link\">Unable to Checkout</a></button>");
