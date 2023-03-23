@@ -65,7 +65,7 @@
             <c:if test = "${sessionScope.user.getUsername()!=null}"><div style="color:white">Welcome back: ${sessionScope.user.getUsername()}</div></c:if>
             <c:if test = "${sessionScope.user.getUserID()!=null}"><a href="/diet-calculator/LoginController?action=logout"><div class="nav-link" style="color:white">Log out</div></a> </c:if>
             <c:if test = "${sessionScope.user.getUserID()==null}"> <a href="/diet-calculator/Register_Login/login.jsp"><div class="nav-link" style="color:white">Log in</div></a></c:if>
-            <div class="user-logo"><a href="ProfileController"><img src="/diet-calculator/index/images/user-logo.jpg" alt="user_logo"></a>
+            <div class="user-logo"><a href="UserController?action=view&userID=${sessionScope.user.getUserID()}"><img src="/diet-calculator/index/images/user-logo.jpg" alt="user_logo"></a>
             </div>
         </nav>
     </body>
