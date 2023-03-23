@@ -36,7 +36,7 @@
                     </div>
 
                     <div class="col-lg-8">
-                        <form action="UserController" method="POST">
+                        <form action="UserControllerl" method="POST">
                             <input type="hidden" name="password" value="${user.password}" />
                             <input type="hidden" name="weight" value="${user.weight}" />
                             <input type="hidden" name="height" value="${user.height}" />
@@ -59,7 +59,7 @@
                                             <h6 class="mb-0">Full Name</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <input type="text" class="form-control" value="${user.username}">
+                                            <input name="username" type="text" class="form-control" value="${user.username}">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -67,7 +67,7 @@
                                             <h6 class="mb-0">Date of Birth</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <input type="text" class="form-control" value="${user.dob}">
+                                            <input name="dob" type="text" class="form-control" value="${user.dob}">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -75,7 +75,7 @@
                                             <h6 class="mb-0">Email</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <input type="text" class="form-control" value="${user.email}">
+                                            <input name="email" type="text" class="form-control" value="${user.email}">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -83,7 +83,7 @@
                                             <h6 class="mb-0">Phone</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <input type="text" class="form-control" value="${user.phone}">
+                                            <input name="phone" type="text" class="form-control" value="${user.phone}">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -91,13 +91,13 @@
                                             <h6 class="mb-0">Address</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <input type="text" class="form-control" value="${user.address}">
+                                            <input name="address" type="text" class="form-control" value="${user.address}">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-3"></div>
                                         <div class="col-sm-9 text-secondary">
-                                            <input type="submit" class="btn btn-success px-4" value="Save Changes">
+                                            <input  type="submit" class="btn btn-success px-4" value="Save Changes">
                                         </div>
                                     </div>
                                 </div>

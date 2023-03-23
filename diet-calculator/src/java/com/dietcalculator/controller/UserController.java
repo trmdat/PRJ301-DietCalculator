@@ -54,7 +54,7 @@ public class UserController extends HttpServlet {
                 request.setAttribute("userList", userDAO.readUser());
                 RequestDispatcher rd = request.getRequestDispatcher("/Administrator/UserList.jsp");
                 rd.forward(request, response);
-            } else if (action.equalsIgnoreCase("create")) {   
+            } else if (action.equalsIgnoreCase("create")) {
                 //CREATE A NEW USER
                 if (!request.getParameter("userID").isEmpty()) {
                     try {
@@ -95,6 +95,7 @@ public class UserController extends HttpServlet {
                     rd.forward(request, response);
                 } else if (!request.getParameter("username").isEmpty()) {
                     try {
+                        String userID = request.getParameter("userID");
                         String username = request.getParameter("username");
                         Date dob = Utils.convertStringToSqlDate(request.getParameter("dob"));
                         String phone = request.getParameter("phone");
@@ -114,7 +115,7 @@ public class UserController extends HttpServlet {
                         int session = Integer.parseInt(request.getParameter("session"));
                         int rank = Integer.parseInt(request.getParameter("rank"));
                         Date createdate = Utils.convertStringToSqlDate(request.getParameter("createdate"));
-                        userDAO.updateUser(username, username, dob, phone, address, email, password, weight, height, gender, activity, preference, goal, amount, duration, main, side, session, rank, createdate);
+                        userDAO.updateUser(userID, username, dob, phone, address, email, password, weight, height, gender, activity, preference, goal, amount, duration, main, side, session, rank, createdate);
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
