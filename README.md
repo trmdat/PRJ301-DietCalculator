@@ -19,6 +19,7 @@
     - [8.Product List](#8product-list)
     - [9.Product Detail](#9product-detail)
     - [10.Product cart](#10product-cart)
+    - [11.Admin manager](#11admin-manager)
   - [Database Diagram](#database-diagram)
   - [Conclusion](#conclusion)
   - [Project improvement](#project-improvement)
@@ -78,6 +79,8 @@ PGNB (Pray God No Bugs) introduces to you a platform that aids in designing a sc
 ![product detail](images/web-pages/ProductDetail.jpg)
 ### 10.Product cart
 ![product cart](images/web-pages/ProductCart.jpg)
+### 11.Admin manager
+![Admin manager](images/web-pages/Admin.jpg)
 
 ## Database Diagram
 
